@@ -51,7 +51,8 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   backdrop-filter: blur(20px);
   box-shadow: 0 1px 0 rgba(200,169,81,0.15);
 }
-.nav-logo img { height: 56px; object-fit: contain; }
+.nav-logo img { height: 64px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(200,169,81,0.3)); }
+.footer-logo img { filter: drop-shadow(0 0 6px rgba(200,169,81,0.25)); }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a {
   color: rgba(255,255,255,0.8); text-decoration: none;
@@ -74,7 +75,22 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   position: relative; min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
-  background: linear-gradient(160deg, #000000 0%, #000814 30%, #001428 55%, #002a5c 80%, #0077B6 100%);
+  background: #000814;
+}
+.hero-photo {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  opacity: 0.7;
+}
+.hero-photo-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,8,20,0.55) 0%,
+    rgba(0,8,20,0.25) 35%,
+    rgba(0,8,20,0.45) 65%,
+    rgba(0,8,20,0.85) 100%
+  );
 }
 .hero-bg-glow {
   position: absolute; inset: 0; pointer-events: none;
@@ -543,7 +559,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 <!-- NAVBAR -->
 <nav id="navbar" role="navigation" aria-label="Navegación principal">
   <a href="#" class="nav-logo" aria-label="Inicio Óptica Prada">
-    <img src="assets/images/logo.png" alt="Óptica Prada" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:Playfair Display,serif;font-size:1.2rem;color:#C8A951;font-weight:700;\'>ÓPTICA PRADA</span>'">
+    <img src="assets/images/logo.svg" alt="Óptica Prada">
   </a>
   <ul class="nav-links" id="nav-links">
     <li><a href="#vision">Visión</a></li>
@@ -560,9 +576,11 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
 <!-- HERO -->
 <section id="hero" aria-label="Inicio">
-  <div class="hero-bg-glow" aria-hidden="true"></div>
-  <div class="hero-droplets" aria-hidden="true" id="droplets"></div>
-  <div class="hero-content">
+  <img src="assets/images/hero.jpg" alt="" class="hero-photo" aria-hidden="true">
+  <div class="hero-photo-overlay" aria-hidden="true"></div>
+  <div class="hero-bg-glow" aria-hidden="true" style="z-index:2"></div>
+  <div class="hero-droplets" aria-hidden="true" id="droplets" style="z-index:2"></div>
+  <div class="hero-content" style="position:relative;z-index:3">
     <p class="hero-eyebrow">Óptica Prada — Excelencia Visual</p>
     <h1 class="hero-title">Ver el Mundo<br>en su Máxima<br><em style="font-style:italic">Claridad</em></h1>
     <p class="hero-subtitle">Exámenes visuales de alta precisión con tecnología de punta y el respaldo de un especialista con reconocimiento internacional.</p>
@@ -810,8 +828,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
   <span class="dev-strip-text">Desarrollado con tecnología AI por</span>
   <a href="https://wa.me/573113141020?text=Hola%2C%20vi%20la%20p%C3%A1gina%20web%20de%20%C3%93ptica%20Prada%20y%20me%20interesa%20tener%20una%20as%C3%AD%20para%20mi%20negocio.%20%C2%BFPodr%C3%ADamos%20hablar%3F"
      class="dev-logo-link" target="_blank" rel="noopener" aria-label="Contactar al desarrollador por WhatsApp">
-    <img src="assets/images/ai-logo.png" alt="AI Solutions" width="36" height="36"
-         onerror="this.style.display='none';this.parentElement.querySelector('span').style.borderBottom='1px solid var(--gold)'">
+    <img src="assets/images/ai-logo.svg" alt="AI Solutions" width="40" height="40">
     <span>AI Solutions &amp; Dev</span>
   </a>
 </div>
@@ -821,8 +838,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
   <div class="footer-grid">
     <div>
       <div class="footer-logo">
-        <img src="assets/images/logo.png" alt="Óptica Prada"
-             onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<p style=\'font-family:Playfair Display,serif;font-size:1.4rem;color:var(--gold);font-weight:700;margin-bottom:1rem;\'>ÓPTICA PRADA</p>')">
+        <img src="assets/images/logo.svg" alt="Óptica Prada">
       </div>
       <p class="footer-tagline">Donde la precisión científica se encuentra con el cuidado humano. Tu visión es nuestra prioridad.</p>
     </div>
