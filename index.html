@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Óptica Prada — Excelencia Visual</title>
+<meta name="description" content="Óptica Prada: Exámenes visuales de alta precisión y la mejor selección de monturas, gafas de sol y lentes de contacto en Colombia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C8A951;
+  --gold-light: #E2C97E;
+  --gold-dark: #9A7B2A;
+  --navy: #000814;
+  --navy-mid: #001d3d;
+  --blue-deep: #003566;
+  --blue-electric: #0077B6;
+  --white: #FFFFFF;
+  --gray-100: #F5F5F5;
+  --gray-200: #E0E0E0;
+  --gray-400: #9E9E9E;
+  --glass-bg: rgba(255,255,255,0.04);
+  --glass-border: rgba(200,169,81,0.2);
+  --glass-blur: blur(16px);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+
+/* ─── NAVBAR ─────────────────────────────────────────── */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 1.2rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+}
+#navbar.scrolled {
+  background: rgba(0,8,20,0.85);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(200,169,81,0.15);
+}
+.nav-logo img { height: 56px; object-fit: contain; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: rgba(255,255,255,0.8); text-decoration: none;
+  font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--navy) !important; font-weight: 700 !important;
+  padding: 0.6rem 1.4rem; border-radius: 4px;
+  transition: opacity 0.2s !important;
+}
+.nav-cta:hover { opacity: 0.85; color: var(--navy) !important; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.nav-hamburger span { width: 24px; height: 2px; background: var(--white); transition: 0.3s; }
+
+/* ─── HERO ────────────────────────────────────────────── */
+#hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(160deg, #000000 0%, #000814 30%, #001428 55%, #002a5c 80%, #0077B6 100%);
+}
+.hero-bg-glow {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.hero-bg-glow::before {
+  content: '';
+  position: absolute; bottom: -10%; left: 50%; transform: translateX(-50%);
+  width: 120%; height: 60%;
+  background: radial-gradient(ellipse, rgba(0,119,182,0.35) 0%, transparent 70%);
+  filter: blur(40px);
+}
+.hero-bg-glow::after {
+  content: '';
+  position: absolute; top: 20%; right: 10%;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(200,169,81,0.12) 0%, transparent 70%);
+  filter: blur(30px);
+}
+.hero-droplets {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.droplet {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), rgba(0,119,182,0.3));
+  animation: dropFloat linear infinite;
+  opacity: 0;
+}
+@keyframes dropFloat {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-20px) scale(1); opacity: 0; }
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center; padding: 2rem;
+  max-width: 860px;
+}
+.hero-eyebrow {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--gold-dark);
+}
+.hero-title {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 700; line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #FFFFFF 0%, #E2C97E 50%, #FFFFFF 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 300;
+  color: rgba(255,255,255,0.75); line-height: 1.7;
+  margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--navy); font-weight: 700; font-size: 0.95rem;
+  padding: 1rem 2.2rem; border-radius: 6px; text-decoration: none;
+  cursor: pointer; border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(200,169,81,0.35);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(200,169,81,0.5); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: rgba(255,255,255,0.06); color: var(--white);
+  font-weight: 500; font-size: 0.95rem;
+  padding: 1rem 2.2rem; border-radius: 6px; text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  backdrop-filter: blur(8px);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: var(--gold-dark); }
+.hero-scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  color: rgba(255,255,255,0.4); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  z-index: 2;
+}
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+.hero-stats {
+  display: flex; gap: 3rem; justify-content: center; margin-top: 3.5rem;
+  flex-wrap: wrap;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 700; color: var(--gold);
+  line-height: 1;
+}
+.hero-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; letter-spacing: 0.05em; }
+
+/* ─── SECTION COMMONS ─────────────────────────────────── */
+.section { padding: 6rem 2rem; }
+.container { max-width: 1240px; margin: 0 auto; }
+.section-eyebrow {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.section-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+  line-height: 1.2; margin-bottom: 1.2rem;
+}
+.section-title span { color: var(--gold); }
+.section-sub { color: rgba(255,255,255,0.6); font-size: 1.05rem; line-height: 1.7; max-width: 580px; }
+
+/* ─── BEFORE/AFTER ───────────────────────────────────── */
+#vision {
+  background: linear-gradient(180deg, var(--navy) 0%, #001428 100%);
+}
+.vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 16px; overflow: hidden; position: relative; }
+.vision-side {
+  position: relative; min-height: 420px;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem;
+}
+.vision-before {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+.vision-after {
+  background: linear-gradient(135deg, #001d3d 0%, #003566 100%);
+}
+.vision-blur-overlay {
+  position: absolute; inset: 0;
+  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.3);
+}
+.vision-clear-overlay {
+  position: absolute; inset: 0;
+}
+.vision-image {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4;
+}
+.vision-label {
+  position: relative; z-index: 2;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: inline-block; padding: 0.4rem 1rem;
+  border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem;
+  width: fit-content;
+}
+.vision-before .vision-label { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.1); }
+.vision-after .vision-label { color: var(--gold); border-color: var(--gold-dark); }
+.vision-text { position: relative; z-index: 2; }
+.vision-text h3 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+.vision-text p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+.vision-divider {
+  position: absolute; left: 50%; top: 0; bottom: 0; transform: translateX(-50%);
+  width: 3px; background: var(--gold); z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+}
+.vision-divider-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--gold); display: flex; align-items: center; justify-content: center;
+  color: var(--navy); font-weight: 700; font-size: 1.2rem; flex-shrink: 0;
+}
+.before-blur-text {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; color: rgba(255,255,255,0.06);
+  letter-spacing: -0.02em; font-family: 'Playfair Display', serif;
+  filter: blur(8px); user-select: none; z-index: 1;
+}
+
+/* ─── DOCTOR ─────────────────────────────────────────── */
+#doctor {
+  background: linear-gradient(180deg, #001428 0%, #000a1e 100%);
+  position: relative; overflow: hidden;
+}
+#doctor::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+}
+.doctor-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }
+.doctor-image-wrap {
+  position: relative;
+}
+.doctor-image-frame {
+  position: relative; border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 80px rgba(0,119,182,0.2), 0 0 0 1px rgba(200,169,81,0.1);
+}
+.doctor-image-frame img { width: 100%; display: block; aspect-ratio: 3/4; object-fit: cover; }
+.doctor-image-placeholder {
+  width: 100%; aspect-ratio: 3/4;
+  background: linear-gradient(135deg, #001d3d 0%, #003566 60%, #001428 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+}
+.doctor-badge {
+  position: absolute; bottom: -1.5rem; right: -1.5rem;
+  background: var(--gold); color: var(--navy);
+  padding: 1.2rem 1.5rem; border-radius: 10px;
+  text-align: center; font-weight: 700;
+  box-shadow: 0 8px 32px rgba(200,169,81,0.4);
+}
+.doctor-badge-num { font-size: 2rem; font-family: 'Playfair Display', serif; line-height: 1; }
+.doctor-badge-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
+.credentials { list-style: none; margin: 2rem 0; display: flex; flex-direction: column; gap: 1rem; }
+.credential-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: 8px; backdrop-filter: var(--glass-blur);
+  transition: border-color 0.2s, background 0.2s;
+}
+.credential-item:hover { border-color: var(--gold-dark); background: rgba(200,169,81,0.06); }
+.credential-icon {
+  width: 36px; height: 36px; border-radius: 6px;
+  background: rgba(200,169,81,0.15); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--gold);
+}
+.credential-icon svg { width: 18px; height: 18px; }
+.credential-text strong { display: block; font-size: 0.9rem; color: var(--white); margin-bottom: 0.2rem; }
+.credential-text span { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+
+/* ─── APPOINTMENT MODAL ───────────────────────────────── */
+#appt-modal {
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center; padding: 1rem;
+}
+#appt-modal.open { display: flex; }
+.modal-box {
+  background: linear-gradient(135deg, #001428, #002a5c);
+  border: 1px solid var(--glass-border); border-radius: 16px;
+  padding: 2.5rem; max-width: 460px; width: 100%;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  animation: modalIn 0.3s ease;
+}
+@keyframes modalIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.modal-box h3 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+.modal-box p { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--gold); margin-bottom: 0.5rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 0.8rem 1rem;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px; color: var(--white); font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+.form-group select option { background: #001428; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.modal-actions { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+.modal-close {
+  background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6);
+  padding: 0.8rem 1.2rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem; transition: 0.2s;
+}
+.modal-close:hover { background: rgba(255,255,255,0.08); }
+
+/* ─── CTA STRIP ───────────────────────────────────────── */
+.cta-strip {
+  padding: 2.5rem 2rem;
+  background: linear-gradient(90deg, rgba(200,169,81,0.08) 0%, rgba(0,53,102,0.3) 50%, rgba(200,169,81,0.08) 100%);
+  border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);
+  text-align: center;
+}
+.cta-strip h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.cta-strip p { color: rgba(255,255,255,0.6); margin-bottom: 1.2rem; font-size: 0.95rem; }
+
+/* ─── STORE ──────────────────────────────────────────── */
+#tienda { background: linear-gradient(180deg, #000a1e 0%, #000814 100%); }
+.store-header { text-align: center; margin-bottom: 3rem; }
+.store-header .section-sub { margin: 0 auto; text-align: center; }
+.filter-tabs {
+  display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.filter-tab {
+  padding: 0.55rem 1.4rem; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.7);
+  font-size: 0.82rem; font-weight: 500; cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-tab:hover { border-color: var(--gold-dark); color: var(--white); }
+.filter-tab.active {
+  background: var(--gold); border-color: var(--gold);
+  color: var(--navy); font-weight: 700;
+}
+.products-grid {
+  columns: 4; gap: 1.2rem;
+}
+.product-card {
+  break-inside: avoid; margin-bottom: 1.2rem;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: 12px; overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  cursor: pointer; position: relative;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px var(--gold-dark);
+  border-color: var(--gold-dark);
+}
+.product-card img { width: 100%; display: block; }
+.product-info { padding: 1rem; }
+.product-category {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.4rem;
+}
+.product-name { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
+.product-price { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 0.8rem; }
+.product-wa-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  width: 100%; padding: 0.6rem; border-radius: 6px;
+  background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.3);
+  color: #25D366; font-size: 0.8rem; font-weight: 600;
+  text-decoration: none; transition: background 0.2s;
+}
+.product-wa-btn:hover { background: rgba(37,211,102,0.22); }
+.product-wa-btn svg { width: 16px; height: 16px; }
+
+/* ─── PAYMENT BAND ────────────────────────────────────── */
+.payment-band {
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(0,8,20,1) 0%, rgba(0,29,61,0.6) 100%);
+  border-top: 1px solid var(--glass-border);
+}
+.payment-items {
+  display: flex; gap: 2rem; justify-content: center; align-items: center; flex-wrap: wrap;
+}
+.payment-item {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: 8px;
+}
+.payment-item svg { width: 22px; height: 22px; color: var(--gold); flex-shrink: 0; }
+.payment-item-text strong { display: block; font-size: 0.85rem; color: var(--white); }
+.payment-item-text span { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+/* ─── REVIEWS ─────────────────────────────────────────── */
+#reviews { background: linear-gradient(180deg, #000814 0%, #000a1e 100%); }
+.reviews-header { text-align: center; margin-bottom: 3.5rem; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.review-card {
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: 12px; padding: 1.8rem;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.review-card:hover { border-color: var(--gold-dark); transform: translateY(-3px); }
+.review-stars { display: flex; gap: 0.2rem; margin-bottom: 1rem; }
+.review-stars svg { width: 16px; height: 16px; color: var(--gold); fill: var(--gold); }
+.review-text { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.8); margin-bottom: 1.2rem; font-style: italic; }
+.review-author { display: flex; align-items: center; gap: 0.8rem; }
+.review-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue-electric), var(--gold-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem; color: var(--white); flex-shrink: 0;
+}
+.review-author-name { font-size: 0.875rem; font-weight: 600; }
+.review-author-date { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+
+/* ─── MAP ─────────────────────────────────────────────── */
+#mapa { background: #000814; padding: 5rem 2rem; }
+.map-header { text-align: center; margin-bottom: 3rem; }
+.map-wrap {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 80px rgba(0,119,182,0.15);
+  height: 420px;
+}
+.map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+
+/* ─── DEV BY ──────────────────────────────────────────── */
+.dev-strip {
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  flex-wrap: wrap;
+}
+.dev-strip-text { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+.dev-logo-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  text-decoration: none; color: var(--gold);
+  transition: opacity 0.2s;
+}
+.dev-logo-link:hover { opacity: 0.75; }
+.dev-logo-link img { width: 36px; height: 36px; object-fit: contain; }
+.dev-logo-link span { font-size: 0.82rem; font-weight: 600; }
+
+/* ─── FOOTER ──────────────────────────────────────────── */
+footer {
+  background: #000509; padding: 3rem 2rem 2rem;
+  border-top: 1px solid rgba(200,169,81,0.1);
+}
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; max-width: 1240px; margin: 0 auto 2rem; }
+.footer-logo img { height: 52px; margin-bottom: 1rem; }
+.footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+.footer-col h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col ul li a { font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--gold); }
+.footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.78rem; color: rgba(255,255,255,0.3); max-width: 1240px; margin: 0 auto; }
+
+/* ─── FLOATING WA ─────────────────────────────────────── */
+.wa-float {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 900;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.55); }
+.wa-float svg { width: 28px; height: 28px; fill: white; }
+
+/* ─── ANIMATIONS ──────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .products-grid { columns: 3; }
+  .doctor-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .doctor-image-wrap { max-width: 380px; margin: 0 auto; }
+  .reviews-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; background: rgba(0,8,20,0.97); align-items: center; justify-content: center; gap: 2rem; }
+  .nav-links.open a { font-size: 1.5rem; }
+  .vision-grid { grid-template-columns: 1fr; }
+  .vision-divider { display: none; }
+  .products-grid { columns: 2; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .payment-items { flex-direction: column; align-items: stretch; }
+}
+@media (max-width: 480px) { .products-grid { columns: 1; } }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+
+/* Color scheme for date/time inputs */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" role="navigation" aria-label="Navegación principal">
+  <a href="#" class="nav-logo" aria-label="Inicio Óptica Prada">
+    <img src="assets/images/logo.png" alt="Óptica Prada" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:Playfair Display,serif;font-size:1.2rem;color:#C8A951;font-weight:700;\'>ÓPTICA PRADA</span>'">
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#vision">Visión</a></li>
+    <li><a href="#doctor">El Doctor</a></li>
+    <li><a href="#tienda">Tienda</a></li>
+    <li><a href="#reviews">Testimonios</a></li>
+    <li><a href="#mapa">Ubicación</a></li>
+    <li><a href="#" class="nav-cta" onclick="openApptModal(); return false;">Agendar Cita</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero" aria-label="Inicio">
+  <div class="hero-bg-glow" aria-hidden="true"></div>
+  <div class="hero-droplets" aria-hidden="true" id="droplets"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Óptica Prada — Excelencia Visual</p>
+    <h1 class="hero-title">Ver el Mundo<br>en su Máxima<br><em style="font-style:italic">Claridad</em></h1>
+    <p class="hero-subtitle">Exámenes visuales de alta precisión con tecnología de punta y el respaldo de un especialista con reconocimiento internacional.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="openApptModal()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Agendar Examen Visual
+      </button>
+      <a href="#tienda" class="btn-ghost">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        Ver Catálogo
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">+15</div>
+        <div class="hero-stat-label">Años de Experiencia</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">+3K</div>
+        <div class="hero-stat-label">Pacientes Satisfechos</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Diagnóstico Especializado</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span>Descubrir</span>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section id="vision" class="section" aria-labelledby="vision-title">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">Transformación Visual</p>
+      <h2 class="section-title" id="vision-title">El Cambio que <span>Hace la Diferencia</span></h2>
+      <p class="section-sub" style="margin-bottom:3rem">Un examen visual preciso transforma completamente cómo experimentas el mundo. Así se ve la diferencia.</p>
+    </div>
+    <div class="vision-grid reveal">
+      <div class="vision-side vision-before">
+        <div class="before-blur-text" aria-hidden="true">BORROSO</div>
+        <div class="vision-blur-overlay" aria-hidden="true"></div>
+        <div style="position:relative;z-index:2">
+          <div class="vision-label">Antes del examen</div>
+          <div class="vision-text">
+            <h3 style="color:rgba(255,255,255,0.6)">Sin diagnóstico</h3>
+            <p>Visión borrosa, fatiga ocular, dolores de cabeza constantes. La vida con una fórmula incorrecta o sin ella.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vision-side vision-after">
+        <div class="vision-clear-overlay" aria-hidden="true"></div>
+        <div style="position:relative;z-index:2">
+          <div class="vision-label">Con tu nueva fórmula</div>
+          <div class="vision-text">
+            <h3 style="color:var(--gold)">Nitidez total</h3>
+            <p>Cada detalle en foco. Colores vibrantes, profundidad real. Así debería verse el mundo contigo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vision-divider" aria-hidden="true">
+        <div class="vision-divider-icon">↔</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem" class="reveal">
+      <button class="btn-primary" onclick="openApptModal()">Quiero Ver con Claridad</button>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTOR -->
+<section id="doctor" class="section" aria-labelledby="doctor-title">
+  <div class="container">
+    <div class="doctor-grid">
+      <div class="doctor-image-wrap reveal">
+        <div class="doctor-image-frame">
+          <div class="doctor-image-placeholder">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(200,169,81,0.4)" stroke-width="1" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <p style="color:rgba(200,169,81,0.5);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase">Foto del Doctor</p>
+          </div>
+        </div>
+        <div class="doctor-badge">
+          <div class="doctor-badge-num">+15</div>
+          <div class="doctor-badge-label">Años de<br>Experiencia</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="section-eyebrow">Especialista Certificado</p>
+        <h2 class="section-title" id="doctor-title">Dr. <span>Prada</span><br>Su Visión, Nuestra Misión</h2>
+        <p style="color:rgba(255,255,255,0.65);line-height:1.8;margin-bottom:1.5rem">Optómetra con más de 15 años de experiencia clínica, reconocido a nivel nacional por su precisión diagnóstica y atención humanizada. Cada examen es un proceso personalizado y riguroso.</p>
+        <ul class="credentials" aria-label="Credenciales del doctor">
+          <li class="credential-item">
+            <div class="credential-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div class="credential-text">
+              <strong>Optometría — Universidad de La Salle</strong>
+              <span>Título profesional con honores · Bogotá, Colombia</span>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="credential-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div class="credential-text">
+              <strong>Especialización en Baja Visión</strong>
+              <span>Formación avanzada en patologías visuales complejas</span>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="credential-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="credential-text">
+              <strong>Certificación Internacional en Contactología</strong>
+              <span>Adaptación especializada de lentes de contacto</span>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="credential-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="credential-text">
+              <strong>Miembro Activo — Asociación Colombiana de Optometría</strong>
+              <span>Actualización continua en tecnología visual de vanguardia</span>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="credential-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="credential-text">
+              <strong>+3.000 Pacientes Atendidos</strong>
+              <span>Diagnósticos visuales en niños, adultos y adultos mayores</span>
+            </div>
+          </li>
+        </ul>
+        <button class="btn-primary" onclick="openApptModal()" style="margin-top:0.5rem">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Agendar Cita con el Doctor
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip reveal">
+  <div class="container">
+    <h3>¿Tienes dudas sobre tu visión? <span style="color:var(--gold)">Estamos aquí para ayudarte.</span></h3>
+    <p>Agenda tu examen visual hoy y descubre el mundo como nunca antes lo has visto.</p>
+    <button class="btn-primary" onclick="openApptModal()">Reservar Mi Examen Ahora</button>
+  </div>
+</div>
+
+<!-- TIENDA -->
+<section id="tienda" class="section" aria-labelledby="tienda-title">
+  <div class="container">
+    <div class="store-header reveal">
+      <p class="section-eyebrow" style="justify-content:center">Nuestro Catálogo</p>
+      <h2 class="section-title" id="tienda-title">Colección <span>Exclusiva</span></h2>
+      <p class="section-sub">Las mejores marcas y estilos, cuidadosamente seleccionados para cada personalidad y necesidad visual.</p>
+    </div>
+    <div class="filter-tabs" role="tablist" aria-label="Filtrar productos">
+      <button class="filter-tab active" data-cat="todos" role="tab" aria-selected="true">Todos</button>
+      <button class="filter-tab" data-cat="monturas" role="tab" aria-selected="false">Monturas</button>
+      <button class="filter-tab" data-cat="sol" role="tab" aria-selected="false">Gafas de Sol</button>
+      <button class="filter-tab" data-cat="contacto" role="tab" aria-selected="false">Lentes de Contacto</button>
+      <button class="filter-tab" data-cat="ninos" role="tab" aria-selected="false">Niños</button>
+      <button class="filter-tab" data-cat="premium" role="tab" aria-selected="false">Premium</button>
+    </div>
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+</section>
+
+<!-- PAYMENT BAND -->
+<div class="payment-band reveal">
+  <div class="container">
+    <p style="text-align:center;font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem">Formas de Pago y Facilidades</p>
+    <div class="payment-items">
+      <div class="payment-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <div class="payment-item-text"><strong>Pago Contraentrega</strong><span>Recibe primero, paga al recibirlo</span></div>
+      </div>
+      <div class="payment-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <div class="payment-item-text"><strong>ADDI — Cuotas</strong><span>Compra hoy, paga en cuotas fáciles</span></div>
+      </div>
+      <div class="payment-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div class="payment-item-text"><strong>Compra Segura</strong><span>Garantía y respaldo en cada compra</span></div>
+      </div>
+      <div class="payment-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div class="payment-item-text"><strong>Envío a Domicilio</strong><span>Entrega a todo el país</span></div>
+      </div>
+      <div class="payment-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.54 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 6.29 6.29l.74-.74a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="payment-item-text"><strong>Asesoría por WhatsApp</strong><span>Te ayudamos a elegir lo mejor</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<section id="reviews" class="section" aria-labelledby="reviews-title">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <p class="section-eyebrow" style="justify-content:center">Experiencias Reales</p>
+      <h2 class="section-title" id="reviews-title">Lo que Dicen <span>Nuestros Pacientes</span></h2>
+    </div>
+    <div class="reviews-grid" id="reviews-grid"></div>
+    <div style="text-align:center;margin-top:2.5rem" class="reveal">
+      <button class="btn-primary" onclick="openApptModal()">Quiero Mi Examen Visual</button>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="mapa" class="section" aria-labelledby="mapa-title" style="padding-bottom:4rem">
+  <div class="container">
+    <div class="map-header reveal">
+      <p class="section-eyebrow" style="justify-content:center">Encuéntranos</p>
+      <h2 class="section-title" id="mapa-title">Visítanos <span>en Nuestro Local</span></h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:0.9rem;margin-top:0.5rem">Estamos ubicados en Colombia. ¡Te esperamos!</p>
+    </div>
+    <div class="map-wrap reveal">
+      <iframe
+        src="https://maps.google.com/maps?q=%C3%93ptica+Prada+Colombia&output=embed&z=16"
+        allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Ubicación de Óptica Prada en Google Maps"
+        aria-label="Mapa de ubicación de Óptica Prada">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- DESARROLLADO POR -->
+<div class="dev-strip">
+  <span class="dev-strip-text">Desarrollado con tecnología AI por</span>
+  <a href="https://wa.me/573113141020?text=Hola%2C%20vi%20la%20p%C3%A1gina%20web%20de%20%C3%93ptica%20Prada%20y%20me%20interesa%20tener%20una%20as%C3%AD%20para%20mi%20negocio.%20%C2%BFPodr%C3%ADamos%20hablar%3F"
+     class="dev-logo-link" target="_blank" rel="noopener" aria-label="Contactar al desarrollador por WhatsApp">
+    <img src="assets/images/ai-logo.png" alt="AI Solutions" width="36" height="36"
+         onerror="this.style.display='none';this.parentElement.querySelector('span').style.borderBottom='1px solid var(--gold)'">
+    <span>AI Solutions &amp; Dev</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <img src="assets/images/logo.png" alt="Óptica Prada"
+             onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<p style=\'font-family:Playfair Display,serif;font-size:1.4rem;color:var(--gold);font-weight:700;margin-bottom:1rem;\'>ÓPTICA PRADA</p>')">
+      </div>
+      <p class="footer-tagline">Donde la precisión científica se encuentra con el cuidado humano. Tu visión es nuestra prioridad.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#doctor">Examen Visual</a></li>
+        <li><a href="#tienda">Monturas</a></li>
+        <li><a href="#tienda">Gafas de Sol</a></li>
+        <li><a href="#tienda">Lentes de Contacto</a></li>
+        <li><a href="#tienda">Lentes Infantiles</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://wa.me/573114055230" target="_blank" rel="noopener">WhatsApp: 311 405 5230</a></li>
+        <li><a href="#mapa">Ver Ubicación</a></li>
+        <li><a href="#" onclick="openApptModal(); return false;">Agendar Cita</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Óptica Prada · Todos los derechos reservados · Colombia</p>
+  </div>
+</footer>
+
+<!-- APPOINTMENT MODAL -->
+<div id="appt-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <h3 id="modal-title">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" style="vertical-align:middle;margin-right:0.5rem" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Agendar Cita
+    </h3>
+    <p>Elige tu fecha y hora preferida. Te confirmaremos disponibilidad por WhatsApp.</p>
+    <div class="form-group">
+      <label for="appt-name">Tu Nombre *</label>
+      <input type="text" id="appt-name" placeholder="Ej: María García" required autocomplete="name">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="appt-date">Fecha Preferida *</label>
+        <input type="date" id="appt-date" required>
+      </div>
+      <div class="form-group">
+        <label for="appt-time">Hora Preferida *</label>
+        <input type="time" id="appt-time" min="08:00" max="18:00" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="appt-service">Servicio</label>
+      <select id="appt-service">
+        <option value="Examen Visual Completo">Examen Visual Completo</option>
+        <option value="Control de Fórmula">Control de Fórmula</option>
+        <option value="Adaptación de Lentes de Contacto">Adaptación de Lentes de Contacto</option>
+        <option value="Examen Visual Pediátrico">Examen Visual Pediátrico</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-close" onclick="closeApptModal()">Cancelar</button>
+      <button class="btn-primary" onclick="sendApptWhatsApp()" style="flex:1;justify-content:center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        Enviar por WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/573114055230?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20%C3%93ptica%20Prada."
+   class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+</a>
+
+<script>
+// ─── PRODUCTS DATA ───────────────────────────────────────
+const products = [
+  { id:1,  img:'assets/products/image1.jpg',  name:'Montura Clásica Titanio',      cat:'monturas', price:'Consultar precio' },
+  { id:2,  img:'assets/products/image2.jpg',  name:'Marco Rectangular Negro',       cat:'monturas', price:'Consultar precio' },
+  { id:3,  img:'assets/products/image3.jpg',  name:'Armazón Redondo Dorado',        cat:'monturas', price:'Consultar precio' },
+  { id:4,  img:'assets/products/image4.jpg',  name:'Montura Cat Eye Carey',         cat:'monturas', price:'Consultar precio' },
+  { id:5,  img:'assets/products/image5.jpg',  name:'Marco Aviador Metálico',        cat:'monturas', price:'Consultar precio' },
+  { id:6,  img:'assets/products/image6.jpg',  name:'Armazón Hexagonal Premium',     cat:'monturas', price:'Consultar precio' },
+  { id:7,  img:'assets/products/image7.jpg',  name:'Montura Deportiva Ligera',      cat:'monturas', price:'Consultar precio' },
+  { id:8,  img:'assets/products/image8.jpg',  name:'Marco Oval Acetato Italiano',   cat:'monturas', price:'Consultar precio' },
+  { id:9,  img:'assets/products/image9.jpg',  name:'Gafas Sol Piloto Espejadas',    cat:'sol',      price:'Consultar precio' },
+  { id:10, img:'assets/products/image10.jpg', name:'Sol Cuadradas UV400',           cat:'sol',      price:'Consultar precio' },
+  { id:11, img:'assets/products/image11.jpg', name:'Gafas Sol Oversized Negras',    cat:'sol',      price:'Consultar precio' },
+  { id:12, img:'assets/products/image12.jpg', name:'Sol Retro Tortuga',             cat:'sol',      price:'Consultar precio' },
+  { id:13, img:'assets/products/image13.jpg', name:'Gafas Sol Wrap Sport',          cat:'sol',      price:'Consultar precio' },
+  { id:14, img:'assets/products/image14.jpg', name:'Sol Hexagonales Gradiente',     cat:'sol',      price:'Consultar precio' },
+  { id:15, img:'assets/products/image15.jpg', name:'Gafas Sol Cat Eye Dorado',      cat:'sol',      price:'Consultar precio' },
+  { id:16, img:'assets/products/image16.jpg', name:'Sol Premium Polarizadas',       cat:'sol',      price:'Consultar precio' },
+  { id:17, img:'assets/products/image17.jpg', name:'Lentes Contacto Diarios',       cat:'contacto', price:'Consultar precio' },
+  { id:18, img:'assets/products/image18.jpg', name:'Lentes Contacto Mensuales',     cat:'contacto', price:'Consultar precio' },
+  { id:19, img:'assets/products/image19.jpg', name:'Lentes Contacto Tóricos',       cat:'contacto', price:'Consultar precio' },
+  { id:20, img:'assets/products/image20.jpg', name:'Montura Infantil Flexible',     cat:'ninos',    price:'Consultar precio' },
+  { id:21, img:'assets/products/image21.jpg', name:'Marco Niño Colores Vivos',      cat:'ninos',    price:'Consultar precio' },
+  { id:22, img:'assets/products/image22.jpg', name:'Armazón Infantil Antichoque',   cat:'ninos',    price:'Consultar precio' },
+  { id:23, img:'assets/products/image23.jpg', name:'Gafas Sol Niño UV Protection',  cat:'ninos',    price:'Consultar precio' },
+  { id:24, img:'assets/products/image24.jpg', name:'Montura Premium Titanio Puro',  cat:'premium',  price:'Consultar precio' },
+  { id:25, img:'assets/products/image25.jpg', name:'Colección Luxury Gold Edition', cat:'premium',  price:'Consultar precio' },
+  { id:26, img:'assets/products/image26.jpg', name:'Armazón Designer Limited',      cat:'premium',  price:'Consultar precio' },
+];
+
+const catLabels = { monturas:'Monturas', sol:'Gafas de Sol', contacto:'Lentes Contacto', ninos:'Niños', premium:'Premium' };
+
+function buildWaMsg(name) {
+  return encodeURIComponent(`Hola! Vi en la página de Óptica Prada las "${name}" y me gustaría obtener más información sobre precio y disponibilidad.`);
+}
+
+function renderProducts(cat) {
+  const grid = document.getElementById('products-grid');
+  const filtered = cat === 'todos' ? products : products.filter(p => p.cat === cat);
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card" data-cat="${p.cat}">
+      <img src="${p.img}" alt="${p.name}" loading="lazy" width="400" height="300"
+           onerror="this.style.background='linear-gradient(135deg,#001d3d,#003566)';this.style.minHeight='180px';this.removeAttribute('src')">
+      <div class="product-info">
+        <div class="product-category">${catLabels[p.cat] || p.cat}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-price">${p.price}</div>
+        <a href="https://wa.me/573114055230?text=${buildWaMsg(p.name)}"
+           class="product-wa-btn" target="_blank" rel="noopener"
+           aria-label="Consultar por ${p.name} en WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+          Preguntar por WhatsApp
+        </a>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── REVIEWS DATA ────────────────────────────────────────
+const reviews = [
+  { name:'Claudia M.', text:'"Siempre había tenido problemas con mis lentes porque ninguna fórmula me quedaba bien. El doctor me hizo el examen más completo que he tenido en mi vida. ¡Ahora veo perfecto!"', date:'Hace 2 semanas' },
+  { name:'Andrés R.', text:'"Vine buscando unas gafas de sol y me fui con la montura más bonita que he tenido. El servicio es increíble, te asesoran sin presionarte a comprar."', date:'Hace 1 mes' },
+  { name:'Laura S.', text:'"Mi hijo necesitaba gafas y el doctor fue súper paciente con él. Le explicó todo de una manera divertida. El niño salió feliz y yo más."', date:'Hace 3 semanas' },
+  { name:'Jorge T.', text:'"Llegué con dolores de cabeza que pensaba eran otra cosa. Resulta que necesitaba lentes. Desde que los tengo, los dolores desaparecieron. Increíble."', date:'Hace 2 meses' },
+  { name:'Patricia V.', text:'"La colección de monturas es espectacular. Encontré la que llevaba años buscando. El personal muy amable y el doctor muy profesional."', date:'Hace 1 semana' },
+  { name:'Camilo E.', text:'"Me adapté lentes de contacto aquí después de varios intentos fallidos en otras ópticas. El doctor sabe exactamente lo que hace. 100% recomendado."', date:'Hace 3 meses' },
+];
+
+function renderReviews() {
+  const grid = document.getElementById('reviews-grid');
+  grid.innerHTML = reviews.map((r,i) => `
+    <div class="review-card reveal" style="transition-delay:${i*80}ms">
+      <div class="review-stars" aria-label="5 estrellas">
+        ${Array(5).fill('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>').join('')}
+      </div>
+      <p class="review-text">${r.text}</p>
+      <div class="review-author">
+        <div class="review-avatar" aria-hidden="true">${r.name[0]}</div>
+        <div>
+          <div class="review-author-name">${r.name}</div>
+          <div class="review-author-date">${r.date} · Google Maps</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  // re-observe after render
+  observeAll();
+}
+
+// ─── WATER DROPLETS ──────────────────────────────────────
+function createDroplets() {
+  const container = document.getElementById('droplets');
+  for (let i = 0; i < 18; i++) {
+    const d = document.createElement('div');
+    d.className = 'droplet';
+    const size = Math.random() * 6 + 3;
+    d.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      animation-duration:${Math.random()*8+6}s;
+      animation-delay:${Math.random()*8}s;
+    `;
+    container.appendChild(d);
+  }
+}
+
+// ─── NAVBAR SCROLL ───────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// ─── HAMBURGER ───────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('nav-links');
+hamburger.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', open);
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// ─── FILTER TABS ─────────────────────────────────────────
+document.querySelectorAll('.filter-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected','true');
+    renderProducts(btn.dataset.cat);
+  });
+});
+
+// ─── MODAL ───────────────────────────────────────────────
+function openApptModal() {
+  const m = document.getElementById('appt-modal');
+  m.classList.add('open');
+  m.querySelector('input[type=text]').focus();
+  document.body.style.overflow = 'hidden';
+  // default date to tomorrow
+  const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate()+1);
+  document.getElementById('appt-date').value = tomorrow.toISOString().split('T')[0];
+  document.getElementById('appt-time').value = '10:00';
+}
+function closeApptModal() {
+  document.getElementById('appt-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('appt-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeApptModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeApptModal(); });
+
+function sendApptWhatsApp() {
+  const name    = document.getElementById('appt-name').value.trim();
+  const date    = document.getElementById('appt-date').value;
+  const time    = document.getElementById('appt-time').value;
+  const service = document.getElementById('appt-service').value;
+  if (!name) { document.getElementById('appt-name').focus(); return; }
+  if (!date) { document.getElementById('appt-date').focus(); return; }
+  const dateStr = date ? new Date(date+'T12:00:00').toLocaleDateString('es-CO',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) : 'Por confirmar';
+  const msg = `Hola! Soy ${name} y deseo agendar una cita en Óptica Prada.\n\n📋 Servicio: ${service}\n📅 Fecha preferida: ${dateStr}\n⏰ Hora preferida: ${time}\n\n¿Está disponible ese horario?`;
+  window.open(`https://wa.me/573114055230?text=${encodeURIComponent(msg)}`, '_blank');
+  closeApptModal();
+}
+
+// ─── SCROLL REVEAL ───────────────────────────────────────
+function observeAll() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// ─── SET MIN DATE ─────────────────────────────────────────
+function setMinDate() {
+  const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate()+1);
+  document.getElementById('appt-date').min = tomorrow.toISOString().split('T')[0];
+}
+
+// ─── INIT ─────────────────────────────────────────────────
+createDroplets();
+renderProducts('todos');
+renderReviews();
+observeAll();
+setMinDate();
+
+// Reduced motion support
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.droplet').forEach(d => d.style.animation = 'none');
+}
+</script>
+</body>
+</html>
