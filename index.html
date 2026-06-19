@@ -197,31 +197,41 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 .section-title span { color: var(--gold); }
 .section-sub { color: rgba(255,255,255,0.6); font-size: 1.05rem; line-height: 1.7; max-width: 580px; }
 
-/* ─── BEFORE/AFTER ───────────────────────────────────── */
+/* ─── BEFORE/AFTER SLIDER ────────────────────────────── */
 #vision {
   background: linear-gradient(180deg, var(--navy) 0%, #001428 100%);
 }
-.vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 16px; overflow: hidden; position: relative; }
-.vision-side {
+.vision-slider-wrap {
+  position: relative; border-radius: 16px; overflow: hidden;
+  user-select: none; touch-action: none;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+}
+.vision-slider-wrap::before {
+  content: 'BORROSO';
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: clamp(2rem,7vw,4rem); color: rgba(255,255,255,0.06);
+  font-family: 'Playfair Display', serif; filter: blur(8px);
+  pointer-events: none; z-index: 1;
+}
+.vision-panel {
   position: relative; min-height: 420px;
   display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem;
 }
-.vision-before {
+.vision-panel-before {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  position: absolute; inset: 0; overflow: hidden;
+  will-change: clip-path;
 }
-.vision-after {
+.vision-panel-after {
   background: linear-gradient(135deg, #001d3d 0%, #003566 100%);
+  min-height: 420px;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem;
 }
-.vision-blur-overlay {
+.vision-panel-before-inner {
   position: absolute; inset: 0;
-  backdrop-filter: blur(6px);
-  background: rgba(0,0,0,0.3);
-}
-.vision-clear-overlay {
-  position: absolute; inset: 0;
-}
-.vision-image {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  backdrop-filter: blur(4px);
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem;
 }
 .vision-label {
   position: relative; z-index: 2;
@@ -232,21 +242,26 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem;
   width: fit-content;
 }
-.vision-before .vision-label { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.1); }
-.vision-after .vision-label { color: var(--gold); border-color: var(--gold-dark); }
+.vision-label-before { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.1); }
+.vision-label-after { color: var(--gold); border-color: var(--gold-dark); }
 .vision-text { position: relative; z-index: 2; }
 .vision-text h3 { font-size: 1.6rem; margin-bottom: 0.5rem; }
 .vision-text p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
-.vision-divider {
-  position: absolute; left: 50%; top: 0; bottom: 0; transform: translateX(-50%);
-  width: 3px; background: var(--gold); z-index: 10;
+.vision-handle {
+  position: absolute; top: 0; bottom: 0; width: 3px;
+  background: var(--gold); cursor: ew-resize; z-index: 20;
   display: flex; align-items: center; justify-content: center;
+  transform: translateX(-50%);
 }
-.vision-divider-icon {
-  width: 40px; height: 40px; border-radius: 50%;
+.vision-handle-btn {
+  width: 44px; height: 44px; border-radius: 50%;
   background: var(--gold); display: flex; align-items: center; justify-content: center;
-  color: var(--navy); font-weight: 700; font-size: 1.2rem; flex-shrink: 0;
+  color: var(--navy); font-weight: 700; font-size: 1.1rem; flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(200,169,81,0.3), 0 4px 16px rgba(0,0,0,0.5);
+  transition: transform 0.15s ease;
 }
+.vision-handle:hover .vision-handle-btn,
+.vision-handle:active .vision-handle-btn { transform: scale(1.1); }
 .before-blur-text {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   font-size: 4rem; color: rgba(255,255,255,0.06);
@@ -515,20 +530,52 @@ footer {
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
+  /* Nav */
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
-  .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; background: rgba(0,8,20,0.97); align-items: center; justify-content: center; gap: 2rem; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; background: rgba(0,8,20,0.97); align-items: center; justify-content: center; gap: 2rem; z-index: 999; }
   .nav-links.open a { font-size: 1.5rem; }
-  .vision-grid { grid-template-columns: 1fr; }
-  .vision-divider { display: none; }
-  .products-grid { columns: 2; }
+  /* Hero */
+  .hero-content { padding: 0 1.25rem; }
+  .hero-title { font-size: clamp(2rem, 9vw, 3rem); }
+  .hero-subtitle { font-size: 1rem; }
+  .hero-buttons { flex-direction: column; align-items: center; gap: 1rem; }
+  .hero-buttons .btn-primary, .hero-buttons .btn-ghost { width: 100%; max-width: 320px; text-align: center; justify-content: center; }
+  .hero-stats { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .hero-stat { min-width: 80px; }
+  /* Sections padding */
+  section { padding: 3.5rem 0; }
+  .container { padding: 0 1.25rem; }
+  .section-title { font-size: clamp(1.6rem,6vw,2.2rem); }
+  /* Vision slider */
+  .vision-panel-after { min-height: 320px; padding: 1.5rem; }
+  .vision-panel-before-inner { padding: 1.5rem; }
+  .vision-text h3 { font-size: 1.3rem; }
+  /* Products */
+  .products-grid { columns: 2; gap: 0.75rem; }
+  /* Reviews */
   .reviews-grid { grid-template-columns: 1fr; }
-  .hero-stats { gap: 1.5rem; }
+  /* Appointment form */
   .form-row { grid-template-columns: 1fr; }
+  /* Doctor */
+  .doctor-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .doctor-image-wrap { max-width: 300px; margin: 0 auto; }
+  /* Footer */
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  /* Payment */
   .payment-items { flex-direction: column; align-items: stretch; }
+  /* Map */
+  .map-wrap { height: 280px; }
+  /* Dev strip */
+  .dev-strip { flex-wrap: wrap; gap: 0.75rem; padding: 0.75rem 1.25rem; }
 }
-@media (max-width: 480px) { .products-grid { columns: 1; } }
+@media (max-width: 480px) {
+  .products-grid { columns: 1; }
+  .hero-stats { flex-direction: column; align-items: center; gap: 0.75rem; }
+  .hero-stat-num { font-size: 1.8rem; }
+  .vision-panel-after { min-height: 260px; }
+  .vision-handle-btn { width: 38px; height: 38px; font-size: 0.9rem; }
+}
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
@@ -607,30 +654,28 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
       <h2 class="section-title" id="vision-title">El Cambio que <span>Hace la Diferencia</span></h2>
       <p class="section-sub" style="margin-bottom:3rem">Un examen visual preciso transforma completamente cómo experimentas el mundo. Así se ve la diferencia.</p>
     </div>
-    <div class="vision-grid reveal">
-      <div class="vision-side vision-before">
-        <div class="before-blur-text" aria-hidden="true">BORROSO</div>
-        <div class="vision-blur-overlay" aria-hidden="true"></div>
-        <div style="position:relative;z-index:2">
-          <div class="vision-label">Antes del examen</div>
+    <div class="vision-slider-wrap reveal" id="visionSlider" role="img" aria-label="Comparación antes y después del examen visual">
+      <!-- Panel AFTER (base, full width) -->
+      <div class="vision-panel-after">
+        <div class="vision-label vision-label-after">Con tu nueva fórmula</div>
+        <div class="vision-text">
+          <h3 style="color:var(--gold)">Nitidez total</h3>
+          <p>Cada detalle en foco. Colores vibrantes, profundidad real. Así debería verse el mundo contigo.</p>
+        </div>
+      </div>
+      <!-- Panel BEFORE (clipped overlay) -->
+      <div class="vision-panel-before" id="visionBefore" style="clip-path:inset(0 50% 0 0)">
+        <div class="vision-panel-before-inner">
+          <div class="vision-label vision-label-before">Antes del examen</div>
           <div class="vision-text">
             <h3 style="color:rgba(255,255,255,0.6)">Sin diagnóstico</h3>
             <p>Visión borrosa, fatiga ocular, dolores de cabeza constantes. La vida con una fórmula incorrecta o sin ella.</p>
           </div>
         </div>
       </div>
-      <div class="vision-side vision-after">
-        <div class="vision-clear-overlay" aria-hidden="true"></div>
-        <div style="position:relative;z-index:2">
-          <div class="vision-label">Con tu nueva fórmula</div>
-          <div class="vision-text">
-            <h3 style="color:var(--gold)">Nitidez total</h3>
-            <p>Cada detalle en foco. Colores vibrantes, profundidad real. Así debería verse el mundo contigo.</p>
-          </div>
-        </div>
-      </div>
-      <div class="vision-divider" aria-hidden="true">
-        <div class="vision-divider-icon">↔</div>
+      <!-- Drag handle -->
+      <div class="vision-handle" id="visionHandle" style="left:50%" aria-label="Arrastrar para comparar">
+        <div class="vision-handle-btn">↔</div>
       </div>
     </div>
     <div style="text-align:center;margin-top:2.5rem" class="reveal">
@@ -797,7 +842,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
     </div>
     <div class="map-wrap reveal">
       <iframe
-        src="https://maps.google.com/maps?q=%C3%93ptica+Prada+Colombia&output=embed&z=16"
+        src="https://maps.app.goo.gl/4mjM97SmHZ8CwEUW6"
         allowfullscreen loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         title="Ubicación de Óptica Prada en Google Maps"
@@ -809,11 +854,10 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
 <!-- DESARROLLADO POR -->
 <div class="dev-strip">
-  <span class="dev-strip-text">Desarrollado con tecnología AI por</span>
+  <span class="dev-strip-text">Desarrollado por</span>
   <a href="https://wa.me/573113141020?text=Hola%2C%20vi%20la%20p%C3%A1gina%20web%20de%20%C3%93ptica%20Prada%20y%20me%20interesa%20tener%20una%20as%C3%AD%20para%20mi%20negocio.%20%C2%BFPodr%C3%ADamos%20hablar%3F"
      class="dev-logo-link" target="_blank" rel="noopener" aria-label="Contactar al desarrollador por WhatsApp">
-    <img src="assets/images/ai-logo.svg" alt="AI Solutions" width="40" height="40">
-    <span>AI Solutions &amp; Dev</span>
+    <img src="assets/images/ai-logo.svg" alt="Desarrollador" width="40" height="40">
   </a>
 </div>
 
@@ -1084,6 +1128,36 @@ setMinDate();
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.querySelectorAll('.droplet').forEach(d => d.style.animation = 'none');
 }
+
+// ── Before/After Slider ──────────────────────────────────
+(function() {
+  const wrap = document.getElementById('visionSlider');
+  const before = document.getElementById('visionBefore');
+  const handle = document.getElementById('visionHandle');
+  if (!wrap || !before || !handle) return;
+
+  let dragging = false;
+
+  function setPosition(clientX) {
+    const rect = wrap.getBoundingClientRect();
+    let pct = (clientX - rect.left) / rect.width;
+    pct = Math.max(0.02, Math.min(0.98, pct));
+    const pctRight = (1 - pct) * 100;
+    before.style.clipPath = `inset(0 ${pctRight}% 0 0)`;
+    handle.style.left = (pct * 100) + '%';
+  }
+
+  handle.addEventListener('mousedown', e => { dragging = true; e.preventDefault(); });
+  window.addEventListener('mousemove', e => { if (dragging) setPosition(e.clientX); });
+  window.addEventListener('mouseup', () => { dragging = false; });
+
+  handle.addEventListener('touchstart', e => { dragging = true; e.preventDefault(); }, { passive: false });
+  window.addEventListener('touchmove', e => { if (dragging) setPosition(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('touchend', () => { dragging = false; });
+
+  // Allow clicking anywhere on the wrap to jump
+  wrap.addEventListener('click', e => { if (!dragging) setPosition(e.clientX); });
+})();
 </script>
 </body>
 </html>
