@@ -609,59 +609,128 @@ footer {
 }
 @media (max-width: 768px) {
   /* Nav */
+  #navbar { padding: 0.75rem 1.25rem; }
+  .nav-logo img { height: 44px; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
-  .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; background: rgba(0,8,20,0.97); align-items: center; justify-content: center; gap: 2rem; z-index: 999; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: fixed; inset: 0;
+    background: rgba(0,8,20,0.97); align-items: center; justify-content: center;
+    gap: 2rem; z-index: 999;
+  }
   .nav-links.open a { font-size: 1.5rem; }
-  /* Hero */
-  .hero-content { padding: 0 1.25rem; }
-  .hero-title { font-size: clamp(2rem, 9vw, 3rem); }
-  .hero-subtitle { font-size: 1rem; }
-  .hero-buttons { flex-direction: column; align-items: center; gap: 1rem; }
-  .hero-buttons .btn-primary, .hero-buttons .btn-ghost { width: 100%; max-width: 320px; text-align: center; justify-content: center; }
-  .hero-stats { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-  .hero-stat { min-width: 80px; }
-  /* Sections padding */
-  section { padding: 3.5rem 0; }
+
+  /* Hero — clear fixed navbar (44px logo + 1.5rem padding = ~68px) */
+  #hero { padding-top: 68px; }
+  .hero-content { padding: 1.5rem 1.25rem 0; }
+  .hero-eyebrow { display: none; } /* logo already shows brand name */
+  .hero-title {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+    margin-bottom: 1rem;
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  .hero-buttons {
+    flex-direction: column; align-items: center; gap: 0.75rem;
+  }
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-ghost {
+    width: 100%; max-width: 300px; text-align: center; justify-content: center;
+  }
+  .hero-stats {
+    gap: 0; flex-wrap: nowrap; justify-content: space-around;
+    margin-top: 2rem; padding: 1.2rem 0.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-stat { min-width: 0; flex: 1; }
+  .hero-stat-num { font-size: 1.6rem; }
+  .hero-stat-label { font-size: 0.65rem; }
+  .hero-scroll-hint { display: none; }
+
+  /* Float WA — avoid covering stats */
+  .wa-float { bottom: 1.25rem; right: 1rem; width: 50px; height: 50px; }
+
+  /* Sections */
+  .section { padding: 3.5rem 0; }
   .container { padding: 0 1.25rem; }
-  .section-title { font-size: clamp(1.6rem,6vw,2.2rem); }
+  .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .section-sub { font-size: 0.9rem; }
+
   /* Vision slider */
-  .vision-slider-wrap { height: 320px; }
-  .vision-panel-after, .vision-panel-before { padding: 1.5rem; }
-  .vision-text h3 { font-size: 1.3rem; }
-  /* Products */
-  .store-editorial { grid-template-columns: 1fr; }
-  .store-featured { min-height: 360px; }
-  .store-side { flex-direction: row; }
-  .store-side-card { flex-direction: column; }
-  .store-side-img { width: 100%; height: 140px; flex-shrink: 0; }
-  .store-side-img-placeholder { width: 100%; height: 140px; flex-shrink: 0; }
+  .vision-slider-wrap { height: 300px; }
+  .vision-panel-after, .vision-panel-before { padding: 1.25rem; }
+  .vision-text h3 { font-size: 1.2rem; }
+  .vision-text p { font-size: 0.8rem; max-width: 160px; }
+
+  /* Store editorial */
+  .store-editorial { grid-template-columns: 1fr; gap: 0.75rem; }
+  .store-featured { min-height: 320px; }
+  .store-featured-content { padding: 1.25rem; }
+  .store-featured-name { font-size: 1.2rem; }
+  .store-side { flex-direction: row; gap: 0.75rem; }
+  .store-side-card { flex-direction: column; flex: 1; }
+  .store-side-img { width: 100%; height: 120px; object-fit: cover; }
+  .store-side-img-placeholder { width: 100%; height: 120px; }
+  .store-side-info { padding: 0.75rem; }
+  .store-side-name { font-size: 0.8rem; white-space: normal; }
+
   /* Reviews */
   .reviews-grid { grid-template-columns: 1fr; }
+
   /* Appointment form */
   .form-row { grid-template-columns: 1fr; }
+
   /* Doctor */
   .doctor-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .doctor-image-wrap { max-width: 300px; margin: 0 auto; }
+  .doctor-image-wrap { max-width: 280px; margin: 0 auto; }
+
   /* Footer */
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+
   /* Payment */
   .payment-items { flex-direction: column; align-items: stretch; }
+
   /* Map */
-  .map-wrap { height: 280px; }
+  .map-wrap { height: 260px; }
+
   /* Dev strip */
   .dev-strip { flex-wrap: wrap; gap: 0.75rem; padding: 0.75rem 1.25rem; }
 }
+
 @media (max-width: 480px) {
+  /* Nav */
+  .nav-logo img { height: 38px; }
+  #hero { padding-top: 62px; }
+
+  /* Hero */
+  .hero-title { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+  .hero-subtitle { font-size: 0.88rem; margin-bottom: 1.5rem; }
+
+  /* Stats — horizontal row on very small screens */
+  .hero-stats { padding: 1rem 0.25rem; margin-top: 1.5rem; }
+  .hero-stat-num { font-size: 1.4rem; }
+  .hero-stat-label { font-size: 0.6rem; }
+
+  /* Vision slider */
+  .vision-slider-wrap { height: 240px; }
+  .vision-text h3 { font-size: 1rem; }
+  .vision-text p { display: none; } /* too cramped on tiny screens */
+  .vision-handle-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+
+  /* Store */
+  .store-featured { min-height: 260px; }
   .store-side { flex-direction: column; }
   .store-side-card { flex-direction: row; }
-  .store-side-img { width: 100px; height: auto; }
-  .store-side-img-placeholder { width: 100px; height: auto; }
-  .store-featured-name { font-size: 1.3rem; }
-  .hero-stats { flex-direction: column; align-items: center; gap: 0.75rem; }
-  .hero-stat-num { font-size: 1.8rem; }
-  .vision-slider-wrap { height: 260px; }
-  .vision-handle-btn { width: 38px; height: 38px; font-size: 0.9rem; }
+  .store-side-img { width: 90px; height: auto; flex-shrink: 0; }
+  .store-side-img-placeholder { width: 90px; flex-shrink: 0; }
+  .store-featured-name { font-size: 1rem; }
+  .store-featured-content { padding: 1rem; }
+  .store-featured-wa { padding: 0.5rem 1rem; font-size: 0.78rem; }
+
+  /* Section */
+  .section-title { font-size: clamp(1.4rem, 7vw, 1.8rem); }
 }
 
 /* Scrollbar */
