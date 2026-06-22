@@ -363,7 +363,7 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 .store-header .section-sub { margin: 0 auto; text-align: center; }
 .filter-tabs {
   display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 .filter-tab {
   padding: 0.55rem 1.4rem; border-radius: 100px;
@@ -377,36 +377,118 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   background: var(--gold); border-color: var(--gold);
   color: var(--navy); font-weight: 700;
 }
-.products-grid {
-  columns: 4; gap: 1.2rem;
+
+/* Editorial layout */
+.store-editorial {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  grid-template-rows: auto;
+  gap: 1rem;
+  min-height: 520px;
 }
-.product-card {
-  break-inside: avoid; margin-bottom: 1.2rem;
-  background: var(--glass-bg); border: 1px solid var(--glass-border);
-  border-radius: 12px; overflow: hidden;
-  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-  cursor: pointer; position: relative;
+/* Featured card */
+.store-featured {
+  position: relative; border-radius: 16px; overflow: hidden;
+  cursor: pointer; background: #001428;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  min-height: 520px;
+  transition: box-shadow 0.3s;
 }
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px var(--gold-dark);
+.store-featured:hover { box-shadow: 0 16px 60px rgba(0,0,0,0.7), 0 0 0 1px var(--gold-dark); }
+.store-featured-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 0.5s ease, opacity 0.35s ease;
+}
+.store-featured.switching .store-featured-img { opacity: 0; transform: scale(1.04); }
+.store-featured-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,4,16,0.92) 0%, rgba(0,4,16,0.4) 45%, transparent 70%);
+}
+.store-featured-content {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem;
+  transition: opacity 0.35s ease;
+}
+.store-featured.switching .store-featured-content { opacity: 0; }
+.store-featured-cat {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.5rem;
+}
+.store-featured-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700;
+  line-height: 1.2; margin-bottom: 0.4rem; color: #fff;
+}
+.store-featured-price { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-bottom: 1.2rem; }
+.store-featured-wa {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.65rem 1.5rem; border-radius: 100px;
+  background: #25D366; color: #fff;
+  font-size: 0.85rem; font-weight: 600; text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.store-featured-wa:hover { background: #1fad55; transform: translateY(-2px); }
+.store-featured-wa svg { width: 16px; height: 16px; fill: #fff; flex-shrink: 0; }
+
+/* Side stack */
+.store-side {
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.store-side-card {
+  flex: 1; position: relative; border-radius: 12px; overflow: hidden;
+  cursor: pointer; background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: stretch;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  min-height: 0;
+}
+.store-side-card:hover {
   border-color: var(--gold-dark);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
-.product-card img { width: 100%; display: block; }
-.product-info { padding: 1rem; }
-.product-category {
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 0.4rem;
+.store-side-card.active-side {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold), 0 4px 24px rgba(200,169,81,0.15);
 }
-.product-name { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
-.product-price { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 0.8rem; }
-.product-wa-btn {
-  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-  width: 100%; padding: 0.6rem; border-radius: 6px;
-  background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.3);
-  color: #25D366; font-size: 0.8rem; font-weight: 600;
-  text-decoration: none; transition: background 0.2s;
+.store-side-img {
+  width: 120px; flex-shrink: 0;
+  object-fit: cover; object-position: center;
+  display: block;
 }
+.store-side-img-placeholder {
+  width: 120px; flex-shrink: 0;
+  background: linear-gradient(135deg, #001d3d, #003566);
+}
+.store-side-info {
+  padding: 1rem 1rem 1rem 0.9rem;
+  display: flex; flex-direction: column; justify-content: center; gap: 0.25rem;
+  overflow: hidden;
+}
+.store-side-cat {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold);
+}
+.store-side-name {
+  font-size: 0.88rem; font-weight: 600; color: #fff;
+  line-height: 1.3;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.store-side-price { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+
+/* Bottom WA CTA */
+.store-cta {
+  text-align: center; margin-top: 2rem;
+}
+.store-cta-btn {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  padding: 0.9rem 2.5rem; border-radius: 100px;
+  background: #25D366; color: #fff;
+  font-size: 1rem; font-weight: 700; text-decoration: none;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.35);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.store-cta-btn:hover { background: #1fad55; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,211,102,0.45); }
+.store-cta-btn svg { width: 22px; height: 22px; fill: #fff; }
 .product-wa-btn:hover { background: rgba(37,211,102,0.22); }
 .product-wa-btn svg { width: 16px; height: 16px; }
 
@@ -518,7 +600,8 @@ footer {
 
 /* ─── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .products-grid { columns: 3; }
+  .store-editorial { grid-template-columns: 1fr 280px; }
+  .store-featured { min-height: 440px; }
   .doctor-grid { grid-template-columns: 1fr; gap: 3rem; }
   .doctor-image-wrap { max-width: 380px; margin: 0 auto; }
   .reviews-grid { grid-template-columns: 1fr 1fr; }
@@ -547,7 +630,12 @@ footer {
   .vision-panel-after, .vision-panel-before { padding: 1.5rem; }
   .vision-text h3 { font-size: 1.3rem; }
   /* Products */
-  .products-grid { columns: 2; gap: 0.75rem; }
+  .store-editorial { grid-template-columns: 1fr; }
+  .store-featured { min-height: 360px; }
+  .store-side { flex-direction: row; }
+  .store-side-card { flex-direction: column; }
+  .store-side-img { width: 100%; height: 140px; flex-shrink: 0; }
+  .store-side-img-placeholder { width: 100%; height: 140px; flex-shrink: 0; }
   /* Reviews */
   .reviews-grid { grid-template-columns: 1fr; }
   /* Appointment form */
@@ -565,7 +653,11 @@ footer {
   .dev-strip { flex-wrap: wrap; gap: 0.75rem; padding: 0.75rem 1.25rem; }
 }
 @media (max-width: 480px) {
-  .products-grid { columns: 1; }
+  .store-side { flex-direction: column; }
+  .store-side-card { flex-direction: row; }
+  .store-side-img { width: 100px; height: auto; }
+  .store-side-img-placeholder { width: 100px; height: auto; }
+  .store-featured-name { font-size: 1.3rem; }
   .hero-stats { flex-direction: column; align-items: center; gap: 0.75rem; }
   .hero-stat-num { font-size: 1.8rem; }
   .vision-slider-wrap { height: 260px; }
@@ -778,7 +870,32 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
       <button class="filter-tab" data-cat="ninos" role="tab" aria-selected="false">Niños</button>
       <button class="filter-tab" data-cat="premium" role="tab" aria-selected="false">Premium</button>
     </div>
-    <div class="products-grid" id="products-grid"></div>
+    <!-- Editorial grid -->
+    <div class="store-editorial" id="store-editorial">
+      <!-- Featured card -->
+      <div class="store-featured" id="store-featured" role="button" tabindex="0" aria-label="Producto destacado">
+        <img class="store-featured-img" id="store-featured-img" src="" alt="" loading="lazy">
+        <div class="store-featured-overlay"></div>
+        <div class="store-featured-content" id="store-featured-content">
+          <div class="store-featured-cat" id="store-featured-cat"></div>
+          <div class="store-featured-name" id="store-featured-name"></div>
+          <div class="store-featured-price" id="store-featured-price"></div>
+          <a class="store-featured-wa" id="store-featured-wa" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Consultar por WhatsApp
+          </a>
+        </div>
+      </div>
+      <!-- Side stack -->
+      <div class="store-side" id="store-side"></div>
+    </div>
+    <!-- Bottom WA CTA -->
+    <div class="store-cta reveal">
+      <a class="store-cta-btn" id="store-cta-btn" href="https://wa.me/573114055230?text=Hola%2C%20me%20gustar%C3%ADa%20ver%20el%20cat%C3%A1logo%20completo%20de%20%C3%93ptica%20Prada." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        Consultar por WhatsApp
+      </a>
+    </div>
   </div>
 </section>
 
@@ -970,26 +1087,67 @@ function buildWaMsg(name) {
   return encodeURIComponent(`Hola! Vi en la página de Óptica Prada las "${name}" y me gustaría obtener más información sobre precio y disponibilidad.`);
 }
 
-function renderProducts(cat) {
-  const grid = document.getElementById('products-grid');
-  const filtered = cat === 'todos' ? products : products.filter(p => p.cat === cat);
-  grid.innerHTML = filtered.map(p => `
-    <div class="product-card" data-cat="${p.cat}">
-      <img src="${p.img}" alt="${p.name}" loading="lazy" width="400" height="300"
-           onerror="this.style.background='linear-gradient(135deg,#001d3d,#003566)';this.style.minHeight='180px';this.removeAttribute('src')">
-      <div class="product-info">
-        <div class="product-category">${catLabels[p.cat] || p.cat}</div>
-        <div class="product-name">${p.name}</div>
-        <div class="product-price">${p.price}</div>
-        <a href="https://wa.me/573114055230?text=${buildWaMsg(p.name)}"
-           class="product-wa-btn" target="_blank" rel="noopener"
-           aria-label="Consultar por ${p.name} en WhatsApp">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-          Preguntar por WhatsApp
-        </a>
+// ── Editorial Store ──────────────────────────────────────
+const WA_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>`;
+
+let storeFiltered = [];
+let storeFeaturedIdx = 0;
+
+function setFeatured(idx, animate) {
+  const p = storeFiltered[idx];
+  if (!p) return;
+  storeFeaturedIdx = idx;
+
+  const featEl = document.getElementById('store-featured');
+  const imgEl  = document.getElementById('store-featured-img');
+  const catEl  = document.getElementById('store-featured-cat');
+  const nameEl = document.getElementById('store-featured-name');
+  const priceEl = document.getElementById('store-featured-price');
+  const waEl   = document.getElementById('store-featured-wa');
+
+  if (animate) {
+    featEl.classList.add('switching');
+    setTimeout(() => {
+      imgEl.src = p.img; imgEl.alt = p.name;
+      catEl.textContent = catLabels[p.cat] || p.cat;
+      nameEl.textContent = p.name;
+      priceEl.textContent = p.price;
+      waEl.href = `https://wa.me/573114055230?text=${buildWaMsg(p.name)}`;
+      featEl.classList.remove('switching');
+    }, 320);
+  } else {
+    imgEl.src = p.img; imgEl.alt = p.name;
+    catEl.textContent = catLabels[p.cat] || p.cat;
+    nameEl.textContent = p.name;
+    priceEl.textContent = p.price;
+    waEl.href = `https://wa.me/573114055230?text=${buildWaMsg(p.name)}`;
+  }
+
+  // Render side cards (all except featured)
+  const side = document.getElementById('store-side');
+  const sideItems = storeFiltered.filter((_, i) => i !== idx).slice(0, 4);
+  side.innerHTML = sideItems.map((sp, si) => {
+    const realIdx = storeFiltered.indexOf(sp);
+    return `
+    <div class="store-side-card${realIdx === storeFeaturedIdx ? ' active-side' : ''}"
+         role="button" tabindex="0" aria-label="Ver ${sp.name}"
+         onclick="setFeatured(${realIdx}, true)" onkeydown="if(event.key==='Enter')setFeatured(${realIdx},true)">
+      <img class="store-side-img" src="${sp.img}" alt="${sp.name}" loading="lazy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div class="store-side-img-placeholder" style="display:none"></div>
+      <div class="store-side-info">
+        <div class="store-side-cat">${catLabels[sp.cat] || sp.cat}</div>
+        <div class="store-side-name">${sp.name}</div>
+        <div class="store-side-price">${sp.price}</div>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
+}
+
+function renderProducts(cat) {
+  storeFiltered = cat === 'todos' ? products : products.filter(p => p.cat === cat);
+  storeFeaturedIdx = 0;
+  setFeatured(0, false);
 }
 
 // ─── REVIEWS DATA ────────────────────────────────────────
