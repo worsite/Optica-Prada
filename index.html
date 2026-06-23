@@ -67,8 +67,12 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   transition: opacity 0.2s !important;
 }
 .nav-cta:hover { opacity: 0.85; color: var(--navy) !important; }
-.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-.nav-hamburger span { width: 24px; height: 2px; background: var(--white); transition: 0.3s; }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  background: none; border: none; padding: 8px; margin: -8px;
+  border-radius: 4px;
+}
+.nav-hamburger span { width: 24px; height: 2px; background: var(--white); transition: 0.3s; display: block; }
 
 /* ─── HERO ────────────────────────────────────────────── */
 #hero {
