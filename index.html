@@ -89,7 +89,7 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 
 .hero-bg-glow {
   position: absolute; inset: 0; pointer-events: none; z-index: 1;
-  background: linear-gradient(160deg, rgba(0,0,0,0.6) 0%, rgba(0,8,20,0.5) 40%, rgba(0,53,102,0.3) 100%);
+  background: rgba(0,0,0,0.88);
 }
 .hero-bg-glow::before {
   content: '';
@@ -121,7 +121,7 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   100% { transform: translateY(-20px) scale(1); opacity: 0; }
 }
 .hero-content {
-  position: relative; z-index: 3;
+  position: relative; z-index: 10;
   text-align: center; padding: 2rem;
   max-width: 860px;
 }
@@ -1160,7 +1160,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
     <div class="store-editorial" id="store-editorial">
       <!-- Featured card -->
       <div class="store-featured" id="store-featured" role="button" tabindex="0" aria-label="Producto destacado">
-        <img class="store-featured-img" id="store-featured-img" src="" alt="" loading="lazy">
+        <img class="store-featured-img" id="store-featured-img" src="" alt="" loading="eager">
         <div class="store-featured-overlay"></div>
         <div class="store-featured-content" id="store-featured-content">
           <div class="store-featured-cat" id="store-featured-cat"></div>
