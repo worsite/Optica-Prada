@@ -80,16 +80,19 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
   background: linear-gradient(160deg, #000000 0%, #000814 30%, #001428 55%, #002a5c 80%, #0077B6 100%);
+  background-image: url('assets/images/hero.jpg');
+  background-size: cover; background-position: center top;
 }
 
 .hero-bg-glow {
   position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(160deg, rgba(0,0,0,0.72) 0%, rgba(0,8,20,0.65) 40%, rgba(0,53,102,0.5) 100%);
 }
 .hero-bg-glow::before {
   content: '';
   position: absolute; bottom: -10%; left: 50%; transform: translateX(-50%);
   width: 120%; height: 60%;
-  background: radial-gradient(ellipse, rgba(0,119,182,0.35) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(0,119,182,0.25) 0%, transparent 70%);
   filter: blur(40px);
 }
 .hero-bg-glow::after {
@@ -714,7 +717,7 @@ footer {
   border: 1px solid var(--glass-border);
   border-radius: 16px; width: 100%; max-width: 420px;
   max-height: calc(100vh - 2rem); overflow-y: auto;
-  animation: modalIn 0.3s ease;
+  animation: modalIn 0.3s ease; margin-top: 70px;
 }
 .cart-panel-header {
   padding: 1.5rem 1.5rem 1rem;
@@ -794,134 +797,6 @@ footer {
   cursor: pointer; transition: background 0.2s; font-weight: 700;
 }
 .store-thumb-add:hover, .store-thumb-add.in-cart { background: var(--gold); color: var(--navy); }
-
-/* ─── PRODUCT DETAIL MODAL ───────────────────────────── */
-#product-modal {
-  display: none; position: fixed; inset: 0; z-index: 2000;
-  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
-  align-items: center; justify-content: center; padding: 1rem;
-}
-#product-modal.open { display: flex; }
-.product-modal-box {
-  background: linear-gradient(135deg, #000d1a 0%, #001428 100%);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px; max-width: 680px; width: 100%;
-  max-height: 90vh; overflow-y: auto;
-  animation: modalIn 0.3s ease; position: relative;
-}
-.product-modal-img {
-  width: 100%; height: 280px; object-fit: cover;
-  border-radius: 16px 16px 0 0; display: block;
-}
-.product-modal-body { padding: 1.75rem; }
-.product-modal-cat {
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 0.5rem;
-}
-.product-modal-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem; font-weight: 700; margin-bottom: 0.25rem; color: #fff;
-}
-.product-modal-price { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
-.product-modal-section { margin-bottom: 1.2rem; }
-.product-modal-label {
-  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gold-dark); margin-bottom: 0.35rem;
-}
-.product-modal-value { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
-.product-modal-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
-.product-modal-close {
-  position: absolute; top: 1rem; right: 1rem;
-  background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7); width: 36px; height: 36px; border-radius: 50%;
-  cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s;
-}
-.product-modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.btn-add-cart {
-  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-  padding: 0.85rem 1.5rem; border-radius: 8px;
-  background: rgba(200,169,81,0.12); border: 1px solid var(--gold-dark);
-  color: var(--gold); font-weight: 600; font-size: 0.9rem; cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-}
-.btn-add-cart:hover { background: rgba(200,169,81,0.22); transform: translateY(-1px); }
-.btn-add-cart.added { background: var(--gold); color: var(--navy); border-color: var(--gold); }
-
-/* ─── CART PANEL "NUBE" ───────────────────────────────── */
-.cart-btn {
-  display: flex; align-items: center; gap: 0.45rem;
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
-  color: var(--white); padding: 0.5rem 0.9rem; border-radius: 6px;
-  cursor: pointer; font-size: 0.82rem; font-weight: 600;
-  transition: border-color 0.2s, background 0.2s; white-space: nowrap;
-}
-.cart-btn:hover { border-color: var(--gold-dark); background: rgba(255,255,255,0.1); }
-.cart-count {
-  background: var(--gold); color: var(--navy);
-  min-width: 18px; height: 18px; border-radius: 9px; font-size: 0.65rem; font-weight: 800;
-  display: none; align-items: center; justify-content: center; padding: 0 4px;
-}
-.cart-count.has-items { display: flex; }
-#cart-panel {
-  display: none; position: fixed; inset: 0; z-index: 2000;
-  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
-  align-items: flex-start; justify-content: flex-end; padding: 1rem;
-}
-#cart-panel.open { display: flex; }
-.cart-panel-box {
-  background: linear-gradient(135deg, #000d1a 0%, #001428 100%);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px; width: 100%; max-width: 420px;
-  max-height: calc(100vh - 2rem); overflow-y: auto;
-  animation: modalIn 0.3s ease; margin-top: 70px;
-}
-.cart-panel-header {
-  padding: 1.5rem 1.5rem 1rem;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.cart-panel-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem; font-weight: 700; color: var(--gold);
-}
-.cart-panel-close {
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7); width: 32px; height: 32px; border-radius: 50%;
-  cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s;
-}
-.cart-panel-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
-.cart-items { padding: 0.75rem 1.5rem; min-height: 80px; }
-.cart-empty {
-  text-align: center; color: rgba(255,255,255,0.35);
-  font-size: 0.9rem; padding: 2rem 0; line-height: 2;
-}
-.cart-item {
-  display: flex; gap: 0.75rem; align-items: center;
-  padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.cart-item:last-child { border-bottom: none; }
-.cart-item-img { width: 54px; height: 54px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
-.cart-item-info { flex: 1; min-width: 0; }
-.cart-item-name { font-size: 0.85rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cart-item-cat { font-size: 0.7rem; color: var(--gold); margin-top: 0.1rem; }
-.cart-item-remove {
-  background: none; border: none; color: rgba(255,255,255,0.3);
-  font-size: 1.3rem; cursor: pointer; padding: 0.2rem; transition: color 0.2s; line-height: 1;
-}
-.cart-item-remove:hover { color: #ff6b6b; }
-.cart-panel-footer { padding: 0.75rem 1.5rem 1.5rem; }
-.cart-cotizar-btn {
-  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
-  width: 100%; padding: 1rem; border-radius: 10px;
-  background: #25D366; color: #fff;
-  font-size: 1rem; font-weight: 700; text-decoration: none;
-  box-shadow: 0 4px 24px rgba(37,211,102,0.3);
-  transition: background 0.2s, transform 0.2s;
-}
-.cart-cotizar-btn:hover { background: #1fad55; transform: translateY(-2px); }
-.cart-cotizar-btn svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
 
 /* ─── ANIMATIONS ──────────────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -1093,11 +968,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
     <li><a href="#" class="nav-cta" onclick="openApptModal(); return false;">Agendar Cita</a></li>
   </ul>
   <button class="cart-btn" id="cart-btn" onclick="openCart()" aria-label="Mi Deseo - ver carrito">
-    ☁️ Mi Deseo
-    <span class="cart-count" id="cart-count">0</span>
-  </button>
-  <button class="cart-btn" id="cart-btn" onclick="openCart()" aria-label="Mi Deseo">
-    ☁️ Mi Deseo <span class="cart-count" id="cart-count">0</span>
+    ☁️<span class="cart-count" id="cart-count">0</span>
   </button>
   <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -1497,55 +1368,6 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
     <div class="cart-panel-header">
       <div class="cart-panel-title" id="cart-title">☁️ Tu Salud es Primero</div>
       <button class="cart-panel-close" onclick="closeCart()" aria-label="Cerrar carrito">×</button>
-    </div>
-    <div class="cart-items" id="cart-items"></div>
-    <div class="cart-panel-footer">
-      <a class="cart-cotizar-btn" id="cart-cotizar-btn" href="#" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-        Cotizar por WhatsApp
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- PRODUCT DETAIL MODAL -->
-<div id="product-modal" role="dialog" aria-modal="true" aria-labelledby="prod-modal-name">
-  <div class="product-modal-box">
-    <button class="product-modal-close" onclick="closeProductModal()" aria-label="Cerrar">×</button>
-    <img class="product-modal-img" id="prod-modal-img" src="" alt="">
-    <div class="product-modal-body">
-      <div class="product-modal-cat" id="prod-modal-cat"></div>
-      <div class="product-modal-name" id="prod-modal-name"></div>
-      <div class="product-modal-price" id="prod-modal-price"></div>
-      <div class="product-modal-section">
-        <div class="product-modal-label">Material</div>
-        <div class="product-modal-value" id="prod-modal-material"></div>
-      </div>
-      <div class="product-modal-section">
-        <div class="product-modal-label">Descripción</div>
-        <div class="product-modal-value" id="prod-modal-desc"></div>
-      </div>
-      <div class="product-modal-section">
-        <div class="product-modal-label">¿Con qué estilo combina?</div>
-        <div class="product-modal-value" id="prod-modal-style"></div>
-      </div>
-      <div class="product-modal-actions">
-        <button class="btn-add-cart" id="prod-modal-cart-btn" onclick="addToCartFromModal()">☁️ Agregar a Mi Deseo</button>
-        <a class="store-featured-wa" id="prod-modal-wa" href="#" target="_blank" rel="noopener" style="flex:1;justify-content:center;text-decoration:none">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-          Cotizar
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CART PANEL "MI DESEO" -->
-<div id="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
-  <div class="cart-panel-box">
-    <div class="cart-panel-header">
-      <div class="cart-panel-title" id="cart-title">☁️ Tu Salud es Primero</div>
-      <button class="cart-panel-close" onclick="closeCart()" aria-label="Cerrar">×</button>
     </div>
     <div class="cart-items" id="cart-items"></div>
     <div class="cart-panel-footer">
