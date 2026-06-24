@@ -119,11 +119,7 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   text-align: center; padding: 2rem;
   max-width: 860px;
 }
-.hero-eyebrow {
-  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 1.5rem;
-  display: flex; align-items: center; justify-content: center; gap: 1rem;
-}
+.hero-eyebrow { display: none; }
 .hero-eyebrow::before, .hero-eyebrow::after {
   content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--gold-dark);
 }
@@ -586,6 +582,9 @@ footer {
 .footer-col ul li a:hover { color: var(--gold); }
 .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.78rem; color: rgba(255,255,255,0.3); max-width: 1240px; margin: 0 auto; }
 
+/* ─── HERO EYEBROW ───────────────────────────────────── */
+.hero-eyebrow { display: none; }
+
 /* ─── FLOATING WA ─────────────────────────────────────── */
 .wa-float {
   position: fixed; bottom: 2rem; right: 2rem; z-index: 900;
@@ -597,6 +596,332 @@ footer {
 }
 .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.55); }
 .wa-float svg { width: 28px; height: 28px; fill: white; }
+
+/* ─── STORE ALL GRID ─────────────────────────────────── */
+.store-all-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+.store-thumb {
+  border-radius: 10px; overflow: hidden; cursor: pointer;
+  border: 2px solid transparent;
+  background: rgba(255,255,255,0.03);
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative;
+}
+.store-thumb:hover { border-color: var(--gold-dark); transform: translateY(-2px); }
+.store-thumb.active-thumb { border-color: var(--gold); }
+.store-thumb img {
+  width: 100%; aspect-ratio: 1; object-fit: cover; display: block;
+}
+.store-thumb-name {
+  font-size: 0.7rem; color: rgba(255,255,255,0.7); padding: 0.4rem 0.5rem 0.5rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.store-thumb-add {
+  position: absolute; top: 6px; right: 6px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(0,8,20,0.75); border: 1px solid var(--gold-dark);
+  color: var(--gold); font-size: 1rem; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s;
+  font-weight: 700;
+}
+.store-thumb-add:hover { background: var(--gold); color: var(--navy); }
+.store-thumb-add.in-cart { background: var(--gold); color: var(--navy); }
+
+/* ─── PRODUCT DETAIL MODAL ───────────────────────────── */
+#product-modal {
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center; padding: 1rem;
+}
+#product-modal.open { display: flex; }
+.product-modal-box {
+  background: linear-gradient(135deg, #000d1a 0%, #001428 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px; max-width: 680px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  animation: modalIn 0.3s ease;
+  position: relative;
+}
+.product-modal-img {
+  width: 100%; height: 280px; object-fit: cover;
+  border-radius: 16px 16px 0 0; display: block;
+}
+.product-modal-body { padding: 1.75rem; }
+.product-modal-cat {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.5rem;
+}
+.product-modal-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 700; margin-bottom: 0.25rem; color: #fff;
+}
+.product-modal-price { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+.product-modal-section { margin-bottom: 1.2rem; }
+.product-modal-label {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold-dark); margin-bottom: 0.4rem;
+}
+.product-modal-value { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+.product-modal-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.product-modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7); width: 36px; height: 36px; border-radius: 50%;
+  cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.product-modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.btn-add-cart {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.85rem 1.5rem; border-radius: 8px;
+  background: rgba(200,169,81,0.12); border: 1px solid var(--gold-dark);
+  color: var(--gold); font-weight: 600; font-size: 0.9rem; cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-add-cart:hover { background: rgba(200,169,81,0.22); transform: translateY(-1px); }
+.btn-add-cart.added { background: var(--gold); color: var(--navy); }
+
+/* ─── CART PANEL ("NUBE") ────────────────────────────── */
+.cart-btn {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+  color: var(--white); padding: 0.5rem 1rem; border-radius: 6px;
+  cursor: pointer; font-size: 0.82rem; font-weight: 600;
+  transition: border-color 0.2s, background 0.2s; position: relative;
+  white-space: nowrap;
+}
+.cart-btn:hover { border-color: var(--gold-dark); background: rgba(255,255,255,0.1); }
+.cart-count {
+  background: var(--gold); color: var(--navy);
+  width: 18px; height: 18px; border-radius: 50%; font-size: 0.65rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  display: none;
+}
+.cart-count.has-items { display: flex; }
+#cart-panel {
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+  align-items: flex-start; justify-content: flex-end; padding: 1rem;
+}
+#cart-panel.open { display: flex; }
+.cart-panel-box {
+  background: linear-gradient(135deg, #000d1a 0%, #001428 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px; width: 100%; max-width: 420px;
+  max-height: calc(100vh - 2rem); overflow-y: auto;
+  animation: modalIn 0.3s ease;
+}
+.cart-panel-header {
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cart-panel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 700; color: var(--gold);
+}
+.cart-panel-close {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7); width: 32px; height: 32px; border-radius: 50%;
+  cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.cart-panel-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.cart-items { padding: 1rem 1.5rem; min-height: 100px; }
+.cart-empty {
+  text-align: center; color: rgba(255,255,255,0.35);
+  font-size: 0.9rem; padding: 2rem 0;
+}
+.cart-item {
+  display: flex; gap: 0.75rem; align-items: center;
+  padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.cart-item:last-child { border-bottom: none; }
+.cart-item-img {
+  width: 54px; height: 54px; border-radius: 8px; object-fit: cover; flex-shrink: 0;
+}
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-size: 0.85rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-item-cat { font-size: 0.7rem; color: var(--gold); margin-top: 0.1rem; }
+.cart-item-remove {
+  background: none; border: none; color: rgba(255,255,255,0.3);
+  font-size: 1.2rem; cursor: pointer; padding: 0.25rem; transition: color 0.2s;
+}
+.cart-item-remove:hover { color: #ff6b6b; }
+.cart-panel-footer { padding: 1rem 1.5rem 1.5rem; }
+.cart-cotizar-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  width: 100%; padding: 1rem; border-radius: 10px;
+  background: #25D366; color: #fff;
+  font-size: 1rem; font-weight: 700; text-decoration: none;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.3);
+  transition: background 0.2s, transform 0.2s;
+}
+.cart-cotizar-btn:hover { background: #1fad55; transform: translateY(-2px); }
+.cart-cotizar-btn svg { width: 20px; height: 20px; fill: #fff; }
+
+/* ─── STORE ALL GRID ─────────────────────────────────── */
+.store-all-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.75rem; margin-top: 2rem;
+}
+.store-thumb {
+  border-radius: 10px; overflow: hidden; cursor: pointer;
+  border: 2px solid transparent;
+  background: rgba(255,255,255,0.03);
+  transition: border-color 0.2s, transform 0.2s; position: relative;
+}
+.store-thumb:hover { border-color: var(--gold-dark); transform: translateY(-2px); }
+.store-thumb.active-thumb { border-color: var(--gold); }
+.store-thumb img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+.store-thumb-name {
+  font-size: 0.68rem; color: rgba(255,255,255,0.7);
+  padding: 0.4rem 0.5rem 0.5rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.store-thumb-add {
+  position: absolute; top: 6px; right: 6px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(0,8,20,0.75); border: 1px solid var(--gold-dark);
+  color: var(--gold); font-size: 1rem; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s; font-weight: 700;
+}
+.store-thumb-add:hover, .store-thumb-add.in-cart { background: var(--gold); color: var(--navy); }
+
+/* ─── PRODUCT DETAIL MODAL ───────────────────────────── */
+#product-modal {
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center; padding: 1rem;
+}
+#product-modal.open { display: flex; }
+.product-modal-box {
+  background: linear-gradient(135deg, #000d1a 0%, #001428 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px; max-width: 680px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  animation: modalIn 0.3s ease; position: relative;
+}
+.product-modal-img {
+  width: 100%; height: 280px; object-fit: cover;
+  border-radius: 16px 16px 0 0; display: block;
+}
+.product-modal-body { padding: 1.75rem; }
+.product-modal-cat {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.5rem;
+}
+.product-modal-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 700; margin-bottom: 0.25rem; color: #fff;
+}
+.product-modal-price { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+.product-modal-section { margin-bottom: 1.2rem; }
+.product-modal-label {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold-dark); margin-bottom: 0.35rem;
+}
+.product-modal-value { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+.product-modal-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.product-modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7); width: 36px; height: 36px; border-radius: 50%;
+  cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.product-modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.btn-add-cart {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.85rem 1.5rem; border-radius: 8px;
+  background: rgba(200,169,81,0.12); border: 1px solid var(--gold-dark);
+  color: var(--gold); font-weight: 600; font-size: 0.9rem; cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-add-cart:hover { background: rgba(200,169,81,0.22); transform: translateY(-1px); }
+.btn-add-cart.added { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+/* ─── CART PANEL "NUBE" ───────────────────────────────── */
+.cart-btn {
+  display: flex; align-items: center; gap: 0.45rem;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+  color: var(--white); padding: 0.5rem 0.9rem; border-radius: 6px;
+  cursor: pointer; font-size: 0.82rem; font-weight: 600;
+  transition: border-color 0.2s, background 0.2s; white-space: nowrap;
+}
+.cart-btn:hover { border-color: var(--gold-dark); background: rgba(255,255,255,0.1); }
+.cart-count {
+  background: var(--gold); color: var(--navy);
+  min-width: 18px; height: 18px; border-radius: 9px; font-size: 0.65rem; font-weight: 800;
+  display: none; align-items: center; justify-content: center; padding: 0 4px;
+}
+.cart-count.has-items { display: flex; }
+#cart-panel {
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+  align-items: flex-start; justify-content: flex-end; padding: 1rem;
+}
+#cart-panel.open { display: flex; }
+.cart-panel-box {
+  background: linear-gradient(135deg, #000d1a 0%, #001428 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px; width: 100%; max-width: 420px;
+  max-height: calc(100vh - 2rem); overflow-y: auto;
+  animation: modalIn 0.3s ease; margin-top: 70px;
+}
+.cart-panel-header {
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cart-panel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700; color: var(--gold);
+}
+.cart-panel-close {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7); width: 32px; height: 32px; border-radius: 50%;
+  cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.cart-panel-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.cart-items { padding: 0.75rem 1.5rem; min-height: 80px; }
+.cart-empty {
+  text-align: center; color: rgba(255,255,255,0.35);
+  font-size: 0.9rem; padding: 2rem 0; line-height: 2;
+}
+.cart-item {
+  display: flex; gap: 0.75rem; align-items: center;
+  padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.cart-item:last-child { border-bottom: none; }
+.cart-item-img { width: 54px; height: 54px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-size: 0.85rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-item-cat { font-size: 0.7rem; color: var(--gold); margin-top: 0.1rem; }
+.cart-item-remove {
+  background: none; border: none; color: rgba(255,255,255,0.3);
+  font-size: 1.3rem; cursor: pointer; padding: 0.2rem; transition: color 0.2s; line-height: 1;
+}
+.cart-item-remove:hover { color: #ff6b6b; }
+.cart-panel-footer { padding: 0.75rem 1.5rem 1.5rem; }
+.cart-cotizar-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  width: 100%; padding: 1rem; border-radius: 10px;
+  background: #25D366; color: #fff;
+  font-size: 1rem; font-weight: 700; text-decoration: none;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.3);
+  transition: background 0.2s, transform 0.2s;
+}
+.cart-cotizar-btn:hover { background: #1fad55; transform: translateY(-2px); }
+.cart-cotizar-btn svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
 
 /* ─── ANIMATIONS ──────────────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -701,6 +1026,11 @@ footer {
 
   /* Dev strip */
   .dev-strip { flex-wrap: wrap; gap: 0.75rem; padding: 0.75rem 1.25rem; }
+
+  .store-all-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.5rem; }
+  .cart-btn { padding: 0.4rem 0.6rem; font-size: 0.75rem; }
+  .product-modal-img { height: 200px; }
+  .product-modal-name { font-size: 1.4rem; }
 }
 
 @media (max-width: 480px) {
@@ -762,6 +1092,13 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
     <li><a href="#mapa">Ubicación</a></li>
     <li><a href="#" class="nav-cta" onclick="openApptModal(); return false;">Agendar Cita</a></li>
   </ul>
+  <button class="cart-btn" id="cart-btn" onclick="openCart()" aria-label="Mi Deseo - ver carrito">
+    ☁️ Mi Deseo
+    <span class="cart-count" id="cart-count">0</span>
+  </button>
+  <button class="cart-btn" id="cart-btn" onclick="openCart()" aria-label="Mi Deseo">
+    ☁️ Mi Deseo <span class="cart-count" id="cart-count">0</span>
+  </button>
   <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -942,6 +1279,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
       <button class="filter-tab" data-cat="contacto" role="tab" aria-selected="false">Lentes de Contacto</button>
       <button class="filter-tab" data-cat="ninos" role="tab" aria-selected="false">Niños</button>
       <button class="filter-tab" data-cat="premium" role="tab" aria-selected="false">Premium</button>
+      <button class="filter-tab" data-cat="correas" role="tab" aria-selected="false">Correas</button>
     </div>
     <!-- Editorial grid -->
     <div class="store-editorial" id="store-editorial">
@@ -969,6 +1307,8 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
         Consultar por WhatsApp
       </a>
     </div>
+    <!-- All products grid -->
+    <div class="store-all-grid reveal" id="store-all-grid"></div>
   </div>
 </section>
 
@@ -1117,6 +1457,106 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
   </div>
 </div>
 
+<!-- PRODUCT DETAIL MODAL -->
+<div id="product-modal" role="dialog" aria-modal="true" aria-labelledby="prod-modal-name">
+  <div class="product-modal-box">
+    <button class="product-modal-close" onclick="closeProductModal()" aria-label="Cerrar">×</button>
+    <img class="product-modal-img" id="prod-modal-img" src="" alt="">
+    <div class="product-modal-body">
+      <div class="product-modal-cat" id="prod-modal-cat"></div>
+      <div class="product-modal-name" id="prod-modal-name"></div>
+      <div class="product-modal-price" id="prod-modal-price"></div>
+      <div class="product-modal-section">
+        <div class="product-modal-label">Material</div>
+        <div class="product-modal-value" id="prod-modal-material"></div>
+      </div>
+      <div class="product-modal-section">
+        <div class="product-modal-label">Descripción</div>
+        <div class="product-modal-value" id="prod-modal-desc"></div>
+      </div>
+      <div class="product-modal-section">
+        <div class="product-modal-label">¿Con qué estilo combina?</div>
+        <div class="product-modal-value" id="prod-modal-style"></div>
+      </div>
+      <div class="product-modal-actions">
+        <button class="btn-add-cart" id="prod-modal-cart-btn" onclick="addToCartFromModal()">
+          ☁️ Agregar a Mi Deseo
+        </button>
+        <a class="store-featured-wa" id="prod-modal-wa" href="#" target="_blank" rel="noopener" style="flex:1;justify-content:center;text-decoration:none">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+          Cotizar
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART PANEL -->
+<div id="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+  <div class="cart-panel-box">
+    <div class="cart-panel-header">
+      <div class="cart-panel-title" id="cart-title">☁️ Tu Salud es Primero</div>
+      <button class="cart-panel-close" onclick="closeCart()" aria-label="Cerrar carrito">×</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-panel-footer">
+      <a class="cart-cotizar-btn" id="cart-cotizar-btn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        Cotizar por WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div id="product-modal" role="dialog" aria-modal="true" aria-labelledby="prod-modal-name">
+  <div class="product-modal-box">
+    <button class="product-modal-close" onclick="closeProductModal()" aria-label="Cerrar">×</button>
+    <img class="product-modal-img" id="prod-modal-img" src="" alt="">
+    <div class="product-modal-body">
+      <div class="product-modal-cat" id="prod-modal-cat"></div>
+      <div class="product-modal-name" id="prod-modal-name"></div>
+      <div class="product-modal-price" id="prod-modal-price"></div>
+      <div class="product-modal-section">
+        <div class="product-modal-label">Material</div>
+        <div class="product-modal-value" id="prod-modal-material"></div>
+      </div>
+      <div class="product-modal-section">
+        <div class="product-modal-label">Descripción</div>
+        <div class="product-modal-value" id="prod-modal-desc"></div>
+      </div>
+      <div class="product-modal-section">
+        <div class="product-modal-label">¿Con qué estilo combina?</div>
+        <div class="product-modal-value" id="prod-modal-style"></div>
+      </div>
+      <div class="product-modal-actions">
+        <button class="btn-add-cart" id="prod-modal-cart-btn" onclick="addToCartFromModal()">☁️ Agregar a Mi Deseo</button>
+        <a class="store-featured-wa" id="prod-modal-wa" href="#" target="_blank" rel="noopener" style="flex:1;justify-content:center;text-decoration:none">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+          Cotizar
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART PANEL "MI DESEO" -->
+<div id="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+  <div class="cart-panel-box">
+    <div class="cart-panel-header">
+      <div class="cart-panel-title" id="cart-title">☁️ Tu Salud es Primero</div>
+      <button class="cart-panel-close" onclick="closeCart()" aria-label="Cerrar">×</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-panel-footer">
+      <a class="cart-cotizar-btn" id="cart-cotizar-btn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        Cotizar por WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
 <!-- FLOATING WHATSAPP -->
 <a href="https://wa.me/573114055230?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20%C3%93ptica%20Prada."
    class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
@@ -1126,45 +1566,151 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 <script>
 // ─── PRODUCTS DATA ───────────────────────────────────────
 const products = [
-  { id:1,  img:'assets/products/image1.jpg',  name:'Montura Clásica Titanio',      cat:'monturas', price:'Consultar precio' },
-  { id:2,  img:'assets/products/image2.jpg',  name:'Marco Rectangular Negro',       cat:'monturas', price:'Consultar precio' },
-  { id:3,  img:'assets/products/image3.jpg',  name:'Armazón Redondo Dorado',        cat:'monturas', price:'Consultar precio' },
-  { id:4,  img:'assets/products/image4.jpg',  name:'Montura Cat Eye Carey',         cat:'monturas', price:'Consultar precio' },
-  { id:5,  img:'assets/products/image5.jpg',  name:'Marco Aviador Metálico',        cat:'monturas', price:'Consultar precio' },
-  { id:6,  img:'assets/products/image6.jpg',  name:'Armazón Hexagonal Premium',     cat:'monturas', price:'Consultar precio' },
-  { id:7,  img:'assets/products/image7.jpg',  name:'Montura Deportiva Ligera',      cat:'monturas', price:'Consultar precio' },
-  { id:8,  img:'assets/products/image8.jpg',  name:'Marco Oval Acetato Italiano',   cat:'monturas', price:'Consultar precio' },
-  { id:9,  img:'assets/products/image9.jpg',  name:'Gafas Sol Piloto Espejadas',    cat:'sol',      price:'Consultar precio' },
-  { id:10, img:'assets/products/image10.jpg', name:'Sol Cuadradas UV400',           cat:'sol',      price:'Consultar precio' },
-  { id:11, img:'assets/products/image11.jpg', name:'Gafas Sol Oversized Negras',    cat:'sol',      price:'Consultar precio' },
-  { id:12, img:'assets/products/image12.jpg', name:'Sol Retro Tortuga',             cat:'sol',      price:'Consultar precio' },
-  { id:13, img:'assets/products/image13.jpg', name:'Gafas Sol Wrap Sport',          cat:'sol',      price:'Consultar precio' },
-  { id:14, img:'assets/products/image14.jpg', name:'Sol Hexagonales Gradiente',     cat:'sol',      price:'Consultar precio' },
-  { id:15, img:'assets/products/image15.jpg', name:'Gafas Sol Cat Eye Dorado',      cat:'sol',      price:'Consultar precio' },
-  { id:16, img:'assets/products/image16.jpg', name:'Sol Premium Polarizadas',       cat:'sol',      price:'Consultar precio' },
-  { id:17, img:'assets/products/image17.jpg', name:'Lentes Contacto Diarios',       cat:'contacto', price:'Consultar precio' },
-  { id:18, img:'assets/products/image18.jpg', name:'Lentes Contacto Mensuales',     cat:'contacto', price:'Consultar precio' },
-  { id:19, img:'assets/products/image19.jpg', name:'Lentes Contacto Tóricos',       cat:'contacto', price:'Consultar precio' },
-  { id:20, img:'assets/products/image20.jpg', name:'Montura Infantil Flexible',     cat:'ninos',    price:'Consultar precio' },
-  { id:21, img:'assets/products/image21.jpg', name:'Marco Niño Colores Vivos',      cat:'ninos',    price:'Consultar precio' },
-  { id:22, img:'assets/products/image22.jpg', name:'Armazón Infantil Antichoque',   cat:'ninos',    price:'Consultar precio' },
-  { id:23, img:'assets/products/image23.jpg', name:'Gafas Sol Niño UV Protection',  cat:'ninos',    price:'Consultar precio' },
-  { id:24, img:'assets/products/image24.jpg', name:'Montura Premium Titanio Puro',  cat:'premium',  price:'Consultar precio' },
-  { id:25, img:'assets/products/image25.jpg', name:'Colección Luxury Gold Edition', cat:'premium',  price:'Consultar precio' },
-  { id:26, img:'assets/products/image26.jpg', name:'Armazón Designer Limited',      cat:'premium',  price:'Consultar precio' },
+  { id:1,  img:'assets/products/image1.jpg',  name:'Montura Clásica Titanio',      cat:'monturas', price:'Consultar precio', material:'Titanio puro', desc:'Armazón rectangular de titanio ultraligero y resistente a la corrosión. Bisagras de resorte para ajuste perfecto.', style:'Profesional y ejecutivo. Ideal para ambientes de trabajo formal, trajes y camisas de vestir.' },
+  { id:2,  img:'assets/products/image2.jpg',  name:'Marco Rectangular Negro',       cat:'monturas', price:'Consultar precio', material:'Acetato premium', desc:'Marco rectangular en acetato de alta calidad, acabado mate elegante con bisagras reforzadas.', style:'Versátil y urbano. Combina con outfits casuales, jeans y ropa de oficina.' },
+  { id:3,  img:'assets/products/image3.jpg',  name:'Armazón Redondo Dorado',        cat:'monturas', price:'Consultar precio', material:'Metal bañado en oro', desc:'Armazón circular de metal fino bañado en oro de 18k. Diseño clásico con toque artístico.', style:'Bohemio y artístico. Ideal para looks creativos, ropa vintage y estilo intelectual.' },
+  { id:4,  img:'assets/products/image4.jpg',  name:'Montura Cat Eye Carey',         cat:'monturas', price:'Consultar precio', material:'Acetato carey', desc:'Montura cat eye de acetato con patrón carey natural. Diseño femenino y sofisticado.', style:'Retro y femenino. Combina con vestidos florales, outfits elegantes y looks de los años 60.' },
+  { id:5,  img:'assets/products/image5.jpg',  name:'Marco Aviador Metálico',        cat:'monturas', price:'Consultar precio', material:'Aleación de aluminio', desc:'Clásico estilo aviador en aleación de aluminio ligero. Puente doble y patillas ajustables.', style:'Clásico y aventurero. Perfecto con chaquetas de cuero, ropa casual y estilos militares.' },
+  { id:6,  img:'assets/products/image6.jpg',  name:'Armazón Hexagonal Premium',     cat:'monturas', price:'Consultar precio', material:'Acero inoxidable', desc:'Armazón hexagonal de acero inoxidable, diseño geométrico moderno con acabado espejo.', style:'Vanguardista y moderno. Para outfits minimalistas, ropa oscura y looks de diseñador.' },
+  { id:7,  img:'assets/products/image7.jpg',  name:'Montura Deportiva Ligera',      cat:'monturas', price:'Consultar precio', material:'TR-90 flexible', desc:'Montura de TR-90, material de memoria flexible e irrompible. Ideal para deportes y vida activa.', style:'Deportivo y dinámico. Para ropa de entrenamiento, ropa casual activa y actividades al aire libre.' },
+  { id:8,  img:'assets/products/image8.jpg',  name:'Marco Oval Acetato Italiano',   cat:'monturas', price:'Consultar precio', material:'Acetato italiano Mazzucchelli', desc:'Marco oval en acetato italiano de la más alta calidad Mazzucchelli. Colores profundos y acabados únicos.', style:'Elegante y artístico. Combina con ropa minimalista de colores neutros y looks de alta costura.' },
+  { id:9,  img:'assets/products/image9.jpg',  name:'Gafas Sol Piloto Espejadas',    cat:'sol', price:'Consultar precio', material:'Metal y policarbonato', desc:'Clásicas gafas de sol estilo piloto con lentes espejadas de policarbonato UV400. Máxima protección solar.', style:'Icónico y cool. Perfecto para outfits de verano, looks urbanos y ambiente de playa.' },
+  { id:10, img:'assets/products/image10.jpg', name:'Sol Cuadradas UV400',           cat:'sol', price:'Consultar precio', material:'Acetato y cristal mineral', desc:'Gafas cuadradas de sol en acetato grueso con lentes de cristal mineral de alta definición y filtro UV400.', style:'Urbano y fashion. Para looks de ciudad, outfits casuales modernos y festivales.' },
+  { id:11, img:'assets/products/image11.jpg', name:'Gafas Sol Oversized Negras',    cat:'sol', price:'Consultar precio', material:'Acetato premium', desc:'Montura oversized de acetato premium con lentes oscuras de gran cobertura. Máxima protección y estilo.', style:'Glamoroso y atrevido. Ideal para looks de playa, outfits de verano y estilo celebrities.' },
+  { id:12, img:'assets/products/image12.jpg', name:'Sol Retro Tortuga',             cat:'sol', price:'Consultar precio', material:'Acetato carey', desc:'Gafas retro de sol en acetato con patrón tortuga. Diseño atemporal con lentes de color ámbar.', style:'Retro y vintage. Perfecto con outfits boho, ropa de los años 70 y looks de moda clásica.' },
+  { id:13, img:'assets/products/image13.jpg', name:'Gafas Sol Wrap Sport',          cat:'sol', price:'Consultar precio', material:'Grilamid TR90', desc:'Gafas deportivas wrap-around de TR90, ultraligeras y resistentes. Ventilación optimizada anti-niebla.', style:'Deportivo y funcional. Para ciclismo, running, montañismo y cualquier actividad al aire libre.' },
+  { id:14, img:'assets/products/image14.jpg', name:'Sol Hexagonales Gradiente',     cat:'sol', price:'Consultar precio', material:'Metal y cristal gradiente', desc:'Lentes hexagonales con efecto gradiente azul-a-gris. Montura metálica fina y moderna.', style:'Artístico y vanguardista. Combina con outfits minimalistas y looks de revista de moda.' },
+  { id:15, img:'assets/products/image15.jpg', name:'Gafas Sol Cat Eye Dorado',      cat:'sol', price:'Consultar precio', material:'Metal dorado y acetato', desc:'Cat eye femenino en montura dorada con lentes ahumadas. Estilo Hollywood clásico actualizado.', style:'Sofisticado y retro-glam. Perfecto para eventos especiales, outfits de fiesta y looks de alfombra roja.' },
+  { id:16, img:'assets/products/image16.jpg', name:'Sol Premium Polarizadas',       cat:'sol', price:'Consultar precio', material:'Titanio y lente polarizado', desc:'Gafas premium de titanio con lentes polarizadas de 7 capas. Eliminación total de reflejos y máxima claridad visual.', style:'Ejecutivo y premium. Ideal para conducir, actividades náuticas y cualquier ambiente de alta luz.' },
+  { id:17, img:'assets/products/image17.jpg', name:'Lentes Contacto Diarios',       cat:'contacto', price:'Consultar precio', material:'Hidrogel de silicona', desc:'Lentes de contacto de uso diario en hidrogel de silicona con alto contenido de agua (58%). Máxima comodidad y oxigenación.', style:'Perfectos para quienes quieren libertad visual sin armazón. Ideales para deportes y ocasiones especiales.' },
+  { id:18, img:'assets/products/image18.jpg', name:'Lentes Contacto Mensuales',     cat:'contacto', price:'Consultar precio', material:'Hidrogel de silicona premium', desc:'Lentes mensuales de hidrogel de silicona con tratamiento UV. Reemplazo mensual para máxima higiene y economía.', style:'Opción económica y cómoda para uso diario. Libera tu rostro para cualquier look y estilo.' },
+  { id:19, img:'assets/products/image19.jpg', name:'Lentes Contacto Tóricos',       cat:'contacto', price:'Consultar precio', material:'Hidrogel tórico estabilizado', desc:'Lentes tóricos especializados para corrección de astigmatismo con sistema de estabilización de eje dinámico.', style:'Solución profesional para astigmatismo. Permite disfrutar de visión nítida sin las limitaciones de los armazones.' },
+  { id:20, img:'assets/products/image20.jpg', name:'Montura Infantil Flexible',     cat:'ninos', price:'Consultar precio', material:'Ultem flexible', desc:'Montura infantil de Ultem hipoalergénico, material flexible que recupera su forma. Resistente a caídas y juegos bruscos.', style:'Colorida y resistente para niños activos. Disponible en varios colores vibrantes que los niños adoran.' },
+  { id:21, img:'assets/products/image21.jpg', name:'Marco Niño Colores Vivos',      cat:'ninos', price:'Consultar precio', material:'TR-90 coloreado', desc:'Marco infantil en TR-90 de colores vivos certificado libre de BPA. Bisagras de resorte para ajuste seguro.', style:'Divertido y llamativo para niños que quieren destacar su personalidad con sus gafas.' },
+  { id:22, img:'assets/products/image22.jpg', name:'Armazón Infantil Antichoque',   cat:'ninos', price:'Consultar precio', material:'Caucho y polímero', desc:'Armazón antichoque con puntas de caucho suave y montura de polímero resistente. Diseñado para la seguridad infantil.', style:'Seguro y cómodo para deportes escolares, actividades físicas y uso diario en el colegio.' },
+  { id:23, img:'assets/products/image23.jpg', name:'Gafas Sol Niño UV Protection',  cat:'ninos', price:'Consultar precio', material:'Policarbonato irrompible', desc:'Gafas de sol infantiles con lentes de policarbonato irrompibles y filtro UV400. Protección total para los ojos en desarrollo.', style:'Indispensable para la playa, piscina y actividades al aire libre. Protege la visión en formación de los niños.' },
+  { id:24, img:'assets/products/image24.jpg', name:'Montura Premium Titanio Puro',  cat:'premium', price:'Consultar precio', material:'Titanio puro grado 5', desc:'Montura de titanio puro grado 5 de aviación, el material más ligero y resistente. Bisagras japonesas de precisión.', style:'Lujo discreto para profesionales exigentes. Se adapta a cualquier look con elegancia máxima.' },
+  { id:25, img:'assets/products/image25.jpg', name:'Colección Luxury Gold Edition', cat:'premium', price:'Consultar precio', material:'Oro laminado 24k y acetato', desc:'Edición limitada con detalles en oro laminado de 24k sobre montura de acetato italiano. Pieza de colección.', style:'Alta joyería óptica. Para eventos de gala, looks de lujo y quienes buscan lo mejor del mercado mundial.' },
+  { id:26, img:'assets/products/image26.jpg', name:'Armazón Designer Limited',      cat:'premium', price:'Consultar precio', material:'Carbono y titanio', desc:'Armazón de edición limitada en fibra de carbono y titanio. Diseño exclusivo de colección de autor.', style:'Para el coleccionista exigente. Pieza única que combina con looks de alta moda y ambientes exclusivos.' },
+  { id:27, img:'assets/products/image1.jpg',  name:'Correa Elástica Premium',       cat:'correas', price:'Consultar precio', material:'Neopreno y elástico', desc:'Correa para gafas de neopreno premium con clips de silicona antideslizante. Perfecta para deportes acuáticos y al aire libre.', style:'Funcional y segura. Ideal para deporte, montaña, playa y actividades donde necesitas que tus gafas no se muevan.' },
+  { id:28, img:'assets/products/image2.jpg',  name:'Cadena Óptica Dorada',          cat:'correas', price:'Consultar precio', material:'Metal bañado en oro', desc:'Cadena óptica de metal bañado en oro con terminaciones ajustables. Transforma tus gafas en una joya.', style:'Elegante y femenino. Combina con looks boho, vestidos de verano y outfits casuales sofisticados.' },
+  { id:29, img:'assets/products/image3.jpg',  name:'Correa Deportiva Ajustable',    cat:'correas', price:'Consultar precio', material:'Silicona médica', desc:'Correa deportiva de silicona médica, hipoalergénica y lavable. Sistema de ajuste rápido para cualquier armazón.', style:'Deportivo y práctico. Para ciclismo, pesca, esquí y toda actividad que exija sujeción segura.' },
+  { id:30, img:'assets/products/image4.jpg',  name:'Cordón Bohemio Artesanal',      cat:'correas', price:'Consultar precio', material:'Algodón y cuentas naturales', desc:'Cordón artesanal en algodón trenzado con cuentas de madera y piedras naturales. Hecho a mano, pieza única.', style:'Bohemio y artístico. Perfecto para looks casuales, festivales y quienes expresan su personalidad con sus accesorios.' },
 ];
 
-const catLabels = { monturas:'Monturas', sol:'Gafas de Sol', contacto:'Lentes Contacto', ninos:'Niños', premium:'Premium' };
+const catLabels = { monturas:'Monturas', sol:'Gafas de Sol', contacto:'Lentes Contacto', ninos:'Niños', premium:'Premium', correas:'Correas' };
+
+// ── Editorial Store ──────────────────────────────────────
+let storeFiltered = [];
+let storeFeaturedIdx = 0;
+let cart = [];
+let currentProductId = null;
+
+const COTIZAR_WA = '573215951512';
 
 function buildWaMsg(name) {
   return encodeURIComponent(`Hola! Vi en la página de Óptica Prada las "${name}" y me gustaría obtener más información sobre precio y disponibilidad.`);
 }
 
-// ── Editorial Store ──────────────────────────────────────
-const WA_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>`;
+function updateCartCount() {
+  const el = document.getElementById('cart-count');
+  if (!el) return;
+  el.textContent = cart.length;
+  el.classList.toggle('has-items', cart.length > 0);
+}
 
-let storeFiltered = [];
-let storeFeaturedIdx = 0;
+function addToCart(productId) {
+  if (!cart.find(p => p.id === productId)) {
+    const p = products.find(p => p.id === productId);
+    if (p) cart.push(p);
+  }
+  updateCartCount();
+  renderCartItems();
+  renderStoreAll(null); // refresh thumb buttons
+}
+
+function removeFromCart(productId) {
+  cart = cart.filter(p => p.id !== productId);
+  updateCartCount();
+  renderCartItems();
+  renderStoreAll(null);
+}
+
+function openCart() {
+  renderCartItems();
+  document.getElementById('cart-panel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cart-panel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function renderCartItems() {
+  const el = document.getElementById('cart-items');
+  const btn = document.getElementById('cart-cotizar-btn');
+  if (!el) return;
+  if (cart.length === 0) {
+    el.innerHTML = '<div class="cart-empty">☁️<br>Tu nube está vacía.<br>Agrega productos a Mi Deseo.</div>';
+    if (btn) btn.href = '#';
+    return;
+  }
+  el.innerHTML = cart.map(p => `
+    <div class="cart-item">
+      <img class="cart-item-img" src="${p.img}" alt="${p.name}"
+           onerror="this.style.background='#001d3d';this.removeAttribute('src')">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${p.name}</div>
+        <div class="cart-item-cat">${catLabels[p.cat] || p.cat}</div>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart(${p.id})" aria-label="Quitar">×</button>
+    </div>
+  `).join('');
+  if (btn) {
+    const items = cart.map(p => `• ${p.name}`).join('%0A');
+    const msg = encodeURIComponent('Hola! Me gustaría cotizar los siguientes productos de Óptica Prada:\n') + items;
+    btn.href = `https://wa.me/${COTIZAR_WA}?text=${msg}`;
+  }
+}
+
+// Product detail modal
+function openProductModal(productId) {
+  const p = products.find(x => x.id === productId);
+  if (!p) return;
+  currentProductId = productId;
+  document.getElementById('prod-modal-img').src = p.img;
+  document.getElementById('prod-modal-img').alt = p.name;
+  document.getElementById('prod-modal-cat').textContent = catLabels[p.cat] || p.cat;
+  document.getElementById('prod-modal-name').textContent = p.name;
+  document.getElementById('prod-modal-price').textContent = p.price;
+  document.getElementById('prod-modal-material').textContent = p.material || '—';
+  document.getElementById('prod-modal-desc').textContent = p.desc || '—';
+  document.getElementById('prod-modal-style').textContent = p.style || '—';
+  document.getElementById('prod-modal-wa').href = `https://wa.me/${COTIZAR_WA}?text=${buildWaMsg(p.name)}`;
+  const cartBtn = document.getElementById('prod-modal-cart-btn');
+  const inCart = cart.find(x => x.id === productId);
+  if (cartBtn) {
+    cartBtn.textContent = inCart ? '✓ En Mi Deseo' : '☁️ Agregar a Mi Deseo';
+    cartBtn.classList.toggle('added', !!inCart);
+  }
+  document.getElementById('product-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal() {
+  document.getElementById('product-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  currentProductId = null;
+}
+
+function addToCartFromModal() {
+  if (currentProductId) {
+    addToCart(currentProductId);
+    const cartBtn = document.getElementById('prod-modal-cart-btn');
+    if (cartBtn) { cartBtn.textContent = '✓ En Mi Deseo'; cartBtn.classList.add('added'); }
+  }
+}
 
 function setFeatured(idx, animate) {
   const p = storeFiltered[idx];
@@ -1178,41 +1724,65 @@ function setFeatured(idx, animate) {
   const priceEl = document.getElementById('store-featured-price');
   const waEl   = document.getElementById('store-featured-wa');
 
-  if (animate) {
-    featEl.classList.add('switching');
-    setTimeout(() => {
-      imgEl.src = p.img; imgEl.alt = p.name;
-      catEl.textContent = catLabels[p.cat] || p.cat;
-      nameEl.textContent = p.name;
-      priceEl.textContent = p.price;
-      waEl.href = `https://wa.me/573114055230?text=${buildWaMsg(p.name)}`;
-      featEl.classList.remove('switching');
-    }, 320);
-  } else {
+  const update = () => {
     imgEl.src = p.img; imgEl.alt = p.name;
     catEl.textContent = catLabels[p.cat] || p.cat;
     nameEl.textContent = p.name;
     priceEl.textContent = p.price;
-    waEl.href = `https://wa.me/573114055230?text=${buildWaMsg(p.name)}`;
+    waEl.href = `https://wa.me/${COTIZAR_WA}?text=${buildWaMsg(p.name)}`;
+  };
+
+  if (animate && featEl) {
+    featEl.classList.add('switching');
+    setTimeout(() => { update(); featEl.classList.remove('switching'); }, 320);
+  } else {
+    update();
   }
 
-  // Render side cards (all except featured)
+  // Side stack: show up to 4 other products
   const side = document.getElementById('store-side');
-  const sideItems = storeFiltered.filter((_, i) => i !== idx).slice(0, 4);
-  side.innerHTML = sideItems.map((sp, si) => {
-    const realIdx = storeFiltered.indexOf(sp);
+  if (side) {
+    const sideItems = storeFiltered.filter((_, i) => i !== idx).slice(0, 4);
+    side.innerHTML = sideItems.map(sp => {
+      const realIdx = storeFiltered.indexOf(sp);
+      return `
+      <div class="store-side-card" role="button" tabindex="0" aria-label="Ver ${sp.name}"
+           onclick="setFeatured(${realIdx},true)" onkeydown="if(event.key==='Enter')setFeatured(${realIdx},true)">
+        <img class="store-side-img" src="${sp.img}" alt="${sp.name}" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="store-side-img-placeholder" style="display:none"></div>
+        <div class="store-side-info">
+          <div class="store-side-cat">${catLabels[sp.cat] || sp.cat}</div>
+          <div class="store-side-name">${sp.name}</div>
+          <div class="store-side-price">${sp.price}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Refresh thumb grid active state
+  document.querySelectorAll('.store-thumb').forEach(el => {
+    el.classList.toggle('active-thumb', parseInt(el.dataset.idx) === idx);
+  });
+}
+
+function renderStoreAll(cat) {
+  const grid = document.getElementById('store-all-grid');
+  if (!grid) return;
+  const list = cat !== null ? storeFiltered : storeFiltered;
+  grid.innerHTML = list.map((p, i) => {
+    const inCart = cart.find(x => x.id === p.id);
+    const isActive = i === storeFeaturedIdx;
     return `
-    <div class="store-side-card${realIdx === storeFeaturedIdx ? ' active-side' : ''}"
-         role="button" tabindex="0" aria-label="Ver ${sp.name}"
-         onclick="setFeatured(${realIdx}, true)" onkeydown="if(event.key==='Enter')setFeatured(${realIdx},true)">
-      <img class="store-side-img" src="${sp.img}" alt="${sp.name}" loading="lazy"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <div class="store-side-img-placeholder" style="display:none"></div>
-      <div class="store-side-info">
-        <div class="store-side-cat">${catLabels[sp.cat] || sp.cat}</div>
-        <div class="store-side-name">${sp.name}</div>
-        <div class="store-side-price">${sp.price}</div>
-      </div>
+    <div class="store-thumb${isActive ? ' active-thumb' : ''}" data-idx="${i}"
+         onclick="setFeatured(${i},true)" title="${p.name}">
+      <img src="${p.img}" alt="${p.name}" loading="lazy"
+           onerror="this.style.background='linear-gradient(135deg,#001d3d,#003566)';this.removeAttribute('src')">
+      <div class="store-thumb-name">${p.name}</div>
+      <button class="store-thumb-add${inCart ? ' in-cart' : ''}"
+              onclick="event.stopPropagation();${inCart ? `removeFromCart(${p.id})` : `addToCart(${p.id})`}"
+              aria-label="${inCart ? 'Quitar de Mi Deseo' : 'Agregar a Mi Deseo'}"
+              title="${inCart ? 'Quitar' : 'Agregar a Mi Deseo'}">${inCart ? '✓' : '+'}</button>
     </div>`;
   }).join('');
 }
@@ -1221,6 +1791,7 @@ function renderProducts(cat) {
   storeFiltered = cat === 'todos' ? products : products.filter(p => p.cat === cat);
   storeFeaturedIdx = 0;
   setFeatured(0, false);
+  renderStoreAll(cat);
 }
 
 // ─── REVIEWS DATA ────────────────────────────────────────
@@ -1311,7 +1882,9 @@ function closeApptModal() {
   document.body.style.overflow = '';
 }
 document.getElementById('appt-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeApptModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeApptModal(); });
+document.getElementById('product-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeProductModal(); });
+document.getElementById('cart-panel').addEventListener('click', e => { if (e.target === e.currentTarget) closeCart(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeApptModal(); closeProductModal(); closeCart(); } });
 
 function sendApptWhatsApp() {
   const name    = document.getElementById('appt-name').value.trim();
