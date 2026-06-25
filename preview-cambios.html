@@ -8,28 +8,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════════
-   PALETA LUXURY AMBER — nueva paleta de la marca
+   PALETA LUXURY AMBER
    ══════════════════════════════════════════════ */
 :root {
-  /* Fondos */
-  --bg:          #0D0D0D;
-  --bg-2:        #1C1C1C;
-  --bg-3:        #2B1400;
-  /* Ambar / Naranja */
-  --amber-deep:  #7A2F00;
-  --amber-dark:  #A64B00;
-  --orange-main: #D96A00;
-  --amber-bright:#F28C18;
-  --gold-light:  #FFB347;
-  /* Brillos */
-  --flash-1:     #FFD37A;
-  --flash-2:     #FFC857;
-  --ivory:       #FFF0D6;
-  --white:       #FFFFFF;
-  /* Glass */
-  --glass-bg:    rgba(255,255,255,0.04);
-  --glass-border:rgba(242,140,24,0.22);
-  --glass-blur:  blur(16px);
+  --bg:           #0D0D0D;
+  --bg-2:         #1C1C1C;
+  --bg-3:         #2B1400;
+  --amber-deep:   #7A2F00;
+  --amber-dark:   #A64B00;
+  --orange-main:  #D96A00;
+  --amber-bright: #F28C18;
+  --gold-light:   #FFB347;
+  --flash-1:      #FFD37A;
+  --ivory:        #FFF0D6;
+  --white:        #FFFFFF;
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(242,140,24,0.22);
+  --glass-blur:   blur(16px);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -53,15 +48,13 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 /* ── NAVBAR ── */
 #navbar {
   position: fixed; top: 28px; left: 0; right: 0; z-index: 1000;
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   display: flex; align-items: center; justify-content: space-between;
   background: rgba(13,13,13,0.7); backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(217,106,0,0.15);
+  transition: background 0.3s;
 }
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
-  background: linear-gradient(135deg, var(--amber-bright), var(--gold-light));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
+.nav-logo img { height: 52px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(242,140,24,0.3)); }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.875rem;
   font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
@@ -107,7 +100,6 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--amber-dark);
 }
 
-/* ShinyText — sweep de ámbar/dorado */
 @keyframes rb-shine-amber {
   0%   { background-position: 200% center; }
   100% { background-position: -200% center; }
@@ -136,7 +128,7 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   background: linear-gradient(135deg, var(--orange-main), var(--amber-dark));
   color: var(--ivory); font-weight: 700; font-size: 0.95rem;
   padding: 1rem 2.2rem; border-radius: 6px; cursor: pointer; border: none;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s; text-decoration: none;
   box-shadow: 0 4px 24px rgba(217,106,0,0.4);
 }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(217,106,0,0.55); }
@@ -146,7 +138,7 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   font-weight: 500; font-size: 0.95rem;
   padding: 1rem 2.2rem; border-radius: 6px;
   border: 1px solid rgba(242,140,24,0.3);
-  cursor: pointer; backdrop-filter: blur(8px);
+  cursor: pointer; backdrop-filter: blur(8px); text-decoration: none;
   transition: background 0.2s, border-color 0.2s;
 }
 .btn-ghost:hover { background: rgba(242,140,24,0.12); border-color: var(--gold-light); }
@@ -172,7 +164,6 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 }
 @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-/* Partículas de luz ámbar (react-bits style) */
 @keyframes floatParticle {
   0%   { transform: translateY(100vh) scale(0); opacity: 0; }
   10%  { opacity: 0.7; }
@@ -197,6 +188,67 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.2rem; }
 .section-title span { color: var(--amber-bright); }
 .section-sub { color: rgba(255,240,214,0.6); font-size: 1.05rem; line-height: 1.7; max-width: 580px; }
+
+/* ── DOCTOR ── */
+#doctor {
+  background: linear-gradient(180deg, #150800 0%, #0D0D0D 100%);
+  position: relative; overflow: hidden;
+}
+#doctor::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber-dark), transparent);
+}
+.doctor-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }
+.doctor-image-wrap { position: relative; }
+.doctor-image-frame {
+  position: relative; border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 80px rgba(217,106,0,0.12), 0 0 0 1px rgba(242,140,24,0.08);
+}
+.doctor-image-placeholder {
+  width: 100%; aspect-ratio: 3/4;
+  background: linear-gradient(135deg, #2B1400 0%, #1C0E00 60%, #0D0D0D 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+}
+.doctor-badge {
+  position: absolute; bottom: -1.5rem; right: -1.5rem;
+  background: linear-gradient(135deg, var(--orange-main), var(--amber-dark));
+  color: var(--ivory);
+  padding: 1.2rem 1.5rem; border-radius: 10px;
+  text-align: center; font-weight: 700;
+  box-shadow: 0 8px 32px rgba(217,106,0,0.4);
+}
+.doctor-badge-num { font-size: 2rem; font-family: 'Playfair Display', serif; line-height: 1; }
+.doctor-badge-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
+.credentials { list-style: none; margin: 2rem 0; display: flex; flex-direction: column; gap: 0.9rem; }
+.credential-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: 8px; backdrop-filter: var(--glass-blur);
+  transition: border-color 0.2s, background 0.2s;
+}
+.credential-item:hover { border-color: var(--amber-dark); background: rgba(217,106,0,0.06); }
+.credential-icon {
+  width: 36px; height: 36px; border-radius: 6px;
+  background: rgba(242,140,24,0.12); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--amber-bright);
+}
+.credential-icon svg { width: 18px; height: 18px; }
+.credential-text strong { display: block; font-size: 0.9rem; color: var(--white); margin-bottom: 0.2rem; }
+.credential-text span { font-size: 0.8rem; color: rgba(255,240,214,0.5); }
+
+/* ── CTA STRIP ── */
+.cta-strip {
+  background: linear-gradient(135deg, var(--amber-deep) 0%, var(--amber-dark) 100%);
+  padding: 4rem 2rem; text-align: center;
+  border-top: 1px solid rgba(242,140,24,0.2);
+  border-bottom: 1px solid rgba(242,140,24,0.2);
+}
+.cta-strip h3 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 0.8rem; }
+.cta-strip h3 span { color: var(--gold-light); }
+.cta-strip p { color: rgba(255,240,214,0.7); margin-bottom: 2rem; }
 
 /* ── TIENDA — NUEVO LAYOUT ── */
 #tienda { background: linear-gradient(180deg, var(--bg) 0%, #120800 100%); }
@@ -320,8 +372,52 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 }
 .store-thumb-add:hover { background: var(--orange-main); color: var(--ivory); }
 
-/* ── REVIEWS PREVIEW ── */
-#reviews { background: linear-gradient(180deg, #120800 0%, var(--bg) 100%); }
+/* ── MAPA ── */
+#mapa { background: linear-gradient(180deg, #120800 0%, var(--bg) 100%); }
+.map-header { text-align: center; margin-bottom: 2.5rem; }
+.map-content-wrap {
+  display: grid; grid-template-columns: 1fr 340px; gap: 2rem; align-items: start;
+}
+.map-iframe-wrap {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(217,106,0,0.2);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  height: 420px;
+}
+.map-iframe-wrap iframe {
+  width: 100%; height: 100%; border: none; display: block;
+  filter: invert(0.9) hue-rotate(190deg) brightness(0.85) saturate(1.2);
+}
+.map-info-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px; padding: 2rem;
+  backdrop-filter: var(--glass-blur);
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.map-info-item { display: flex; align-items: flex-start; gap: 1rem; }
+.map-info-icon {
+  width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0;
+  background: rgba(242,140,24,0.12);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--amber-bright);
+}
+.map-info-icon svg { width: 20px; height: 20px; }
+.map-info-text strong { display: block; font-size: 0.875rem; color: var(--white); margin-bottom: 0.25rem; }
+.map-info-text span { font-size: 0.8rem; color: rgba(255,240,214,0.55); line-height: 1.5; }
+.map-open-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  background: linear-gradient(135deg, var(--orange-main), var(--amber-dark));
+  color: var(--ivory); font-weight: 700; font-size: 0.9rem;
+  padding: 0.9rem 1.5rem; border-radius: 8px;
+  text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(217,106,0,0.35); margin-top: 0.5rem;
+}
+.map-open-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(217,106,0,0.5); }
+.map-open-btn svg { width: 18px; height: 18px; }
+
+/* ── REVIEWS ── */
+#reviews { background: var(--bg); }
 .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .review-card {
   background: rgba(255,255,255,0.03); border: 1px solid rgba(217,106,0,0.15);
@@ -330,7 +426,7 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 }
 .review-card:hover { border-color: var(--amber-dark); transform: translateY(-3px); }
 .review-stars { display: flex; gap: 0.2rem; margin-bottom: 1rem; }
-.review-stars svg { width: 16px; height: 16px; color: var(--amber-bright); fill: var(--amber-bright); }
+.review-stars svg { width: 16px; height: 16px; fill: var(--amber-bright); }
 .review-text { font-size: 0.9rem; line-height: 1.7; color: rgba(255,240,214,0.8); margin-bottom: 1.2rem; font-style: italic; }
 .review-author { display: flex; align-items: center; gap: 0.8rem; }
 .review-avatar {
@@ -342,18 +438,21 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 .review-author-name { font-size: 0.875rem; font-weight: 600; color: var(--ivory); }
 .review-author-date { font-size: 0.75rem; color: rgba(255,240,214,0.4); }
 
-/* ── FOOTER PREVIEW ── */
+/* ── DEV STRIP ── */
+.dev-strip {
+  display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+  padding: 1.2rem 2rem;
+  background: #060300; border-top: 1px solid rgba(217,106,0,0.08);
+  font-size: 0.8rem; color: rgba(255,240,214,0.3);
+}
+
+/* ── FOOTER ── */
 footer {
-  background: #080400; padding: 3rem 2rem 2rem;
+  background: #060300; padding: 3rem 2rem 2rem;
   border-top: 1px solid rgba(217,106,0,0.15);
 }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; max-width: 1240px; margin: 0 auto 2rem; }
-.footer-brand-name {
-  font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700;
-  background: linear-gradient(135deg, var(--amber-bright), var(--gold-light));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  margin-bottom: 1rem;
-}
+.footer-logo img { height: 48px; margin-bottom: 1rem; filter: drop-shadow(0 0 6px rgba(242,140,24,0.25)); }
 .footer-tagline { font-size: 0.875rem; color: rgba(255,240,214,0.45); line-height: 1.7; }
 .footer-col h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.2rem; }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
@@ -377,27 +476,36 @@ footer {
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .map-content-wrap { grid-template-columns: 1fr; }
+  .map-iframe-wrap { height: 300px; }
+}
 @media (max-width: 768px) {
   .store-layout { grid-template-columns: 1fr; }
   .store-categories { flex-direction: row; overflow-x: auto; position: static; }
   .cat-card { min-width: 130px; height: 80px; flex-shrink: 0; }
   .reviews-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .doctor-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .doctor-image-wrap { max-width: 320px; margin: 0 auto; }
 }
 </style>
 </head>
 <body>
 
 <!-- PREVIEW BADGE -->
-<div class="preview-badge">⚠ PREVIEW — Estos cambios AÚN NO están en el sitio principal. Solo muestra cómo quedaría.</div>
+<div class="preview-badge">⚠ PREVIEW — Estos cambios AÚN NO están en el sitio principal. Apruébalos para aplicarlos.</div>
 
 <!-- NAVBAR -->
 <nav id="navbar">
-  <div class="nav-logo">Óptica Prada</div>
+  <a href="#hero" class="nav-logo" aria-label="Óptica Prada">
+    <img src="assets/images/logo.svg" alt="Óptica Prada">
+  </a>
   <ul class="nav-links">
     <li><a href="#hero">Inicio</a></li>
+    <li><a href="#doctor">El Doctor</a></li>
     <li><a href="#tienda">Tienda</a></li>
-    <li><a href="#reviews">Reseñas</a></li>
+    <li><a href="#mapa">Ubicación</a></li>
     <li><a href="#" class="nav-cta">Agendar</a></li>
   </ul>
 </nav>
@@ -420,14 +528,14 @@ footer {
     <h1 class="hero-title">Ver el Mundo<br>en su Máxima<br><em style="font-style:italic">Claridad</em></h1>
     <p class="hero-subtitle">Exámenes visuales de alta precisión con tecnología de punta y el respaldo de un especialista con reconocimiento internacional.</p>
     <div class="hero-buttons">
-      <button class="btn-primary">
+      <a href="#doctor" class="btn-primary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Agendar Examen Visual
-      </button>
-      <button class="btn-ghost">
+      </a>
+      <a href="#tienda" class="btn-ghost">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         Ver Catálogo
-      </button>
+      </a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
@@ -450,6 +558,94 @@ footer {
   </div>
 </section>
 
+<!-- DOCTOR -->
+<section id="doctor" class="section">
+  <div class="container">
+    <div class="doctor-grid">
+      <div class="doctor-image-wrap reveal">
+        <div class="doctor-image-frame">
+          <div class="doctor-image-placeholder">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(242,140,24,0.35)" stroke-width="1" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <p style="color:rgba(242,140,24,0.45);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase">Foto del Doctor</p>
+          </div>
+        </div>
+        <div class="doctor-badge">
+          <div class="doctor-badge-num">+15</div>
+          <div class="doctor-badge-label">Años de<br>Experiencia</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="section-eyebrow">Especialista Certificado</p>
+        <h2 class="section-title">Dr. <span>Prada</span><br>Su Visión, Nuestra Misión</h2>
+        <p style="color:rgba(255,240,214,0.65);line-height:1.8;margin-bottom:1.5rem">Optómetra con más de 15 años de experiencia clínica, reconocido a nivel nacional por su precisión diagnóstica y atención humanizada. Cada examen es un proceso personalizado y riguroso.</p>
+        <ul class="credentials">
+          <li class="credential-item">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div class="credential-text">
+              <strong>Optometría — Universidad de La Salle</strong>
+              <span>Título profesional con honores · Bogotá, Colombia</span>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div class="credential-text">
+              <strong>Especialización en Baja Visión</strong>
+              <span>Formación avanzada en patologías visuales complejas</span>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="credential-text">
+              <strong>Certificación Internacional en Contactología</strong>
+              <span>Adaptación especializada de lentes de contacto</span>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="credential-text">
+              <strong>Miembro Activo — Asociación Colombiana de Optometría</strong>
+              <span>Actualización continua en tecnología visual de vanguardia</span>
+            </div>
+          </li>
+          <li class="credential-item">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="credential-text">
+              <strong>+3.000 Pacientes Atendidos</strong>
+              <span>Diagnósticos visuales en niños, adultos y adultos mayores</span>
+            </div>
+          </li>
+        </ul>
+        <a href="https://wa.me/573215951512?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20el%20doctor." class="btn-primary" target="_blank" style="margin-top:0.5rem">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Agendar Cita con el Doctor
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip reveal">
+  <div class="container">
+    <h3>¿Tienes dudas sobre tu visión? <span>Estamos aquí para ayudarte.</span></h3>
+    <p>Agenda tu examen visual hoy y descubre el mundo como nunca antes lo has visto.</p>
+    <a href="https://wa.me/573215951512" class="btn-primary" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      Escríbenos por WhatsApp
+    </a>
+  </div>
+</div>
+
 <!-- TIENDA — NUEVO LAYOUT: CATEGORÍAS IZQUIERDA + PRODUCTOS DERECHA -->
 <section id="tienda" class="section">
   <div class="container">
@@ -461,13 +657,10 @@ footer {
 
     <div class="store-layout">
       <!-- CATEGORÍAS (izquierda) -->
-      <div class="store-categories" id="store-cats">
-        <!-- generado por JS -->
-      </div>
+      <div class="store-categories" id="store-cats"></div>
 
       <!-- PRODUCTOS (derecha) -->
       <div class="store-right">
-        <!-- Featured -->
         <div class="store-featured reveal" id="store-featured">
           <img id="feat-img" src="assets/products/image1.jpg" alt="Producto">
           <div class="store-featured-overlay"></div>
@@ -475,14 +668,72 @@ footer {
             <div class="store-featured-cat" id="feat-cat">MONTURAS</div>
             <div class="store-featured-name" id="feat-name">Montura Clásica Titanio</div>
             <div class="store-featured-price" id="feat-price">Consultar precio</div>
-            <a class="store-featured-wa" href="https://wa.me/573215951512" target="_blank">
+            <a class="store-featured-wa" id="feat-wa"
+               href="https://wa.me/573215951512?text=Hola%2C%20me%20interesa%20la%20Montura%20Cl%C3%A1sica%20Titanio."
+               target="_blank">
               <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
               Consultar por WhatsApp
             </a>
           </div>
         </div>
-        <!-- Grid thumbnails -->
         <div class="store-thumb-grid reveal" id="store-thumbs"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA INTERACTIVO -->
+<section id="mapa" class="section">
+  <div class="container">
+    <div class="map-header reveal">
+      <p class="section-eyebrow" style="justify-content:center">Encuéntranos</p>
+      <h2 class="section-title" style="text-align:center">Visítanos <span>en Nuestro Local</span></h2>
+      <p style="color:rgba(255,240,214,0.55);font-size:0.9rem;margin-top:0.5rem;text-align:center">Estamos en Colombia, listos para atenderte.</p>
+    </div>
+    <div class="map-content-wrap reveal">
+      <!-- Mapa embebido interactivo -->
+      <div class="map-iframe-wrap">
+        <iframe
+          src="https://maps.google.com/maps?q=Optica+Prada+Colombia&output=embed"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación Óptica Prada">
+        </iframe>
+      </div>
+      <!-- Info de contacto / dirección -->
+      <div class="map-info-card">
+        <div class="map-info-item">
+          <div class="map-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="map-info-text">
+            <strong>Dirección</strong>
+            <span>Colombia<br>Ver ubicación exacta en el mapa</span>
+          </div>
+        </div>
+        <div class="map-info-item">
+          <div class="map-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 15z"/></svg>
+          </div>
+          <div class="map-info-text">
+            <strong>WhatsApp</strong>
+            <span>+57 321 595 1512</span>
+          </div>
+        </div>
+        <div class="map-info-item">
+          <div class="map-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="map-info-text">
+            <strong>Horario de Atención</strong>
+            <span>Lun – Vie: 8:00 am – 6:00 pm<br>Sáb: 9:00 am – 2:00 pm</span>
+          </div>
+        </div>
+        <a href="https://maps.app.goo.gl/S5ErLACi8J13vNwU6" target="_blank" rel="noopener" class="map-open-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Ver Ubicación Exacta
+        </a>
       </div>
     </div>
   </div>
@@ -499,27 +750,37 @@ footer {
   </div>
 </section>
 
+<!-- DEV STRIP -->
+<div class="dev-strip">
+  <span>Desarrollado por</span>
+  <img src="assets/images/ai-logo.svg" alt="Desarrollador" width="28" height="28" style="opacity:0.4">
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name">Óptica Prada</div>
-      <p class="footer-tagline">Excelencia visual con tecnología de punta. Tu salud ocular es nuestra misión.</p>
+      <div class="footer-logo">
+        <img src="assets/images/logo.svg" alt="Óptica Prada">
+      </div>
+      <p class="footer-tagline">Donde la precisión científica se encuentra con el cuidado humano. Tu visión es nuestra prioridad.</p>
     </div>
     <div class="footer-col">
-      <h4>Navegación</h4>
+      <h4>Servicios</h4>
       <ul>
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#tienda">Tienda</a></li>
-        <li><a href="#reviews">Reseñas</a></li>
+        <li><a href="#doctor">Examen Visual</a></li>
+        <li><a href="#tienda">Monturas</a></li>
+        <li><a href="#tienda">Gafas de Sol</a></li>
+        <li><a href="#tienda">Lentes de Contacto</a></li>
+        <li><a href="#tienda">Lentes Infantiles</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contacto</h4>
       <ul>
-        <li><a href="https://wa.me/573215951512">WhatsApp: +57 321 595 1512</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">Facebook</a></li>
+        <li><a href="https://wa.me/573215951512" target="_blank">WhatsApp: 321 595 1512</a></li>
+        <li><a href="https://maps.app.goo.gl/S5ErLACi8J13vNwU6" target="_blank">Ver Ubicación</a></li>
+        <li><a href="#reviews">Reseñas</a></li>
       </ul>
     </div>
   </div>
@@ -527,12 +788,11 @@ footer {
 </footer>
 
 <!-- FLOATING WA -->
-<a href="https://wa.me/573215951512" class="wa-float" target="_blank">
+<a href="https://wa.me/573215951512" class="wa-float" target="_blank" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
 </a>
 
 <script>
-// ── Datos de categorías ──
 const categories = [
   { id:'todos',    name:'Todos',             count:30, img:'assets/products/image1.jpg'  },
   { id:'monturas', name:'Monturas',          count:8,  img:'assets/products/image4.jpg'  },
@@ -549,51 +809,47 @@ const catLabels = {
 };
 
 const products = [
-  { id:1,  img:'assets/products/image1.jpg',  name:'Montura Clásica Titanio',    cat:'monturas', price:'Consultar precio' },
-  { id:2,  img:'assets/products/image2.jpg',  name:'Marco Rectangular Negro',    cat:'monturas', price:'Consultar precio' },
-  { id:3,  img:'assets/products/image3.jpg',  name:'Armazón Redondo Dorado',     cat:'monturas', price:'Consultar precio' },
-  { id:4,  img:'assets/products/image4.jpg',  name:'Montura Cat Eye Carey',      cat:'monturas', price:'Consultar precio' },
-  { id:5,  img:'assets/products/image5.jpg',  name:'Marco Aviador Metálico',     cat:'monturas', price:'Consultar precio' },
-  { id:6,  img:'assets/products/image6.jpg',  name:'Armazón Hexagonal Premium',  cat:'monturas', price:'Consultar precio' },
-  { id:7,  img:'assets/products/image7.jpg',  name:'Montura Deportiva Ligera',   cat:'monturas', price:'Consultar precio' },
-  { id:8,  img:'assets/products/image8.jpg',  name:'Marco Oval Acetato',         cat:'monturas', price:'Consultar precio' },
-  { id:9,  img:'assets/products/image9.jpg',  name:'Gafas Sol Piloto Espejadas', cat:'sol',      price:'Consultar precio' },
-  { id:10, img:'assets/products/image10.jpg', name:'Sol Cuadradas UV400',        cat:'sol',      price:'Consultar precio' },
-  { id:11, img:'assets/products/image11.jpg', name:'Sol Oversized Negras',       cat:'sol',      price:'Consultar precio' },
-  { id:12, img:'assets/products/image12.jpg', name:'Sol Retro Tortuga',          cat:'sol',      price:'Consultar precio' },
-  { id:13, img:'assets/products/image13.jpg', name:'Sol Wrap Sport',             cat:'sol',      price:'Consultar precio' },
-  { id:14, img:'assets/products/image14.jpg', name:'Sol Hexagonales Gradiente',  cat:'sol',      price:'Consultar precio' },
-  { id:15, img:'assets/products/image15.jpg', name:'Sol Cat Eye Dorado',         cat:'sol',      price:'Consultar precio' },
-  { id:16, img:'assets/products/image16.jpg', name:'Sol Premium Polarizadas',    cat:'sol',      price:'Consultar precio' },
-  { id:17, img:'assets/products/image17.jpg', name:'Lentes Contacto Diarios',    cat:'contacto', price:'Consultar precio' },
-  { id:18, img:'assets/products/image18.jpg', name:'Lentes Contacto Mensuales',  cat:'contacto', price:'Consultar precio' },
-  { id:19, img:'assets/products/image19.jpg', name:'Lentes Contacto Tóricos',    cat:'contacto', price:'Consultar precio' },
-  { id:20, img:'assets/products/image20.jpg', name:'Gafas Infantiles Flexibles', cat:'ninos',    price:'Consultar precio' },
-  { id:21, img:'assets/products/image21.jpg', name:'Montura Niño Sport',         cat:'ninos',    price:'Consultar precio' },
-  { id:22, img:'assets/products/image22.jpg', name:'Gafas Niña Cat Eye',         cat:'ninos',    price:'Consultar precio' },
-  { id:23, img:'assets/products/image23.jpg', name:'Marco Infantil Colores',     cat:'ninos',    price:'Consultar precio' },
-  { id:24, img:'assets/products/image24.jpg', name:'Montura Premium Titanio',    cat:'premium',  price:'Consultar precio' },
-  { id:25, img:'assets/products/image25.jpg', name:'Sol Premium Titanio',        cat:'premium',  price:'Consultar precio' },
-  { id:26, img:'assets/products/image26.jpg', name:'Montura Luxury Acetato',     cat:'premium',  price:'Consultar precio' },
-  { id:27, img:'assets/products/image1.jpg',  name:'Correa Elástica Premium',    cat:'correas',  price:'Consultar precio' },
-  { id:28, img:'assets/products/image2.jpg',  name:'Cadena Óptica Dorada',       cat:'correas',  price:'Consultar precio' },
-  { id:29, img:'assets/products/image3.jpg',  name:'Correa Deportiva Ajustable', cat:'correas',  price:'Consultar precio' },
-  { id:30, img:'assets/products/image4.jpg',  name:'Cordón Bohemio Artesanal',   cat:'correas',  price:'Consultar precio' },
+  { id:1,  img:'assets/products/image1.jpg',  name:'Montura Clásica Titanio',    cat:'monturas' },
+  { id:2,  img:'assets/products/image2.jpg',  name:'Marco Rectangular Negro',    cat:'monturas' },
+  { id:3,  img:'assets/products/image3.jpg',  name:'Armazón Redondo Dorado',     cat:'monturas' },
+  { id:4,  img:'assets/products/image4.jpg',  name:'Montura Cat Eye Carey',      cat:'monturas' },
+  { id:5,  img:'assets/products/image5.jpg',  name:'Marco Aviador Metálico',     cat:'monturas' },
+  { id:6,  img:'assets/products/image6.jpg',  name:'Armazón Hexagonal Premium',  cat:'monturas' },
+  { id:7,  img:'assets/products/image7.jpg',  name:'Montura Deportiva Ligera',   cat:'monturas' },
+  { id:8,  img:'assets/products/image8.jpg',  name:'Marco Oval Acetato',         cat:'monturas' },
+  { id:9,  img:'assets/products/image9.jpg',  name:'Gafas Sol Piloto Espejadas', cat:'sol'      },
+  { id:10, img:'assets/products/image10.jpg', name:'Sol Cuadradas UV400',        cat:'sol'      },
+  { id:11, img:'assets/products/image11.jpg', name:'Sol Oversized Negras',       cat:'sol'      },
+  { id:12, img:'assets/products/image12.jpg', name:'Sol Retro Tortuga',          cat:'sol'      },
+  { id:13, img:'assets/products/image13.jpg', name:'Sol Wrap Sport',             cat:'sol'      },
+  { id:14, img:'assets/products/image14.jpg', name:'Sol Hexagonales Gradiente',  cat:'sol'      },
+  { id:15, img:'assets/products/image15.jpg', name:'Sol Cat Eye Dorado',         cat:'sol'      },
+  { id:16, img:'assets/products/image16.jpg', name:'Sol Premium Polarizadas',    cat:'sol'      },
+  { id:17, img:'assets/products/image17.jpg', name:'Lentes Contacto Diarios',    cat:'contacto' },
+  { id:18, img:'assets/products/image18.jpg', name:'Lentes Contacto Mensuales',  cat:'contacto' },
+  { id:19, img:'assets/products/image19.jpg', name:'Lentes Contacto Tóricos',    cat:'contacto' },
+  { id:20, img:'assets/products/image20.jpg', name:'Gafas Infantiles Flexibles', cat:'ninos'    },
+  { id:21, img:'assets/products/image21.jpg', name:'Montura Niño Sport',         cat:'ninos'    },
+  { id:22, img:'assets/products/image22.jpg', name:'Gafas Niña Cat Eye',         cat:'ninos'    },
+  { id:23, img:'assets/products/image23.jpg', name:'Marco Infantil Colores',     cat:'ninos'    },
+  { id:24, img:'assets/products/image24.jpg', name:'Montura Premium Titanio',    cat:'premium'  },
+  { id:25, img:'assets/products/image25.jpg', name:'Sol Premium Titanio',        cat:'premium'  },
+  { id:26, img:'assets/products/image26.jpg', name:'Montura Luxury Acetato',     cat:'premium'  },
+  { id:27, img:'assets/products/image1.jpg',  name:'Correa Elástica Premium',    cat:'correas'  },
+  { id:28, img:'assets/products/image2.jpg',  name:'Cadena Óptica Dorada',       cat:'correas'  },
+  { id:29, img:'assets/products/image3.jpg',  name:'Correa Deportiva Ajustable', cat:'correas'  },
+  { id:30, img:'assets/products/image4.jpg',  name:'Cordón Bohemio Artesanal',   cat:'correas'  },
 ];
 
 let currentCat = 'todos';
 let currentFeatured = 0;
 
-// ── Renderizar categorías ──
 function renderCategories() {
-  const el = document.getElementById('store-cats');
-  el.innerHTML = categories.map(c => `
+  document.getElementById('store-cats').innerHTML = categories.map(c => `
     <div class="cat-card${c.id === currentCat ? ' active' : ''}"
-         onclick="selectCat('${c.id}')" role="button" tabindex="0"
-         aria-label="Ver ${c.name}">
+         onclick="selectCat('${c.id}')" role="button" tabindex="0">
       <div class="cat-active-bar"></div>
-      <img src="${c.img}" alt="${c.name}"
-           onerror="this.style.background='#2B1400';this.removeAttribute('src')">
+      <img src="${c.img}" alt="${c.name}" onerror="this.style.background='#2B1400';this.removeAttribute('src')">
       <div class="cat-card-overlay">
         <div>
           <div class="cat-card-name">${c.name}</div>
@@ -604,7 +860,6 @@ function renderCategories() {
   `).join('');
 }
 
-// ── Renderizar featured + thumbnails ──
 function renderProducts() {
   const list = currentCat === 'todos' ? products : products.filter(p => p.cat === currentCat);
   if (!list.length) return;
@@ -615,16 +870,16 @@ function renderProducts() {
   document.getElementById('feat-img').alt = fp.name;
   document.getElementById('feat-cat').textContent = catLabels[fp.cat] || fp.cat;
   document.getElementById('feat-name').textContent = fp.name;
-  document.getElementById('feat-price').textContent = fp.price;
+  const waMsg = encodeURIComponent(`Hola, me interesa el producto: ${fp.name}. ¿Me pueden dar más información?`);
+  document.getElementById('feat-wa').href = `https://wa.me/573215951512?text=${waMsg}`;
 
-  const thumbEl = document.getElementById('store-thumbs');
-  thumbEl.innerHTML = list.map((p, i) => `
+  document.getElementById('store-thumbs').innerHTML = list.map((p, i) => `
     <div class="store-thumb${i === currentFeatured ? ' active-thumb' : ''}"
          onclick="selectFeatured(${i})" title="${p.name}">
       <img src="${p.img}" alt="${p.name}" loading="lazy"
            onerror="this.style.background='#2B1400';this.removeAttribute('src')">
       <div class="store-thumb-name">${p.name}</div>
-      <button class="store-thumb-add" onclick="event.stopPropagation()" title="Agregar">
+      <button class="store-thumb-add" onclick="event.stopPropagation()" title="Agregar al carrito">
         <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.5 9.5a6.5 6.5 0 0 0-12.7-1.9A5 5 0 1 0 5 17.5h13a4 4 0 0 0 .5-7.95zM13 13v3h-2v-3H8l4-4 4 4h-3z"/></svg>
       </button>
     </div>
@@ -632,22 +887,21 @@ function renderProducts() {
 }
 
 function selectCat(id) {
-  currentCat = id;
-  currentFeatured = 0;
-  renderCategories();
-  renderProducts();
+  currentCat = id; currentFeatured = 0;
+  renderCategories(); renderProducts();
 }
-
 function selectFeatured(i) {
-  currentFeatured = i;
-  renderProducts();
+  currentFeatured = i; renderProducts();
 }
 
-// ── Reseñas ──
+// Reseñas
 const reviews = [
-  { name:'Claudia M.', text:'"Siempre había tenido problemas con mis lentes. El doctor me hizo el examen más completo que he tenido. ¡Ahora veo perfecto!"', date:'Hace 2 semanas' },
+  { name:'Claudia M.', text:'"Siempre había tenido problemas con mis lentes. El doctor me hizo el examen más completo que he tenido en mi vida. ¡Ahora veo perfecto!"', date:'Hace 2 semanas' },
   { name:'Andrés R.',  text:'"Vine buscando gafas de sol y me fui con la montura más bonita que he tenido. El servicio es increíble."', date:'Hace 1 mes' },
   { name:'Laura S.',   text:'"Mi hijo necesitaba gafas y el doctor fue súper paciente con él. El niño salió feliz y yo más."', date:'Hace 3 semanas' },
+  { name:'Patricia V.',text:'"La colección de monturas es espectacular. Encontré la que llevaba años buscando. El personal muy amable."', date:'Hace 1 semana' },
+  { name:'Camilo E.',  text:'"Me adapté lentes de contacto aquí después de varios intentos fallidos. El doctor sabe exactamente lo que hace."', date:'Hace 3 meses' },
+  { name:'Sofía T.',   text:'"Excelente atención, tecnología de punta y un equipo humano increíble. 100% recomendado."', date:'Hace 2 meses' },
 ];
 document.getElementById('reviews-grid').innerHTML = reviews.map(r => `
   <div class="review-card reveal">
@@ -659,39 +913,38 @@ document.getElementById('reviews-grid').innerHTML = reviews.map(r => `
       <div class="review-avatar">${r.name[0]}</div>
       <div>
         <div class="review-author-name">${r.name}</div>
-        <div class="review-author-date">${r.date} · Google Maps</div>
+        <div class="review-author-date">${r.date} · Google</div>
       </div>
     </div>
   </div>
 `).join('');
 
-// ── Partículas ámbar (hero) ──
+// Partículas
 (function() {
   const c = document.getElementById('particles');
   for (let i = 0; i < 14; i++) {
     const d = document.createElement('div');
     d.className = 'hero-particle';
     const size = Math.random() * 5 + 2;
-    d.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;
-      animation-duration:${Math.random()*9+6}s;animation-delay:${Math.random()*8}s;`;
+    d.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*9+6}s;animation-delay:${Math.random()*8}s;`;
     c.appendChild(d);
   }
 })();
 
-// ── Scroll reveal ──
+// Scroll reveal
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── CountUp ──
-function countUp(el, to, suffix, duration) {
+// CountUp
+function countUp(el, to, prefix, suffix, duration) {
   let start = null;
   const step = ts => {
     if (!start) start = ts;
     const p = Math.min((ts - start) / (duration * 1000), 1);
     const ease = 1 - Math.pow(2, -10 * p);
-    el.textContent = Math.round(to * ease) + suffix;
+    el.textContent = prefix + Math.round(to * ease) + suffix;
     if (p < 1) requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
@@ -700,9 +953,9 @@ const countObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
     const id = e.target.id;
-    if (id === 'stat-1') countUp(e.target, 15,   '+años', 2);
-    if (id === 'stat-2') countUp(e.target, 3,    'K+',   2.5);
-    if (id === 'stat-3') countUp(e.target, 100,  '%',    2);
+    if (id === 'stat-1') countUp(e.target, 15,  '+', ' años', 2);
+    if (id === 'stat-2') countUp(e.target, 3,   '+', 'K',    2.5);
+    if (id === 'stat-3') countUp(e.target, 100, '',  '%',    2);
     countObs.unobserve(e.target);
   });
 }, { threshold: 0.5 });
@@ -711,13 +964,12 @@ const countObs = new IntersectionObserver(entries => {
   if (el) countObs.observe(el);
 });
 
-// ── Navbar scroll ──
+// Navbar
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').style.background =
-    window.scrollY > 60 ? 'rgba(13,13,13,0.9)' : 'rgba(13,13,13,0.7)';
+    window.scrollY > 60 ? 'rgba(13,13,13,0.95)' : 'rgba(13,13,13,0.7)';
 }, { passive: true });
 
-// ── Init ──
 renderCategories();
 renderProducts();
 </script>
