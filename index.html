@@ -603,6 +603,49 @@ footer {
 .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.55); }
 .wa-float svg { width: 28px; height: 28px; fill: white; }
 
+/* ─── REACT-BITS: AURORA CANVAS ─────────────────────── */
+#aurora-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  z-index: 1; pointer-events: none;
+}
+
+/* ─── REACT-BITS: SHINY TEXT ─────────────────────────── */
+@keyframes rb-shine {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+.rb-shiny {
+  background: linear-gradient(
+    120deg,
+    #FFFFFF 0%, #FFFFFF 28%,
+    #E2C97E 38%, #FFE066 50%, #E2C97E 62%,
+    #FFFFFF 72%, #FFFFFF 100%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rb-shine 4s linear infinite;
+}
+
+/* ─── REACT-BITS: BLUR TEXT ──────────────────────────── */
+@keyframes rb-blur-in {
+  from { filter: blur(10px); opacity: 0; transform: translateY(18px); }
+  to   { filter: blur(0px);  opacity: 1; transform: translateY(0); }
+}
+.rb-blur-word {
+  display: inline-block;
+  opacity: 0;
+  will-change: transform, filter, opacity;
+}
+.rb-blur-word.rb-animated {
+  animation: rb-blur-in 0.45s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+/* ─── REACT-BITS: COUNT UP ───────────────────────────── */
+.rb-countup { display: inline; }
+
+
 /* ─── STORE ALL GRID ─────────────────────────────────── */
 .store-all-grid {
   display: grid;
@@ -981,13 +1024,14 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
 <!-- HERO -->
 <section id="hero" aria-label="Inicio">
+  <canvas id="aurora-canvas" aria-hidden="true"></canvas>
   <img class="hero-bg-img" src="assets/images/hero.jpg" alt="" aria-hidden="true" loading="eager">
   <div class="hero-bg-glow" aria-hidden="true"></div>
   <div class="hero-droplets" aria-hidden="true" id="droplets"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Óptica Prada — Excelencia Visual</p>
-    <h1 class="hero-title">Ver el Mundo<br>en su Máxima<br><em style="font-style:italic">Claridad</em></h1>
-    <p class="hero-subtitle">Exámenes visuales de alta precisión con tecnología de punta y el respaldo de un especialista con reconocimiento internacional.</p>
+    <h1 class="hero-title rb-shiny">Ver el Mundo<br>en su Máxima<br><em style="font-style:italic">Claridad</em></h1>
+    <p class="hero-subtitle" id="hero-subtitle-el">Exámenes visuales de alta precisión con tecnología de punta y el respaldo de un especialista con reconocimiento internacional.</p>
     <div class="hero-buttons">
       <button class="btn-primary" onclick="openApptModal()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -1000,15 +1044,15 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="hero-stat-num">+15</div>
+        <div class="hero-stat-num">+<span class="rb-countup" data-to="15" data-duration="2">15</span></div>
         <div class="hero-stat-label">Años de Experiencia</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num">+3K</div>
+        <div class="hero-stat-num">+<span class="rb-countup" data-to="3000" data-suffix="K" data-divide="1000" data-duration="2.5">3K</span></div>
         <div class="hero-stat-label">Pacientes Satisfechos</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-num"><span class="rb-countup" data-to="100" data-suffix="%" data-duration="2">100%</span></div>
         <div class="hero-stat-label">Diagnóstico Especializado</div>
       </div>
     </div>
@@ -1783,6 +1827,200 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   wrap.addEventListener('touchstart', e => { dragging = true; setPosition(e.touches[0].clientX); }, { passive: true });
   window.addEventListener('touchmove', e => { if (dragging) setPosition(e.touches[0].clientX); }, { passive: true });
   window.addEventListener('touchend', () => { dragging = false; });
+})();
+
+// ══════════════════════════════════════════════════════════
+// REACT-BITS PORTS — vanilla JS/CSS implementations
+// ══════════════════════════════════════════════════════════
+
+// ── Aurora (WebGL2 port of react-bits Aurora) ─────────────
+(function initAurora() {
+  const canvas = document.getElementById('aurora-canvas');
+  if (!canvas) return;
+  const gl = canvas.getContext('webgl2');
+  if (!gl) { canvas.style.display = 'none'; return; }
+
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+  const vert = `#version 300 es
+in vec2 position;
+void main(){ gl_Position = vec4(position,0.0,1.0); }`;
+
+  const frag = `#version 300 es
+precision highp float;
+uniform float uTime;
+uniform float uAmplitude;
+uniform vec3  uColorStops[3];
+uniform vec2  uResolution;
+uniform float uBlend;
+out vec4 fragColor;
+
+vec3 permute(vec3 x){ return mod(((x*34.0)+1.0)*x,289.0); }
+
+float snoise(vec2 v){
+  const vec4 C=vec4(.211324865,.366025403,-.577350269,.024390243);
+  vec2 i=floor(v+dot(v,C.yy));
+  vec2 x0=v-i+dot(i,C.xx);
+  vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);
+  vec4 x12=x0.xyxy+C.xxzz; x12.xy-=i1;
+  i=mod(i,289.);
+  vec3 p=permute(permute(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));
+  vec3 m=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);
+  m*=m; m*=m;
+  vec3 x=2.*fract(p*C.www)-1.;
+  vec3 h=abs(x)-.5;
+  vec3 ox=floor(x+.5);
+  vec3 a0=x-ox;
+  m*=1.79284291-.85373472*(a0*a0+h*h);
+  vec3 g;
+  g.x=a0.x*x0.x+h.x*x0.y;
+  g.yz=a0.yz*x12.xz+h.yz*x12.yw;
+  return 130.*dot(m,g);
+}
+
+void main(){
+  vec2 uv=gl_FragCoord.xy/uResolution;
+
+  // color ramp
+  vec3 c0=uColorStops[0], c1=uColorStops[1], c2=uColorStops[2];
+  vec3 ramp;
+  if(uv.x<0.5){ ramp=mix(c0,c1,uv.x*2.0); }
+  else         { ramp=mix(c1,c2,(uv.x-0.5)*2.0); }
+
+  float h=snoise(vec2(uv.x*2.0+uTime*0.1,uTime*0.25))*0.5*uAmplitude;
+  h=exp(h);
+  h=(uv.y*2.0-h+0.2);
+  float intensity=0.6*h;
+  float mid=0.20;
+  float alpha=smoothstep(mid-uBlend*0.5,mid+uBlend*0.5,intensity);
+  vec3 col=intensity*ramp;
+  fragColor=vec4(col*alpha,alpha);
+}`;
+
+  function compileShader(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(s)); return null; }
+    return s;
+  }
+  const vs = compileShader(gl.VERTEX_SHADER, vert);
+  const fs = compileShader(gl.FRAGMENT_SHADER, frag);
+  if (!vs || !fs) { canvas.style.display = 'none'; return; }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+
+  // Full-screen triangle
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  const posLoc = gl.getAttribLocation(prog, 'position');
+
+  // Uniform locations
+  const uTime      = gl.getUniformLocation(prog, 'uTime');
+  const uAmp       = gl.getUniformLocation(prog, 'uAmplitude');
+  const uStops     = gl.getUniformLocation(prog, 'uColorStops');
+  const uRes       = gl.getUniformLocation(prog, 'uResolution');
+  const uBlend     = gl.getUniformLocation(prog, 'uBlend');
+
+  // Óptica Prada colors: deep-blue → gold → navy
+  const stops = [
+    [0.0, 0.47, 0.71],  // #0077B6
+    [0.78, 0.66, 0.32], // #C8A951 gold
+    [0.0, 0.03, 0.08],  // #000814 navy
+  ];
+
+  function resize() {
+    const w = canvas.offsetWidth, h = canvas.offsetHeight;
+    canvas.width = w; canvas.height = h;
+    gl.viewport(0, 0, w, h);
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  let t = 0;
+  function frame(ts) {
+    t = ts * 0.001;
+    gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.useProgram(prog);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+    gl.uniform1f(uTime, t);
+    gl.uniform1f(uAmp, 1.2);
+    gl.uniform3fv(uStops, new Float32Array(stops.flat()));
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uBlend, 0.6);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+// ── BlurText (react-bits port) ────────────────────────────
+(function initBlurText() {
+  function applyBlurText(el, direction) {
+    if (!el) return;
+    const text = el.textContent;
+    const words = text.trim().split(/\s+/);
+    el.innerHTML = words.map((w, i) =>
+      `<span class="rb-blur-word" style="animation-delay:${i * 120}ms">${w}</span>`
+    ).join(' ');
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          el.querySelectorAll('.rb-blur-word').forEach(s => s.classList.add('rb-animated'));
+          obs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1 });
+    obs.observe(el);
+  }
+
+  applyBlurText(document.getElementById('hero-subtitle-el'), 'bottom');
+})();
+
+// ── CountUp (react-bits port with spring-like easing) ─────
+(function initCountUp() {
+  function easeOutExpo(t) {
+    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  }
+
+  function animateCount(el) {
+    const to       = parseFloat(el.dataset.to)   || 0;
+    const from     = parseFloat(el.dataset.from)  || 0;
+    const dur      = (parseFloat(el.dataset.duration) || 2) * 1000;
+    const suffix   = el.dataset.suffix || '';
+    const divide   = parseFloat(el.dataset.divide) || 1;
+    let start = null;
+
+    function step(ts) {
+      if (!start) start = ts;
+      const elapsed = ts - start;
+      const progress = Math.min(elapsed / dur, 1);
+      const eased = easeOutExpo(progress);
+      const current = from + (to - from) * eased;
+      const display = divide !== 1
+        ? (current / divide).toFixed(current / divide < 10 ? 1 : 0)
+        : Math.round(current);
+      el.textContent = display + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.rb-countup').forEach(el => obs.observe(el));
 })();
 </script>
 </body>
