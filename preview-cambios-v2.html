@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PREVIEW v2 — Óptica Prada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   NUEVA PALETA — Óptica Prada v2
+   ══════════════════════════════════════════════ */
+:root {
+  --bg:          #030b1a;   /* Fondo principal */
+  --bg-mid:      #061228;   /* Secciones secundarias */
+  --steel:       #132644;   /* Botón secundario / contenedores */
+  --gold:        #d4af37;   /* Detalles y logo */
+  --gold-btn:    #b39356;   /* Botón primario CTA */
+  --cream:       #f2e8d0;   /* Texto encabezados */
+  --gray:        #bfbfbf;   /* Texto cuerpo */
+  --white:       #ffffff;
+  --glass-bg:    rgba(19,38,68,0.5);
+  --glass-border:rgba(212,175,55,0.25);
+  --glass-blur:  blur(16px);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--gray); overflow-x: hidden; }
+h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+
+/* ── PREVIEW BANNER ── */
+.preview-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  background: #b39356; color: #030b1a; text-align: center;
+  padding: 0.5rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em;
+}
+body { padding-top: 32px; }
+
+/* ── NAVBAR ── */
+#navbar {
+  position: sticky; top: 32px; z-index: 100;
+  padding: 1rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(3,11,26,0.95); backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 var(--glass-border);
+}
+.nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+.nav-logo-img-wrap {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, #d4af37 0%, #b39356 100%);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-size: 0.55rem; color: #030b1a; font-weight: 700; text-align: center; padding: 4px;
+}
+.nav-logo span { color: var(--cream); font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+.nav-links { display: flex; gap: 1.8rem; list-style: none; }
+.nav-links a { color: rgba(242,232,208,0.75); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { background: var(--gold-btn); color: #030b1a !important; font-weight: 700 !important; padding: 0.55rem 1.3rem; border-radius: 4px; transition: opacity 0.2s !important; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-video-wrap { position: absolute; inset: 0; z-index: 0; }
+.hero-video-wrap video { width: 100%; height: 100%; object-fit: cover; }
+.hero-video-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(3,11,26,0.88) 0%, rgba(19,38,68,0.65) 40%, rgba(3,11,26,0.80) 100%);
+}
+.hero-content {
+  position: relative; z-index: 1; text-align: center;
+  max-width: 760px; padding: 2rem;
+}
+.hero-eyebrow {
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.hero-eyebrow::before,.hero-eyebrow::after {
+  content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--gold);
+}
+.hero-eyebrow span { color: var(--gold); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
+.hero-title { font-size: clamp(2.4rem,5vw,4rem); color: var(--cream); line-height: 1.1; margin-bottom: 1.2rem; }
+.hero-title em { font-style: italic; color: var(--gold); }
+.hero-sub { color: var(--gray); font-size: 1.05rem; max-width: 500px; margin: 0 auto 2rem; }
+.hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary { background: var(--gold-btn); color: #030b1a; padding: 0.85rem 2rem; border-radius: 6px; font-weight: 700; text-decoration: none; font-size: 0.9rem; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 0.5rem; transition: opacity 0.2s; }
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary { background: transparent; border: 1px solid var(--glass-border); color: var(--cream); padding: 0.85rem 2rem; border-radius: 6px; font-weight: 600; text-decoration: none; font-size: 0.9rem; transition: border-color 0.2s; }
+.btn-secondary:hover { border-color: var(--gold); }
+
+/* ── DOCTOR SECTION ── */
+#doctor {
+  position: relative; min-height: 600px;
+  display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
+  overflow: hidden;
+}
+.doctor-photo-side {
+  position: relative; overflow: hidden;
+}
+.doctor-slider-wrap {
+  position: relative; width: 100%; height: 100%; min-height: 560px;
+}
+.doctor-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.7s ease;
+}
+.doctor-slide.active { opacity: 1; }
+.doctor-slide-img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+/* Placeholder for images not yet uploaded */
+.img-placeholder {
+  width: 100%; height: 100%; min-height: 200px;
+  background: var(--steel);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.75rem; color: var(--gold); text-align: center; padding: 1.5rem;
+  border: 1px dashed var(--glass-border);
+}
+.img-placeholder svg { opacity: 0.5; }
+.img-placeholder span { font-size: 0.8rem; color: var(--gray); }
+.slider-dots {
+  position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px; z-index: 2;
+}
+.slider-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(212,175,55,0.35); border: none; cursor: pointer; transition: background 0.2s;
+}
+.slider-dot.active { background: var(--gold); }
+.doctor-info-side {
+  background: linear-gradient(135deg, var(--bg-mid) 0%, var(--steel) 100%);
+  padding: 4rem 3rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.doctor-tag { color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; }
+.doctor-name { font-size: 2rem; color: var(--cream); margin-bottom: 0.4rem; }
+.doctor-title { color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem; }
+.doctor-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+.doctor-stat-val { font-size: 2rem; font-family: 'Playfair Display', serif; color: var(--gold); font-weight: 700; line-height: 1; }
+.doctor-stat-lbl { font-size: 0.72rem; color: var(--gray); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.doctor-bio { color: var(--gray); font-size: 0.88rem; line-height: 1.7; margin-bottom: 2rem; }
+.btn-doc { background: var(--gold-btn); color: #030b1a; padding: 0.75rem 1.6rem; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: opacity 0.2s; border: none; cursor: pointer; }
+.btn-doc:hover { opacity: 0.85; }
+
+/* ── TIENDA ── */
+#tienda { background: linear-gradient(180deg, #040e20 0%, var(--bg) 100%); padding: 6rem 2rem; }
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-eyebrow { color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.section-title { font-size: clamp(1.8rem,3.5vw,2.8rem); color: var(--cream); }
+.section-sub { color: var(--gray); margin-top: 0.75rem; font-size: 0.9rem; }
+.store-container { max-width: 1200px; margin: 0 auto; }
+.store-layout { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem; align-items: start; }
+.store-categories { display: flex; flex-direction: column; gap: 0.7rem; position: sticky; top: 100px; }
+.cat-card {
+  position: relative; border-radius: 10px; overflow: hidden;
+  cursor: pointer; height: 90px;
+  border: 2px solid transparent; transition: border-color 0.25s, transform 0.2s;
+}
+.cat-card:hover { transform: translateX(4px); border-color: rgba(212,175,55,0.5); }
+.cat-card.active { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold), 0 4px 20px rgba(212,175,55,0.25); }
+.cat-card img { width: 100%; height: 100%; object-fit: cover; }
+.cat-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(3,11,26,0.85) 0%, rgba(3,11,26,0.4) 100%);
+  display: flex; align-items: center; padding: 0 1rem;
+}
+.cat-card-name { font-size: 0.78rem; font-weight: 700; color: var(--cream); text-transform: uppercase; letter-spacing: 0.05em; }
+.cat-active-bar {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--gold); opacity: 0; transition: opacity 0.2s;
+}
+.cat-card.active .cat-active-bar { opacity: 1; }
+.store-right { display: flex; flex-direction: column; gap: 1.2rem; }
+.store-featured {
+  position: relative; border-radius: 16px; overflow: hidden;
+  height: 340px; background: var(--steel);
+}
+.store-featured-img { width: 100%; height: 100%; object-fit: cover; }
+.store-featured-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(3,11,26,0.92) 0%, transparent 60%);
+}
+.store-featured-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; }
+.store-featured-cat { font-size: 0.65rem; color: var(--gold); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.3rem; }
+.store-featured-name { font-size: 1.4rem; color: var(--cream); font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; }
+.store-featured-price { font-size: 0.82rem; color: rgba(242,232,208,0.55); margin-bottom: 1rem; }
+.store-featured-wa {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: #25D366; color: #fff; padding: 0.55rem 1.2rem;
+  border-radius: 50px; font-size: 0.8rem; font-weight: 600; text-decoration: none; transition: background 0.2s;
+}
+.store-featured-wa:hover { background: #1fad55; }
+.store-thumb-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 0.6rem;
+}
+.store-thumb {
+  position: relative; border-radius: 8px; overflow: hidden;
+  height: 90px; cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s, transform 0.15s;
+}
+.store-thumb:hover { transform: scale(1.03); border-color: rgba(212,175,55,0.4); }
+.store-thumb.active-thumb { border-color: var(--gold); }
+.store-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.store-thumb-name {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(0deg,rgba(3,11,26,0.9),transparent);
+  color: var(--cream); font-size: 0.58rem; padding: 0.3rem 0.4rem; line-height: 1.2;
+}
+.store-thumb-add {
+  position: absolute; top: 4px; right: 4px;
+  background: rgba(3,11,26,0.75); border: 1px solid var(--glass-border);
+  color: var(--gold); border-radius: 4px; width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: background 0.2s;
+}
+.store-thumb-add:hover { background: var(--steel); }
+
+/* ── CONOCENOS ── */
+#conocenos { background: var(--bg-mid); padding: 6rem 2rem; }
+.conocenos-container { max-width: 1100px; margin: 0 auto; }
+.conocenos-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.ig-card {
+  position: relative; border-radius: 14px; overflow: hidden;
+  background: var(--steel); border: 1px solid var(--glass-border);
+  aspect-ratio: 9/16; max-height: 480px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ig-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(212,175,55,0.2); }
+.ig-card-thumb { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.ig-card-overlay {
+  position: absolute; inset: 0;
+  background: rgba(3,11,26,0.45);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem;
+  transition: background 0.2s;
+}
+.ig-card:hover .ig-card-overlay { background: rgba(3,11,26,0.25); }
+.play-btn {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: rgba(212,175,55,0.9); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 4px 20px rgba(212,175,55,0.4);
+}
+.play-btn:hover { transform: scale(1.1); background: var(--gold); }
+.play-btn svg { fill: #030b1a; width: 24px; height: 24px; margin-left: 3px; }
+.ig-card-label { color: var(--cream); font-size: 0.8rem; font-weight: 600; text-align: center; padding: 0 1rem; text-shadow: 0 1px 4px rgba(0,0,0,0.7); }
+.ig-placeholder {
+  width: 100%; height: 100%; aspect-ratio: 9/16;
+  background: linear-gradient(135deg, var(--steel) 0%, rgba(19,38,68,0.5) 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+  padding: 2rem; text-align: center;
+}
+.ig-placeholder svg { color: var(--gold); opacity: 0.7; }
+.ig-placeholder p { color: var(--gray); font-size: 0.78rem; line-height: 1.5; }
+.ig-placeholder strong { color: var(--gold); }
+.conocenos-note {
+  text-align: center; margin-top: 2rem; padding: 1rem 1.5rem;
+  background: rgba(179,147,86,0.08); border: 1px solid rgba(179,147,86,0.25);
+  border-radius: 8px; color: var(--gray); font-size: 0.82rem; line-height: 1.6;
+}
+.conocenos-note strong { color: var(--gold-btn); }
+
+/* ── MAPA ── */
+#mapa { background: linear-gradient(180deg, var(--bg-mid) 0%, var(--bg) 100%); padding: 6rem 2rem; }
+.map-container { max-width: 1100px; margin: 0 auto; }
+.map-content-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 2rem; align-items: start; margin-top: 2.5rem; }
+.map-iframe-wrap { border-radius: 14px; overflow: hidden; border: 1px solid var(--glass-border); height: 400px; }
+.map-iframe-wrap iframe { width: 100%; height: 100%; border: none; display: block; filter: invert(0.85) hue-rotate(180deg) brightness(0.9) saturate(1.3); }
+.map-info-card {
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: 14px; padding: 1.8rem; backdrop-filter: var(--glass-blur);
+}
+.map-info-item { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.2rem; }
+.map-info-icon { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.map-info-label { font-size: 0.65rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.2rem; }
+.map-info-val { color: var(--cream); font-size: 0.88rem; }
+.map-open-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  background: var(--gold-btn); color: #030b1a; padding: 0.8rem 1.2rem;
+  border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.85rem;
+  width: 100%; text-align: center; margin-top: 1.5rem; transition: opacity 0.2s;
+}
+.map-open-btn:hover { opacity: 0.85; }
+
+/* ── REVIEWS ── */
+#reviews { background: var(--bg); padding: 5rem 2rem; }
+.reviews-container { max-width: 1100px; margin: 0 auto; }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+.review-card {
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: 12px; padding: 1.5rem; backdrop-filter: var(--glass-blur);
+}
+.review-stars { display: flex; gap: 3px; margin-bottom: 0.75rem; }
+.review-stars svg { width: 14px; height: 14px; fill: var(--gold); }
+.review-text { color: var(--gray); font-size: 0.84rem; line-height: 1.65; margin-bottom: 1rem; font-style: italic; }
+.review-author { display: flex; align-items: center; gap: 0.75rem; }
+.review-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--steel); border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem; color: var(--gold); flex-shrink: 0; }
+.review-author-name { color: var(--cream); font-size: 0.82rem; font-weight: 600; }
+.review-author-date { color: var(--gray); font-size: 0.72rem; }
+
+/* ── FOOTER ── */
+footer { background: #020913; padding: 4rem 2rem 2rem; border-top: 1px solid var(--glass-border); }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; }
+.footer-logo-wrap { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+.footer-logo-box { width: 52px; height: 52px; background: linear-gradient(135deg,var(--gold),var(--gold-btn)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.5rem; color: #030b1a; font-weight: 700; text-align: center; }
+.footer-brand { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--cream); }
+.footer-tagline { color: var(--gray); font-size: 0.82rem; line-height: 1.6; }
+.footer-col h4 { color: var(--cream); font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col a { color: var(--gray); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { max-width: 1100px; margin: 2rem auto 0; border-top: 1px solid var(--glass-border); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+.footer-bottom p { color: var(--gray); font-size: 0.75rem; }
+.dev-credit { display: flex; align-items: center; gap: 0.5rem; }
+.dev-logo-box { width: 28px; height: 28px; background: linear-gradient(135deg,#132644,#1e3a5f); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+.dev-logo-box img { width: 100%; height: 100%; object-fit: contain; }
+.dev-credit span { color: var(--gray); font-size: 0.72rem; }
+
+/* ── FLOATING WA ── */
+.wa-float {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none; transition: transform 0.2s;
+}
+.wa-float:hover { transform: scale(1.1); }
+.wa-float svg { width: 26px; height: 26px; fill: white; }
+
+/* ── MODAL de VIDEO ── */
+.video-modal {
+  display: none; position: fixed; inset: 0; z-index: 9000;
+  background: rgba(3,11,26,0.92); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center; padding: 1rem;
+}
+.video-modal.open { display: flex; }
+.video-modal-inner {
+  position: relative; width: 100%; max-width: 420px;
+  background: var(--steel); border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--glass-border);
+}
+.video-modal video { width: 100%; display: block; max-height: 75vh; object-fit: contain; }
+.video-modal-close {
+  position: absolute; top: 0.75rem; right: 0.75rem;
+  background: rgba(3,11,26,0.8); border: 1px solid var(--glass-border);
+  color: var(--cream); border-radius: 50%; width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1rem; line-height: 1; transition: background 0.2s;
+  z-index: 1;
+}
+.video-modal-close:hover { background: rgba(3,11,26,0.95); }
+
+/* ── NOTA DE CAMBIOS ── */
+.change-note {
+  background: rgba(179,147,86,0.08); border-left: 3px solid var(--gold-btn);
+  border-radius: 0 8px 8px 0; padding: 0.75rem 1rem; margin: 1.5rem 0;
+  color: var(--gray); font-size: 0.8rem; line-height: 1.6;
+}
+.change-note strong { color: var(--gold-btn); display: block; margin-bottom: 0.25rem; }
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 768px) {
+  #doctor { grid-template-columns: 1fr; }
+  .doctor-slider-wrap { min-height: 260px; }
+  .doctor-stats {
+    /* Más pequeño en móvil — no satura la vista */
+    grid-template-columns: repeat(3,1fr); gap: 0.75rem;
+  }
+  .doctor-stat-val { font-size: 1.3rem; }
+  .doctor-stat-lbl { font-size: 0.62rem; }
+  .doctor-info-side { padding: 2rem 1.5rem; }
+  .store-layout { grid-template-columns: 1fr; }
+  .store-categories { flex-direction: row; overflow-x: auto; position: static; padding-bottom: 0.5rem; }
+  .cat-card { min-width: 120px; height: 70px; flex-shrink: 0; }
+  .map-content-wrap { grid-template-columns: 1fr; }
+  .conocenos-grid { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-video-wrap video { object-position: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- PREVIEW BANNER -->
+<div class="preview-banner">
+  🔍 PREVIEW v2 — Cambios propuestos. Aprueba para aplicar al index.html principal.
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="nav-logo-img-wrap">
+      <!-- NUEVO LOGO (imagen 4 que enviaste) irá aquí -->
+      <svg viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg" width="50" height="25">
+        <rect x="2" y="8" width="18" height="14" rx="7" stroke="#030b1a" stroke-width="2" fill="none"/>
+        <rect x="40" y="8" width="18" height="14" rx="7" stroke="#030b1a" stroke-width="2" fill="none"/>
+        <line x1="20" y1="15" x2="40" y2="15" stroke="#030b1a" stroke-width="2"/>
+        <circle cx="30" cy="15" r="4" stroke="#030b1a" stroke-width="1.5" fill="none"/>
+        <circle cx="30" cy="15" r="1.5" fill="#030b1a"/>
+      </svg>
+    </div>
+    <span>Óptica Prada</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#doctor">Nosotros</a></li>
+    <li><a href="#tienda">Tienda</a></li>
+    <li><a href="#conocenos">Conócenos</a></li>
+    <li><a href="#mapa">Ubicación</a></li>
+    <li><a href="#" class="nav-cta">Agendar Cita</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-video-wrap" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" poster="assets/images/hero.jpg">
+      <source src="assets/images/hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span>Óptica Prada · Colombia</span></div>
+    <h1 class="hero-title">Tu visión merece<br><em>lo mejor</em></h1>
+    <p class="hero-sub">Tecnología de punta, atención personalizada y la colección más exclusiva de monturas y lentes en Colombia.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Agendar Cita
+      </a>
+      <a href="#tienda" class="btn-secondary">Ver Colección</a>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTOR SECTION -->
+<section id="doctor">
+  <div class="doctor-photo-side">
+    <div class="doctor-slider-wrap" id="doctorSlider">
+      <!-- Slide 0: Doctor photo -->
+      <div class="doctor-slide active" id="docSlide0">
+        <div class="img-placeholder" style="min-height:560px">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <strong style="color:var(--gold);font-size:0.85rem">Foto del Doctor</strong>
+          <span>Imagen 1 que enviaste<br>Sube el archivo como:<br><code style="color:var(--gold)">assets/images/doctor.jpg</code></span>
+        </div>
+      </div>
+      <!-- Slide 1: Consultorio equipo -->
+      <div class="doctor-slide" id="docSlide1">
+        <div class="img-placeholder" style="min-height:560px">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <strong style="color:var(--gold);font-size:0.85rem">Foto Consultorio — Equipo</strong>
+          <span>Imagen 2 (LUCID KR)<br>Sube el archivo como:<br><code style="color:var(--gold)">assets/images/clinic-1.jpg</code></span>
+        </div>
+      </div>
+      <!-- Slide 2: Consultorio sala -->
+      <div class="doctor-slide" id="docSlide2">
+        <div class="img-placeholder" style="min-height:560px">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <strong style="color:var(--gold);font-size:0.85rem">Foto Consultorio — Sala</strong>
+          <span>Imagen 3 (silla + diplomas)<br>Sube el archivo como:<br><code style="color:var(--gold)">assets/images/clinic-2.jpg</code></span>
+        </div>
+      </div>
+      <!-- Slider dots -->
+      <div class="slider-dots" id="doctorDots">
+        <button class="slider-dot active" onclick="goDocSlide(0)" aria-label="Slide 1"></button>
+        <button class="slider-dot" onclick="goDocSlide(1)" aria-label="Slide 2"></button>
+        <button class="slider-dot" onclick="goDocSlide(2)" aria-label="Slide 3"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="doctor-info-side">
+    <div class="doctor-tag">Especialista en Salud Visual</div>
+    <h2 class="doctor-name">Dr. Óptica Prada</h2>
+    <p class="doctor-title">Optómetra · Reg. 2024 · Especialista en Adaptación de Lentes de Contacto</p>
+    <!-- STATS — más pequeños en móvil gracias al responsive CSS -->
+    <div class="doctor-stats">
+      <div>
+        <div class="doctor-stat-val">+8</div>
+        <div class="doctor-stat-lbl">Años de<br>experiencia</div>
+      </div>
+      <div>
+        <div class="doctor-stat-val">+2K</div>
+        <div class="doctor-stat-lbl">Pacientes<br>atendidos</div>
+      </div>
+      <div>
+        <div class="doctor-stat-val">5★</div>
+        <div class="doctor-stat-lbl">Calificación<br>Google</div>
+      </div>
+    </div>
+    <p class="doctor-bio">Con más de 8 años de experiencia, nuestro especialista combina tecnología de punta con atención humana y personalizada. Cada examen visual es un diagnóstico preciso para cuidar lo más valioso: tu visión.</p>
+    <button class="btn-doc" onclick="document.getElementById('appt-placeholder').scrollIntoView({behavior:'smooth'})">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Agenda tu Examen Visual
+    </button>
+  </div>
+</section>
+
+<!-- TIENDA -->
+<section id="tienda">
+  <div class="store-container">
+    <div class="section-header">
+      <div class="section-eyebrow">Nuestra Colección</div>
+      <h2 class="section-title">Encuentra tu estilo</h2>
+      <p class="section-sub">Selecciona una categoría para explorar</p>
+    </div>
+
+    <div class="change-note">
+      <strong>Cambios en esta sección:</strong>
+      Se eliminaron las categorías Correas, Premium y Niños.<br>
+      Todas las imágenes son las reales del documento que enviaste.<br>
+      "Gafas normales" → categoría <strong>Monturas</strong> · "Gafas de sol" → <strong>Gafas de Sol</strong> · "Lentes de contacto" → <strong>Lentes Contacto</strong>
+    </div>
+
+    <div class="store-layout">
+      <div class="store-categories" id="store-cats"></div>
+      <div class="store-right">
+        <div class="store-featured" id="store-featured">
+          <img class="store-featured-img" id="store-featured-img" src="" alt="">
+          <div class="store-featured-overlay"></div>
+          <div class="store-featured-content">
+            <div class="store-featured-cat" id="store-featured-cat"></div>
+            <div class="store-featured-name" id="store-featured-name"></div>
+            <div class="store-featured-price" id="store-featured-price">Consultar precio</div>
+            <a class="store-featured-wa" id="store-featured-wa" href="#" target="_blank">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="store-thumb-grid" id="store-all-grid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONOCENOS -->
+<section id="conocenos">
+  <div class="conocenos-container">
+    <div class="section-header">
+      <div class="section-eyebrow">Síguenos en Instagram</div>
+      <h2 class="section-title">Conócenos</h2>
+      <p class="section-sub">Mira la experiencia Óptica Prada de cerca</p>
+    </div>
+
+    <div class="conocenos-grid">
+      <!-- Card 1 -->
+      <div class="ig-card" onclick="openVideoModal('video1')">
+        <div class="ig-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <p><strong>Video Instagram 1</strong><br>Aquí irá un reel o video de tu cuenta de Instagram.<br>Necesito la URL del post para embebarlo.</p>
+        </div>
+        <div class="ig-card-overlay">
+          <button class="play-btn" aria-label="Reproducir video">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <span class="ig-card-label">Video 1</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="ig-card" onclick="openVideoModal('video2')">
+        <div class="ig-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <p><strong>Video Instagram 2</strong><br>Aquí irá un reel o video de tu cuenta de Instagram.<br>Necesito la URL del post para embebarlo.</p>
+        </div>
+        <div class="ig-card-overlay">
+          <button class="play-btn" aria-label="Reproducir video">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <span class="ig-card-label">Video 2</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="ig-card" onclick="openVideoModal('video3')">
+        <div class="ig-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <p><strong>Video Instagram 3</strong><br>Aquí irá un reel o video de tu cuenta de Instagram.<br>Necesito la URL del post para embebarlo.</p>
+        </div>
+        <div class="ig-card-overlay">
+          <button class="play-btn" aria-label="Reproducir video">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <span class="ig-card-label">Video 3</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="conocenos-note">
+      <strong>Para activar los videos de Instagram necesito:</strong>
+      Los links de los posts/reels de Instagram de Óptica Prada que quieras mostrar.<br>
+      Hay dos opciones: <strong>(A)</strong> Embed oficial de Instagram (el usuario abre Instagram para ver) — gratis, fácil · <strong>(B)</strong> Subir los archivos de video directamente al servidor — reproduce en la misma página sin salir.<br>
+      <em>¿Cuál prefieres?</em> El video de WhatsApp que subiste podría usarse como demo mientras tanto.
+    </div>
+  </div>
+</section>
+
+<!-- MAPA — zoom más cercano a la ubicación real -->
+<section id="mapa">
+  <div class="map-container">
+    <div class="section-header">
+      <div class="section-eyebrow">Encuéntranos</div>
+      <h2 class="section-title">Nuestra Ubicación</h2>
+    </div>
+    <div class="map-content-wrap">
+      <div class="map-iframe-wrap">
+        <!-- Zoom más cercano: zoom=17 (vs 14 anterior) centrado en coordenadas exactas -->
+        <iframe
+          src="https://maps.google.com/maps?q=4.6562,-74.0559&z=17&output=embed"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación Óptica Prada">
+        </iframe>
+      </div>
+      <div class="map-info-card">
+        <div class="map-info-item">
+          <span class="map-info-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <div>
+            <div class="map-info-label">Dirección</div>
+            <div class="map-info-val">Colombia</div>
+          </div>
+        </div>
+        <div class="map-info-item">
+          <span class="map-info-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <div>
+            <div class="map-info-label">WhatsApp</div>
+            <div class="map-info-val">321 595 1512</div>
+          </div>
+        </div>
+        <div class="map-info-item">
+          <span class="map-info-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </span>
+          <div>
+            <div class="map-info-label">Horario</div>
+            <div class="map-info-val">Lun–Sáb: 8am – 7pm</div>
+          </div>
+        </div>
+        <a href="https://maps.app.goo.gl/S5ErLACi8J13vNwU6" target="_blank" rel="noopener" class="map-open-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg>
+          Ver Ubicación Exacta
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section id="reviews">
+  <div class="reviews-container">
+    <div class="section-header">
+      <div class="section-eyebrow">Lo que dicen nuestros clientes</div>
+      <h2 class="section-title">Reseñas reales</h2>
+    </div>
+    <div class="reviews-grid" id="reviews-grid"></div>
+  </div>
+</section>
+
+<!-- PLACEHOLDER CITA -->
+<div id="appt-placeholder" style="padding:2rem;text-align:center;background:var(--bg-mid)">
+  <p style="color:var(--gray);font-size:0.85rem">[Modal de cita permanece igual — sin cambios en esta sección]</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-wrap">
+        <div class="footer-logo-box">
+          <svg viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="20">
+            <rect x="2" y="8" width="18" height="14" rx="7" stroke="#030b1a" stroke-width="2" fill="none"/>
+            <rect x="40" y="8" width="18" height="14" rx="7" stroke="#030b1a" stroke-width="2" fill="none"/>
+            <line x1="20" y1="15" x2="40" y2="15" stroke="#030b1a" stroke-width="2"/>
+            <circle cx="30" cy="15" r="4" stroke="#030b1a" stroke-width="1.5" fill="none"/>
+            <circle cx="30" cy="15" r="1.5" fill="#030b1a"/>
+          </svg>
+        </div>
+        <span class="footer-brand">Óptica Prada</span>
+      </div>
+      <p class="footer-tagline">Donde la precisión científica se encuentra con el cuidado humano. Tu visión es nuestra prioridad.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#doctor">Examen Visual</a></li>
+        <li><a href="#tienda">Monturas</a></li>
+        <li><a href="#tienda">Gafas de Sol</a></li>
+        <li><a href="#tienda">Lentes de Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://wa.me/573215951512" target="_blank">WhatsApp: 321 595 1512</a></li>
+        <li><a href="https://maps.app.goo.gl/S5ErLACi8J13vNwU6" target="_blank">Ver Ubicación</a></li>
+        <li><a href="#reviews">Reseñas</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Óptica Prada · Todos los derechos reservados</p>
+    <div class="dev-credit">
+      <div class="dev-logo-box">
+        <!-- Imagen 5 (AI gear logo) irá aquí como: assets/images/dev-logo.png -->
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#d4af37" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      </div>
+      <span>Desarrollado por Worsite</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/573215951512" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- VIDEO MODAL para "Conócenos" -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" onclick="closeVideoModal()">✕</button>
+    <video id="modalVideo" controls playsinline style="width:100%">
+      <source src="assets/images/hero-video.mp4" type="video/mp4">
+    </video>
+    <div style="padding:1rem;text-align:center;color:var(--gray);font-size:0.78rem">
+      Video demo — reemplazar con videos reales de Instagram
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── Paleta y datos ─── */
+const COTIZAR_WA = '573215951512';
+
+const catLabels = {
+  todos:'Todos', monturas:'Monturas', sol:'Gafas de Sol', contacto:'Lentes de Contacto'
+};
+
+const categories = [
+  { id:'todos',    name:'Todos',           img:'assets/products/doc-image1.png' },
+  { id:'monturas', name:'Monturas',        img:'assets/products/doc-image4.png' },
+  { id:'sol',      name:'Gafas de Sol',    img:'assets/products/doc-image1.png' },
+  { id:'contacto', name:'Lentes Contacto', img:'assets/products/doc-image9.png' },
+];
+
+/* Mapping from docx: label → image
+   Gafa de sol:       doc-image1, 2, 3, 7, 20, 19
+   Gafas normales:    doc-image4, 14, 21, 18, 10, 12, 22, 13, 16, 11, 6, 8, 5, 15, 17
+   Lentes contacto:   doc-image9                                                       */
+const products = [
+  /* — SOL — */
+  { id:1,  img:'assets/products/doc-image1.png',  name:'Gafas de Sol 1',   cat:'sol',      price:'Consultar precio' },
+  { id:2,  img:'assets/products/doc-image2.png',  name:'Gafas de Sol 2',   cat:'sol',      price:'Consultar precio' },
+  { id:3,  img:'assets/products/doc-image3.png',  name:'Gafas de Sol 3',   cat:'sol',      price:'Consultar precio' },
+  { id:4,  img:'assets/products/doc-image7.png',  name:'Gafas de Sol 4',   cat:'sol',      price:'Consultar precio' },
+  { id:5,  img:'assets/products/doc-image20.png', name:'Gafas de Sol 5',   cat:'sol',      price:'Consultar precio' },
+  { id:6,  img:'assets/products/doc-image19.png', name:'Gafas de Sol 6',   cat:'sol',      price:'Consultar precio' },
+  /* — MONTURAS — */
+  { id:7,  img:'assets/products/doc-image4.png',  name:'Montura 1',        cat:'monturas', price:'Consultar precio' },
+  { id:8,  img:'assets/products/doc-image14.png', name:'Montura 2',        cat:'monturas', price:'Consultar precio' },
+  { id:9,  img:'assets/products/doc-image21.png', name:'Montura 3',        cat:'monturas', price:'Consultar precio' },
+  { id:10, img:'assets/products/doc-image18.png', name:'Montura 4',        cat:'monturas', price:'Consultar precio' },
+  { id:11, img:'assets/products/doc-image10.png', name:'Montura 5',        cat:'monturas', price:'Consultar precio' },
+  { id:12, img:'assets/products/doc-image12.png', name:'Montura 6',        cat:'monturas', price:'Consultar precio' },
+  { id:13, img:'assets/products/doc-image22.png', name:'Montura 7',        cat:'monturas', price:'Consultar precio' },
+  { id:14, img:'assets/products/doc-image13.png', name:'Montura 8',        cat:'monturas', price:'Consultar precio' },
+  { id:15, img:'assets/products/doc-image16.png', name:'Montura 9',        cat:'monturas', price:'Consultar precio' },
+  { id:16, img:'assets/products/doc-image11.png', name:'Montura 10',       cat:'monturas', price:'Consultar precio' },
+  { id:17, img:'assets/products/doc-image6.png',  name:'Montura 11',       cat:'monturas', price:'Consultar precio' },
+  { id:18, img:'assets/products/doc-image8.png',  name:'Montura 12',       cat:'monturas', price:'Consultar precio' },
+  { id:19, img:'assets/products/doc-image5.png',  name:'Montura 13',       cat:'monturas', price:'Consultar precio' },
+  { id:20, img:'assets/products/doc-image15.png', name:'Montura 14',       cat:'monturas', price:'Consultar precio' },
+  { id:21, img:'assets/products/doc-image17.png', name:'Montura 15',       cat:'monturas', price:'Consultar precio' },
+  /* — CONTACTO — */
+  { id:22, img:'assets/products/doc-image9.png',  name:'Lentes de Contacto', cat:'contacto', price:'Consultar precio' },
+];
+
+let activeCat = 'todos';
+let storeFiltered = [];
+let storeFeaturedIdx = 0;
+
+function renderCategories() {
+  const el = document.getElementById('store-cats');
+  if (!el) return;
+  el.innerHTML = categories.map(c => `
+    <div class="cat-card${c.id === activeCat ? ' active' : ''}"
+         onclick="selectCat('${c.id}')" role="button" tabindex="0">
+      <div class="cat-active-bar"></div>
+      <img src="${c.img}" alt="${c.name}" onerror="this.style.background='#132644';this.removeAttribute('src')">
+      <div class="cat-card-overlay"><div class="cat-card-name">${c.name}</div></div>
+    </div>
+  `).join('');
+}
+
+function selectCat(id) {
+  activeCat = id;
+  renderCategories();
+  renderProducts(id);
+}
+
+function buildWaMsg(name) {
+  return encodeURIComponent(`Hola! Me interesa el producto: ${name}. ¿Me pueden dar más información y el precio?`);
+}
+
+function setFeatured(idx) {
+  const p = storeFiltered[idx];
+  if (!p) return;
+  storeFeaturedIdx = idx;
+  document.getElementById('store-featured-img').src = p.img;
+  document.getElementById('store-featured-img').alt = p.name;
+  document.getElementById('store-featured-cat').textContent = catLabels[p.cat] || p.cat;
+  document.getElementById('store-featured-name').textContent = p.name;
+  document.getElementById('store-featured-price').textContent = p.price;
+  document.getElementById('store-featured-wa').href = `https://wa.me/${COTIZAR_WA}?text=${buildWaMsg(p.name)}`;
+  document.querySelectorAll('.store-thumb').forEach(el => {
+    el.classList.toggle('active-thumb', parseInt(el.dataset.idx) === idx);
+  });
+}
+
+function renderProducts(cat) {
+  storeFiltered = cat === 'todos' ? products : products.filter(p => p.cat === cat);
+  storeFeaturedIdx = 0;
+  setFeatured(0);
+  const grid = document.getElementById('store-all-grid');
+  if (!grid) return;
+  grid.innerHTML = storeFiltered.map((p, i) => `
+    <div class="store-thumb${i===0?' active-thumb':''}" data-idx="${i}"
+         onclick="setFeatured(${i})" title="${p.name}">
+      <img src="${p.img}" alt="${p.name}" loading="lazy"
+           onerror="this.style.background='#132644';this.removeAttribute('src')">
+      <div class="store-thumb-name">${p.name}</div>
+      <button class="store-thumb-add" onclick="event.stopPropagation()" title="Agregar a Mi Deseo">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.5 9.5a6.5 6.5 0 0 0-12.7-1.9A5 5 0 1 0 5 17.5h13a4 4 0 0 0 .5-7.95zM13 13v3h-2v-3H8l4-4 4 4h-3z"/></svg>
+      </button>
+    </div>
+  `).join('');
+}
+
+/* ─── Doctor Slider ─── */
+let currentDocSlide = 0;
+function goDocSlide(idx) {
+  document.querySelectorAll('.doctor-slide').forEach((s,i) => s.classList.toggle('active', i===idx));
+  document.querySelectorAll('.slider-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+  currentDocSlide = idx;
+}
+// Auto-advance
+setInterval(() => { goDocSlide((currentDocSlide+1) % 3); }, 4000);
+
+/* ─── Reviews ─── */
+const reviews = [
+  { name:'Claudia M.', text:'"Siempre había tenido problemas con mis lentes. El doctor me hizo el examen más completo que he tenido en mi vida. ¡Ahora veo perfecto!"', date:'Hace 2 semanas' },
+  { name:'Andrés R.', text:'"Vine buscando unas gafas de sol y me fui con la montura más bonita que he tenido. El servicio es increíble."', date:'Hace 1 mes' },
+  { name:'Laura S.', text:'"Mi hijo necesitaba gafas y el doctor fue súper paciente con él. El niño salió feliz y yo más."', date:'Hace 3 semanas' },
+  { name:'Jorge T.', text:'"Llegué con dolores de cabeza que pensaba eran otra cosa. Resulta que necesitaba lentes. Desde que los tengo, desaparecieron."', date:'Hace 2 meses' },
+];
+document.getElementById('reviews-grid').innerHTML = reviews.map((r,i) => `
+  <div class="review-card">
+    <div class="review-stars">${Array(5).fill('<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>').join('')}</div>
+    <p class="review-text">${r.text}</p>
+    <div class="review-author">
+      <div class="review-avatar">${r.name[0]}</div>
+      <div><div class="review-author-name">${r.name}</div><div class="review-author-date">${r.date} · Google Maps</div></div>
+    </div>
+  </div>
+`).join('');
+
+/* ─── Video Modal ─── */
+function openVideoModal(id) {
+  const m = document.getElementById('videoModal');
+  m.classList.add('open');
+  document.getElementById('modalVideo').play();
+}
+function closeVideoModal() {
+  const m = document.getElementById('videoModal');
+  m.classList.remove('open');
+  document.getElementById('modalVideo').pause();
+}
+document.getElementById('videoModal').addEventListener('click', e => { if(e.target===e.currentTarget) closeVideoModal(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeVideoModal(); });
+
+/* ─── Init ─── */
+renderCategories();
+renderProducts('todos');
+</script>
+</body>
+</html>
