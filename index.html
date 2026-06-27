@@ -10,25 +10,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* Paleta Luxury Amber */
-  --gold:         #FFB347;
-  --gold-light:   #FFD37A;
-  --gold-dark:    #A64B00;
-  --navy:         #0D0D0D;
-  --navy-mid:     #1C1C1C;
-  --blue-deep:    #2B1400;
-  --blue-electric:#D96A00;
-  --orange-main:  #D96A00;
-  --amber-bright: #F28C18;
-  --amber-deep:   #7A2F00;
-  --ivory:        #FFF0D6;
+  /* Paleta Óptica Prada */
+  --gold:         #d4af37;   /* Detalles y logo */
+  --gold-light:   #e8cc6a;
+  --gold-dark:    #9a7c25;
+  --gold-btn:     #b39356;   /* Botón primario CTA */
+  --navy:         #030b1a;   /* Fondo principal */
+  --navy-mid:     #061228;   /* Secciones secundarias */
+  --steel:        #132644;   /* Contenedores / botón secundario */
+  --cream:        #f2e8d0;   /* Texto encabezados */
+  --ivory:        #f2e8d0;
   --white:        #FFFFFF;
-  --gray-100:     #F5F5F5;
-  --gray-200:     #E0E0E0;
-  --gray-400:     #9E9E9E;
-  --glass-bg:     rgba(255,255,255,0.04);
-  --glass-border: rgba(242,140,24,0.22);
+  --gray-body:    #bfbfbf;   /* Texto cuerpo */
+  --gray-100:     #e0d8cc;
+  --gray-200:     #c0b8ac;
+  --gray-400:     #8a8278;
+  --glass-bg:     rgba(19,38,68,0.5);
+  --glass-border: rgba(212,175,55,0.22);
   --glass-blur:   blur(16px);
+  /* Legacy aliases */
+  --orange-main:  #b39356;
+  --amber-bright: #d4af37;
+  --amber-deep:   #132644;
+  --blue-deep:    #061228;
+  --blue-electric:#b39356;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,8 +42,8 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #0D0D0D;
-  color: var(--white);
+  background: var(--navy);
+  color: var(--gray-body);
   overflow-x: hidden;
 }
 
@@ -52,9 +57,9 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
 }
 #navbar.scrolled {
-  background: rgba(13,13,13,0.95);
+  background: rgba(3,11,26,0.96);
   backdrop-filter: blur(20px);
-  box-shadow: 0 1px 0 rgba(242,140,24,0.15);
+  box-shadow: 0 1px 0 rgba(212,175,55,0.18);
 }
 .nav-logo img { height: 64px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(242,140,24,0.3)); }
 .footer-logo img { filter: drop-shadow(0 0 6px rgba(242,140,24,0.25)); }
@@ -98,9 +103,9 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   position: absolute; inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(122,47,0,0.82) 0%,
-    rgba(217,106,0,0.55) 40%,
-    rgba(13,13,13,0.75) 100%
+    rgba(3,11,26,0.88) 0%,
+    rgba(19,38,68,0.60) 40%,
+    rgba(3,11,26,0.80) 100%
   );
 }
 
@@ -269,33 +274,63 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 
 /* ─── DOCTOR ─────────────────────────────────────────── */
 #doctor {
-  background: linear-gradient(180deg, #150800 0%, #0D0D0D 100%);
+  background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
   position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr;
 }
 #doctor::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  z-index: 1;
 }
+/* Slider foto lateral */
+.doctor-photo-side { position: relative; overflow: hidden; min-height: 560px; }
+.doctor-slide {
+  position: absolute; inset: 0; opacity: 0; transition: opacity 0.7s ease;
+}
+.doctor-slide.active { opacity: 1; }
+.doctor-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.doctor-slide-placeholder {
+  width: 100%; height: 100%; min-height: 560px;
+  background: linear-gradient(135deg, var(--steel) 0%, var(--navy-mid) 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+  color: rgba(212,175,55,0.5); text-align: center; padding: 2rem;
+}
+.doctor-slide-placeholder p { color: var(--gray-body); font-size: 0.78rem; line-height: 1.5; }
+.doctor-slider-dots {
+  position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px; z-index: 2;
+}
+.doc-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(212,175,55,0.35); border: none; cursor: pointer; transition: background 0.2s;
+}
+.doc-dot.active { background: var(--gold); }
+/* Info lado derecho */
+.doctor-info-side {
+  background: linear-gradient(135deg, var(--navy-mid) 0%, var(--steel) 100%);
+  padding: 4rem 3rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+/* Legacy (unused now but kept for compatibility) */
 .doctor-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }
-.doctor-image-wrap {
-  position: relative;
-}
+.doctor-image-wrap { position: relative; }
 .doctor-image-frame {
   position: relative; border-radius: 12px; overflow: hidden;
   border: 1px solid var(--glass-border);
-  box-shadow: 0 0 80px rgba(217,106,0,0.12), 0 0 0 1px rgba(242,140,24,0.08);
+  box-shadow: 0 0 80px rgba(19,38,68,0.3), 0 0 0 1px rgba(212,175,55,0.08);
 }
 .doctor-image-frame img { width: 100%; display: block; aspect-ratio: 3/4; object-fit: cover; }
 .doctor-image-placeholder {
   width: 100%; aspect-ratio: 3/4;
-  background: linear-gradient(135deg, #2B1400 0%, #1C0E00 60%, #0D0D0D 100%);
+  background: linear-gradient(135deg, var(--steel) 0%, var(--navy-mid) 60%, var(--navy) 100%);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
 }
 .doctor-badge {
   position: absolute; bottom: -1.5rem; right: -1.5rem;
-  background: linear-gradient(135deg, var(--orange-main), var(--gold-dark));
-  color: var(--ivory);
+  background: linear-gradient(135deg, var(--gold-btn), var(--gold-dark));
+  color: var(--cream);
   padding: 1.2rem 1.5rem; border-radius: 10px;
   text-align: center; font-weight: 700;
   box-shadow: 0 8px 32px rgba(217,106,0,0.4);
@@ -525,8 +560,27 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 .review-author-name { font-size: 0.875rem; font-weight: 600; }
 .review-author-date { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
 
+/* ─── CONÓCENOS ─────────────────────────────────────────── */
+#conocenos { background: var(--navy-mid); padding: 6rem 2rem; }
+.conocenos-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem; margin-top: 2.5rem;
+}
+.ig-embed-wrap {
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: var(--steel);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 500px;
+}
+.ig-embed-wrap .instagram-media {
+  min-width: 100% !important; max-width: 100% !important;
+  margin: 0 !important; border: none !important;
+  border-radius: 0 !important;
+}
+
 /* ─── MAP ─────────────────────────────────────────────── */
-#mapa { background: linear-gradient(180deg, #120800 0%, #0D0D0D 100%); padding: 6rem 2rem; }
+#mapa { background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%); padding: 6rem 2rem; }
 .map-header { text-align: center; margin-bottom: 2.5rem; }
 .map-content-wrap {
   display: grid; grid-template-columns: 1fr 340px; gap: 2rem; align-items: start;
@@ -946,6 +1000,11 @@ footer {
   .form-row { grid-template-columns: 1fr; }
 
   /* Doctor */
+  #doctor { grid-template-columns: 1fr; }
+  .doctor-photo-side { min-height: 280px; }
+  .doctor-slide { position: relative; }
+  .doctor-slide:not(.active) { display: none; }
+  .doctor-info-side { padding: 2rem 1.5rem; }
   .doctor-grid { grid-template-columns: 1fr; gap: 2rem; }
   .doctor-image-wrap { max-width: 280px; margin: 0 auto; }
 
@@ -1000,7 +1059,7 @@ footer {
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0D0D0D; }
+::-webkit-scrollbar-track { background: var(--navy); }
 ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
 
 /* Color scheme for date/time inputs */
@@ -1013,12 +1072,14 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 <!-- NAVBAR -->
 <nav id="navbar" role="navigation" aria-label="Navegación principal">
   <a href="#" class="nav-logo" aria-label="Inicio Óptica Prada">
-    <img src="assets/images/logo.svg" alt="Óptica Prada">
+    <img src="assets/images/logo-new.png" alt="Óptica Prada"
+         onerror="this.src='assets/images/logo.svg'">
   </a>
   <ul class="nav-links" id="nav-links">
     <li><a href="#vision">Visión</a></li>
     <li><a href="#doctor">El Doctor</a></li>
     <li><a href="#tienda">Tienda</a></li>
+    <li><a href="#conocenos">Conócenos</a></li>
     <li><a href="#reviews">Testimonios</a></li>
     <li><a href="#mapa">Ubicación</a></li>
     <li><a href="#" class="nav-cta" onclick="openApptModal(); return false;">Agendar Cita</a></li>
@@ -1114,78 +1175,91 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 </section>
 
 <!-- DOCTOR -->
-<section id="doctor" class="section" aria-labelledby="doctor-title">
-  <div class="container">
-    <div class="doctor-grid">
-      <div class="doctor-image-wrap reveal">
-        <div class="doctor-image-frame">
-          <div class="doctor-image-placeholder">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(242,140,24,0.4)" stroke-width="1" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <p style="color:rgba(242,140,24,0.45);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase">Foto del Doctor</p>
-          </div>
-        </div>
-        <div class="doctor-badge">
-          <div class="doctor-badge-num">+15</div>
-          <div class="doctor-badge-label">Años de<br>Experiencia</div>
-        </div>
-      </div>
-      <div class="reveal">
-        <p class="section-eyebrow">Especialista Certificado</p>
-        <h2 class="section-title" id="doctor-title">Dr. <span>Prada</span><br>Su Visión, Nuestra Misión</h2>
-        <p style="color:rgba(255,255,255,0.65);line-height:1.8;margin-bottom:1.5rem">Optómetra con más de 15 años de experiencia clínica, reconocido a nivel nacional por su precisión diagnóstica y atención humanizada. Cada examen es un proceso personalizado y riguroso.</p>
-        <ul class="credentials" aria-label="Credenciales del doctor">
-          <li class="credential-item">
-            <div class="credential-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            </div>
-            <div class="credential-text">
-              <strong>Optometría — Universidad de La Salle</strong>
-              <span>Título profesional con honores · Bogotá, Colombia</span>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="credential-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            </div>
-            <div class="credential-text">
-              <strong>Especialización en Baja Visión</strong>
-              <span>Formación avanzada en patologías visuales complejas</span>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="credential-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="credential-text">
-              <strong>Certificación Internacional en Contactología</strong>
-              <span>Adaptación especializada de lentes de contacto</span>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="credential-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div class="credential-text">
-              <strong>Miembro Activo — Asociación Colombiana de Optometría</strong>
-              <span>Actualización continua en tecnología visual de vanguardia</span>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="credential-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div class="credential-text">
-              <strong>+3.000 Pacientes Atendidos</strong>
-              <span>Diagnósticos visuales en niños, adultos y adultos mayores</span>
-            </div>
-          </li>
-        </ul>
-        <button class="btn-primary" onclick="openApptModal()" style="margin-top:0.5rem">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Agendar Cita con el Doctor
-        </button>
+<section id="doctor" aria-labelledby="doctor-title">
+  <!-- FOTO lateral con slider -->
+  <div class="doctor-photo-side">
+    <!-- Slide 0: Doctor -->
+    <div class="doctor-slide active" id="docSlide0">
+      <img src="assets/images/doctor.jpg" alt="Doctor Óptica Prada"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="doctor-slide-placeholder" style="display:none">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <p>Foto del doctor<br><small>Sube como: assets/images/doctor.jpg</small></p>
       </div>
     </div>
+    <!-- Slide 1: Consultorio equipo -->
+    <div class="doctor-slide" id="docSlide1">
+      <img src="assets/images/clinic-1.jpg" alt="Consultorio Óptica Prada — Equipo LUCID KR"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="doctor-slide-placeholder" style="display:none">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <p>Foto del consultorio — equipo<br><small>Sube como: assets/images/clinic-1.jpg</small></p>
+      </div>
+    </div>
+    <!-- Slide 2: Consultorio sala -->
+    <div class="doctor-slide" id="docSlide2">
+      <img src="assets/images/clinic-2.jpg" alt="Consultorio Óptica Prada — Sala"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="doctor-slide-placeholder" style="display:none">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <p>Foto del consultorio — sala<br><small>Sube como: assets/images/clinic-2.jpg</small></p>
+      </div>
+    </div>
+    <!-- Dots -->
+    <div class="doctor-slider-dots" aria-label="Controles del slider">
+      <button class="doc-dot active" onclick="goDocSlide(0)" aria-label="Foto doctor"></button>
+      <button class="doc-dot" onclick="goDocSlide(1)" aria-label="Foto consultorio equipo"></button>
+      <button class="doc-dot" onclick="goDocSlide(2)" aria-label="Foto consultorio sala"></button>
+    </div>
+  </div>
+
+  <!-- INFO lateral -->
+  <div class="doctor-info-side reveal">
+    <p class="section-eyebrow">Especialista Certificado</p>
+    <h2 class="section-title" id="doctor-title">Dr. <span>Prada</span><br>Su Visión, Nuestra Misión</h2>
+    <p style="color:var(--gray-body);line-height:1.8;margin-bottom:1.5rem">Optómetra con más de 15 años de experiencia clínica, reconocido a nivel nacional por su precisión diagnóstica y atención humanizada. Cada examen es un proceso personalizado y riguroso.</p>
+    <ul class="credentials" aria-label="Credenciales del doctor">
+      <li class="credential-item">
+        <div class="credential-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div class="credential-text">
+          <strong>Optometría — Universidad de La Salle</strong>
+          <span>Título profesional con honores · Bogotá, Colombia</span>
+        </div>
+      </li>
+      <li class="credential-item">
+        <div class="credential-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="credential-text">
+          <strong>Especialización en Baja Visión</strong>
+          <span>Formación avanzada en patologías visuales complejas</span>
+        </div>
+      </li>
+      <li class="credential-item">
+        <div class="credential-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="credential-text">
+          <strong>Certificación Internacional en Contactología</strong>
+          <span>Adaptación especializada de lentes de contacto</span>
+        </div>
+      </li>
+      <li class="credential-item">
+        <div class="credential-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="credential-text">
+          <strong>+3.000 Pacientes Atendidos</strong>
+          <span>Diagnósticos visuales en niños, adultos y adultos mayores</span>
+        </div>
+      </li>
+    </ul>
+    <button class="btn-primary" onclick="openApptModal()" style="margin-top:0.5rem">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Agendar Cita con el Doctor
+    </button>
   </div>
 </section>
 
@@ -1271,6 +1345,48 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
   </div>
 </div>
 
+<!-- CONÓCENOS -->
+<section id="conocenos" class="section" aria-labelledby="conocenos-title">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem">
+      <p class="section-eyebrow" style="justify-content:center">Síguenos en Instagram</p>
+      <h2 class="section-title" id="conocenos-title">Conócenos</h2>
+      <p class="section-sub">Mira la experiencia Óptica Prada de cerca</p>
+    </div>
+    <div class="conocenos-grid">
+      <div class="ig-embed-wrap">
+        <blockquote class="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/reel/DS5f4VCDoxS/"
+          data-instgrm-version="14"
+          style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
+        </blockquote>
+      </div>
+      <div class="ig-embed-wrap">
+        <blockquote class="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/reel/DW9qElxkcvm/"
+          data-instgrm-version="14"
+          style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
+        </blockquote>
+      </div>
+      <div class="ig-embed-wrap">
+        <blockquote class="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/reel/DWCIx9wjq8A/"
+          data-instgrm-version="14"
+          style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
+        </blockquote>
+      </div>
+      <div class="ig-embed-wrap">
+        <blockquote class="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/reel/DZ0TnNyxTsP/"
+          data-instgrm-version="14"
+          style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+<script async src="//www.instagram.com/embed.js"></script>
+
 <!-- REVIEWS -->
 <section id="reviews" class="section" aria-labelledby="reviews-title">
   <div class="container">
@@ -1297,7 +1413,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
       <!-- Mapa embebido -->
       <div class="map-iframe-wrap">
         <iframe
-          src="https://maps.google.com/maps?q=Optica+Prada+Colombia&output=embed"
+          src="https://maps.google.com/maps?q=4.6562,-74.0559&z=17&output=embed"
           allowfullscreen="" loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           title="Ubicación Óptica Prada">
@@ -1346,7 +1462,8 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
   <span class="dev-strip-text">Desarrollado por</span>
   <a href="https://wa.me/573113141020?text=Hola%2C%20vi%20la%20p%C3%A1gina%20web%20de%20%C3%93ptica%20Prada%20y%20me%20interesa%20tener%20una%20as%C3%AD%20para%20mi%20negocio.%20%C2%BFPodr%C3%ADamos%20hablar%3F"
      class="dev-logo-link" target="_blank" rel="noopener" aria-label="Contactar al desarrollador por WhatsApp">
-    <img src="assets/images/ai-logo.svg" alt="Desarrollador" width="40" height="40">
+    <img src="assets/images/dev-logo.png" alt="Desarrollador" width="40" height="40"
+         onerror="this.src='assets/images/ai-logo.svg'">
   </a>
 </div>
 
@@ -1355,7 +1472,8 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
   <div class="footer-grid">
     <div>
       <div class="footer-logo">
-        <img src="assets/images/logo.svg" alt="Óptica Prada">
+        <img src="assets/images/logo-new.png" alt="Óptica Prada"
+             onerror="this.src='assets/images/logo.svg'">
       </div>
       <p class="footer-tagline">Donde la precisión científica se encuentra con el cuidado humano. Tu visión es nuestra prioridad.</p>
     </div>
@@ -1366,7 +1484,6 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
         <li><a href="#tienda">Monturas</a></li>
         <li><a href="#tienda">Gafas de Sol</a></li>
         <li><a href="#tienda">Lentes de Contacto</a></li>
-        <li><a href="#tienda">Lentes Infantiles</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1485,48 +1602,40 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 <script>
 // ─── PRODUCTS DATA ───────────────────────────────────────
 const products = [
-  { id:1,  img:'assets/products/image1.jpg',  name:'Montura Clásica Titanio',      cat:'monturas', price:'Consultar precio', material:'Titanio puro', desc:'Armazón rectangular de titanio ultraligero y resistente a la corrosión. Bisagras de resorte para ajuste perfecto.', style:'Profesional y ejecutivo. Ideal para ambientes de trabajo formal, trajes y camisas de vestir.' },
-  { id:2,  img:'assets/products/image2.jpg',  name:'Marco Rectangular Negro',       cat:'monturas', price:'Consultar precio', material:'Acetato premium', desc:'Marco rectangular en acetato de alta calidad, acabado mate elegante con bisagras reforzadas.', style:'Versátil y urbano. Combina con outfits casuales, jeans y ropa de oficina.' },
-  { id:3,  img:'assets/products/image3.jpg',  name:'Armazón Redondo Dorado',        cat:'monturas', price:'Consultar precio', material:'Metal bañado en oro', desc:'Armazón circular de metal fino bañado en oro de 18k. Diseño clásico con toque artístico.', style:'Bohemio y artístico. Ideal para looks creativos, ropa vintage y estilo intelectual.' },
-  { id:4,  img:'assets/products/image4.jpg',  name:'Montura Cat Eye Carey',         cat:'monturas', price:'Consultar precio', material:'Acetato carey', desc:'Montura cat eye de acetato con patrón carey natural. Diseño femenino y sofisticado.', style:'Retro y femenino. Combina con vestidos florales, outfits elegantes y looks de los años 60.' },
-  { id:5,  img:'assets/products/image5.jpg',  name:'Marco Aviador Metálico',        cat:'monturas', price:'Consultar precio', material:'Aleación de aluminio', desc:'Clásico estilo aviador en aleación de aluminio ligero. Puente doble y patillas ajustables.', style:'Clásico y aventurero. Perfecto con chaquetas de cuero, ropa casual y estilos militares.' },
-  { id:6,  img:'assets/products/image6.jpg',  name:'Armazón Hexagonal Premium',     cat:'monturas', price:'Consultar precio', material:'Acero inoxidable', desc:'Armazón hexagonal de acero inoxidable, diseño geométrico moderno con acabado espejo.', style:'Vanguardista y moderno. Para outfits minimalistas, ropa oscura y looks de diseñador.' },
-  { id:7,  img:'assets/products/image7.jpg',  name:'Montura Deportiva Ligera',      cat:'monturas', price:'Consultar precio', material:'TR-90 flexible', desc:'Montura de TR-90, material de memoria flexible e irrompible. Ideal para deportes y vida activa.', style:'Deportivo y dinámico. Para ropa de entrenamiento, ropa casual activa y actividades al aire libre.' },
-  { id:8,  img:'assets/products/image8.jpg',  name:'Marco Oval Acetato Italiano',   cat:'monturas', price:'Consultar precio', material:'Acetato italiano Mazzucchelli', desc:'Marco oval en acetato italiano de la más alta calidad Mazzucchelli. Colores profundos y acabados únicos.', style:'Elegante y artístico. Combina con ropa minimalista de colores neutros y looks de alta costura.' },
-  { id:9,  img:'assets/products/image9.jpg',  name:'Gafas Sol Piloto Espejadas',    cat:'sol', price:'Consultar precio', material:'Metal y policarbonato', desc:'Clásicas gafas de sol estilo piloto con lentes espejadas de policarbonato UV400. Máxima protección solar.', style:'Icónico y cool. Perfecto para outfits de verano, looks urbanos y ambiente de playa.' },
-  { id:10, img:'assets/products/image10.jpg', name:'Sol Cuadradas UV400',           cat:'sol', price:'Consultar precio', material:'Acetato y cristal mineral', desc:'Gafas cuadradas de sol en acetato grueso con lentes de cristal mineral de alta definición y filtro UV400.', style:'Urbano y fashion. Para looks de ciudad, outfits casuales modernos y festivales.' },
-  { id:11, img:'assets/products/image11.jpg', name:'Gafas Sol Oversized Negras',    cat:'sol', price:'Consultar precio', material:'Acetato premium', desc:'Montura oversized de acetato premium con lentes oscuras de gran cobertura. Máxima protección y estilo.', style:'Glamoroso y atrevido. Ideal para looks de playa, outfits de verano y estilo celebrities.' },
-  { id:12, img:'assets/products/image12.jpg', name:'Sol Retro Tortuga',             cat:'sol', price:'Consultar precio', material:'Acetato carey', desc:'Gafas retro de sol en acetato con patrón tortuga. Diseño atemporal con lentes de color ámbar.', style:'Retro y vintage. Perfecto con outfits boho, ropa de los años 70 y looks de moda clásica.' },
-  { id:13, img:'assets/products/image13.jpg', name:'Gafas Sol Wrap Sport',          cat:'sol', price:'Consultar precio', material:'Grilamid TR90', desc:'Gafas deportivas wrap-around de TR90, ultraligeras y resistentes. Ventilación optimizada anti-niebla.', style:'Deportivo y funcional. Para ciclismo, running, montañismo y cualquier actividad al aire libre.' },
-  { id:14, img:'assets/products/image14.jpg', name:'Sol Hexagonales Gradiente',     cat:'sol', price:'Consultar precio', material:'Metal y cristal gradiente', desc:'Lentes hexagonales con efecto gradiente azul-a-gris. Montura metálica fina y moderna.', style:'Artístico y vanguardista. Combina con outfits minimalistas y looks de revista de moda.' },
-  { id:15, img:'assets/products/image15.jpg', name:'Gafas Sol Cat Eye Dorado',      cat:'sol', price:'Consultar precio', material:'Metal dorado y acetato', desc:'Cat eye femenino en montura dorada con lentes ahumadas. Estilo Hollywood clásico actualizado.', style:'Sofisticado y retro-glam. Perfecto para eventos especiales, outfits de fiesta y looks de alfombra roja.' },
-  { id:16, img:'assets/products/image16.jpg', name:'Sol Premium Polarizadas',       cat:'sol', price:'Consultar precio', material:'Titanio y lente polarizado', desc:'Gafas premium de titanio con lentes polarizadas de 7 capas. Eliminación total de reflejos y máxima claridad visual.', style:'Ejecutivo y premium. Ideal para conducir, actividades náuticas y cualquier ambiente de alta luz.' },
-  { id:17, img:'assets/products/image17.jpg', name:'Lentes Contacto Diarios',       cat:'contacto', price:'Consultar precio', material:'Hidrogel de silicona', desc:'Lentes de contacto de uso diario en hidrogel de silicona con alto contenido de agua (58%). Máxima comodidad y oxigenación.', style:'Perfectos para quienes quieren libertad visual sin armazón. Ideales para deportes y ocasiones especiales.' },
-  { id:18, img:'assets/products/image18.jpg', name:'Lentes Contacto Mensuales',     cat:'contacto', price:'Consultar precio', material:'Hidrogel de silicona premium', desc:'Lentes mensuales de hidrogel de silicona con tratamiento UV. Reemplazo mensual para máxima higiene y economía.', style:'Opción económica y cómoda para uso diario. Libera tu rostro para cualquier look y estilo.' },
-  { id:19, img:'assets/products/image19.jpg', name:'Lentes Contacto Tóricos',       cat:'contacto', price:'Consultar precio', material:'Hidrogel tórico estabilizado', desc:'Lentes tóricos especializados para corrección de astigmatismo con sistema de estabilización de eje dinámico.', style:'Solución profesional para astigmatismo. Permite disfrutar de visión nítida sin las limitaciones de los armazones.' },
-  { id:20, img:'assets/products/image20.jpg', name:'Montura Infantil Flexible',     cat:'ninos', price:'Consultar precio', material:'Ultem flexible', desc:'Montura infantil de Ultem hipoalergénico, material flexible que recupera su forma. Resistente a caídas y juegos bruscos.', style:'Colorida y resistente para niños activos. Disponible en varios colores vibrantes que los niños adoran.' },
-  { id:21, img:'assets/products/image21.jpg', name:'Marco Niño Colores Vivos',      cat:'ninos', price:'Consultar precio', material:'TR-90 coloreado', desc:'Marco infantil en TR-90 de colores vivos certificado libre de BPA. Bisagras de resorte para ajuste seguro.', style:'Divertido y llamativo para niños que quieren destacar su personalidad con sus gafas.' },
-  { id:22, img:'assets/products/image22.jpg', name:'Armazón Infantil Antichoque',   cat:'ninos', price:'Consultar precio', material:'Caucho y polímero', desc:'Armazón antichoque con puntas de caucho suave y montura de polímero resistente. Diseñado para la seguridad infantil.', style:'Seguro y cómodo para deportes escolares, actividades físicas y uso diario en el colegio.' },
-  { id:23, img:'assets/products/image23.jpg', name:'Gafas Sol Niño UV Protection',  cat:'ninos', price:'Consultar precio', material:'Policarbonato irrompible', desc:'Gafas de sol infantiles con lentes de policarbonato irrompibles y filtro UV400. Protección total para los ojos en desarrollo.', style:'Indispensable para la playa, piscina y actividades al aire libre. Protege la visión en formación de los niños.' },
-  { id:24, img:'assets/products/image24.jpg', name:'Montura Premium Titanio Puro',  cat:'premium', price:'Consultar precio', material:'Titanio puro grado 5', desc:'Montura de titanio puro grado 5 de aviación, el material más ligero y resistente. Bisagras japonesas de precisión.', style:'Lujo discreto para profesionales exigentes. Se adapta a cualquier look con elegancia máxima.' },
-  { id:25, img:'assets/products/image25.jpg', name:'Colección Luxury Gold Edition', cat:'premium', price:'Consultar precio', material:'Oro laminado 24k y acetato', desc:'Edición limitada con detalles en oro laminado de 24k sobre montura de acetato italiano. Pieza de colección.', style:'Alta joyería óptica. Para eventos de gala, looks de lujo y quienes buscan lo mejor del mercado mundial.' },
-  { id:26, img:'assets/products/image26.jpg', name:'Armazón Designer Limited',      cat:'premium', price:'Consultar precio', material:'Carbono y titanio', desc:'Armazón de edición limitada en fibra de carbono y titanio. Diseño exclusivo de colección de autor.', style:'Para el coleccionista exigente. Pieza única que combina con looks de alta moda y ambientes exclusivos.' },
-  { id:27, img:'assets/products/image1.jpg',  name:'Correa Elástica Premium',       cat:'correas', price:'Consultar precio', material:'Neopreno y elástico', desc:'Correa para gafas de neopreno premium con clips de silicona antideslizante. Perfecta para deportes acuáticos y al aire libre.', style:'Funcional y segura. Ideal para deporte, montaña, playa y actividades donde necesitas que tus gafas no se muevan.' },
-  { id:28, img:'assets/products/image2.jpg',  name:'Cadena Óptica Dorada',          cat:'correas', price:'Consultar precio', material:'Metal bañado en oro', desc:'Cadena óptica de metal bañado en oro con terminaciones ajustables. Transforma tus gafas en una joya.', style:'Elegante y femenino. Combina con looks boho, vestidos de verano y outfits casuales sofisticados.' },
-  { id:29, img:'assets/products/image3.jpg',  name:'Correa Deportiva Ajustable',    cat:'correas', price:'Consultar precio', material:'Silicona médica', desc:'Correa deportiva de silicona médica, hipoalergénica y lavable. Sistema de ajuste rápido para cualquier armazón.', style:'Deportivo y práctico. Para ciclismo, pesca, esquí y toda actividad que exija sujeción segura.' },
-  { id:30, img:'assets/products/image4.jpg',  name:'Cordón Bohemio Artesanal',      cat:'correas', price:'Consultar precio', material:'Algodón y cuentas naturales', desc:'Cordón artesanal en algodón trenzado con cuentas de madera y piedras naturales. Hecho a mano, pieza única.', style:'Bohemio y artístico. Perfecto para looks casuales, festivales y quienes expresan su personalidad con sus accesorios.' },
+  /* — GAFAS DE SOL — */
+  { id:1,  img:'assets/products/doc-image1.png',  name:'Gafas de Sol 1',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:2,  img:'assets/products/doc-image2.png',  name:'Gafas de Sol 2',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:3,  img:'assets/products/doc-image3.png',  name:'Gafas de Sol 3',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:4,  img:'assets/products/doc-image7.png',  name:'Gafas de Sol 4',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:5,  img:'assets/products/doc-image20.png', name:'Gafas de Sol 5',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:6,  img:'assets/products/doc-image19.png', name:'Gafas de Sol 6',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
+  /* — MONTURAS — */
+  { id:7,  img:'assets/products/doc-image4.png',  name:'Montura 1',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:8,  img:'assets/products/doc-image14.png', name:'Montura 2',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:9,  img:'assets/products/doc-image21.png', name:'Montura 3',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:10, img:'assets/products/doc-image18.png', name:'Montura 4',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:11, img:'assets/products/doc-image10.png', name:'Montura 5',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:12, img:'assets/products/doc-image12.png', name:'Montura 6',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:13, img:'assets/products/doc-image22.png', name:'Montura 7',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:14, img:'assets/products/doc-image13.png', name:'Montura 8',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:15, img:'assets/products/doc-image16.png', name:'Montura 9',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:16, img:'assets/products/doc-image11.png', name:'Montura 10',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:17, img:'assets/products/doc-image6.png',  name:'Montura 11',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:18, img:'assets/products/doc-image8.png',  name:'Montura 12',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:19, img:'assets/products/doc-image5.png',  name:'Montura 13',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:20, img:'assets/products/doc-image15.png', name:'Montura 14',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:21, img:'assets/products/doc-image17.png', name:'Montura 15',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  /* — LENTES DE CONTACTO — */
+  { id:22, img:'assets/products/doc-image9.png',  name:'Lentes de Contacto', cat:'contacto', price:'Consultar precio', material:'', desc:'', style:'' },
 ];
 
-const catLabels = { todos:'Todos', monturas:'Monturas', sol:'Gafas de Sol', contacto:'Lentes de Contacto', ninos:'Niños', premium:'Premium', correas:'Correas' };
+const catLabels = { todos:'Todos', monturas:'Monturas', sol:'Gafas de Sol', contacto:'Lentes de Contacto' };
 
 const categories = [
-  { id:'todos',    name:'Todos',           img:'assets/products/image1.jpg'  },
-  { id:'monturas', name:'Monturas',        img:'assets/products/image4.jpg'  },
-  { id:'sol',      name:'Gafas de Sol',    img:'assets/products/image9.jpg'  },
-  { id:'contacto', name:'Lentes Contacto', img:'assets/products/image17.jpg' },
-  { id:'ninos',    name:'Niños',           img:'assets/products/image20.jpg' },
-  { id:'premium',  name:'Premium',         img:'assets/products/image16.jpg' },
-  { id:'correas',  name:'Correas',         img:'assets/products/image2.jpg'  },
+  { id:'todos',    name:'Todos',           img:'assets/products/doc-image1.png' },
+  { id:'monturas', name:'Monturas',        img:'assets/products/doc-image4.png' },
+  { id:'sol',      name:'Gafas de Sol',    img:'assets/products/doc-image1.png' },
+  { id:'contacto', name:'Lentes Contacto', img:'assets/products/doc-image9.png' },
 ];
 
 let activeCat = 'todos';
@@ -1540,7 +1649,7 @@ function renderCategories() {
          onclick="selectCat('${c.id}')" role="button" tabindex="0"
          onkeydown="if(event.key==='Enter')selectCat('${c.id}')">
       <div class="cat-active-bar"></div>
-      <img src="${c.img}" alt="${c.name}" onerror="this.style.background='#2B1400';this.removeAttribute('src')">
+      <img src="${c.img}" alt="${c.name}" onerror="this.style.background='#132644';this.removeAttribute('src')">
       <div class="cat-card-overlay">
         <div class="cat-card-name">${c.name}</div>
       </div>
@@ -1840,6 +1949,15 @@ function setMinDate() {
   const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate()+1);
   document.getElementById('appt-date').min = tomorrow.toISOString().split('T')[0];
 }
+
+// ─── DOCTOR SLIDER ────────────────────────────────────────
+let docSlideIdx = 0;
+function goDocSlide(idx) {
+  document.querySelectorAll('.doctor-slide').forEach((s,i) => s.classList.toggle('active', i===idx));
+  document.querySelectorAll('.doc-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+  docSlideIdx = idx;
+}
+setInterval(() => { goDocSlide((docSlideIdx+1) % 3); }, 4500);
 
 // ─── INIT ─────────────────────────────────────────────────
 createDroplets();
