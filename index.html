@@ -212,7 +212,7 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 
 /* ─── BEFORE/AFTER SLIDER ────────────────────────────── */
 #vision {
-  background: linear-gradient(180deg, #0D0D0D 0%, #120800 100%);
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
 }
 .vision-slider-wrap {
   position: relative;
@@ -228,16 +228,36 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   position: absolute; inset: 0;
   display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem;
 }
+/* AFTER — Clear, sharp, vibrant */
 .vision-panel-after {
-  background: linear-gradient(135deg, #2B1400 0%, #4A2000 100%);
-  align-items: flex-end; /* text pinned to bottom-RIGHT */
+  background:
+    /* Eye chart rows — sharp text via conic gradients */
+    radial-gradient(ellipse 60% 55% at 50% 42%, rgba(212,175,55,0.08) 0%, transparent 70%),
+    /* Iris detail rings */
+    radial-gradient(circle 80px at 50% 38%, rgba(212,175,55,0.18) 0%, rgba(19,38,68,0.4) 40%, transparent 55%),
+    radial-gradient(circle 55px at 50% 38%, rgba(19,38,68,0.9) 0%, transparent 60%),
+    radial-gradient(circle 30px at 50% 38%, rgba(212,175,55,0.25) 0%, rgba(212,175,55,0.05) 60%, transparent 70%),
+    /* Background */
+    linear-gradient(160deg, #061228 0%, #0a1e40 40%, #040e20 100%);
+  align-items: flex-end;
   text-align: right;
 }
+/* BEFORE — Blurry, washed out, low contrast */
 .vision-panel-before {
-  background: linear-gradient(135deg, #1C1C1C 0%, #2B1400 100%);
-  clip-path: inset(0 50% 0 0); /* covers left half by default */
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 42%, rgba(150,130,80,0.06) 0%, transparent 70%),
+    radial-gradient(circle 100px at 50% 38%, rgba(100,90,60,0.15) 0%, transparent 60%),
+    radial-gradient(circle 60px at 50% 38%, rgba(60,55,40,0.7) 0%, transparent 65%),
+    linear-gradient(160deg, #111118 0%, #1a1a22 40%, #0d0d14 100%);
+  clip-path: inset(0 50% 0 0);
   will-change: clip-path;
-  align-items: flex-start; /* text pinned to bottom-LEFT */
+  align-items: flex-start;
+  filter: blur(0.5px) saturate(0.5) brightness(0.85);
+}
+/* Vision SVG scene inside each panel */
+.vision-scene {
+  position: absolute; inset: 0; pointer-events: none;
+  display: flex; align-items: center; justify-content: center; padding-bottom: 4rem;
 }
 .vision-label {
   background: rgba(0,0,0,0.6); backdrop-filter: blur(12px);
@@ -1072,8 +1092,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 <!-- NAVBAR -->
 <nav id="navbar" role="navigation" aria-label="Navegación principal">
   <a href="#" class="nav-logo" aria-label="Inicio Óptica Prada">
-    <img src="assets/images/logo-new.png" alt="Óptica Prada"
-         onerror="this.src='assets/images/logo.svg'">
+    <img src="assets/images/logo-new.svg" alt="Óptica Prada">
   </a>
   <ul class="nav-links" id="nav-links">
     <li><a href="#vision">Visión</a></li>
@@ -1147,23 +1166,67 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
       <p class="section-sub" style="margin-bottom:3rem">Un examen visual preciso transforma completamente cómo experimentas el mundo. Así se ve la diferencia.</p>
     </div>
     <div class="vision-slider-wrap reveal" id="visionSlider" aria-label="Comparación antes y después del examen visual">
-      <!-- Panel AFTER (right side, always visible underneath) -->
+      <!-- Panel AFTER: visión nítida y clara -->
       <div class="vision-panel-after">
+        <!-- Tabla optométrica simulada — versión NÍTIDA -->
+        <div class="vision-scene" aria-hidden="true">
+          <svg viewBox="0 0 260 300" width="200" height="240" xmlns="http://www.w3.org/2000/svg">
+            <!-- Iris exterior -->
+            <circle cx="130" cy="70" r="50" stroke="#d4af37" stroke-width="2" fill="rgba(6,18,40,0.8)" opacity="0.9"/>
+            <circle cx="130" cy="70" r="36" stroke="#b39356" stroke-width="1.5" fill="none" opacity="0.8"/>
+            <circle cx="130" cy="70" r="22" stroke="#d4af37" stroke-width="1.5" fill="rgba(3,11,26,0.9)" opacity="0.9"/>
+            <!-- Pupila -->
+            <circle cx="130" cy="70" r="10" fill="#030b1a"/>
+            <!-- Reflejo -->
+            <circle cx="125" cy="65" r="4" fill="rgba(212,175,55,0.6)"/>
+            <!-- Detalles iris -->
+            <line x1="130" y1="20" x2="130" y2="34" stroke="#d4af37" stroke-width="1" opacity="0.6"/>
+            <line x1="130" y1="106" x2="130" y2="120" stroke="#d4af37" stroke-width="1" opacity="0.6"/>
+            <line x1="80" y1="70" x2="94" y2="70" stroke="#d4af37" stroke-width="1" opacity="0.6"/>
+            <line x1="166" y1="70" x2="180" y2="70" stroke="#d4af37" stroke-width="1" opacity="0.6"/>
+            <!-- Tabla optométrica — letras nítidas -->
+            <text x="130" y="158" text-anchor="middle" font-family="monospace" font-size="26" font-weight="700" fill="#f2e8d0" opacity="0.95">E</text>
+            <text x="108" y="186" text-anchor="middle" font-family="monospace" font-size="18" font-weight="700" fill="#d4af37" opacity="0.9">F P</text>
+            <text x="130" y="186" text-anchor="middle" font-family="monospace" font-size="18" font-weight="700" fill="#d4af37" opacity="0.9"></text>
+            <text x="100" y="210" text-anchor="middle" font-family="monospace" font-size="13" font-weight="600" fill="#b39356" opacity="0.85">T O Z</text>
+            <text x="130" y="210" text-anchor="middle" font-family="monospace" font-size="13" font-weight="600" fill="#b39356" opacity="0.85"></text>
+            <text x="95" y="230" text-anchor="middle" font-family="monospace" font-size="10" font-weight="600" fill="#8a7840" opacity="0.8">L P E D</text>
+            <text x="130" y="248" text-anchor="middle" font-family="monospace" font-size="7.5" font-weight="600" fill="#6a5c30" opacity="0.75">P E C F D</text>
+            <text x="130" y="263" text-anchor="middle" font-family="monospace" font-size="6" font-weight="600" fill="#504520" opacity="0.65">E D F C Z P</text>
+          </svg>
+        </div>
         <div class="vision-label vision-label-after">Con tu nueva fórmula</div>
         <div class="vision-text">
-          <h3 style="color:var(--amber-bright)">Nitidez total</h3>
+          <h3 style="color:var(--gold)">Nitidez total</h3>
           <p>Cada detalle en foco. Colores vibrantes. Así debería verse el mundo.</p>
         </div>
       </div>
-      <!-- Panel BEFORE (clipped to left half, draggable) -->
+
+      <!-- Panel BEFORE: visión borrosa, sin diagnóstico -->
       <div class="vision-panel-before" id="visionBefore">
+        <!-- Misma tabla pero borrosa y desaturada -->
+        <div class="vision-scene" aria-hidden="true">
+          <svg viewBox="0 0 260 300" width="200" height="240" xmlns="http://www.w3.org/2000/svg" style="filter:blur(3px) saturate(0.3) brightness(0.7)">
+            <circle cx="130" cy="70" r="50" stroke="#888" stroke-width="3" fill="rgba(30,30,35,0.8)" opacity="0.6"/>
+            <circle cx="130" cy="70" r="36" stroke="#666" stroke-width="2" fill="none" opacity="0.5"/>
+            <circle cx="130" cy="70" r="22" stroke="#888" stroke-width="2" fill="rgba(20,20,25,0.9)" opacity="0.5"/>
+            <circle cx="130" cy="70" r="10" fill="#111"/>
+            <text x="130" y="158" text-anchor="middle" font-family="monospace" font-size="26" font-weight="700" fill="#aaa" opacity="0.7">E</text>
+            <text x="108" y="186" text-anchor="middle" font-family="monospace" font-size="18" font-weight="700" fill="#888" opacity="0.55">F P</text>
+            <text x="100" y="210" text-anchor="middle" font-family="monospace" font-size="13" font-weight="600" fill="#666" opacity="0.5">T O Z</text>
+            <text x="95" y="230" text-anchor="middle" font-family="monospace" font-size="10" font-weight="600" fill="#555" opacity="0.4">L P E D</text>
+            <text x="130" y="248" text-anchor="middle" font-family="monospace" font-size="7.5" font-weight="600" fill="#444" opacity="0.35">P E C F D</text>
+            <text x="130" y="263" text-anchor="middle" font-family="monospace" font-size="6" font-weight="600" fill="#333" opacity="0.3">E D F C Z P</text>
+          </svg>
+        </div>
         <div class="vision-label vision-label-before">Antes del examen</div>
         <div class="vision-text">
-          <h3 style="color:rgba(255,255,255,0.6)">Sin diagnóstico</h3>
+          <h3 style="color:rgba(255,255,255,0.5)">Sin diagnóstico</h3>
           <p>Visión borrosa, fatiga ocular, dolores de cabeza constantes.</p>
         </div>
       </div>
-      <!-- Gold divider handle -->
+
+      <!-- Divisor dorado -->
       <div class="vision-handle" id="visionHandle" aria-hidden="true">
         <div class="vision-handle-btn">↔</div>
       </div>
@@ -1413,7 +1476,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
       <!-- Mapa embebido -->
       <div class="map-iframe-wrap">
         <iframe
-          src="https://maps.google.com/maps?q=4.6562,-74.0559&z=17&output=embed"
+          src="https://maps.google.com/maps?q=Optica+Prada+Bogota+Colombia&z=18&output=embed"
           allowfullscreen="" loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           title="Ubicación Óptica Prada">
@@ -1448,7 +1511,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
             <span>Lun – Vie: 8:00 am – 6:00 pm<br>Sáb: 9:00 am – 2:00 pm</span>
           </div>
         </div>
-        <a href="https://maps.app.goo.gl/S5ErLACi8J13vNwU6" target="_blank" rel="noopener" class="map-open-btn">
+        <a href="https://maps.app.goo.gl/zvDMh6YosptFXAzf7" target="_blank" rel="noopener" class="map-open-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Ver Ubicación Exacta
         </a>
@@ -1462,8 +1525,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
   <span class="dev-strip-text">Desarrollado por</span>
   <a href="https://wa.me/573113141020?text=Hola%2C%20vi%20la%20p%C3%A1gina%20web%20de%20%C3%93ptica%20Prada%20y%20me%20interesa%20tener%20una%20as%C3%AD%20para%20mi%20negocio.%20%C2%BFPodr%C3%ADamos%20hablar%3F"
      class="dev-logo-link" target="_blank" rel="noopener" aria-label="Contactar al desarrollador por WhatsApp">
-    <img src="assets/images/dev-logo.png" alt="Desarrollador" width="40" height="40"
-         onerror="this.src='assets/images/ai-logo.svg'">
+    <img src="assets/images/dev-logo.svg" alt="Desarrollador" width="40" height="40">
   </a>
 </div>
 
@@ -1472,8 +1534,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
   <div class="footer-grid">
     <div>
       <div class="footer-logo">
-        <img src="assets/images/logo-new.png" alt="Óptica Prada"
-             onerror="this.src='assets/images/logo.svg'">
+        <img src="assets/images/logo-new.svg" alt="Óptica Prada">
       </div>
       <p class="footer-tagline">Donde la precisión científica se encuentra con el cuidado humano. Tu visión es nuestra prioridad.</p>
     </div>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="gearGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#1a3a5c"/>
+      <stop offset="100%" stop-color="#0d2137"/>
+    </linearGradient>
+    <linearGradient id="goldC" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#e8cc6a"/>
+      <stop offset="50%"  stop-color="#b39356"/>
+      <stop offset="100%" stop-color="#d4af37"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Gear body (12 teeth) -->
+  <path d="
+    M50 5
+    L55 2 L60 5 L62 10
+    L68 8 L72 12 L70 18
+    L76 20 L78 26 L73 29
+    L76 35 L73 40 L67 39
+    L66 45 L61 48 L56 44
+    L50 47 L44 44 L39 48
+    L34 45 L33 39 L27 40
+    L24 35 L27 29 L22 26
+    L24 20 L30 18 L28 12
+    L32 8 L38 10 L40 5
+    L45 2 Z
+  " fill="url(#gearGrad)" stroke="#253d5e" stroke-width="1"/>
+
+  <!-- Inner dark circle -->
+  <circle cx="50" cy="25" r="20" fill="#0a1928"/>
+
+  <!-- Circuit rings -->
+  <circle cx="50" cy="25" r="16" stroke="url(#goldC)" stroke-width="0.8" fill="none" opacity="0.5"/>
+  <circle cx="50" cy="25" r="12" stroke="url(#goldC)" stroke-width="0.8" fill="none" opacity="0.6"/>
+
+  <!-- Circuit lines -->
+  <line x1="50" y1="9"  x2="50" y2="13" stroke="url(#goldC)" stroke-width="1" opacity="0.8"/>
+  <line x1="50" y1="37" x2="50" y2="41" stroke="url(#goldC)" stroke-width="1" opacity="0.8"/>
+  <line x1="34" y1="25" x2="38" y2="25" stroke="url(#goldC)" stroke-width="1" opacity="0.8"/>
+  <line x1="62" y1="25" x2="66" y2="25" stroke="url(#goldC)" stroke-width="1" opacity="0.8"/>
+  <!-- Diagonal circuits -->
+  <line x1="38.7" y1="13.7" x2="41.2" y2="16.2" stroke="url(#goldC)" stroke-width="0.8" opacity="0.7"/>
+  <line x1="61.3" y1="13.7" x2="58.8" y2="16.2" stroke="url(#goldC)" stroke-width="0.8" opacity="0.7"/>
+  <line x1="38.7" y1="36.3" x2="41.2" y2="33.8" stroke="url(#goldC)" stroke-width="0.8" opacity="0.7"/>
+  <line x1="61.3" y1="36.3" x2="58.8" y2="33.8" stroke="url(#goldC)" stroke-width="0.8" opacity="0.7"/>
+  <!-- Dots at ends -->
+  <circle cx="50" cy="9"  r="1.2" fill="url(#goldC)"/>
+  <circle cx="50" cy="41" r="1.2" fill="url(#goldC)"/>
+  <circle cx="34" cy="25" r="1.2" fill="url(#goldC)"/>
+  <circle cx="66" cy="25" r="1.2" fill="url(#goldC)"/>
+
+  <!-- Center gold circle -->
+  <circle cx="50" cy="25" r="8.5" fill="url(#goldC)"/>
+
+  <!-- "AI" text centered -->
+  <text x="50" y="29.5" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="9" font-weight="900"
+        fill="#0d2137" letter-spacing="0.5">AI</text>
+</svg>
