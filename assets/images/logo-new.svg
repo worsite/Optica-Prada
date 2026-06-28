@@ -1,68 +1,101 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 200" fill="none">
   <defs>
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#f5d97a"/>
-      <stop offset="35%"  stop-color="#d4af37"/>
-      <stop offset="65%"  stop-color="#c49a2a"/>
-      <stop offset="100%" stop-color="#f5d97a"/>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#f5e08a"/>
+      <stop offset="30%"  stop-color="#d4a827"/>
+      <stop offset="60%"  stop-color="#b8860b"/>
+      <stop offset="100%" stop-color="#e8c84a"/>
     </linearGradient>
-    <linearGradient id="goldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#e8cc6a"/>
-      <stop offset="50%"  stop-color="#b8932a"/>
-      <stop offset="100%" stop-color="#f0d060"/>
+    <linearGradient id="g2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#c49a2a"/>
+      <stop offset="50%"  stop-color="#f0d060"/>
+      <stop offset="100%" stop-color="#c49a2a"/>
     </linearGradient>
+    <radialGradient id="sphere" cx="38%" cy="32%" r="60%">
+      <stop offset="0%"   stop-color="#fff8c0"/>
+      <stop offset="40%"  stop-color="#d4a827"/>
+      <stop offset="100%" stop-color="#7a5500"/>
+    </radialGradient>
     <filter id="glow">
-      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
   </defs>
 
-  <!-- Left lens frame -->
-  <rect x="8" y="14" width="108" height="68" rx="20" ry="20"
-        stroke="url(#goldGrad)" stroke-width="4" fill="none" filter="url(#glow)"/>
+  <!-- LEFT TEMPLE ARM -->
+  <path d="M 8 68 L 60 72" stroke="url(#g1)" stroke-width="5.5" stroke-linecap="round" filter="url(#glow)"/>
 
-  <!-- Right lens frame -->
-  <rect x="204" y="14" width="108" height="68" rx="20" ry="20"
-        stroke="url(#goldGrad)" stroke-width="4" fill="none" filter="url(#glow)"/>
+  <!-- LEFT FRAME - browline angular shape -->
+  <path d="M 62 50 Q 65 36 80 34 L 212 34 Q 224 34 226 48 L 226 78
+           Q 224 96 212 100 Q 192 106 170 102 Q 148 108 128 102
+           Q 106 108 88 102 Q 68 98 62 82 Z"
+        stroke="url(#g1)" stroke-width="4.5" fill="none" filter="url(#glow)"/>
 
-  <!-- Bridge / nose piece -->
-  <path d="M116 48 Q130 38 160 38 Q190 38 204 48"
-        stroke="url(#goldGrad)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <!-- RIGHT FRAME - browline angular shape -->
+  <path d="M 498 50 Q 495 36 480 34 L 348 34 Q 336 34 334 48 L 334 78
+           Q 336 96 348 100 Q 368 106 390 102 Q 412 108 432 102
+           Q 454 108 472 102 Q 492 98 498 82 Z"
+        stroke="url(#g1)" stroke-width="4.5" fill="none" filter="url(#glow)"/>
 
-  <!-- Temple left -->
-  <line x1="8" y1="30" x2="2" y2="22" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
-  <!-- Temple right -->
-  <line x1="312" y1="30" x2="318" y2="22" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
+  <!-- RIGHT TEMPLE ARM -->
+  <path d="M 498 68 L 552 72" stroke="url(#g1)" stroke-width="5.5" stroke-linecap="round" filter="url(#glow)"/>
 
-  <!-- Central mechanical iris / lente mecánica en el puente -->
-  <!-- Outer ring -->
-  <circle cx="160" cy="48" r="18" stroke="url(#goldGrad2)" stroke-width="2" fill="rgba(10,18,40,0.7)"/>
-  <!-- Mid ring -->
-  <circle cx="160" cy="48" r="12" stroke="url(#goldGrad2)" stroke-width="1.5" fill="none" opacity="0.85"/>
-  <!-- Inner ring -->
-  <circle cx="160" cy="48" r="7"  stroke="url(#goldGrad2)" stroke-width="1.5" fill="none" opacity="0.8"/>
-  <!-- Center sphere -->
-  <circle cx="160" cy="48" r="3.5" fill="url(#goldGrad)" filter="url(#glow)"/>
-  <!-- Circuit lines (4 directions) -->
-  <line x1="160" y1="30" x2="160" y2="36" stroke="url(#goldGrad2)" stroke-width="1.2" opacity="0.9"/>
-  <line x1="160" y1="60" x2="160" y2="66" stroke="url(#goldGrad2)" stroke-width="1.2" opacity="0.9"/>
-  <line x1="142" y1="48" x2="148" y2="48" stroke="url(#goldGrad2)" stroke-width="1.2" opacity="0.9"/>
-  <line x1="172" y1="48" x2="178" y2="48" stroke="url(#goldGrad2)" stroke-width="1.2" opacity="0.9"/>
-  <!-- Diagonal tick marks on outer ring -->
-  <line x1="152.7" y1="35.7" x2="155.0" y2="38.0" stroke="url(#goldGrad2)" stroke-width="1" opacity="0.7"/>
-  <line x1="167.3" y1="35.7" x2="165.0" y2="38.0" stroke="url(#goldGrad2)" stroke-width="1" opacity="0.7"/>
-  <line x1="152.7" y1="60.3" x2="155.0" y2="58.0" stroke="url(#goldGrad2)" stroke-width="1" opacity="0.7"/>
-  <line x1="167.3" y1="60.3" x2="165.0" y2="58.0" stroke="url(#goldGrad2)" stroke-width="1" opacity="0.7"/>
+  <!-- BRIDGE — upper curve -->
+  <path d="M 226 62 Q 280 22 334 62" stroke="url(#g1)" stroke-width="3.8" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- BRIDGE — lower curve -->
+  <path d="M 226 76 Q 280 116 334 76" stroke="url(#g1)" stroke-width="3.8" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+
+  <!-- OUTER IRIS RING -->
+  <circle cx="280" cy="69" r="38" stroke="url(#g2)" stroke-width="2.8" fill="none" filter="url(#glow)"/>
+  <!-- Cardinal tick marks -->
+  <line x1="280" y1="31" x2="280" y2="38" stroke="url(#g1)" stroke-width="2" opacity="0.95"/>
+  <line x1="280" y1="100" x2="280" y2="107" stroke="url(#g1)" stroke-width="2" opacity="0.95"/>
+  <line x1="242" y1="69" x2="249" y2="69" stroke="url(#g1)" stroke-width="2" opacity="0.95"/>
+  <line x1="311" y1="69" x2="318" y2="69" stroke="url(#g1)" stroke-width="2" opacity="0.95"/>
+  <!-- Diagonal ticks -->
+  <line x1="253" y1="42" x2="257.5" y2="46.5" stroke="url(#g1)" stroke-width="1.5" opacity="0.75"/>
+  <line x1="307" y1="42" x2="302.5" y2="46.5" stroke="url(#g1)" stroke-width="1.5" opacity="0.75"/>
+  <line x1="253" y1="96" x2="257.5" y2="91.5" stroke="url(#g1)" stroke-width="1.5" opacity="0.75"/>
+  <line x1="307" y1="96" x2="302.5" y2="91.5" stroke="url(#g1)" stroke-width="1.5" opacity="0.75"/>
+
+  <!-- Horizontal circuit lines extending out -->
+  <line x1="242" y1="69" x2="228" y2="69" stroke="url(#g2)" stroke-width="1.8" opacity="0.85"/>
+  <line x1="318" y1="69" x2="332" y2="69" stroke="url(#g2)" stroke-width="1.8" opacity="0.85"/>
+  <circle cx="228" cy="69" r="2.5" fill="url(#g1)" opacity="0.9"/>
+  <circle cx="332" cy="69" r="2.5" fill="url(#g1)" opacity="0.9"/>
+
+  <!-- MID RING -->
+  <circle cx="280" cy="69" r="27" stroke="url(#g2)" stroke-width="2.2" fill="none" opacity="0.9"/>
+  <circle cx="280" cy="42" r="3" fill="url(#g1)" opacity="0.9"/>
+  <circle cx="280" cy="96" r="3" fill="url(#g1)" opacity="0.9"/>
+  <circle cx="253" cy="69" r="3" fill="url(#g1)" opacity="0.9"/>
+  <circle cx="307" cy="69" r="3" fill="url(#g1)" opacity="0.9"/>
+
+  <!-- INNER RINGS (spiral-like) -->
+  <circle cx="280" cy="69" r="19" stroke="url(#g2)" stroke-width="1.8" fill="none" opacity="0.85"/>
+  <circle cx="280" cy="69" r="13" stroke="url(#g2)" stroke-width="1.5" fill="none" opacity="0.8"/>
+  <circle cx="280" cy="69" r="8"  stroke="url(#g2)" stroke-width="1.2" fill="none" opacity="0.75"/>
+
+  <!-- Arc highlights on mid ring to give 3D depth -->
+  <path d="M 264 50 A 19 19 0 0 1 299 69" stroke="url(#g1)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- CENTER SPHERE -->
+  <circle cx="280" cy="69" r="10" fill="url(#sphere)" filter="url(#glow2)"/>
+  <circle cx="277" cy="66"  r="3.5" fill="rgba(255,255,220,0.5)"/>
 
   <!-- ÓPTICA PRADA text -->
-  <text x="160" y="100" text-anchor="middle"
+  <text x="280" y="152" text-anchor="middle"
         font-family="Georgia, 'Playfair Display', serif"
-        font-size="22" font-weight="700" letter-spacing="6"
-        fill="url(#goldGrad)" filter="url(#glow)">ÓPTICA PRADA</text>
+        font-size="26" font-weight="700" letter-spacing="7"
+        fill="url(#g1)" filter="url(#glow)">ÓPTICA PRADA</text>
 
   <!-- Tagline -->
-  <text x="160" y="116" text-anchor="middle"
+  <text x="280" y="170" text-anchor="middle"
         font-family="Arial, sans-serif"
-        font-size="8" font-weight="400" letter-spacing="3"
-        fill="#c49a2a" opacity="0.85">CUIDAMOS TU VISIÓN</text>
+        font-size="9.5" font-weight="400" letter-spacing="4.5"
+        fill="#c49a2a" opacity="0.88">CUIDAMOS TU VISIÓN</text>
 </svg>
