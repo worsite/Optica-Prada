@@ -210,80 +210,22 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 .section-title span { color: var(--gold); }
 .section-sub { color: rgba(255,255,255,0.6); font-size: 1.05rem; line-height: 1.7; max-width: 580px; }
 
-/* ─── BEFORE/AFTER SLIDER ────────────────────────────── */
+/* ─── VISION COMPARISON ────────────────────────────── */
 #vision {
   background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
 }
-.vision-slider-wrap {
-  position: relative;
-  height: 420px;
-  border-radius: 16px; overflow: hidden;
-  user-select: none; touch-action: none;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
-  cursor: ew-resize;
+.vision-img-wrap {
+  text-align: center;
+  padding: 1rem 0 2rem;
 }
-/* Both panels fill the entire slider */
-.vision-panel-after,
-.vision-panel-before {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem;
-}
-/* AFTER — Clear, sharp, vibrant */
-.vision-panel-after {
-  background:
-    /* Eye chart rows — sharp text via conic gradients */
-    radial-gradient(ellipse 60% 55% at 50% 42%, rgba(212,175,55,0.08) 0%, transparent 70%),
-    /* Iris detail rings */
-    radial-gradient(circle 80px at 50% 38%, rgba(212,175,55,0.18) 0%, rgba(19,38,68,0.4) 40%, transparent 55%),
-    radial-gradient(circle 55px at 50% 38%, rgba(19,38,68,0.9) 0%, transparent 60%),
-    radial-gradient(circle 30px at 50% 38%, rgba(212,175,55,0.25) 0%, rgba(212,175,55,0.05) 60%, transparent 70%),
-    /* Background */
-    linear-gradient(160deg, #061228 0%, #0a1e40 40%, #040e20 100%);
-  align-items: flex-end;
-  text-align: right;
-}
-/* BEFORE — Blurry, washed out, low contrast */
-.vision-panel-before {
-  background:
-    radial-gradient(ellipse 60% 55% at 50% 42%, rgba(150,130,80,0.06) 0%, transparent 70%),
-    radial-gradient(circle 100px at 50% 38%, rgba(100,90,60,0.15) 0%, transparent 60%),
-    radial-gradient(circle 60px at 50% 38%, rgba(60,55,40,0.7) 0%, transparent 65%),
-    linear-gradient(160deg, #111118 0%, #1a1a22 40%, #0d0d14 100%);
-  clip-path: inset(0 50% 0 0);
-  will-change: clip-path;
-  align-items: flex-start;
-  filter: blur(0.5px) saturate(0.5) brightness(0.85);
-}
-/* Vision SVG scene inside each panel */
-.vision-scene {
-  position: absolute; inset: 0; pointer-events: none;
-  display: flex; align-items: center; justify-content: center; padding-bottom: 4rem;
-}
-.vision-label {
-  background: rgba(0,0,0,0.6); backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.1);
-  display: inline-block; padding: 0.4rem 1rem;
-  border-radius: 20px; font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem;
-  width: fit-content;
-}
-.vision-label-before { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.1); }
-.vision-label-after { color: var(--gold); border-color: var(--gold-dark); }
-.vision-text h3 { font-size: 1.6rem; margin-bottom: 0.5rem; }
-.vision-text p { font-size: 0.9rem; color: rgba(255,240,214,0.65); line-height: 1.6; max-width: 260px; }
-.vision-handle {
-  position: absolute; top: 0; bottom: 0; width: 4px;
-  background: var(--amber-bright); cursor: ew-resize; z-index: 20;
-  display: flex; align-items: center; justify-content: center;
-  left: 50%; transform: translateX(-50%);
-  pointer-events: none; /* handle div is decorative; drag is on wrapper */
-}
-.vision-handle-btn {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: var(--amber-bright); display: flex; align-items: center; justify-content: center;
-  color: #0D0D0D; font-weight: 700; font-size: 1.1rem; flex-shrink: 0;
-  box-shadow: 0 0 0 4px rgba(242,140,24,0.3), 0 4px 16px rgba(0,0,0,0.5);
-  pointer-events: all; cursor: ew-resize;
+.vision-comparison-img {
+  max-width: 100%;
+  width: 680px;
+  height: auto;
+  display: inline-block;
+  border-radius: 12px;
+  /* PNG has transparency — subtle glow so it integrates with dark background */
+  filter: drop-shadow(0 0 28px rgba(212,175,55,0.25)) drop-shadow(0 8px 32px rgba(0,0,0,0.5));
 }
 .before-blur-text {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
@@ -999,11 +941,8 @@ footer {
   .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
   .section-sub { font-size: 0.9rem; }
 
-  /* Vision slider */
-  .vision-slider-wrap { height: 300px; }
-  .vision-panel-after, .vision-panel-before { padding: 1.25rem; }
-  .vision-text h3 { font-size: 1.2rem; }
-  .vision-text p { font-size: 0.8rem; max-width: 160px; }
+  /* Vision comparison */
+  .vision-comparison-img { width: 100%; }
 
   /* Store layout */
   .store-layout { grid-template-columns: 1fr; }
@@ -1060,11 +999,6 @@ footer {
   .hero-stat-num { font-size: 1.4rem; }
   .hero-stat-label { font-size: 0.6rem; }
 
-  /* Vision slider */
-  .vision-slider-wrap { height: 240px; }
-  .vision-text h3 { font-size: 1rem; }
-  .vision-text p { display: none; } /* too cramped on tiny screens */
-  .vision-handle-btn { width: 36px; height: 36px; font-size: 0.85rem; }
 
   /* Store */
   .store-featured { min-height: 260px; }
@@ -1165,71 +1099,10 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
       <h2 class="section-title" id="vision-title">El Cambio que <span>Hace la Diferencia</span></h2>
       <p class="section-sub" style="margin-bottom:3rem">Un examen visual preciso transforma completamente cómo experimentas el mundo. Así se ve la diferencia.</p>
     </div>
-    <div class="vision-slider-wrap reveal" id="visionSlider" aria-label="Comparación antes y después del examen visual">
-      <!-- Panel AFTER: visión nítida y clara -->
-      <div class="vision-panel-after">
-        <!-- Tabla optométrica simulada — versión NÍTIDA -->
-        <div class="vision-scene" aria-hidden="true">
-          <svg viewBox="0 0 260 300" width="200" height="240" xmlns="http://www.w3.org/2000/svg">
-            <!-- Iris exterior -->
-            <circle cx="130" cy="70" r="50" stroke="#d4af37" stroke-width="2" fill="rgba(6,18,40,0.8)" opacity="0.9"/>
-            <circle cx="130" cy="70" r="36" stroke="#b39356" stroke-width="1.5" fill="none" opacity="0.8"/>
-            <circle cx="130" cy="70" r="22" stroke="#d4af37" stroke-width="1.5" fill="rgba(3,11,26,0.9)" opacity="0.9"/>
-            <!-- Pupila -->
-            <circle cx="130" cy="70" r="10" fill="#030b1a"/>
-            <!-- Reflejo -->
-            <circle cx="125" cy="65" r="4" fill="rgba(212,175,55,0.6)"/>
-            <!-- Detalles iris -->
-            <line x1="130" y1="20" x2="130" y2="34" stroke="#d4af37" stroke-width="1" opacity="0.6"/>
-            <line x1="130" y1="106" x2="130" y2="120" stroke="#d4af37" stroke-width="1" opacity="0.6"/>
-            <line x1="80" y1="70" x2="94" y2="70" stroke="#d4af37" stroke-width="1" opacity="0.6"/>
-            <line x1="166" y1="70" x2="180" y2="70" stroke="#d4af37" stroke-width="1" opacity="0.6"/>
-            <!-- Tabla optométrica — letras nítidas -->
-            <text x="130" y="158" text-anchor="middle" font-family="monospace" font-size="26" font-weight="700" fill="#f2e8d0" opacity="0.95">E</text>
-            <text x="108" y="186" text-anchor="middle" font-family="monospace" font-size="18" font-weight="700" fill="#d4af37" opacity="0.9">F P</text>
-            <text x="130" y="186" text-anchor="middle" font-family="monospace" font-size="18" font-weight="700" fill="#d4af37" opacity="0.9"></text>
-            <text x="100" y="210" text-anchor="middle" font-family="monospace" font-size="13" font-weight="600" fill="#b39356" opacity="0.85">T O Z</text>
-            <text x="130" y="210" text-anchor="middle" font-family="monospace" font-size="13" font-weight="600" fill="#b39356" opacity="0.85"></text>
-            <text x="95" y="230" text-anchor="middle" font-family="monospace" font-size="10" font-weight="600" fill="#8a7840" opacity="0.8">L P E D</text>
-            <text x="130" y="248" text-anchor="middle" font-family="monospace" font-size="7.5" font-weight="600" fill="#6a5c30" opacity="0.75">P E C F D</text>
-            <text x="130" y="263" text-anchor="middle" font-family="monospace" font-size="6" font-weight="600" fill="#504520" opacity="0.65">E D F C Z P</text>
-          </svg>
-        </div>
-        <div class="vision-label vision-label-after">Con tu nueva fórmula</div>
-        <div class="vision-text">
-          <h3 style="color:var(--gold)">Nitidez total</h3>
-          <p>Cada detalle en foco. Colores vibrantes. Así debería verse el mundo.</p>
-        </div>
-      </div>
-
-      <!-- Panel BEFORE: visión borrosa, sin diagnóstico -->
-      <div class="vision-panel-before" id="visionBefore">
-        <!-- Misma tabla pero borrosa y desaturada -->
-        <div class="vision-scene" aria-hidden="true">
-          <svg viewBox="0 0 260 300" width="200" height="240" xmlns="http://www.w3.org/2000/svg" style="filter:blur(3px) saturate(0.3) brightness(0.7)">
-            <circle cx="130" cy="70" r="50" stroke="#888" stroke-width="3" fill="rgba(30,30,35,0.8)" opacity="0.6"/>
-            <circle cx="130" cy="70" r="36" stroke="#666" stroke-width="2" fill="none" opacity="0.5"/>
-            <circle cx="130" cy="70" r="22" stroke="#888" stroke-width="2" fill="rgba(20,20,25,0.9)" opacity="0.5"/>
-            <circle cx="130" cy="70" r="10" fill="#111"/>
-            <text x="130" y="158" text-anchor="middle" font-family="monospace" font-size="26" font-weight="700" fill="#aaa" opacity="0.7">E</text>
-            <text x="108" y="186" text-anchor="middle" font-family="monospace" font-size="18" font-weight="700" fill="#888" opacity="0.55">F P</text>
-            <text x="100" y="210" text-anchor="middle" font-family="monospace" font-size="13" font-weight="600" fill="#666" opacity="0.5">T O Z</text>
-            <text x="95" y="230" text-anchor="middle" font-family="monospace" font-size="10" font-weight="600" fill="#555" opacity="0.4">L P E D</text>
-            <text x="130" y="248" text-anchor="middle" font-family="monospace" font-size="7.5" font-weight="600" fill="#444" opacity="0.35">P E C F D</text>
-            <text x="130" y="263" text-anchor="middle" font-family="monospace" font-size="6" font-weight="600" fill="#333" opacity="0.3">E D F C Z P</text>
-          </svg>
-        </div>
-        <div class="vision-label vision-label-before">Antes del examen</div>
-        <div class="vision-text">
-          <h3 style="color:rgba(255,255,255,0.5)">Sin diagnóstico</h3>
-          <p>Visión borrosa, fatiga ocular, dolores de cabeza constantes.</p>
-        </div>
-      </div>
-
-      <!-- Divisor dorado -->
-      <div class="vision-handle" id="visionHandle" aria-hidden="true">
-        <div class="vision-handle-btn">↔</div>
-      </div>
+    <div class="vision-img-wrap reveal">
+      <img src="assets/images/vision-comparison.png"
+           alt="Comparación de visión antes y después del examen óptico"
+           class="vision-comparison-img">
     </div>
     <div style="text-align:center;margin-top:2.5rem" class="reveal">
       <button class="btn-primary" onclick="openApptModal()">Quiero Ver con Claridad</button>
@@ -2033,33 +1906,6 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.querySelectorAll('.droplet').forEach(d => d.style.animation = 'none');
 }
 
-// ── Before/After Slider ──────────────────────────────────
-(function() {
-  const wrap = document.getElementById('visionSlider');
-  const before = document.getElementById('visionBefore');
-  const handle = document.getElementById('visionHandle');
-  if (!wrap || !before || !handle) return;
-
-  let dragging = false;
-
-  function setPosition(clientX) {
-    const rect = wrap.getBoundingClientRect();
-    let pct = (clientX - rect.left) / rect.width;
-    pct = Math.max(0.02, Math.min(0.98, pct));
-    before.style.clipPath = `inset(0 ${(1 - pct) * 100}% 0 0)`;
-    handle.style.left = (pct * 100) + '%';
-  }
-
-  // Mouse
-  wrap.addEventListener('mousedown', e => { dragging = true; setPosition(e.clientX); e.preventDefault(); });
-  window.addEventListener('mousemove', e => { if (dragging) setPosition(e.clientX); });
-  window.addEventListener('mouseup', () => { dragging = false; });
-
-  // Touch
-  wrap.addEventListener('touchstart', e => { dragging = true; setPosition(e.touches[0].clientX); }, { passive: true });
-  window.addEventListener('touchmove', e => { if (dragging) setPosition(e.touches[0].clientX); }, { passive: true });
-  window.addEventListener('touchend', () => { dragging = false; });
-})();
 
 // ══════════════════════════════════════════════════════════
 // REACT-BITS PORTS — vanilla JS/CSS implementations
