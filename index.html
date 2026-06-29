@@ -210,22 +210,70 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 .section-title span { color: var(--gold); }
 .section-sub { color: rgba(255,255,255,0.6); font-size: 1.05rem; line-height: 1.7; max-width: 580px; }
 
-/* ─── VISION COMPARISON ────────────────────────────── */
+/* ─── VISION SLIDER ────────────────────────────── */
 #vision {
   background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
 }
-.vision-img-wrap {
-  text-align: center;
-  padding: 1rem 0 2rem;
+.vision-slider-wrap {
+  position: relative;
+  border-radius: 16px; overflow: hidden;
+  user-select: none; touch-action: none;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  cursor: ew-resize;
+  max-width: 860px;
+  margin: 0 auto;
 }
-.vision-comparison-img {
-  max-width: 100%;
-  width: 680px;
-  height: auto;
-  display: inline-block;
-  border-radius: 12px;
-  /* PNG has transparency — subtle glow so it integrates with dark background */
-  filter: drop-shadow(0 0 28px rgba(212,175,55,0.25)) drop-shadow(0 8px 32px rgba(0,0,0,0.5));
+.vision-slider-wrap img.vision-base {
+  display: block; width: 100%; height: auto;
+  pointer-events: none;
+}
+/* After panel: sharp image on top, clipped from left */
+.vision-panel-after {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  clip-path: inset(0 0 0 50%);
+  will-change: clip-path;
+}
+.vision-panel-after img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(1.15) brightness(1.05);
+}
+/* Before panel: blurry image, left half */
+.vision-panel-before {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  clip-path: inset(0 50% 0 0);
+  will-change: clip-path;
+}
+.vision-panel-before img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover;
+  filter: blur(5px) saturate(0.3) brightness(0.7);
+}
+/* Labels */
+.vision-label {
+  position: absolute; bottom: 1.5rem;
+  background: rgba(0,0,0,0.65); backdrop-filter: blur(10px);
+  border-radius: 20px; padding: 0.35rem 1rem;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; pointer-events: none;
+}
+.vision-label-before { left: 1.5rem; color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.12); }
+.vision-label-after  { right: 1.5rem; color: var(--gold); border: 1px solid var(--gold-dark); }
+/* Handle */
+.vision-handle {
+  position: absolute; top: 0; bottom: 0; width: 3px;
+  background: var(--gold); left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; z-index: 10;
+}
+.vision-handle-btn {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--gold); display: flex; align-items: center; justify-content: center;
+  color: #0a0800; font-weight: 700; font-size: 1rem; flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(212,175,55,0.3), 0 4px 16px rgba(0,0,0,0.5);
+  pointer-events: all; cursor: ew-resize;
 }
 .before-blur-text {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
@@ -941,8 +989,11 @@ footer {
   .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
   .section-sub { font-size: 0.9rem; }
 
-  /* Vision comparison */
-  .vision-comparison-img { width: 100%; }
+  /* Vision slider mobile */
+  .vision-label { font-size: 0.65rem; padding: 0.3rem 0.75rem; bottom: 1rem; }
+  .vision-label-before { left: 0.75rem; }
+  .vision-label-after  { right: 0.75rem; }
+  .vision-handle-btn { width: 34px; height: 34px; font-size: 0.85rem; }
 
   /* Store layout */
   .store-layout { grid-template-columns: 1fr; }
@@ -1099,10 +1150,28 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
       <h2 class="section-title" id="vision-title">El Cambio que <span>Hace la Diferencia</span></h2>
       <p class="section-sub" style="margin-bottom:3rem">Un examen visual preciso transforma completamente cómo experimentas el mundo. Así se ve la diferencia.</p>
     </div>
-    <div class="vision-img-wrap reveal">
-      <img src="assets/images/vision-comparison.png"
-           alt="Comparación de visión antes y después del examen óptico"
-           class="vision-comparison-img">
+    <div class="vision-slider-wrap reveal" id="visionSlider">
+      <!-- Imagen base (mantiene el tamaño del contenedor) -->
+      <img src="assets/images/vision-comparison.png" class="vision-base" alt="" aria-hidden="true">
+
+      <!-- Panel ANTES: borroso, izquierda -->
+      <div class="vision-panel-before" id="visionBefore">
+        <img src="assets/images/vision-comparison.png" alt="Visión sin corrección">
+      </div>
+
+      <!-- Panel DESPUÉS: nítido, derecha -->
+      <div class="vision-panel-after" id="visionAfter">
+        <img src="assets/images/vision-comparison.png" alt="Visión con corrección óptica">
+      </div>
+
+      <!-- Etiquetas -->
+      <div class="vision-label vision-label-before">Antes del examen</div>
+      <div class="vision-label vision-label-after">Con tu nueva fórmula</div>
+
+      <!-- Divisor -->
+      <div class="vision-handle" id="visionHandle">
+        <div class="vision-handle-btn">↔</div>
+      </div>
     </div>
     <div style="text-align:center;margin-top:2.5rem" class="reveal">
       <button class="btn-primary" onclick="openApptModal()">Quiero Ver con Claridad</button>
@@ -1910,6 +1979,33 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 // ══════════════════════════════════════════════════════════
 // REACT-BITS PORTS — vanilla JS/CSS implementations
 // ══════════════════════════════════════════════════════════
+
+// ── Vision Before/After Slider ───────────────────────────
+(function() {
+  const wrap   = document.getElementById('visionSlider');
+  const before = document.getElementById('visionBefore');
+  const after  = document.getElementById('visionAfter');
+  const handle = document.getElementById('visionHandle');
+  if (!wrap || !before || !after || !handle) return;
+
+  let dragging = false;
+
+  function setPos(clientX) {
+    const rect = wrap.getBoundingClientRect();
+    let pct = (clientX - rect.left) / rect.width;
+    pct = Math.max(0.02, Math.min(0.98, pct));
+    before.style.clipPath = `inset(0 ${(1 - pct) * 100}% 0 0)`;
+    after.style.clipPath  = `inset(0 0 0 ${pct * 100}%)`;
+    handle.style.left = (pct * 100) + '%';
+  }
+
+  wrap.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); e.preventDefault(); });
+  window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+  window.addEventListener('mouseup', () => { dragging = false; });
+  wrap.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('touchend', () => { dragging = false; });
+})();
 
 // ── Aurora (WebGL2 port of react-bits Aurora) ─────────────
 (function initAurora() {
