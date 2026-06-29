@@ -1080,7 +1080,14 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
     <li><a href="#" class="nav-cta" onclick="openApptModal(); return false;">Agendar Cita</a></li>
   </ul>
   <button class="cart-btn" id="cart-btn" onclick="openCart()" aria-label="Mi Deseo - ver carrito">
-    ☁️<span class="cart-count" id="cart-count">0</span>
+    <svg viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="20" aria-hidden="true">
+      <path d="M24.5 20H7.5a5.5 5.5 0 0 1-.8-10.95A8 8 0 0 1 22.9 7.6 5.5 5.5 0 0 1 24.5 20z"
+            fill="currentColor" opacity="0.18"/>
+      <path d="M24.5 20H7.5a5.5 5.5 0 0 1-.8-10.95A8 8 0 0 1 22.9 7.6 5.5 5.5 0 0 1 24.5 20z"
+            stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+      <path d="M16 8v7M13 12l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="cart-count" id="cart-count">0</span>
   </button>
   <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -1558,7 +1565,11 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
       </div>
       <div class="product-modal-actions">
         <button class="btn-add-cart" id="prod-modal-cart-btn" onclick="addToCartFromModal()">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.5 9.5a6.5 6.5 0 0 0-12.7-1.9A5 5 0 1 0 5 17.5h13a4 4 0 0 0 .5-7.95zM13 13v3h-2v-3H8l4-4 4 4h-3z"/></svg>
+          <svg viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="16" aria-hidden="true">
+            <path d="M24.5 20H7.5a5.5 5.5 0 0 1-.8-10.95A8 8 0 0 1 22.9 7.6 5.5 5.5 0 0 1 24.5 20z" fill="currentColor" opacity="0.25"/>
+            <path d="M24.5 20H7.5a5.5 5.5 0 0 1-.8-10.95A8 8 0 0 1 22.9 7.6 5.5 5.5 0 0 1 24.5 20z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+            <path d="M16 8v7M13 12l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           Agregar a Mi Deseo
         </button>
         <a class="store-featured-wa" id="prod-modal-wa" href="#" target="_blank" rel="noopener" style="flex:1;justify-content:center;text-decoration:none">
@@ -1597,30 +1608,30 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 // ─── PRODUCTS DATA ───────────────────────────────────────
 const products = [
   /* — GAFAS DE SOL — */
-  { id:1,  img:'assets/products/doc-image1.png',  name:'Gafas de Sol 1',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:2,  img:'assets/products/doc-image2.png',  name:'Gafas de Sol 2',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:3,  img:'assets/products/doc-image3.png',  name:'Gafas de Sol 3',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:4,  img:'assets/products/doc-image7.png',  name:'Gafas de Sol 4',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:5,  img:'assets/products/doc-image20.png', name:'Gafas de Sol 5',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:6,  img:'assets/products/doc-image19.png', name:'Gafas de Sol 6',     cat:'sol',      price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:1,  img:'assets/products/doc-image1.png',  name:'Gafas de Sol 1',  cat:'sol',      price:'Consultar precio', material:'Acetato premium', desc:'Diseño oversized con lentes de alto contraste y protección UV400 para uso diario y actividades al aire libre.', style:'Ideal para looks casual, playero y urbano. Combina con outfits coloridos o neutros.' },
+  { id:2,  img:'assets/products/doc-image2.png',  name:'Gafas de Sol 2',  cat:'sol',      price:'Consultar precio', material:'Metal y acetato', desc:'Montura semipesada con lentes polarizados. Reducen el reflejo y mejoran la percepción de colores bajo el sol.', style:'Perfectas para el estilo sport-chic y outfits con ropa deportiva o de outdoor.' },
+  { id:3,  img:'assets/products/doc-image3.png',  name:'Gafas de Sol 3',  cat:'sol',      price:'Consultar precio', material:'Acetato italiano', desc:'Forma cuadrada con detalles en las varillas. Lentes oscuros categoría 3, aptas para alta exposición solar.', style:'Estilo retro y clásico. Combinan con looks formales, vintage y urbano-elegante.' },
+  { id:4,  img:'assets/products/doc-image7.png',  name:'Gafas de Sol 4',  cat:'sol',      price:'Consultar precio', material:'TR-90 ultraligero', desc:'Montura deportiva de alta resistencia con lentes envolventes. Ideales para actividades físicas y conducción.', style:'Pensadas para el look deportivo y aventurero. Van bien con ropa técnica y casual activo.' },
+  { id:5,  img:'assets/products/doc-image20.png', name:'Gafas de Sol 5',  cat:'sol',      price:'Consultar precio', material:'Acero inoxidable', desc:'Diseño aviador clásico con puente doble y lentes tipo espejo. Un clásico que nunca pasa de moda.', style:'Combinan con cualquier estilo: casual, formal o bohemio. Un favorito atemporal.' },
+  { id:6,  img:'assets/products/doc-image19.png', name:'Gafas de Sol 6',  cat:'sol',      price:'Consultar precio', material:'Acetato premium', desc:'Forma cat-eye con degradado de color en los lentes. Femeninas y sofisticadas con protección UV400.', style:'Perfectas para el estilo chic y romántico. Elevan cualquier look femenino.' },
   /* — MONTURAS — */
-  { id:7,  img:'assets/products/doc-image4.png',  name:'Montura 1',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:8,  img:'assets/products/doc-image14.png', name:'Montura 2',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:9,  img:'assets/products/doc-image21.png', name:'Montura 3',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:10, img:'assets/products/doc-image18.png', name:'Montura 4',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:11, img:'assets/products/doc-image10.png', name:'Montura 5',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:12, img:'assets/products/doc-image12.png', name:'Montura 6',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:13, img:'assets/products/doc-image22.png', name:'Montura 7',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:14, img:'assets/products/doc-image13.png', name:'Montura 8',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:15, img:'assets/products/doc-image16.png', name:'Montura 9',          cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:16, img:'assets/products/doc-image11.png', name:'Montura 10',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:17, img:'assets/products/doc-image6.png',  name:'Montura 11',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:18, img:'assets/products/doc-image8.png',  name:'Montura 12',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:19, img:'assets/products/doc-image5.png',  name:'Montura 13',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:20, img:'assets/products/doc-image15.png', name:'Montura 14',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
-  { id:21, img:'assets/products/doc-image17.png', name:'Montura 15',         cat:'monturas', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:7,  img:'assets/products/doc-image4.png',  name:'Montura 1',       cat:'monturas', price:'Consultar precio', material:'Acetato italiano', desc:'Montura rectangular de perfil fino. Diseño minimalista que se adapta a la mayoría de formas de rostro.', style:'Ideal para el look profesional y ejecutivo. Perfecta para ambientes de trabajo y reuniones.' },
+  { id:8,  img:'assets/products/doc-image14.png', name:'Montura 2',       cat:'monturas', price:'Consultar precio', material:'Metal titanio', desc:'Armazón metálica ultraligera de titanio. Cómoda para uso prolongado y resistente a la deformación.', style:'Estilo moderno y discreto. Combina con looks formales, business casual y universitario.' },
+  { id:9,  img:'assets/products/doc-image21.png', name:'Montura 3',       cat:'monturas', price:'Consultar precio', material:'Acetato grueso', desc:'Montura gruesa de tendencia. Hace de los lentes el accesorio principal del look con su presencia visual.', style:'Para el estilo creativo y fashion. Combina con outfits coloridos y con personalidad.' },
+  { id:10, img:'assets/products/doc-image18.png', name:'Montura 4',       cat:'monturas', price:'Consultar precio', material:'TR-90 flexible', desc:'Montura flexible e irrompible, perfecta para uso activo. Ligera y resistente a golpes y torceduras.', style:'Ideal para el día a día activo. Recomendada para quienes practican deporte.' },
+  { id:11, img:'assets/products/doc-image10.png', name:'Montura 5',       cat:'monturas', price:'Consultar precio', material:'Acetato y metal', desc:'Diseño mixto con puente metálico y patillas de acetato. Equilibrio perfecto entre ligereza y robustez.', style:'Versátil para estilos smart-casual y semi-formal. Funciona en la oficina y el tiempo libre.' },
+  { id:12, img:'assets/products/doc-image12.png', name:'Montura 6',       cat:'monturas', price:'Consultar precio', material:'Acetato premium', desc:'Forma redonda clásica con detalle de doble aro. Inspirada en los estilos vintage de los años 70.', style:'Perfecta para el estilo retro y bohemio. Combina con ropa casual y cultural.' },
+  { id:13, img:'assets/products/doc-image22.png', name:'Montura 7',       cat:'monturas', price:'Consultar precio', material:'Metal dorado', desc:'Montura geométrica hexagonal en metal pulido. Diseño arquitectónico para personas que buscan destacar.', style:'Para el estilo vanguardista y editorial. Ideal para quienes usan los lentes como pieza de diseño.' },
+  { id:14, img:'assets/products/doc-image13.png', name:'Montura 8',       cat:'monturas', price:'Consultar precio', material:'Acetato italiano', desc:'Montura cuadrada de corte limpio y borde definido. Proyecta seguridad y autoridad en cualquier entorno.', style:'Combina con el estilo ejecutivo y minimalista. Perfecta para el profesional moderno.' },
+  { id:15, img:'assets/products/doc-image16.png', name:'Montura 9',       cat:'monturas', price:'Consultar precio', material:'Acetato grueso', desc:'Montura ovalada con grosor uniforme y acabado brillante. Diseño balanceado que favorece rostros angulares.', style:'Ideal para looks formales y semi-casuales. Va muy bien con ropa estructurada.' },
+  { id:16, img:'assets/products/doc-image11.png', name:'Montura 10',      cat:'monturas', price:'Consultar precio', material:'Metal y acetato', desc:'Diseño browline con parte superior en acetato y parte inferior en metal. Un clásico elegante y refinado.', style:'Estilo intelectual y sofisticado. Ideal para el look académico y urbano refinado.' },
+  { id:17, img:'assets/products/doc-image6.png',  name:'Montura 11',      cat:'monturas', price:'Consultar precio', material:'Acetato fino', desc:'Montura cat-eye femenina de acetato fino. Diseño que alarga visualmente los ojos y afina el rostro.', style:'Para el estilo glamour y retro-chic. Combina con vestidos, blusas y accesorios dorados.' },
+  { id:18, img:'assets/products/doc-image8.png',  name:'Montura 12',      cat:'monturas', price:'Consultar precio', material:'TR-90 y metal', desc:'Montura deportiva de medio aro con varillas de metal. Ligera y resistente para el día a día exigente.', style:'Perfecta para el look activo y casual. Va bien con ropa deportiva, jeans y camisetas.' },
+  { id:19, img:'assets/products/doc-image5.png',  name:'Montura 13',      cat:'monturas', price:'Consultar precio', material:'Acetato italiano', desc:'Forma rectangular alargada con temples decorativos. Diseño actual que sigue las últimas tendencias ópticas.', style:'Para el estilo trendy y urbano. Combina con looks modernos y ropa de temporada.' },
+  { id:20, img:'assets/products/doc-image15.png', name:'Montura 14',      cat:'monturas', price:'Consultar precio', material:'Metal titanio', desc:'Montura circular de titanio ultraligero con puente ajustable. Cómoda para uso continuo todo el día.', style:'Estilo artístico y libre. Combina con el look bohemio y minimalista.' },
+  { id:21, img:'assets/products/doc-image17.png', name:'Montura 15',      cat:'monturas', price:'Consultar precio', material:'Acetato premium', desc:'Montura rectangular con acabado mate y textura sutil. Discreta pero de gran presencia en el rostro.', style:'Ideal para el profesional moderno. Funciona perfectamente en entornos formales y de negocios.' },
   /* — LENTES DE CONTACTO — */
-  { id:22, img:'assets/products/doc-image9.png',  name:'Lentes de Contacto', cat:'contacto', price:'Consultar precio', material:'', desc:'', style:'' },
+  { id:22, img:'assets/products/doc-image9.png',  name:'Lentes de Contacto', cat:'contacto', price:'Consultar precio', material:'Hidrogel de silicona', desc:'Lentes de contacto blandos de alta transpirabilidad. Permiten el paso de oxígeno al ojo para mayor comodidad durante todo el día.', style:'Ideales para actividades físicas, eventos especiales o quienes prefieren prescindir de armazón.' },
 ];
 
 const catLabels = { todos:'Todos', monturas:'Monturas', sol:'Gafas de Sol', contacto:'Lentes de Contacto' };
@@ -1709,7 +1720,7 @@ function renderCartItems() {
   const btn = document.getElementById('cart-cotizar-btn');
   if (!el) return;
   if (cart.length === 0) {
-    el.innerHTML = '<div class="cart-empty">☁️<br>Tu nube está vacía.<br>Agrega productos a Mi Deseo.</div>';
+    el.innerHTML = '<div class="cart-empty"><svg viewBox="0 0 48 34" fill="none" width="52" height="38" style="opacity:0.35;margin-bottom:0.75rem"><path d="M36 32H12a8 8 0 0 1-1.2-15.9A12 12 0 0 1 33.4 13 8 8 0 0 1 36 32z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M24 13v10M20 19l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><br>Tu nube está vacía.<br>Agrega productos a Mi Deseo.</div>';
     if (btn) btn.href = '#';
     return;
   }
