@@ -216,70 +216,61 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 }
 .vision-slider-wrap {
   position: relative;
-  border-radius: 16px; overflow: hidden;
+  border-radius: 14px; overflow: hidden;
   user-select: none; touch-action: none;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
   cursor: ew-resize;
-  max-width: 860px;
+  max-width: 920px;
   margin: 0 auto;
+  line-height: 0;
 }
+/* Imagen invisible — solo define la altura del contenedor */
 .vision-slider-wrap img.vision-base {
   display: block; width: 100%; height: auto;
-  pointer-events: none;
+  pointer-events: none; visibility: hidden;
 }
-/* After panel: sharp image on top, clipped from left */
-.vision-panel-after {
-  position: absolute; inset: 0;
-  overflow: hidden;
-  clip-path: inset(0 0 0 50%);
-  will-change: clip-path;
-}
-.vision-panel-after img {
-  display: block; width: 100%; height: 100%;
-  object-fit: cover;
-  filter: saturate(1.15) brightness(1.05);
-}
-/* Before panel: blurry image, left half */
+/* Ambos paneles cubren TODO el contenedor */
+.vision-panel-after,
 .vision-panel-before {
-  position: absolute; inset: 0;
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
   overflow: hidden;
-  clip-path: inset(0 50% 0 0);
   will-change: clip-path;
 }
+.vision-panel-after  { clip-path: inset(0 0 0 50%); }
+.vision-panel-before { clip-path: inset(0 50% 0 0); }
+.vision-panel-after img,
 .vision-panel-before img {
-  display: block; width: 100%; height: 100%;
-  object-fit: cover;
-  filter: blur(5px) saturate(0.3) brightness(0.7);
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  pointer-events: none; display: block;
 }
+.vision-panel-after img  { filter: saturate(1.1) brightness(1.02); }
+.vision-panel-before img { filter: blur(7px) saturate(0.2) brightness(0.6); }
 /* Labels */
 .vision-label {
-  position: absolute; bottom: 1.5rem;
-  background: rgba(0,0,0,0.65); backdrop-filter: blur(10px);
-  border-radius: 20px; padding: 0.35rem 1rem;
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; pointer-events: none;
+  position: absolute; bottom: 1.25rem;
+  background: rgba(0,0,0,0.72); backdrop-filter: blur(8px);
+  border-radius: 20px; padding: 0.3rem 0.9rem;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; pointer-events: none; z-index: 20;
 }
-.vision-label-before { left: 1.5rem; color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.12); }
-.vision-label-after  { right: 1.5rem; color: var(--gold); border: 1px solid var(--gold-dark); }
+.vision-label-before { left: 1.25rem; color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.15); }
+.vision-label-after  { right: 1.25rem; color: var(--gold); border: 1px solid var(--gold-dark); }
 /* Handle */
 .vision-handle {
   position: absolute; top: 0; bottom: 0; width: 3px;
   background: var(--gold); left: 50%; transform: translateX(-50%);
   display: flex; align-items: center; justify-content: center;
-  pointer-events: none; z-index: 10;
+  pointer-events: none; z-index: 30;
 }
 .vision-handle-btn {
-  width: 42px; height: 42px; border-radius: 50%;
+  width: 40px; height: 40px; border-radius: 50%;
   background: var(--gold); display: flex; align-items: center; justify-content: center;
   color: #0a0800; font-weight: 700; font-size: 1rem; flex-shrink: 0;
   box-shadow: 0 0 0 4px rgba(212,175,55,0.3), 0 4px 16px rgba(0,0,0,0.5);
   pointer-events: all; cursor: ew-resize;
-}
-.before-blur-text {
-  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  font-size: 4rem; color: rgba(255,255,255,0.06);
-  letter-spacing: -0.02em; font-family: 'Playfair Display', serif;
-  filter: blur(8px); user-select: none; z-index: 1;
 }
 
 /* ─── DOCTOR ─────────────────────────────────────────── */
@@ -1993,7 +1984,7 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   function setPos(clientX) {
     const rect = wrap.getBoundingClientRect();
     let pct = (clientX - rect.left) / rect.width;
-    pct = Math.max(0.02, Math.min(0.98, pct));
+    pct = Math.max(0.01, Math.min(0.99, pct));
     before.style.clipPath = `inset(0 ${(1 - pct) * 100}% 0 0)`;
     after.style.clipPath  = `inset(0 0 0 ${pct * 100}%)`;
     handle.style.left = (pct * 100) + '%';
