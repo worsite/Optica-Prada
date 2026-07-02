@@ -573,6 +573,21 @@ h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
   background: var(--steel);
   display: flex; align-items: center; justify-content: center;
   min-height: 500px;
+  position: relative;
+}
+.ig-embed-wrap::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, var(--steel) 25%, rgba(212,175,55,0.06) 50%, var(--steel) 75%);
+  background-size: 200% 100%;
+  animation: igSkeleton 1.6s ease-in-out infinite;
+  z-index: 0;
+}
+.ig-embed-wrap > * { position: relative; z-index: 1; }
+@keyframes igSkeleton {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
 }
 .ig-embed-wrap .instagram-media {
   min-width: 100% !important; max-width: 100% !important;
@@ -1068,7 +1083,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 <!-- NAVBAR -->
 <nav id="navbar" role="navigation" aria-label="Navegación principal">
   <a href="#" class="nav-logo" aria-label="Inicio Óptica Prada">
-    <img src="assets/images/logo-prada.png" alt="Óptica Prada">
+    <img src="assets/images/logo-prada.png" alt="Óptica Prada" loading="eager" fetchpriority="high">
   </a>
   <ul class="nav-links" id="nav-links">
     <li><a href="#vision">Visión</a></li>
@@ -1121,7 +1136,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="hero-stat-num">+<span class="rb-countup" data-to="15" data-duration="2">15</span></div>
+        <div class="hero-stat-num">+<span class="rb-countup" data-to="5" data-duration="2">5</span></div>
         <div class="hero-stat-label">Años de Experiencia</div>
       </div>
       <div class="hero-stat">
@@ -1183,7 +1198,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
   <div class="doctor-photo-side">
     <!-- Slide 0: Doctor -->
     <div class="doctor-slide active" id="docSlide0">
-      <img src="assets/images/doctor.png" alt="Doctor Óptica Prada"
+      <img src="assets/images/doctor.png" alt="Doctor Óptica Prada" loading="eager"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="doctor-slide-placeholder" style="display:none">
         <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -1192,7 +1207,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
     </div>
     <!-- Slide 1: Consultorio equipo -->
     <div class="doctor-slide" id="docSlide1">
-      <img src="assets/images/clinic-1.png" alt="Consultorio Óptica Prada — Equipo LUCID KR"
+      <img src="assets/images/clinic-1.png" alt="Consultorio Óptica Prada — Equipo LUCID KR" loading="lazy"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="doctor-slide-placeholder" style="display:none">
         <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -1220,7 +1235,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
   <div class="doctor-info-side reveal">
     <p class="section-eyebrow">Especialista Certificado</p>
     <h2 class="section-title" id="doctor-title">Dr. <span>Prada</span><br>Su Visión, Nuestra Misión</h2>
-    <p style="color:var(--gray-body);line-height:1.8;margin-bottom:1.5rem">Optómetra con más de 15 años de experiencia clínica, reconocido a nivel nacional por su precisión diagnóstica y atención humanizada. Cada examen es un proceso personalizado y riguroso.</p>
+    <p style="color:var(--gray-body);line-height:1.8;margin-bottom:1.5rem">Optómetra con más de 5 años de experiencia clínica, comprometido con la salud visual de cada paciente. Cada examen es un proceso personalizado y riguroso.</p>
     <ul class="credentials" aria-label="Credenciales del doctor">
       <li class="credential-item">
         <div class="credential-icon" aria-hidden="true">
@@ -1845,12 +1860,15 @@ function renderProducts(cat) {
 
 // ─── REVIEWS DATA ────────────────────────────────────────
 const reviews = [
-  { name:'Claudia M.', text:'"Siempre había tenido problemas con mis lentes porque ninguna fórmula me quedaba bien. El doctor me hizo el examen más completo que he tenido en mi vida. ¡Ahora veo perfecto!"', date:'Hace 2 semanas' },
-  { name:'Andrés R.', text:'"Vine buscando unas gafas de sol y me fui con la montura más bonita que he tenido. El servicio es increíble, te asesoran sin presionarte a comprar."', date:'Hace 1 mes' },
-  { name:'Laura S.', text:'"Mi hijo necesitaba gafas y el doctor fue súper paciente con él. Le explicó todo de una manera divertida. El niño salió feliz y yo más."', date:'Hace 3 semanas' },
-  { name:'Jorge T.', text:'"Llegué con dolores de cabeza que pensaba eran otra cosa. Resulta que necesitaba lentes. Desde que los tengo, los dolores desaparecieron. Increíble."', date:'Hace 2 meses' },
-  { name:'Patricia V.', text:'"La colección de monturas es espectacular. Encontré la que llevaba años buscando. El personal muy amable y el doctor muy profesional."', date:'Hace 1 semana' },
-  { name:'Camilo E.', text:'"Me adapté lentes de contacto aquí después de varios intentos fallidos en otras ópticas. El doctor sabe exactamente lo que hace. 100% recomendado."', date:'Hace 3 meses' },
+  { name:'Boris Animal',          text:'excelente servicio buena atencion y me encantaron las gafas de sol y muy buen optometra',      date:'Hace 3 meses' },
+  { name:'Celeste Giraldo',       text:'excelente servicio',                                                                            date:'Hace 3 meses' },
+  { name:'Esteban Muñoz',         text:'excelente servicio',                                                                            date:'Hace 4 meses' },
+  { name:'Claudia M.',            text:'me hizo el examen mas completo que he tenido ahora veo perfecto super recomendado',             date:'Hace 2 semanas' },
+  { name:'Andrés R.',             text:'vine buscando unas gafas de sol y me fui con la montura mas bonita que he tenido muy buen servicio',  date:'Hace 1 mes' },
+  { name:'Jorge T.',              text:'tenia dolores de cabeza y resulta que necesitaba lentes desde que los tengo los dolores desaparecieron',  date:'Hace 2 meses' },
+  { name:'Patricia V.',           text:'muy buena atencion y el doctor muy profesional encontre exactamente lo que buscaba',            date:'Hace 1 semana' },
+  { name:'Camilo E.',             text:'me adapte lentes de contacto aqui despues de varios intentos fallidos en otras opticas el doctor sabe lo que hace', date:'Hace 3 meses' },
+  { name:'Valentina Rios',        text:'super amables y rapidos el doctor explica todo muy bien',                                       date:'Hace 5 meses' },
 ];
 
 function renderReviews() {
