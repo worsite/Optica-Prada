@@ -1990,6 +1990,8 @@ renderCategories();
 renderProducts('todos');
 renderReviews();
 observeAll();
+// Fallback: force-reveal all elements that didn't trigger via IntersectionObserver
+setTimeout(() => document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible')), 600);
 setMinDate();
 
 // Reduced motion support
