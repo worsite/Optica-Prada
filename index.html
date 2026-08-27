@@ -2,2224 +2,642 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Óptica Prada — Excelencia Visual</title>
-<meta name="description" content="Óptica Prada: Exámenes visuales de alta precisión y la mejor selección de monturas, gafas de sol y lentes de contacto en Colombia.">
-<link rel="preload" as="image" href="assets/images/logo-prada.webp">
-<link rel="preload" as="image" href="assets/images/doctor.webp">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Ópticas Prada · Santa Rosa de Cabal</title>
+<meta name="description" content="Óptica especializada en Santa Rosa de Cabal, Risaralda. Exámenes visuales, monturas, gafas de sol y lentes de contacto con el Dr. Prada.">
+<meta property="og:title" content="Ópticas Prada">
+<meta property="og:description" content="Cuidamos tu visión · Santa Rosa de Cabal, Risaralda">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap">
 <style>
+/* ─── TOKENS ─── */
 :root {
-  /* Paleta Óptica Prada */
-  --gold:         #d4af37;   /* Detalles y logo */
-  --gold-light:   #e8cc6a;
-  --gold-dark:    #9a7c25;
-  --gold-btn:     #b39356;   /* Botón primario CTA */
-  --navy:         #030b1a;   /* Fondo principal */
-  --navy-mid:     #061228;   /* Secciones secundarias */
-  --steel:        #132644;   /* Contenedores / botón secundario */
-  --cream:        #f2e8d0;   /* Texto encabezados */
-  --ivory:        #f2e8d0;
-  --white:        #FFFFFF;
-  --gray-body:    #bfbfbf;   /* Texto cuerpo */
-  --gray-100:     #e0d8cc;
-  --gray-200:     #c0b8ac;
-  --gray-400:     #8a8278;
-  --glass-bg:     rgba(19,38,68,0.5);
-  --glass-border: rgba(212,175,55,0.22);
-  --glass-blur:   blur(16px);
-  /* Legacy aliases */
-  --orange-main:  #b39356;
-  --amber-bright: #d4af37;
-  --amber-deep:   #132644;
-  --blue-deep:    #061228;
-  --blue-electric:#b39356;
+  --bg:#F8F5EE; --sf:#FFFFFF; --sf2:#F0EBE0;
+  --tx:#1A1510; --t2:#7A6A4A;
+  --ac:#C49A2A; --ach:#9A7A18; --acl:#E8C84A;
+  --bd:#E0D4B8; --nv:70px; --mw:1200px; --r:10px;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#0C0A06; --sf:#161209; --sf2:#1E1A0E;
+  --tx:#EDE0C4; --t2:#9A8560;
+  --ac:#D4AF37; --ach:#E8C84A; --acl:#F5D860;
+  --bd:#2E2510;
+}}
+:root[data-theme=dark]{
+  --bg:#0C0A06; --sf:#161209; --sf2:#1E1A0E;
+  --tx:#EDE0C4; --t2:#9A8560;
+  --ac:#D4AF37; --ach:#E8C84A; --acl:#F5D860;
+  --bd:#2E2510;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.65;background:var(--bg);color:var(--tx);transition:background .35s,color .35s;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spinSlow{from{transform:translateY(-50%) rotate(0deg)}to{transform:translateY(-50%) rotate(360deg)}}
+@keyframes goldShimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-30px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal-l.in{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(30px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal-r.in{opacity:1;transform:translateX(0)}
+
+/* ─── GOLD GRADIENT ─── */
+.gold-text{
+  background:linear-gradient(90deg,#C49A2A,#F5D860,#C49A2A,#E8C84A);
+  background-size:300% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:goldShimmer 4s linear infinite;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ─── NAV ─── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nv);display:flex;align-items:center;padding:0 2rem;transition:background .35s,box-shadow .35s}
+.nav.scrolled{background:rgba(248,245,238,.94);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--bd)}
+:root[data-theme=dark] .nav.scrolled{background:rgba(12,10,6,.94)}
+.nav-in{max-width:var(--mw);width:100%;margin:0 auto;display:flex;align-items:center;gap:1.5rem}
+.logo{display:flex;align-items:center;gap:.65rem;flex-shrink:0}
+.logo-img{height:38px;width:auto}
+.logo-txt{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;line-height:1}
+.logo-sub{font-size:.58rem;letter-spacing:.16em;color:var(--t2);text-transform:uppercase;display:block;margin-top:2px}
+.nav-links{display:flex;gap:1.75rem;list-style:none;margin-left:auto}
+@media(max-width:860px){.nav-links{display:none}}
+.nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--t2);transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--ac);transition:width .3s}
+.nav-links a:hover{color:var(--ac)}
+.nav-links a:hover::after{width:100%}
+.nav-act{display:flex;align-items:center;gap:.6rem;margin-left:auto}
+@media(min-width:861px){.nav-act{margin-left:0}}
+.lang-tog{display:flex;background:var(--sf2);border-radius:999px;padding:2px}
+.lang-tog button{font-size:.68rem;font-weight:600;letter-spacing:.05em;padding:4px 10px;border-radius:999px;color:var(--t2);transition:all .2s}
+.lang-tog button.on{background:var(--sf);color:var(--ac);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.ico-btn{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--sf2);color:var(--t2);transition:all .2s;position:relative}
+.ico-btn:hover{background:rgba(196,154,42,.15);color:var(--ac)}
+.badge{position:absolute;top:2px;right:2px;width:15px;height:15px;border-radius:50%;background:var(--ac);color:#000;font-size:.56rem;font-weight:700;display:none;place-items:center}
+.badge.show{display:grid}
+.cta-n{background:var(--ac);color:#0C0A06;border-radius:999px;padding:8px 18px;font-size:.76rem;font-weight:700;letter-spacing:.05em;transition:all .2s;white-space:nowrap}
+.cta-n:hover{background:var(--ach);transform:translateY(-1px);box-shadow:0 4px 12px rgba(196,154,42,.35)}
 
-html { scroll-behavior: smooth; }
+/* ─── HERO ─── */
+.hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;padding-bottom:6rem;overflow:hidden}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 62% 35%,#1C1405 0%,rgba(8,6,2,0) 70%),linear-gradient(to bottom,#080602 0%,#0C0A06 100%)}
+.hvid{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;opacity:.22;mix-blend-mode:luminosity}
+.hlens{position:absolute;right:6%;top:50%;transform:translateY(-50%);width:min(38vw,440px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(196,154,42,.18);pointer-events:none}
+.hlens-2{position:absolute;right:6%;top:50%;transform:translateY(-50%);width:min(38vw,440px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(196,154,42,.06);animation:spinSlow 40s linear infinite;pointer-events:none}
+.hlens-2::before{content:'';position:absolute;top:-3px;left:50%;width:6px;height:6px;border-radius:50%;background:var(--ac);transform:translateX(-50%);box-shadow:0 0 8px var(--ac)}
+.hlens::before{content:'';position:absolute;inset:14%;border-radius:50%;border:1px solid rgba(196,154,42,.12)}
+.hlens::after{content:'';position:absolute;inset:28%;border-radius:50%;border:1px solid rgba(196,154,42,.08);background:radial-gradient(ellipse at 35% 35%,rgba(196,154,42,.06) 0%,transparent 65%)}
+.hcontent{position:relative;max-width:var(--mw);width:100%;margin:0 auto;padding:0 2rem}
+.h-ey{color:var(--ac);font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.25rem;animation:fadeUp .8s .2s both}
+.h-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3.4rem,7.5vw,6rem);line-height:1.06;color:#EDE0C4;max-width:700px;margin-bottom:1.5rem;text-wrap:balance;animation:fadeUp .9s .4s both}
+.h-title em{font-style:italic}
+.h-sub{font-size:.98rem;font-weight:300;color:rgba(237,224,196,.55);max-width:420px;margin-bottom:2.5rem;line-height:1.8;animation:fadeUp .9s .6s both}
+.h-ctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .9s .75s both}
+.btn-gold{background:linear-gradient(135deg,#C49A2A,#E8C84A);color:#0C0A06;border-radius:999px;padding:14px 32px;font-size:.88rem;font-weight:700;letter-spacing:.03em;transition:all .25s;cursor:pointer;border:none}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,154,42,.4)}
+.btn-ghost{border:1px solid rgba(237,224,196,.25);color:rgba(237,224,196,.75);border-radius:999px;padding:14px 32px;font-size:.88rem;font-weight:400;transition:all .2s;cursor:pointer;background:transparent}
+.btn-ghost:hover{border-color:rgba(237,224,196,.55);color:#EDE0C4}
+.gold-bar{height:2px;background:linear-gradient(90deg,transparent,var(--ac),transparent);animation:goldShimmer 3s linear infinite;background-size:200% auto}
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--navy);
-  color: var(--gray-body);
-  overflow-x: hidden;
-}
+/* ─── STATS ─── */
+.stats{background:var(--sf);border-bottom:1px solid var(--bd);padding:3rem 2rem}
+.stats-in{max-width:var(--mw);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;text-align:center}
+.snum{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;line-height:1}
+.slbl{font-size:.72rem;font-weight:500;letter-spacing:.07em;color:var(--t2);text-transform:uppercase;margin-top:.4rem}
 
-h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+/* ─── SECTIONS ─── */
+.sec{padding:6.5rem 2rem}
+.sec-in{max-width:var(--mw);margin:0 auto}
+.ey{font-size:.66rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);margin-bottom:.65rem}
+.sec-ttl{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.1rem,4.5vw,3rem);line-height:1.2;text-wrap:balance;margin-bottom:3rem}
 
-/* ─── NAVBAR ─────────────────────────────────────────── */
-#navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 1.2rem 2rem;
-  display: flex; align-items: center; justify-content: space-between;
-  transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
-}
-#navbar.scrolled {
-  background: rgba(3,11,26,0.96);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 1px 0 rgba(212,175,55,0.18);
-}
-.nav-logo img { height: 64px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(242,140,24,0.3)); }
-.footer-logo img { filter: drop-shadow(0 0 6px rgba(242,140,24,0.25)); }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a {
-  color: rgba(255,255,255,0.8); text-decoration: none;
-  font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--gold); }
-.nav-cta {
-  background: linear-gradient(135deg, var(--orange-main), var(--gold-dark));
-  color: var(--ivory) !important; font-weight: 700 !important;
-  padding: 0.6rem 1.4rem; border-radius: 4px;
-  transition: opacity 0.2s !important;
-}
-.nav-cta:hover { opacity: 0.85; color: var(--ivory) !important; }
-.nav-hamburger {
-  display: none; flex-direction: column; gap: 5px; cursor: pointer;
-  background: none; border: none; padding: 8px; margin: -8px;
-  border-radius: 4px;
-}
-.nav-hamburger span { width: 24px; height: 2px; background: var(--white); transition: 0.3s; display: block; }
+/* ─── SERVICES ─── */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);background:var(--bd)}
+@media(max-width:780px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.svc-grid{grid-template-columns:1fr}}
+.svc-card{background:var(--sf);padding:2.75rem 2rem;transition:background .25s;margin:-1px}
+.svc-card:hover{background:var(--sf2)}
+.svc-ic{width:48px;height:48px;border-radius:12px;background:var(--sf2);display:grid;place-items:center;color:var(--ac);margin-bottom:1.5rem;transition:all .3s}
+.svc-card:hover .svc-ic{background:rgba(196,154,42,.14);transform:scale(1.08)}
+.svc-nm{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;margin-bottom:.5rem}
+.svc-ds{font-size:.83rem;color:var(--t2);line-height:1.65}
 
-/* ─── HERO ────────────────────────────────────────────── */
-#hero {
-  position: relative; min-height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-  background: #0D0D0D;
-}
+/* ─── DOCTOR ─── */
+.doc-sec{background:var(--sf)}
+.doc-in{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+@media(max-width:720px){.doc-in{grid-template-columns:1fr;gap:2.5rem}}
+.doc-nm{font-family:'Cormorant Garamond',serif;font-size:clamp(2.75rem,5.5vw,4.25rem);font-weight:300;line-height:1.07;margin-bottom:1rem}
+.doc-nm em{font-style:italic}
+.doc-bd{font-size:.92rem;color:var(--t2);line-height:1.82;margin-bottom:2rem}
+.creds{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem}
+.cred{display:flex;align-items:flex-start;gap:.75rem;font-size:.83rem;color:var(--t2)}
+.cdot{flex-shrink:0;width:5px;height:5px;border-radius:50%;background:var(--ac);margin-top:.52rem}
+.doc-img{aspect-ratio:3/4;border-radius:var(--r);overflow:hidden;background:linear-gradient(155deg,var(--sf2) 0%,var(--bd) 100%);position:relative}
+.doc-img img{width:100%;height:100%;object-fit:cover}
+.doc-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.15) 0%,transparent 50%);pointer-events:none}
+.doc-img-lbl{font-size:.68rem;color:var(--t2);letter-spacing:.1em;text-transform:uppercase;position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);white-space:nowrap}
 
-/* Video background */
-.hero-video-wrap {
-  position: absolute; inset: 0; z-index: 0; overflow: hidden;
-}
-.hero-video-wrap video {
-  width: 100%; height: 100%; object-fit: cover; object-position: center;
-}
-.hero-video-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(3,11,26,0.88) 0%,
-    rgba(19,38,68,0.60) 40%,
-    rgba(3,11,26,0.80) 100%
-  );
-}
+/* ─── PRODUCTS ─── */
+.prod-bg{background:var(--sf2)}
+.ftabs{display:flex;gap:.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.ftab{padding:8px 20px;border-radius:999px;font-size:.79rem;font-weight:500;border:1px solid var(--bd);color:var(--t2);background:transparent;cursor:pointer;transition:all .25s}
+.ftab:hover{border-color:var(--ac);color:var(--ac)}
+.ftab.on{background:var(--ac);border-color:var(--ac);color:#0C0A06;font-weight:700}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+@media(max-width:900px){.pgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.pgrid{grid-template-columns:1fr}}
+.pcard{background:var(--sf);border-radius:var(--r);overflow:hidden;border:1px solid var(--bd);transition:transform .25s,box-shadow .25s;cursor:pointer;position:relative}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(196,154,42,.18)}
+.pcard::after{content:'';position:absolute;inset:0;border-radius:var(--r);border:1px solid var(--ac);opacity:0;transition:opacity .25s;pointer-events:none}
+.pcard:hover::after{opacity:1}
+.pimg{aspect-ratio:4/3;background:var(--bg);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pimg img{width:100%;height:100%;object-fit:cover}
+.pimg-ph{width:55%;height:36%;border-radius:4px;background:var(--bd);opacity:.5}
+.pinfo{padding:.9rem 1rem 1.1rem}
+.pnm{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:400;margin-bottom:.2rem}
+.pmt{font-size:.72rem;color:var(--t2);margin-bottom:.4rem}
+.ppr{font-size:.76rem;color:var(--ac);font-weight:600}
+.store-cta{text-align:center;margin-top:3rem}
 
-/* Amber particles (replaces droplets) */
-.hero-droplets {
-  position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1;
-}
-.droplet {
-  position: absolute; border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,211,122,0.8), rgba(217,106,0,0.3));
-  animation: dropFloat linear infinite;
-  opacity: 0;
-}
-@keyframes dropFloat {
-  0% { transform: translateY(100vh) scale(0); opacity: 0; }
-  10% { opacity: 0.7; }
-  90% { opacity: 0.3; }
-  100% { transform: translateY(-20px) scale(1); opacity: 0; }
-}
-.hero-content {
-  position: relative; z-index: 10;
-  text-align: center; padding: 6rem 2rem 2rem;
-  max-width: 860px;
-}
-.hero-eyebrow {
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 1.5rem;
-  display: flex; align-items: center; justify-content: center; gap: 1rem;
-}
-.hero-eyebrow::before, .hero-eyebrow::after {
-  content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--gold-dark);
-}
-.hero-title {
-  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
-  font-weight: 700; line-height: 1.15;
-  margin-bottom: 1.5rem;
-}
-.hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 300;
-  color: rgba(255,240,214,0.82); line-height: 1.7;
-  margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;
-}
-.hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  background: linear-gradient(135deg, var(--orange-main), var(--gold-dark));
-  color: var(--ivory); font-weight: 700; font-size: 0.95rem;
-  padding: 1rem 2.2rem; border-radius: 6px; text-decoration: none;
-  cursor: pointer; border: none;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 24px rgba(217,106,0,0.4);
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(217,106,0,0.55); }
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  background: rgba(255,255,255,0.06); color: var(--white);
-  font-weight: 500; font-size: 0.95rem;
-  padding: 1rem 2.2rem; border-radius: 6px; text-decoration: none;
-  border: 1px solid rgba(242,140,24,0.3);
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
-  backdrop-filter: blur(8px);
-}
-.btn-ghost:hover { background: rgba(242,140,24,0.12); border-color: var(--gold); }
-.hero-scroll-hint {
-  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-  color: rgba(255,240,214,0.4); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-  z-index: 3;
-}
-.scroll-line {
-  width: 1px; height: 48px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-@keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
-.hero-stats {
-  display: flex; gap: 3rem; justify-content: center; margin-top: 3.5rem;
-  flex-wrap: wrap;
-}
-.hero-stat { text-align: center; }
-.hero-stat-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem; font-weight: 700; color: var(--gold);
-  line-height: 1;
-}
-.hero-stat-label { font-size: 0.75rem; color: rgba(255,240,214,0.5); margin-top: 0.3rem; letter-spacing: 0.05em; }
+/* ─── REVIEWS ─── */
+.rev-bg{background:var(--sf)}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+@media(max-width:720px){.rgrid{grid-template-columns:1fr}}
+.rcard{background:var(--sf2);border-radius:var(--r);padding:1.6rem;border:1px solid var(--bd);transition:transform .25s,box-shadow .25s}
+.rcard:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(196,154,42,.12)}
+.rstars{color:var(--ac);font-size:.85rem;margin-bottom:.8rem;letter-spacing:.05em}
+.rtxt{font-size:.86rem;color:var(--t2);line-height:1.65;margin-bottom:1rem}
+.rnm{font-weight:600;font-size:.82rem;color:var(--tx)}
+.rdt{font-size:.68rem;color:var(--t2);margin-top:.1rem}
+.rsrc{font-size:.65rem;color:var(--ac);margin-top:.3rem;font-weight:600;letter-spacing:.05em}
+.rev-form-wrap{margin-top:3.5rem;background:var(--sf2);border-radius:var(--r);border:1px solid var(--bd);padding:2rem}
+.rev-form{display:flex;flex-direction:column;gap:.75rem;margin-top:1.25rem}
+.rev-form-row{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center}
+@media(max-width:480px){.rev-form-row{grid-template-columns:1fr}}
+.star-pick{display:flex;gap:4px;font-size:1.5rem;cursor:pointer;color:var(--bd);user-select:none}
+.star-pick span{transition:color .12s,transform .12s}
+.star-pick span.lit{color:var(--ac)}
+.star-pick span:hover{transform:scale(1.2)}
+.finput{width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-family:inherit;font-size:.87rem;transition:border-color .2s;outline:none}
+.finput:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(196,154,42,.1)}
+textarea.finput{resize:vertical}
+.fsub{width:100%;background:linear-gradient(135deg,var(--ac),var(--acl));color:#0C0A06;border-radius:999px;padding:12px;font-size:.87rem;font-weight:700;margin-top:.5rem;transition:all .25s;letter-spacing:.03em}
+.fsub:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(196,154,42,.35)}
 
-/* ─── SECTION COMMONS ─────────────────────────────────── */
-.section { padding: 6rem 2rem; }
-.container { max-width: 1240px; margin: 0 auto; }
-.section-eyebrow {
-  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 1rem;
-  display: flex; align-items: center; gap: 0.8rem;
-}
-.section-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
-.section-title {
-  font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
-  line-height: 1.2; margin-bottom: 1.2rem;
-}
-.section-title span { color: var(--gold); }
-.section-sub { color: rgba(255,255,255,0.6); font-size: 1.05rem; line-height: 1.7; max-width: 580px; }
+/* ─── CONTACT ─── */
+.cgrid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start}
+@media(max-width:720px){.cgrid{grid-template-columns:1fr}}
+.cinfo{display:flex;flex-direction:column;gap:1.75rem}
+.citem{display:flex;gap:1rem;align-items:flex-start}
+.cic{flex-shrink:0;width:42px;height:42px;border-radius:10px;background:rgba(196,154,42,.12);display:grid;place-items:center;color:var(--ac);transition:background .2s}
+.cic:hover{background:rgba(196,154,42,.2)}
+.clbl{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:.2rem}
+.cval{font-size:.9rem;line-height:1.6}
+.wa-btn{display:flex;align-items:center;gap:.65rem;background:#25D366;color:#fff;border-radius:999px;padding:12px 24px;font-size:.84rem;font-weight:700;width:fit-content;transition:all .25s;margin-top:2rem}
+.wa-btn:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 6px 18px rgba(37,211,102,.3)}
+.appt-form{background:var(--sf2);border-radius:var(--r);border:1px solid var(--bd);padding:2rem}
+.appt-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;margin-bottom:1.25rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.fselect{width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-family:inherit;font-size:.87rem;outline:none;cursor:pointer;margin-bottom:.75rem}
+.map-wrap{border-radius:var(--r);overflow:hidden;border:1px solid var(--bd);height:360px;margin-top:3rem}
+.map-wrap iframe{width:100%;height:100%;border:0;display:block}
 
-/* ─── VISION SLIDER ────────────────────────────── */
-#vision {
-  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
-}
-.vision-slider-wrap {
-  position: relative;
-  border-radius: 14px; overflow: hidden;
-  user-select: none; touch-action: none;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-  cursor: ew-resize;
-  max-width: 920px;
-  margin: 0 auto;
-  line-height: 0;
-}
-/* Imagen invisible — solo define la altura del contenedor */
-.vision-slider-wrap img.vision-base {
-  display: block; width: 100%; height: auto;
-  pointer-events: none; visibility: hidden;
-}
-/* Ambos paneles cubren TODO el contenedor */
-.vision-panel-after,
-.vision-panel-before {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  overflow: hidden;
-  will-change: clip-path;
-}
-.vision-panel-after  { clip-path: inset(0 0 0 50%); }
-.vision-panel-before { clip-path: inset(0 50% 0 0); }
-.vision-panel-after img,
-.vision-panel-before img {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  pointer-events: none; display: block;
-}
-.vision-panel-after img  { filter: saturate(1.1) brightness(1.02); }
-.vision-panel-before img { filter: blur(7px) saturate(0.2) brightness(0.6); }
-/* Labels */
-.vision-label {
-  position: absolute; bottom: 1.25rem;
-  background: rgba(0,0,0,0.72); backdrop-filter: blur(8px);
-  border-radius: 20px; padding: 0.3rem 0.9rem;
-  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; pointer-events: none; z-index: 20;
-}
-.vision-label-before { left: 1.25rem; color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.15); }
-.vision-label-after  { right: 1.25rem; color: var(--gold); border: 1px solid var(--gold-dark); }
-/* Handle */
-.vision-handle {
-  position: absolute; top: 0; bottom: 0; width: 3px;
-  background: var(--gold); left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; justify-content: center;
-  pointer-events: none; z-index: 30;
-}
-.vision-handle-btn {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: var(--gold); display: flex; align-items: center; justify-content: center;
-  color: #0a0800; font-weight: 700; font-size: 1rem; flex-shrink: 0;
-  box-shadow: 0 0 0 4px rgba(212,175,55,0.3), 0 4px 16px rgba(0,0,0,0.5);
-  pointer-events: all; cursor: ew-resize;
-}
-
-/* ─── DOCTOR ─────────────────────────────────────────── */
-#doctor {
-  background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
-  position: relative; overflow: hidden;
-  display: grid; grid-template-columns: 1fr 1fr;
-}
-#doctor::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  z-index: 1;
-}
-/* Slider foto lateral */
-.doctor-photo-side { position: relative; overflow: hidden; min-height: 560px; }
-.doctor-slide {
-  position: absolute; inset: 0; opacity: 0; transition: opacity 0.7s ease;
-}
-.doctor-slide.active { opacity: 1; }
-.doctor-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.doctor-slide-placeholder {
-  width: 100%; height: 100%; min-height: 560px;
-  background: linear-gradient(135deg, var(--steel) 0%, var(--navy-mid) 100%);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
-  color: rgba(212,175,55,0.5); text-align: center; padding: 2rem;
-}
-.doctor-slide-placeholder p { color: var(--gray-body); font-size: 0.78rem; line-height: 1.5; }
-.doctor-slider-dots {
-  position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 8px; z-index: 2;
-}
-.doc-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: rgba(212,175,55,0.35); border: none; cursor: pointer; transition: background 0.2s;
-}
-.doc-dot.active { background: var(--gold); }
-/* Info lado derecho */
-.doctor-info-side {
-  background: linear-gradient(135deg, var(--navy-mid) 0%, var(--steel) 100%);
-  padding: 4rem 3rem;
-  display: flex; flex-direction: column; justify-content: center;
-}
-/* Legacy (unused now but kept for compatibility) */
-.doctor-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }
-.doctor-image-wrap { position: relative; }
-.doctor-image-frame {
-  position: relative; border-radius: 12px; overflow: hidden;
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 0 80px rgba(19,38,68,0.3), 0 0 0 1px rgba(212,175,55,0.08);
-}
-.doctor-image-frame img { width: 100%; display: block; aspect-ratio: 3/4; object-fit: cover; }
-.doctor-image-placeholder {
-  width: 100%; aspect-ratio: 3/4;
-  background: linear-gradient(135deg, var(--steel) 0%, var(--navy-mid) 60%, var(--navy) 100%);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
-}
-.doctor-badge {
-  position: absolute; bottom: -1.5rem; right: -1.5rem;
-  background: linear-gradient(135deg, var(--gold-btn), var(--gold-dark));
-  color: var(--cream);
-  padding: 1.2rem 1.5rem; border-radius: 10px;
-  text-align: center; font-weight: 700;
-  box-shadow: 0 8px 32px rgba(217,106,0,0.4);
-}
-.doctor-badge-num { font-size: 2rem; font-family: 'Playfair Display', serif; line-height: 1; }
-.doctor-badge-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
-.credentials { list-style: none; margin: 2rem 0; display: flex; flex-direction: column; gap: 1rem; }
-.credential-item {
-  display: flex; align-items: flex-start; gap: 1rem;
-  padding: 1rem 1.2rem;
-  background: var(--glass-bg); border: 1px solid var(--glass-border);
-  border-radius: 8px; backdrop-filter: var(--glass-blur);
-  transition: border-color 0.2s, background 0.2s;
-}
-.credential-item:hover { border-color: var(--gold-dark); background: rgba(217,106,0,0.06); }
-.credential-icon {
-  width: 36px; height: 36px; border-radius: 6px;
-  background: rgba(242,140,24,0.12); display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; color: var(--amber-bright);
-}
-.credential-icon svg { width: 18px; height: 18px; }
-.credential-text strong { display: block; font-size: 0.9rem; color: var(--white); margin-bottom: 0.2rem; }
-.credential-text span { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
-
-/* ─── APPOINTMENT MODAL ───────────────────────────────── */
-#appt-modal {
-  display: none; position: fixed; inset: 0; z-index: 2000;
-  background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
-  align-items: center; justify-content: center; padding: 1rem;
-}
-#appt-modal.open { display: flex; }
-.modal-box {
-  background: linear-gradient(135deg, #150800, #2B1400);
-  border: 1px solid var(--glass-border); border-radius: 16px;
-  padding: 2.5rem; max-width: 460px; width: 100%;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
-  animation: modalIn 0.3s ease;
-}
-@keyframes modalIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.modal-box h3 { font-size: 1.6rem; margin-bottom: 0.5rem; }
-.modal-box p { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
-.form-group { margin-bottom: 1.2rem; }
-.form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--gold); margin-bottom: 0.5rem; letter-spacing: 0.05em; text-transform: uppercase; }
-.form-group input, .form-group select, .form-group textarea {
-  width: 100%; padding: 0.8rem 1rem;
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 6px; color: var(--white); font-family: 'Inter', sans-serif; font-size: 0.9rem;
-  transition: border-color 0.2s;
-  outline: none;
-}
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
-.form-group select option { background: #150800; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.modal-actions { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
-.modal-close {
-  background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6);
-  padding: 0.8rem 1.2rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem; transition: 0.2s;
-}
-.modal-close:hover { background: rgba(255,255,255,0.08); }
-
-/* ─── CTA STRIP ───────────────────────────────────────── */
-.cta-strip {
-  padding: 4rem 2rem;
-  background: linear-gradient(135deg, var(--amber-deep) 0%, var(--gold-dark) 100%);
-  border-top: 1px solid rgba(242,140,24,0.2); border-bottom: 1px solid rgba(242,140,24,0.2);
-  text-align: center;
-}
-.cta-strip h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-.cta-strip p { color: rgba(255,255,255,0.6); margin-bottom: 1.2rem; font-size: 0.95rem; }
-
-/* ─── STORE ──────────────────────────────────────────── */
-#tienda { background: linear-gradient(180deg, #0D0D0D 0%, #120800 100%); }
-.store-header { text-align: center; margin-bottom: 2.5rem; }
-.store-header .section-sub { margin: 0 auto; text-align: center; }
-
-/* Nuevo layout: categorías izquierda + productos derecha */
-.store-layout {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 1.5rem;
-  align-items: start;
-}
-
-/* Categorías (columna izquierda sticky) */
-.store-categories {
-  display: flex; flex-direction: column; gap: 0.75rem;
-  position: sticky; top: 90px;
-}
-.cat-card {
-  position: relative; border-radius: 12px; overflow: hidden;
-  cursor: pointer; height: 100px;
-  border: 2px solid transparent;
-  transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
-}
-.cat-card:hover { transform: translateX(4px); border-color: var(--amber-bright); box-shadow: 0 4px 20px rgba(217,106,0,0.25); }
-.cat-card.active { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold), 0 6px 28px rgba(242,140,24,0.3); }
-.cat-card img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform 0.4s; filter: brightness(0.7);
-}
-.cat-card:hover img, .cat-card.active img { transform: scale(1.06); filter: brightness(0.85); }
-.cat-card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(13,13,13,0.6) 0%, rgba(43,20,0,0.3) 100%);
-  display: flex; align-items: flex-end; padding: 0.65rem 0.8rem;
-}
-.cat-card.active .cat-card-overlay {
-  background: linear-gradient(to right, rgba(122,47,0,0.65) 0%, rgba(217,106,0,0.2) 100%);
-}
-.cat-card-name {
-  font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.08em; color: var(--ivory);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-}
-.cat-card-count {
-  font-size: 0.62rem; color: var(--gold); display: block; margin-top: 0.1rem;
-}
-.cat-active-bar {
-  position: absolute; top: 0; left: 0; width: 3px; height: 100%;
-  background: linear-gradient(to bottom, var(--amber-bright), var(--orange-main));
-  opacity: 0; transition: opacity 0.25s;
-}
-.cat-card.active .cat-active-bar { opacity: 1; }
-
-/* Panel derecho */
-.store-right { display: flex; flex-direction: column; gap: 1.5rem; }
-
-/* Featured */
-.store-featured {
-  position: relative; border-radius: 16px; overflow: hidden;
-  cursor: pointer; background: #1C1C1C;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-  min-height: 460px;
-  transition: box-shadow 0.3s;
-  border: 1px solid rgba(217,106,0,0.1);
-}
-.store-featured:hover { box-shadow: 0 16px 60px rgba(0,0,0,0.7), 0 0 0 1px var(--gold-dark); }
-.store-featured-img {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  transition: transform 0.5s ease, opacity 0.35s ease;
-}
-.store-featured.switching .store-featured-img { opacity: 0; transform: scale(1.04); }
-.store-featured-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(13,13,13,0.95) 0%, rgba(13,13,13,0.3) 50%, transparent 75%);
-}
-.store-featured-content {
-  position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem;
-  transition: opacity 0.35s ease;
-}
-.store-featured.switching .store-featured-content { opacity: 0; }
-.store-featured-cat {
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 0.5rem;
-}
-.store-featured-name {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700;
-  line-height: 1.2; margin-bottom: 0.4rem; color: #fff;
-}
-.store-featured-price { font-size: 0.85rem; color: rgba(255,240,214,0.55); margin-bottom: 1.2rem; }
-.store-featured-wa {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.65rem 1.5rem; border-radius: 100px;
-  background: #25D366; color: #fff;
-  font-size: 0.85rem; font-weight: 600; text-decoration: none;
-  transition: background 0.2s, transform 0.2s;
-}
-.store-featured-wa:hover { background: #1fad55; transform: translateY(-2px); }
-.store-featured-wa svg { width: 16px; height: 16px; fill: #fff; flex-shrink: 0; }
-
-/* Bottom WA CTA */
-.store-cta { text-align: center; margin-top: 2rem; }
-.store-cta-btn {
-  display: inline-flex; align-items: center; gap: 0.75rem;
-  padding: 0.9rem 2.5rem; border-radius: 100px;
-  background: #25D366; color: #fff;
-  font-size: 1rem; font-weight: 700; text-decoration: none;
-  box-shadow: 0 4px 24px rgba(37,211,102,0.35);
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-.store-cta-btn:hover { background: #1fad55; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,211,102,0.45); }
-.store-cta-btn svg { width: 22px; height: 22px; fill: #fff; }
-.product-wa-btn:hover { background: rgba(37,211,102,0.22); }
-.product-wa-btn svg { width: 16px; height: 16px; }
-
-/* ─── PAYMENT BAND ────────────────────────────────────── */
-.payment-band {
-  padding: 3rem 2rem;
-  background: linear-gradient(135deg, rgba(13,13,13,1) 0%, rgba(43,20,0,0.6) 100%);
-  border-top: 1px solid var(--glass-border);
-}
-.payment-items {
-  display: flex; gap: 2rem; justify-content: center; align-items: center; flex-wrap: wrap;
-}
-.payment-item {
-  display: flex; align-items: center; gap: 0.8rem;
-  padding: 0.8rem 1.5rem;
-  background: var(--glass-bg); border: 1px solid var(--glass-border);
-  border-radius: 8px;
-}
-.payment-item svg { width: 22px; height: 22px; color: var(--gold); flex-shrink: 0; }
-.payment-item-text strong { display: block; font-size: 0.85rem; color: var(--white); }
-.payment-item-text span { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
-
-/* ─── REVIEWS ─────────────────────────────────────────── */
-#reviews { background: linear-gradient(180deg, #0D0D0D 0%, #120800 100%); }
-.reviews-header { text-align: center; margin-bottom: 3.5rem; }
-.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.review-card {
-  background: var(--glass-bg); border: 1px solid var(--glass-border);
-  border-radius: 12px; padding: 1.8rem;
-  transition: border-color 0.25s, transform 0.25s;
-}
-.review-card:hover { border-color: var(--gold-dark); transform: translateY(-3px); }
-.review-stars { display: flex; gap: 0.2rem; margin-bottom: 1rem; }
-.review-stars svg { width: 16px; height: 16px; color: var(--gold); fill: var(--gold); }
-.review-text { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.8); margin-bottom: 1.2rem; font-style: italic; }
-.review-author { display: flex; align-items: center; gap: 0.8rem; }
-.review-avatar {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold-dark), var(--amber-bright));
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 0.9rem; color: var(--ivory); flex-shrink: 0;
-}
-.review-author-name { font-size: 0.875rem; font-weight: 600; }
-.review-author-date { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
-
-/* ─── CONÓCENOS ─────────────────────────────────────────── */
-#conocenos { background: var(--navy-mid); padding: 6rem 2rem; }
-.conocenos-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem; margin-top: 2.5rem;
-}
-.ig-embed-wrap {
-  border-radius: 14px; overflow: hidden;
-  border: 1px solid var(--glass-border);
-  background: var(--steel);
-  display: flex; align-items: center; justify-content: center;
-  min-height: 500px;
-  position: relative;
-}
-.ig-embed-wrap::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(90deg, var(--steel) 25%, rgba(212,175,55,0.06) 50%, var(--steel) 75%);
-  background-size: 200% 100%;
-  animation: igSkeleton 1.6s ease-in-out infinite;
-  z-index: 0;
-}
-.ig-embed-wrap > * { position: relative; z-index: 1; }
-@keyframes igSkeleton {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-}
-.ig-embed-wrap .instagram-media {
-  min-width: 100% !important; max-width: 100% !important;
-  margin: 0 !important; border: none !important;
-  border-radius: 0 !important;
-}
-
-/* ─── MAP ─────────────────────────────────────────────── */
-#mapa { background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%); padding: 6rem 2rem; }
-.map-header { text-align: center; margin-bottom: 2.5rem; }
-.map-content-wrap {
-  display: grid; grid-template-columns: 1fr 340px; gap: 2rem; align-items: start;
-}
-.map-iframe-wrap {
-  border-radius: 16px; overflow: hidden;
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-  height: 420px;
-}
-.map-iframe-wrap iframe {
-  width: 100%; height: 100%; border: none; display: block;
-  filter: invert(0.9) hue-rotate(190deg) brightness(0.85) saturate(1.2);
-}
-.map-info-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px; padding: 2rem;
-  backdrop-filter: var(--glass-blur);
-  display: flex; flex-direction: column; gap: 1.5rem;
-}
-.map-info-item { display: flex; align-items: flex-start; gap: 1rem; }
-.map-info-icon {
-  width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0;
-  background: rgba(242,140,24,0.12);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--amber-bright);
-}
-.map-info-icon svg { width: 20px; height: 20px; }
-.map-info-text strong { display: block; font-size: 0.875rem; color: var(--white); margin-bottom: 0.25rem; }
-.map-info-text span { font-size: 0.8rem; color: rgba(255,240,214,0.55); line-height: 1.5; }
-.map-open-btn {
-  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-  background: linear-gradient(135deg, var(--orange-main), var(--gold-dark));
-  color: var(--ivory); font-weight: 700; font-size: 0.9rem;
-  padding: 0.9rem 1.5rem; border-radius: 8px;
-  text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 20px rgba(217,106,0,0.35); margin-top: 0.5rem;
-}
-.map-open-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(217,106,0,0.5); }
-.map-open-btn svg { width: 18px; height: 18px; }
-
-/* ─── DEV BY ──────────────────────────────────────────── */
-.dev-strip {
-  padding: 2rem;
-  text-align: center;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  display: flex; align-items: center; justify-content: center; gap: 1rem;
-  flex-wrap: wrap;
-}
-.dev-strip-text { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
-.dev-logo-link {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  text-decoration: none; color: var(--gold);
-  transition: opacity 0.2s;
-}
-.dev-logo-link:hover { opacity: 0.75; }
-.dev-logo-link img { width: 36px; height: 36px; object-fit: contain; }
-.dev-logo-link span { font-size: 0.82rem; font-weight: 600; }
-
-/* ─── FOOTER ──────────────────────────────────────────── */
-footer {
-  background: #060300; padding: 3rem 2rem 2rem;
-  border-top: 1px solid rgba(217,106,0,0.15);
-}
-.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; max-width: 1240px; margin: 0 auto 2rem; }
-.footer-logo img { height: 52px; margin-bottom: 1rem; }
-.footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
-.footer-col h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-.footer-col ul li a { font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-.footer-col ul li a:hover { color: var(--gold); }
-.footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.78rem; color: rgba(255,255,255,0.3); max-width: 1240px; margin: 0 auto; }
-
-/* ─── HERO EYEBROW ───────────────────────────────────── */
-.hero-eyebrow { display: none; }
-
-/* ─── FLOATING WA ─────────────────────────────────────── */
-.wa-float {
-  position: fixed; bottom: 2rem; right: 2rem; z-index: 900;
-  width: 56px; height: 56px; border-radius: 50%;
-  background: #25D366; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 24px rgba(37,211,102,0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-decoration: none;
-}
-.wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.55); }
-.wa-float svg { width: 28px; height: 28px; fill: white; }
-
-/* ─── REACT-BITS: AURORA CANVAS ─────────────────────── */
-#aurora-canvas {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  z-index: 1; pointer-events: none; display: none;
-}
-
-/* ─── REACT-BITS: SHINY TEXT ─────────────────────────── */
-@keyframes rb-shine {
-  0%   { background-position: 200% center; }
-  100% { background-position: -200% center; }
-}
-.rb-shiny {
-  background: linear-gradient(
-    120deg,
-    var(--ivory) 0%, var(--ivory) 25%,
-    var(--amber-bright) 37%, var(--gold-light) 50%, var(--amber-bright) 63%,
-    var(--ivory) 75%, var(--ivory) 100%
-  );
-  background-size: 300% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rb-shine 4s linear infinite;
-}
-
-/* ─── REACT-BITS: BLUR TEXT ──────────────────────────── */
-@keyframes rb-blur-in {
-  from { filter: blur(10px); opacity: 0; transform: translateY(18px); }
-  to   { filter: blur(0px);  opacity: 1; transform: translateY(0); }
-}
-.rb-blur-word {
-  display: inline-block;
-  opacity: 0;
-  will-change: transform, filter, opacity;
-}
-.rb-blur-word.rb-animated {
-  animation: rb-blur-in 0.45s cubic-bezier(.22,.61,.36,1) forwards;
-}
-
-/* ─── REACT-BITS: COUNT UP ───────────────────────────── */
-.rb-countup { display: inline; }
-
-
-/* ─── STORE THUMB GRID (dentro del store-right) ─────── */
-.store-thumb-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 0.75rem;
-}
-/* ─── STORE ALL GRID (legacy, oculto) ─────────────────── */
-.store-all-grid { display: none; }
-.store-thumb {
-  border-radius: 10px; overflow: hidden; cursor: pointer;
-  border: 2px solid transparent;
-  background: rgba(255,255,255,0.03);
-  transition: border-color 0.2s, transform 0.2s;
-  position: relative;
-}
-.store-thumb:hover { border-color: var(--gold-dark); transform: translateY(-2px); }
-.store-thumb.active-thumb { border-color: var(--gold); }
-.store-thumb img {
-  width: 100%; aspect-ratio: 1; object-fit: cover; display: block;
-}
-.store-thumb-name {
-  font-size: 0.68rem; color: rgba(255,240,214,0.7); padding: 0.4rem 0.5rem 0.5rem;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.store-thumb-add {
-  position: absolute; top: 6px; right: 6px;
-  width: 28px; height: 28px; border-radius: 50%;
-  background: rgba(13,13,13,0.8); border: 1px solid var(--gold-dark);
-  color: var(--amber-bright); font-size: 1rem; line-height: 1;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: background 0.2s;
-  font-weight: 700;
-}
-.store-thumb-add:hover { background: var(--orange-main); color: var(--ivory); }
-.store-thumb-add.in-cart { background: var(--orange-main); color: var(--ivory); }
-
-/* ─── PRODUCT DETAIL MODAL ───────────────────────────── */
-#product-modal {
-  display: none; position: fixed; inset: 0; z-index: 2000;
-  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
-  align-items: center; justify-content: center; padding: 1rem;
-}
-#product-modal.open { display: flex; }
-.product-modal-box {
-  background: linear-gradient(135deg, #150800 0%, #2B1400 100%);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px; max-width: 680px; width: 100%;
-  max-height: 90vh; overflow-y: auto;
-  animation: modalIn 0.3s ease;
-  position: relative;
-}
-.product-modal-img {
-  width: 100%; height: 280px; object-fit: cover;
-  border-radius: 16px 16px 0 0; display: block;
-}
-.product-modal-body { padding: 1.75rem; }
-.product-modal-cat {
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 0.5rem;
-}
-.product-modal-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem; font-weight: 700; margin-bottom: 0.25rem; color: #fff;
-}
-.product-modal-price { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
-.product-modal-section { margin-bottom: 1.2rem; }
-.product-modal-label {
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gold-dark); margin-bottom: 0.4rem;
-}
-.product-modal-value { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
-.product-modal-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
-.product-modal-close {
-  position: absolute; top: 1rem; right: 1rem;
-  background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7); width: 36px; height: 36px; border-radius: 50%;
-  cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s;
-}
-.product-modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.btn-add-cart {
-  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-  padding: 0.85rem 1.5rem; border-radius: 30px;
-  background: rgba(242,140,24,0.12); border: 1px solid var(--gold-dark);
-  color: var(--amber-bright); font-weight: 600; font-size: 0.9rem; cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-}
-.btn-add-cart:hover { background: rgba(217,106,0,0.22); transform: translateY(-1px); }
-.btn-add-cart.added { background: var(--orange-main); color: var(--ivory); }
-.btn-add-cart svg { width: 18px; height: 18px; flex-shrink: 0; }
-
-/* ─── CART PANEL ("NUBE") ────────────────────────────── */
-.cart-btn {
-  display: flex; align-items: center; gap: 0.5rem;
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
-  color: var(--white); padding: 0.5rem 1rem; border-radius: 6px;
-  cursor: pointer; font-size: 0.82rem; font-weight: 600;
-  transition: border-color 0.2s, background 0.2s; position: relative;
-  white-space: nowrap;
-}
-.cart-btn:hover { border-color: var(--gold-dark); background: rgba(255,255,255,0.1); }
-.cart-count {
-  background: var(--gold); color: var(--navy);
-  width: 18px; height: 18px; border-radius: 50%; font-size: 0.65rem; font-weight: 800;
-  display: flex; align-items: center; justify-content: center;
-  display: none;
-}
-.cart-count.has-items { display: flex; }
-#cart-panel {
-  display: none; position: fixed; inset: 0; z-index: 2000;
-  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
-  align-items: flex-start; justify-content: flex-end; padding: 1rem;
-}
-#cart-panel.open { display: flex; }
-.cart-panel-box {
-  background: linear-gradient(135deg, #150800 0%, #2B1400 100%);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px; width: 100%; max-width: 420px;
-  max-height: calc(100vh - 2rem); overflow-y: auto;
-  animation: modalIn 0.3s ease; margin-top: 70px;
-}
-.cart-panel-header {
-  padding: 1.5rem 1.5rem 1rem;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.cart-panel-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem; font-weight: 700; color: var(--gold);
-}
-.cart-panel-close {
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7); width: 32px; height: 32px; border-radius: 50%;
-  cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s;
-}
-.cart-panel-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
-.cart-items { padding: 1rem 1.5rem; min-height: 100px; }
-.cart-empty {
-  text-align: center; color: rgba(255,255,255,0.35);
-  font-size: 0.9rem; padding: 2rem 0;
-}
-.cart-item {
-  display: flex; gap: 0.75rem; align-items: center;
-  padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.cart-item:last-child { border-bottom: none; }
-.cart-item-img {
-  width: 54px; height: 54px; border-radius: 8px; object-fit: cover; flex-shrink: 0;
-}
-.cart-item-info { flex: 1; min-width: 0; }
-.cart-item-name { font-size: 0.85rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cart-item-cat { font-size: 0.7rem; color: var(--gold); margin-top: 0.1rem; }
-.cart-item-remove {
-  background: none; border: none; color: rgba(255,255,255,0.3);
-  font-size: 1.2rem; cursor: pointer; padding: 0.25rem; transition: color 0.2s;
-}
-.cart-item-remove:hover { color: #ff6b6b; }
-.cart-panel-footer { padding: 1rem 1.5rem 1.5rem; }
-.cart-cotizar-btn {
-  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
-  width: 100%; padding: 1rem; border-radius: 10px;
-  background: #25D366; color: #fff;
-  font-size: 1rem; font-weight: 700; text-decoration: none;
-  box-shadow: 0 4px 24px rgba(37,211,102,0.3);
-  transition: background 0.2s, transform 0.2s;
-}
-.cart-cotizar-btn:hover { background: #1fad55; transform: translateY(-2px); }
-.cart-cotizar-btn svg { width: 20px; height: 20px; fill: #fff; }
-
-/* ─── STORE ALL GRID ─────────────────────────────────── */
-.store-all-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 0.75rem; margin-top: 2rem;
-}
-.store-thumb {
-  border-radius: 10px; overflow: hidden; cursor: pointer;
-  border: 2px solid transparent;
-  background: rgba(255,255,255,0.03);
-  transition: border-color 0.2s, transform 0.2s; position: relative;
-}
-.store-thumb:hover { border-color: var(--gold-dark); transform: translateY(-2px); }
-.store-thumb.active-thumb { border-color: var(--gold); }
-.store-thumb img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
-.store-thumb-name {
-  font-size: 0.68rem; color: rgba(255,255,255,0.7);
-  padding: 0.4rem 0.5rem 0.5rem;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.store-thumb-add {
-  position: absolute; top: 6px; right: 6px;
-  width: 26px; height: 26px; border-radius: 50%;
-  background: rgba(0,8,20,0.75); border: 1px solid var(--gold-dark);
-  color: var(--gold); font-size: 1rem; line-height: 1;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: background 0.2s; font-weight: 700;
-}
-.store-thumb-add:hover, .store-thumb-add.in-cart { background: var(--gold); color: var(--navy); }
-
-/* ─── ANIMATIONS ──────────────────────────────────────── */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ─── RESPONSIVE ──────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .store-layout { grid-template-columns: 200px 1fr; }
-  .store-featured { min-height: 400px; }
-  .map-content-wrap { grid-template-columns: 1fr; }
-  .map-iframe-wrap { height: 300px; }
-  .doctor-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .doctor-image-wrap { max-width: 380px; margin: 0 auto; }
-  .reviews-grid { grid-template-columns: 1fr 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 768px) {
-  /* Nav */
-  #navbar { padding: 0.75rem 1.25rem; }
-  .nav-logo img { height: 44px; }
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
-  .nav-links.open {
-    display: flex; flex-direction: column; position: fixed; inset: 0;
-    background: rgba(13,13,13,0.97); align-items: center; justify-content: center;
-    gap: 2rem; z-index: 999;
-  }
-  .nav-links.open a { font-size: 1.5rem; }
-
-  /* Hero — clear fixed navbar (44px logo + 1.5rem padding = ~68px) */
-  #hero { padding-top: 68px; }
-  .hero-content { padding: 1.5rem 1.25rem 0; }
-  .hero-eyebrow { display: none; } /* logo already shows brand name */
-  .hero-title {
-    font-size: clamp(2rem, 9vw, 2.8rem);
-    margin-bottom: 1rem;
-  }
-  .hero-subtitle {
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-  }
-  .hero-buttons {
-    flex-direction: column; align-items: center; gap: 0.75rem;
-  }
-  .hero-buttons .btn-primary,
-  .hero-buttons .btn-ghost {
-    width: 100%; max-width: 300px; text-align: center; justify-content: center;
-  }
-  .hero-stats {
-    gap: 0; flex-wrap: nowrap; justify-content: space-around;
-    margin-top: 2rem; padding: 1.2rem 0.5rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-  .hero-stat { min-width: 0; flex: 1; }
-  .hero-stat-num { font-size: 1.6rem; }
-  .hero-stat-label { font-size: 0.65rem; }
-  .hero-scroll-hint { display: none; }
-
-  /* Float WA — avoid covering stats */
-  .wa-float { bottom: 1.25rem; right: 1rem; width: 50px; height: 50px; }
-
-  /* Sections */
-  .section { padding: 3.5rem 0; }
-  .container { padding: 0 1.25rem; }
-  .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
-  .section-sub { font-size: 0.9rem; }
-
-  /* Vision slider mobile */
-  .vision-label { font-size: 0.65rem; padding: 0.3rem 0.75rem; bottom: 1rem; }
-  .vision-label-before { left: 0.75rem; }
-  .vision-label-after  { right: 0.75rem; }
-  .vision-handle-btn { width: 34px; height: 34px; font-size: 0.85rem; }
-
-  /* Store layout */
-  .store-layout { grid-template-columns: 1fr; }
-  .store-categories { flex-direction: row; overflow-x: auto; position: static; padding-bottom: 0.5rem; }
-  .cat-card { min-width: 130px; height: 80px; flex-shrink: 0; }
-  .store-featured { min-height: 320px; }
-  .store-featured-content { padding: 1.25rem; }
-  .store-featured-name { font-size: 1.2rem; }
-
-  /* Reviews */
-  .reviews-grid { grid-template-columns: 1fr; }
-
-  /* Appointment form */
-  .form-row { grid-template-columns: 1fr; }
-
-  /* Doctor */
-  #doctor { grid-template-columns: 1fr; }
-  .doctor-photo-side { min-height: 280px; }
-  .doctor-slide { position: relative; }
-  .doctor-slide:not(.active) { display: none; }
-  .doctor-info-side { padding: 2rem 1.5rem; }
-  .doctor-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .doctor-image-wrap { max-width: 280px; margin: 0 auto; }
-
-  /* Footer */
-  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-
-  /* Payment */
-  .payment-items { flex-direction: column; align-items: stretch; }
-
-  /* Map */
-  .map-wrap { height: 260px; }
-
-  /* Dev strip */
-  .dev-strip { flex-wrap: wrap; gap: 0.75rem; padding: 0.75rem 1.25rem; }
-
-  .store-all-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.5rem; }
-  .cart-btn { padding: 0.4rem 0.6rem; font-size: 0.75rem; }
-  .product-modal-img { height: 200px; }
-  .product-modal-name { font-size: 1.4rem; }
-}
-
-@media (max-width: 480px) {
-  /* Nav */
-  .nav-logo img { height: 38px; }
-  #hero { padding-top: 62px; }
-
-  /* Hero */
-  .hero-title { font-size: clamp(1.8rem, 8vw, 2.4rem); }
-  .hero-subtitle { font-size: 0.88rem; margin-bottom: 1.5rem; }
-
-  /* Stats — horizontal row on very small screens */
-  .hero-stats { padding: 1rem 0.25rem; margin-top: 1.5rem; }
-  .hero-stat-num { font-size: 1.4rem; }
-  .hero-stat-label { font-size: 0.6rem; }
-
-
-  /* Store */
-  .store-featured { min-height: 260px; }
-  .store-featured-name { font-size: 1rem; }
-  .store-featured-content { padding: 1rem; }
-  .store-featured-wa { padding: 0.5rem 1rem; font-size: 0.78rem; }
-  .map-iframe-wrap { height: 260px; }
-
-  /* Section */
-  .section-title { font-size: clamp(1.4rem, 7vw, 1.8rem); }
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--navy); }
-::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
-
-/* Color scheme for date/time inputs */
-input[type="date"]::-webkit-calendar-picker-indicator,
-input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
+/* ─── FOOTER ─── */
+footer{background:var(--sf);border-top:1px solid var(--bd);padding:2.25rem 2rem}
+.foot-in{max-width:var(--mw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.foot-brand{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.1rem;letter-spacing:.1em;text-transform:uppercase}
+.foot-copy{font-size:.74rem;color:var(--t2)}
+.kafel-credit{font-size:.72rem;color:var(--t2)}
+.kafel-credit a{color:var(--ac);font-weight:700;border-bottom:1px solid currentColor;padding-bottom:1px;transition:opacity .2s}
+.kafel-credit a:hover{opacity:.7}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav id="navbar" role="navigation" aria-label="Navegación principal">
-  <a href="#" class="nav-logo" aria-label="Inicio Óptica Prada">
-    <img src="assets/images/logo-prada.webp" alt="Óptica Prada" loading="eager" fetchpriority="high">
-  </a>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#vision">Visión</a></li>
-    <li><a href="#doctor">El Doctor</a></li>
-    <li><a href="#tienda">Tienda</a></li>
-    <li><a href="#conocenos">Conócenos</a></li>
-    <li><a href="#reviews">Testimonios</a></li>
-    <li><a href="#mapa">Ubicación</a></li>
-    <li><a href="#" class="nav-cta" onclick="openApptModal(); return false;">Agendar Cita</a></li>
-  </ul>
-  <button class="cart-btn" id="cart-btn" onclick="openCart()" aria-label="Mi Deseo - ver carrito">
-    <svg viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="20" aria-hidden="true">
-      <path d="M24.5 20H7.5a5.5 5.5 0 0 1-.8-10.95A8 8 0 0 1 22.9 7.6 5.5 5.5 0 0 1 24.5 20z"
-            fill="currentColor" opacity="0.18"/>
-      <path d="M24.5 20H7.5a5.5 5.5 0 0 1-.8-10.95A8 8 0 0 1 22.9 7.6 5.5 5.5 0 0 1 24.5 20z"
-            stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
-      <path d="M16 8v7M13 12l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span class="cart-count" id="cart-count">0</span>
-  </button>
-  <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a class="logo" href="#">
+      <img class="logo-img" src="assets/images/logo-prada.webp" alt="Ópticas Prada logo">
+      <div>
+        <span class="logo-txt gold-text">Ópticas Prada</span>
+        <span class="logo-sub">Cuidamos tu visión</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicios" data-k="nav.v">Visión</a></li>
+      <li><a href="#doctor" data-k="nav.d">El Doctor</a></li>
+      <li><a href="#tienda" data-k="nav.s">Tienda</a></li>
+      <li><a href="#testimonios" data-k="nav.r">Reseñas</a></li>
+      <li><a href="#contacto" data-k="nav.c">Contacto</a></li>
+    </ul>
+    <div class="nav-act">
+      <div class="lang-tog">
+        <button id="bES" class="on">ES</button>
+        <button id="bEN">EN</button>
+      </div>
+      <button class="ico-btn" id="themeBtn" aria-label="Cambiar tema">
+        <svg id="iSun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg id="iMoon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="ico-btn" id="cartBtn" aria-label="Guardados">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="badge" id="badge">0</span>
+      </button>
+      <a href="#contacto" class="cta-n" data-k="nav.cta">Agendar Cita</a>
+    </div>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero" aria-label="Inicio">
-  <!-- Video de fondo -->
-  <div class="hero-video-wrap" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto">
-      <source src="assets/images/hero-video.mp4" type="video/mp4">
-    </video>
-    <div class="hero-video-overlay"></div>
-  </div>
-  <canvas id="aurora-canvas" aria-hidden="true"></canvas>
-  <div class="hero-droplets" aria-hidden="true" id="droplets"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Óptica Prada — Excelencia Visual</p>
-    <h1 class="hero-title rb-shiny">Ver el Mundo<br>en su Máxima<br><em style="font-style:italic">Claridad</em></h1>
-    <p class="hero-subtitle" id="hero-subtitle-el">Exámenes visuales de alta precisión con tecnología de punta y el respaldo de un especialista con reconocimiento internacional.</p>
-    <div class="hero-buttons">
-      <button class="btn-primary" onclick="openApptModal()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Agendar Examen Visual
-      </button>
-      <a href="#tienda" class="btn-ghost">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        Ver Catálogo
-      </a>
+<!-- HERO (always dark) -->
+<section class="hero" id="inicio">
+  <div class="hbg"></div>
+  <video class="hvid" autoplay muted loop playsinline>
+    <source src="assets/images/hero-video.mp4" type="video/mp4">
+  </video>
+  <div class="hlens"></div>
+  <div class="hlens-2"></div>
+  <div class="hcontent">
+    <p class="h-ey" data-k="h.ey">Santa Rosa de Cabal · Risaralda</p>
+    <h1 class="h-title" id="hTitle">Su Visión,<br><em class="gold-text">Nuestra Precisión</em></h1>
+    <p class="h-sub" data-k="h.sub">Exámenes visuales con tecnología de diagnóstico avanzada y el respaldo de un especialista de reconocimiento internacional.</p>
+    <div class="h-ctas">
+      <button class="btn-gold" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" data-k="h.c1">Agendar Examen Visual</button>
+      <button class="btn-ghost" onclick="document.getElementById('tienda').scrollIntoView({behavior:'smooth'})" data-k="h.c2">Ver Catálogo</button>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">+<span class="rb-countup" data-to="5" data-duration="2">5</span></div>
-        <div class="hero-stat-label">Años de Experiencia</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">+<span class="rb-countup" data-to="3000" data-suffix="K" data-divide="1000" data-duration="2.5">3K</span></div>
-        <div class="hero-stat-label">Pacientes Satisfechos</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num"><span class="rb-countup" data-to="100" data-suffix="%" data-duration="2">100%</span></div>
-        <div class="hero-stat-label">Diagnóstico Especializado</div>
-      </div>
-    </div>
-  </div>
-  <div class="hero-scroll-hint" aria-hidden="true">
-    <div class="scroll-line"></div>
-    <span>Descubrir</span>
   </div>
 </section>
+<div class="gold-bar"></div>
 
-<!-- BEFORE / AFTER -->
-<section id="vision" class="section" aria-labelledby="vision-title">
-  <div class="container">
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-in">
     <div class="reveal">
-      <p class="section-eyebrow">Transformación Visual</p>
-      <h2 class="section-title" id="vision-title">El Cambio que <span>Hace la Diferencia</span></h2>
-      <p class="section-sub" style="margin-bottom:3rem">Un examen visual preciso transforma completamente cómo experimentas el mundo. Así se ve la diferencia.</p>
+      <div class="snum gold-text">+5</div>
+      <div class="slbl" data-k="s.y">Años de Experiencia</div>
     </div>
-    <div class="vision-slider-wrap reveal" id="visionSlider">
-      <!-- Imagen base (mantiene el tamaño del contenedor) -->
-      <img src="assets/images/vision-comparison.webp" class="vision-base" alt="" aria-hidden="true">
-
-      <!-- Panel ANTES: borroso, izquierda -->
-      <div class="vision-panel-before" id="visionBefore">
-        <img src="assets/images/vision-comparison.webp" alt="Visión sin corrección">
-      </div>
-
-      <!-- Panel DESPUÉS: nítido, derecha -->
-      <div class="vision-panel-after" id="visionAfter">
-        <img src="assets/images/vision-comparison.webp" alt="Visión con corrección óptica">
-      </div>
-
-      <!-- Etiquetas -->
-      <div class="vision-label vision-label-before">Antes del examen</div>
-      <div class="vision-label vision-label-after">Con tu nueva fórmula</div>
-
-      <!-- Divisor -->
-      <div class="vision-handle" id="visionHandle">
-        <div class="vision-handle-btn">↔</div>
-      </div>
+    <div class="reveal" style="transition-delay:.12s">
+      <div class="snum gold-text">+3K</div>
+      <div class="slbl" data-k="s.p">Pacientes Satisfechos</div>
     </div>
-    <div style="text-align:center;margin-top:2.5rem" class="reveal">
-      <button class="btn-primary" onclick="openApptModal()">Quiero Ver con Claridad</button>
+    <div class="reveal" style="transition-delay:.24s">
+      <div class="snum gold-text">100%</div>
+      <div class="slbl" data-k="s.d">Diagnóstico Especializado</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec" id="servicios">
+  <div class="sec-in">
+    <p class="ey reveal" data-k="sv.ey">Lo que ofrecemos</p>
+    <h2 class="sec-ttl reveal" data-k="sv.t">Todo lo que su visión necesita</h2>
+    <div class="svc-grid">
+      <div class="svc-card reveal" style="transition-delay:.05s">
+        <div class="svc-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div class="svc-nm" data-k="sv.e.n">Examen Visual</div>
+        <div class="svc-ds" data-k="sv.e.d">Diagnóstico completo con tecnología LUCID KR. Fórmula precisa para su corrección visual.</div>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:.1s">
+        <div class="svc-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="9" width="20" height="7" rx="3.5"/><path d="M12 9v7"/></svg></div>
+        <div class="svc-nm" data-k="sv.m.n">Monturas</div>
+        <div class="svc-ds" data-k="sv.m.d">Amplio catálogo de monturas para todos los estilos. Acetato, metal, titanio y más.</div>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:.15s">
+        <div class="svc-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg></div>
+        <div class="svc-nm" data-k="sv.g.n">Gafas de Sol</div>
+        <div class="svc-ds" data-k="sv.g.d">Protección UV certificada con diseños contemporáneos para cada ocasión.</div>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:.2s">
+        <div class="svc-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div class="svc-nm" data-k="sv.l.n">Lentes de Contacto</div>
+        <div class="svc-ds" data-k="sv.l.d">Adaptación personalizada con seguimiento profesional por el Dr. Prada.</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- DOCTOR -->
-<section id="doctor" aria-labelledby="doctor-title">
-  <!-- FOTO lateral con slider -->
-  <div class="doctor-photo-side">
-    <!-- Slide 0: Doctor -->
-    <div class="doctor-slide active" id="docSlide0">
-      <img src="assets/images/doctor.webp" alt="Doctor Óptica Prada" loading="eager"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="doctor-slide-placeholder" style="display:none">
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <p>Foto del doctor<br><small>Sube como: assets/images/doctor.jpg</small></p>
+<section class="sec doc-sec" id="doctor">
+  <div class="sec-in">
+    <div class="doc-in">
+      <div class="reveal-l">
+        <p class="ey" data-k="dr.ey">El Especialista</p>
+        <h2 class="doc-nm" style="margin-top:.5rem"><em class="gold-text">Dr.</em><br>Prada</h2>
+        <p class="doc-bd" data-k="dr.b">Optómetra con más de 5 años de experiencia clínica y certificaciones de reconocimiento internacional. Tecnología LUCID KR para diagnósticos de máxima precisión.</p>
+        <ul class="creds">
+          <li class="cred"><span class="cdot"></span><span data-k="dr.c1">Especialista en Optometría Clínica</span></li>
+          <li class="cred"><span class="cdot"></span><span data-k="dr.c2">Certificación Internacional en Contactología</span></li>
+          <li class="cred"><span class="cdot"></span><span data-k="dr.c3">Tecnología LUCID KR de diagnóstico avanzado</span></li>
+          <li class="cred"><span class="cdot"></span><span data-k="dr.c4">Miembro de la Sociedad Colombiana de Optometría</span></li>
+        </ul>
+        <button class="btn-gold" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" data-k="h.c1">Agendar Examen Visual</button>
+      </div>
+      <div class="doc-img reveal-r">
+        <img src="assets/images/doctor.webp" alt="Dr. Prada" loading="lazy">
+        <span class="doc-img-lbl" data-k="dr.ph">Dr. Prada · Optómetra</span>
       </div>
     </div>
-    <!-- Slide 1: Consultorio equipo -->
-    <div class="doctor-slide" id="docSlide1">
-      <img src="assets/images/clinic-1.webp" alt="Consultorio Óptica Prada — Equipo LUCID KR" loading="lazy"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="doctor-slide-placeholder" style="display:none">
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        <p>Foto del consultorio — equipo<br><small>Sube como: assets/images/clinic-1.jpg</small></p>
-      </div>
-    </div>
-    <!-- Slide 2: Consultorio sala -->
-    <div class="doctor-slide" id="docSlide2">
-      <img src="assets/images/clinic-2.webp" alt="Consultorio Óptica Prada — Sala"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="doctor-slide-placeholder" style="display:none">
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-        <p>Foto del consultorio — sala<br><small>Sube como: assets/images/clinic-2.webp</small></p>
-      </div>
-    </div>
-    <!-- Dots -->
-    <div class="doctor-slider-dots" aria-label="Controles del slider">
-      <button class="doc-dot active" onclick="goDocSlide(0)" aria-label="Foto doctor"></button>
-      <button class="doc-dot" onclick="goDocSlide(1)" aria-label="Foto consultorio equipo"></button>
-      <button class="doc-dot" onclick="goDocSlide(2)" aria-label="Foto consultorio sala"></button>
-    </div>
-  </div>
-
-  <!-- INFO lateral -->
-  <div class="doctor-info-side reveal">
-    <p class="section-eyebrow">Especialista Certificado</p>
-    <h2 class="section-title" id="doctor-title">Dr. <span>Prada</span><br>Su Visión, Nuestra Misión</h2>
-    <p style="color:var(--gray-body);line-height:1.8;margin-bottom:1.5rem">Optómetra con más de 5 años de experiencia clínica, comprometido con la salud visual de cada paciente. Cada examen es un proceso personalizado y riguroso.</p>
-    <ul class="credentials" aria-label="Credenciales del doctor">
-      <li class="credential-item">
-        <div class="credential-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <div class="credential-text">
-          <strong>Optometría — Universidad de La Salle</strong>
-          <span>Título profesional con honores · Bogotá, Colombia</span>
-        </div>
-      </li>
-      <li class="credential-item">
-        <div class="credential-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        </div>
-        <div class="credential-text">
-          <strong>Especialización en Baja Visión</strong>
-          <span>Formación avanzada en patologías visuales complejas</span>
-        </div>
-      </li>
-      <li class="credential-item">
-        <div class="credential-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="credential-text">
-          <strong>Certificación Internacional en Contactología</strong>
-          <span>Adaptación especializada de lentes de contacto</span>
-        </div>
-      </li>
-      <li class="credential-item">
-        <div class="credential-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="credential-text">
-          <strong>+3.000 Pacientes Atendidos</strong>
-          <span>Diagnósticos visuales en niños, adultos y adultos mayores</span>
-        </div>
-      </li>
-    </ul>
-    <button class="btn-primary" onclick="openApptModal()" style="margin-top:0.5rem">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Agendar Cita con el Doctor
-    </button>
   </div>
 </section>
 
-<!-- CTA STRIP -->
-<div class="cta-strip reveal">
-  <div class="container">
-    <h3>¿Tienes dudas sobre tu visión? <span style="color:var(--gold-light)">Estamos aquí para ayudarte.</span></h3>
-    <p>Agenda tu examen visual hoy y descubre el mundo como nunca antes lo has visto.</p>
-    <button class="btn-primary" onclick="openApptModal()">Reservar Mi Examen Ahora</button>
-  </div>
-</div>
-
-<!-- TIENDA -->
-<section id="tienda" class="section" aria-labelledby="tienda-title">
-  <div class="container">
-    <div class="store-header reveal">
-      <p class="section-eyebrow" style="justify-content:center">Nuestro Catálogo</p>
-      <h2 class="section-title" id="tienda-title">Colección <span>Exclusiva</span></h2>
-      <p class="section-sub">Las mejores marcas y estilos, cuidadosamente seleccionados para cada personalidad y necesidad visual.</p>
+<!-- PRODUCTS -->
+<section class="sec prod-bg" id="tienda">
+  <div class="sec-in">
+    <p class="ey reveal" data-k="pr.ey">Catálogo</p>
+    <h2 class="sec-ttl reveal" data-k="pr.t">Nuestras Monturas</h2>
+    <div class="ftabs reveal" id="ftabs">
+      <button class="ftab on" data-cat="todos" data-k="f.a">Todos</button>
+      <button class="ftab" data-cat="monturas" data-k="f.m">Monturas</button>
+      <button class="ftab" data-cat="sol" data-k="f.g">Gafas de Sol</button>
     </div>
-    <!-- Nuevo layout: categorías izquierda + productos derecha -->
-    <div class="store-layout">
-      <!-- CATEGORÍAS (columna izquierda) -->
-      <div class="store-categories" id="store-cats" aria-label="Categorías"></div>
-
-      <!-- PRODUCTOS (columna derecha) -->
-      <div class="store-right">
-        <!-- Featured -->
-        <div class="store-featured reveal" id="store-featured" role="button" tabindex="0" aria-label="Producto destacado"
-             onclick="openProductModal(storeFiltered[storeFeaturedIdx]?.id)" onkeydown="if(event.key==='Enter')openProductModal(storeFiltered[storeFeaturedIdx]?.id)">
-          <img class="store-featured-img" id="store-featured-img" src="" alt="" loading="eager">
-          <div class="store-featured-overlay"></div>
-          <div class="store-featured-content" id="store-featured-content">
-            <div class="store-featured-cat" id="store-featured-cat"></div>
-            <div class="store-featured-name" id="store-featured-name"></div>
-            <div class="store-featured-price" id="store-featured-price"></div>
-            <a class="store-featured-wa" id="store-featured-wa" href="#" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-              Consultar por WhatsApp
-            </a>
-          </div>
-        </div>
-        <!-- Thumbnails grid -->
-        <div class="store-thumb-grid reveal" id="store-all-grid"></div>
-      </div>
-    </div>
-    <!-- Bottom WA CTA -->
+    <div class="pgrid" id="pgrid"></div>
     <div class="store-cta reveal">
-      <a class="store-cta-btn" id="store-cta-btn" href="https://wa.me/573215951512?text=Hola%2C%20me%20gustar%C3%ADa%20ver%20el%20cat%C3%A1logo%20completo%20de%20%C3%93ptica%20Prada." target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-        Consultar por WhatsApp
-      </a>
+      <button class="btn-gold" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" data-k="pr.cta">Agendar Cita para Ver Monturas</button>
     </div>
   </div>
 </section>
-
-<!-- PAYMENT BAND -->
-<div class="payment-band reveal">
-  <div class="container">
-    <p style="text-align:center;font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem">Formas de Pago y Facilidades</p>
-    <div class="payment-items">
-      <div class="payment-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        <div class="payment-item-text"><strong>Pago Contraentrega</strong><span>Recibe primero, paga al recibirlo</span></div>
-      </div>
-      <div class="payment-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-        <div class="payment-item-text"><strong>ADDI — Cuotas</strong><span>Compra hoy, paga en cuotas fáciles</span></div>
-      </div>
-      <div class="payment-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <div class="payment-item-text"><strong>Compra Segura</strong><span>Garantía y respaldo en cada compra</span></div>
-      </div>
-      <div class="payment-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <div class="payment-item-text"><strong>Envío a Domicilio</strong><span>Entrega a todo el país</span></div>
-      </div>
-      <div class="payment-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.54 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 6.29 6.29l.74-.74a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <div class="payment-item-text"><strong>Asesoría por WhatsApp</strong><span>Te ayudamos a elegir lo mejor</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CONÓCENOS -->
-<section id="conocenos" class="section" aria-labelledby="conocenos-title">
-  <div class="container">
-    <div class="reveal" style="text-align:center;margin-bottom:2.5rem">
-      <p class="section-eyebrow" style="justify-content:center">Síguenos en Instagram</p>
-      <h2 class="section-title" id="conocenos-title">Conócenos</h2>
-      <p class="section-sub">Mira la experiencia Óptica Prada de cerca</p>
-    </div>
-    <div class="conocenos-grid">
-      <div class="ig-embed-wrap">
-        <blockquote class="instagram-media"
-          data-instgrm-permalink="https://www.instagram.com/reel/DS5f4VCDoxS/"
-          data-instgrm-version="14"
-          style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
-        </blockquote>
-      </div>
-      <div class="ig-embed-wrap">
-        <blockquote class="instagram-media"
-          data-instgrm-permalink="https://www.instagram.com/reel/DW9qElxkcvm/"
-          data-instgrm-version="14"
-          style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
-        </blockquote>
-      </div>
-      <div class="ig-embed-wrap">
-        <blockquote class="instagram-media"
-          data-instgrm-permalink="https://www.instagram.com/reel/DWCIx9wjq8A/"
-          data-instgrm-version="14"
-          style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
-        </blockquote>
-      </div>
-      <div class="ig-embed-wrap">
-        <blockquote class="instagram-media"
-          data-instgrm-permalink="https://www.instagram.com/reel/DZ0TnNyxTsP/"
-          data-instgrm-version="14"
-          style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
-        </blockquote>
-      </div>
-    </div>
-  </div>
-</section>
-<script async src="https://www.instagram.com/embed.js"></script>
 
 <!-- REVIEWS -->
-<section id="reviews" class="section" aria-labelledby="reviews-title">
-  <div class="container">
-    <div class="reviews-header reveal">
-      <p class="section-eyebrow" style="justify-content:center">Experiencias Reales</p>
-      <h2 class="section-title" id="reviews-title">Lo que Dicen <span>Nuestros Pacientes</span></h2>
-    </div>
-    <div class="reviews-grid" id="reviews-grid"></div>
-    <div style="text-align:center;margin-top:2.5rem" class="reveal">
-      <button class="btn-primary" onclick="openApptModal()">Quiero Mi Examen Visual</button>
+<section class="sec rev-bg" id="testimonios">
+  <div class="sec-in">
+    <p class="ey reveal" data-k="rv.ey">Reseñas</p>
+    <h2 class="sec-ttl reveal" data-k="rv.t">Lo que dicen nuestros pacientes</h2>
+    <div class="rgrid" id="rgrid"></div>
+    <div class="rev-form-wrap reveal">
+      <p class="ey" style="margin-bottom:.3rem" data-k="rv.f.ey">Cuéntenos su experiencia</p>
+      <p style="font-size:.83rem;color:var(--t2)" data-k="rv.f.sub">Su opinión ayuda a otros pacientes.</p>
+      <div class="rev-form">
+        <div class="rev-form-row">
+          <input class="finput" id="rvNombre" type="text" placeholder="Su nombre" autocomplete="name">
+          <div class="star-pick" id="starPick"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
+        </div>
+        <textarea class="finput" id="rvText" rows="3" placeholder="Cuéntenos cómo fue su visita..."></textarea>
+        <button class="fsub" id="rvSub" data-k="rv.f.sb">Publicar reseña</button>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- MAP -->
-<section id="mapa" class="section" aria-labelledby="mapa-title" style="padding-bottom:4rem">
-  <div class="container">
-    <div class="map-header reveal">
-      <p class="section-eyebrow" style="justify-content:center">Encuéntranos</p>
-      <h2 class="section-title" id="mapa-title">Visítanos <span>en Nuestro Local</span></h2>
-      <p style="color:rgba(255,255,255,0.55);font-size:0.9rem;margin-top:0.5rem">Estamos ubicados en Colombia. ¡Te esperamos!</p>
-    </div>
-    <div class="map-content-wrap reveal">
-      <!-- Mapa embebido -->
-      <div class="map-iframe-wrap">
-        <iframe
-          src="https://maps.google.com/maps?q=Cra.+15+%2315+03,+Santa+Rosa+de+Cabal,+Risaralda,+Colombia&z=17&output=embed"
-          allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Ubicación Óptica Prada">
-        </iframe>
-      </div>
-      <!-- Info card -->
-      <div class="map-info-card">
-        <div class="map-info-item">
-          <div class="map-info-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+<!-- CONTACT -->
+<section class="sec" id="contacto">
+  <div class="sec-in">
+    <p class="ey reveal" data-k="ct.ey">Encuéntrenos</p>
+    <h2 class="sec-ttl reveal" data-k="ct.t">Agende su cita</h2>
+    <div class="cgrid">
+      <div class="reveal-l">
+        <div class="cinfo">
+          <div class="citem">
+            <div class="cic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="clbl" data-k="ct.ad">Dirección</div><div class="cval">Carrera 15 #15-03<br>Santa Rosa de Cabal, Risaralda</div></div>
           </div>
-          <div class="map-info-text">
-            <strong>Dirección</strong>
-            <span>Cra. 15 #15 03<br>Santa Rosa de Cabal, Risaralda</span>
+          <div class="citem">
+            <div class="cic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div><div class="clbl" data-k="ct.hr">Horario</div><div class="cval" data-k="ct.hv">Lun – Sáb · 9:30 am – 6:00 pm</div></div>
+          </div>
+          <div class="citem">
+            <div class="cic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><div class="clbl">Email</div><div class="cval">opticasprada22@gmail.com</div></div>
           </div>
         </div>
-        <div class="map-info-item">
-          <div class="map-info-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 15z"/></svg>
-          </div>
-          <div class="map-info-text">
-            <strong>WhatsApp</strong>
-            <span>+57 321 595 1512</span>
-          </div>
-        </div>
-        <div class="map-info-item">
-          <div class="map-info-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div class="map-info-text">
-            <strong>Horario de Atención</strong>
-            <span>Lun – Vie: 8:00 am – 6:00 pm<br>Sáb: 9:00 am – 2:00 pm</span>
-          </div>
-        </div>
-        <a href="https://maps.app.goo.gl/QQZrzBu2CCoBNikK6" target="_blank" rel="noopener" class="map-open-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Ver Ubicación Exacta
+        <a class="wa-btn" href="https://wa.me/573215951512?text=Hola%2C+quiero+agendar+una+cita+en+%C3%93pticas+Prada" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          <span data-k="ct.wa">Agendar por WhatsApp</span>
         </a>
       </div>
+      <div class="reveal-r">
+        <div class="appt-form">
+          <div class="appt-title" data-k="ct.ft">Solicitar Cita</div>
+          <div class="form-row">
+            <input class="finput" type="text" id="fNombre" placeholder="Su nombre" autocomplete="name">
+            <input class="finput" type="tel" id="fTel" placeholder="Teléfono" autocomplete="tel">
+          </div>
+          <select class="fselect" id="fTipo">
+            <option value="">Tipo de cita...</option>
+            <option value="examen">Examen Visual</option>
+            <option value="monturas">Ver Monturas</option>
+            <option value="contacto">Lentes de Contacto</option>
+          </select>
+          <input class="finput" type="text" id="fFecha" placeholder="Fecha preferida" style="margin-bottom:.75rem">
+          <button class="fsub" id="fSub" data-k="ct.f.sb">Enviar por WhatsApp →</button>
+        </div>
+      </div>
+    </div>
+    <div class="map-wrap reveal">
+      <iframe src="https://maps.google.com/maps?q=Carrera+15+%2315-03,+Santa+Rosa+de+Cabal,+Risaralda,+Colombia&z=16&output=embed" allowfullscreen loading="lazy" title="Ubicación Ópticas Prada"></iframe>
     </div>
   </div>
 </section>
 
-<!-- DESARROLLADO POR -->
-<div class="dev-strip">
-  <span class="dev-strip-text">Desarrollado por</span>
-  <a href="https://wa.me/573113141020?text=Hola%2C%20vi%20la%20p%C3%A1gina%20web%20de%20%C3%93ptica%20Prada%20y%20me%20interesa%20tener%20una%20as%C3%AD%20para%20mi%20negocio.%20%C2%BFPodr%C3%ADamos%20hablar%3F"
-     class="dev-logo-link" target="_blank" rel="noopener" aria-label="Contactar al desarrollador por WhatsApp">
-    <img src="assets/images/dev-logo.svg" alt="Desarrollador" width="40" height="40">
-  </a>
-</div>
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-logo">
-        <img src="assets/images/logo-prada.webp" alt="Óptica Prada">
-      </div>
-      <p class="footer-tagline">Donde la precisión científica se encuentra con el cuidado humano. Tu visión es nuestra prioridad.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Servicios</h4>
-      <ul>
-        <li><a href="#doctor">Examen Visual</a></li>
-        <li><a href="#tienda">Monturas</a></li>
-        <li><a href="#tienda">Gafas de Sol</a></li>
-        <li><a href="#tienda">Lentes de Contacto</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contacto</h4>
-      <ul>
-        <li><a href="https://wa.me/573215951512" target="_blank" rel="noopener">WhatsApp: 321 595 1512</a></li>
-        <li><a href="#mapa">Ver Ubicación</a></li>
-        <li><a href="#" onclick="openApptModal(); return false;">Agendar Cita</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Óptica Prada · Todos los derechos reservados · Colombia</p>
+  <div class="foot-in">
+    <div class="foot-brand gold-text">Ópticas Prada</div>
+    <div class="foot-copy" data-k="ft.c">© 2025 Ópticas Prada · Santa Rosa de Cabal</div>
+    <div class="kafel-credit">Desarrollado por <a href="https://wa.me/573113141020?text=Hola%2C+vi+el+sitio+web+de+%C3%93pticas+Prada+y+me+interesa+algo+similar+para+mi+empresa.+%C2%BFEn+qu%C3%A9+me+pueden+ayudar%3F" target="_blank" rel="noopener">KAFEL</a></div>
   </div>
 </footer>
 
-<!-- APPOINTMENT MODAL -->
-<div id="appt-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-  <div class="modal-box">
-    <h3 id="modal-title">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" style="vertical-align:middle;margin-right:0.5rem" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Agendar Cita
-    </h3>
-    <p>Elige tu fecha y hora preferida. Te confirmaremos disponibilidad por WhatsApp.</p>
-    <div class="form-group">
-      <label for="appt-name">Tu Nombre *</label>
-      <input type="text" id="appt-name" placeholder="Ej: María García" required autocomplete="name">
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="appt-date">Fecha Preferida *</label>
-        <input type="date" id="appt-date" required>
-      </div>
-      <div class="form-group">
-        <label for="appt-time">Hora Preferida *</label>
-        <input type="time" id="appt-time" min="08:00" max="18:00" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="appt-service">Servicio</label>
-      <select id="appt-service">
-        <option value="Examen Visual Completo">Examen Visual Completo</option>
-        <option value="Control de Fórmula">Control de Fórmula</option>
-        <option value="Adaptación de Lentes de Contacto">Adaptación de Lentes de Contacto</option>
-        <option value="Examen Visual Pediátrico">Examen Visual Pediátrico</option>
-      </select>
-    </div>
-    <div class="modal-actions">
-      <button class="modal-close" onclick="closeApptModal()">Cancelar</button>
-      <button class="btn-primary" onclick="sendApptWhatsApp()" style="flex:1;justify-content:center">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-        Enviar por WhatsApp
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- PRODUCT DETAIL MODAL -->
-<div id="product-modal" role="dialog" aria-modal="true" aria-labelledby="prod-modal-name">
-  <div class="product-modal-box">
-    <button class="product-modal-close" onclick="closeProductModal()" aria-label="Cerrar">×</button>
-    <img class="product-modal-img" id="prod-modal-img" src="" alt="">
-    <div class="product-modal-body">
-      <div class="product-modal-cat" id="prod-modal-cat"></div>
-      <div class="product-modal-name" id="prod-modal-name"></div>
-      <div class="product-modal-price" id="prod-modal-price"></div>
-      <div class="product-modal-section">
-        <div class="product-modal-label">Material</div>
-        <div class="product-modal-value" id="prod-modal-material"></div>
-      </div>
-      <div class="product-modal-section">
-        <div class="product-modal-label">Descripción</div>
-        <div class="product-modal-value" id="prod-modal-desc"></div>
-      </div>
-      <div class="product-modal-section">
-        <div class="product-modal-label">¿Con qué estilo combina?</div>
-        <div class="product-modal-value" id="prod-modal-style"></div>
-      </div>
-      <div class="product-modal-actions">
-        <button class="btn-add-cart" id="prod-modal-cart-btn" onclick="addToCartFromModal()">
-          <svg viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="16" aria-hidden="true">
-            <path d="M24.5 20H7.5a5.5 5.5 0 0 1-.8-10.95A8 8 0 0 1 22.9 7.6 5.5 5.5 0 0 1 24.5 20z" fill="currentColor" opacity="0.25"/>
-            <path d="M24.5 20H7.5a5.5 5.5 0 0 1-.8-10.95A8 8 0 0 1 22.9 7.6 5.5 5.5 0 0 1 24.5 20z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
-            <path d="M16 8v7M13 12l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Agregar a Mi Deseo
-        </button>
-        <a class="store-featured-wa" id="prod-modal-wa" href="#" target="_blank" rel="noopener" style="flex:1;justify-content:center;text-decoration:none">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-          Cotizar
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CART PANEL -->
-<div id="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
-  <div class="cart-panel-box">
-    <div class="cart-panel-header">
-      <div class="cart-panel-title" id="cart-title">☁️ Tu Salud es Más Valiosa</div>
-      <button class="cart-panel-close" onclick="closeCart()" aria-label="Cerrar carrito">×</button>
-    </div>
-    <div class="cart-items" id="cart-items"></div>
-    <div class="cart-panel-footer">
-      <a class="cart-cotizar-btn" id="cart-cotizar-btn" href="#" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-        Cotiza
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/573215951512?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20%C3%93ptica%20Prada."
-   class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-</a>
-
 <script>
-// ─── PRODUCTS DATA ───────────────────────────────────────
-const products = [
-  /* — GAFAS DE SOL — */
-  { id:1,  img:'assets/products/doc-image1.webp',  name:'Gafas de Sol 1',  cat:'sol',      price:'Consultar precio', material:'Acetato premium', desc:'Diseño oversized con lentes de alto contraste y protección UV400 para uso diario y actividades al aire libre.', style:'Ideal para looks casual, playero y urbano. Combina con outfits coloridos o neutros.' },
-  { id:2,  img:'assets/products/doc-image2.webp',  name:'Gafas de Sol 2',  cat:'sol',      price:'Consultar precio', material:'Metal y acetato', desc:'Montura semipesada con lentes polarizados. Reducen el reflejo y mejoran la percepción de colores bajo el sol.', style:'Perfectas para el estilo sport-chic y outfits con ropa deportiva o de outdoor.' },
-  { id:3,  img:'assets/products/doc-image3.webp',  name:'Gafas de Sol 3',  cat:'sol',      price:'Consultar precio', material:'Acetato italiano', desc:'Forma cuadrada con detalles en las varillas. Lentes oscuros categoría 3, aptas para alta exposición solar.', style:'Estilo retro y clásico. Combinan con looks formales, vintage y urbano-elegante.' },
-  { id:4,  img:'assets/products/doc-image7.webp',  name:'Gafas de Sol 4',  cat:'sol',      price:'Consultar precio', material:'TR-90 ultraligero', desc:'Montura deportiva de alta resistencia con lentes envolventes. Ideales para actividades físicas y conducción.', style:'Pensadas para el look deportivo y aventurero. Van bien con ropa técnica y casual activo.' },
-  { id:5,  img:'assets/products/doc-image20.webp', name:'Gafas de Sol 5',  cat:'sol',      price:'Consultar precio', material:'Acero inoxidable', desc:'Diseño aviador clásico con puente doble y lentes tipo espejo. Un clásico que nunca pasa de moda.', style:'Combinan con cualquier estilo: casual, formal o bohemio. Un favorito atemporal.' },
-  { id:6,  img:'assets/products/doc-image19.webp', name:'Gafas de Sol 6',  cat:'sol',      price:'Consultar precio', material:'Acetato premium', desc:'Forma cat-eye con degradado de color en los lentes. Femeninas y sofisticadas con protección UV400.', style:'Perfectas para el estilo chic y romántico. Elevan cualquier look femenino.' },
-  /* — MONTURAS — */
-  { id:7,  img:'assets/products/doc-image4.webp',  name:'Montura 1',       cat:'monturas', price:'Consultar precio', material:'Acetato italiano', desc:'Montura rectangular de perfil fino. Diseño minimalista que se adapta a la mayoría de formas de rostro.', style:'Ideal para el look profesional y ejecutivo. Perfecta para ambientes de trabajo y reuniones.' },
-  { id:8,  img:'assets/products/doc-image14.webp', name:'Montura 2',       cat:'monturas', price:'Consultar precio', material:'Metal titanio', desc:'Armazón metálica ultraligera de titanio. Cómoda para uso prolongado y resistente a la deformación.', style:'Estilo moderno y discreto. Combina con looks formales, business casual y universitario.' },
-  { id:9,  img:'assets/products/doc-image21.webp', name:'Montura 3',       cat:'monturas', price:'Consultar precio', material:'Acetato grueso', desc:'Montura gruesa de tendencia. Hace de los lentes el accesorio principal del look con su presencia visual.', style:'Para el estilo creativo y fashion. Combina con outfits coloridos y con personalidad.' },
-  { id:10, img:'assets/products/doc-image18.webp', name:'Montura 4',       cat:'monturas', price:'Consultar precio', material:'TR-90 flexible', desc:'Montura flexible e irrompible, perfecta para uso activo. Ligera y resistente a golpes y torceduras.', style:'Ideal para el día a día activo. Recomendada para quienes practican deporte.' },
-  { id:11, img:'assets/products/doc-image10.webp', name:'Montura 5',       cat:'monturas', price:'Consultar precio', material:'Acetato y metal', desc:'Diseño mixto con puente metálico y patillas de acetato. Equilibrio perfecto entre ligereza y robustez.', style:'Versátil para estilos smart-casual y semi-formal. Funciona en la oficina y el tiempo libre.' },
-  { id:12, img:'assets/products/doc-image12.webp', name:'Montura 6',       cat:'monturas', price:'Consultar precio', material:'Acetato premium', desc:'Forma redonda clásica con detalle de doble aro. Inspirada en los estilos vintage de los años 70.', style:'Perfecta para el estilo retro y bohemio. Combina con ropa casual y cultural.' },
-  { id:13, img:'assets/products/doc-image22.webp', name:'Montura 7',       cat:'monturas', price:'Consultar precio', material:'Metal dorado', desc:'Montura geométrica hexagonal en metal pulido. Diseño arquitectónico para personas que buscan destacar.', style:'Para el estilo vanguardista y editorial. Ideal para quienes usan los lentes como pieza de diseño.' },
-  { id:14, img:'assets/products/doc-image13.webp', name:'Montura 8',       cat:'monturas', price:'Consultar precio', material:'Acetato italiano', desc:'Montura cuadrada de corte limpio y borde definido. Proyecta seguridad y autoridad en cualquier entorno.', style:'Combina con el estilo ejecutivo y minimalista. Perfecta para el profesional moderno.' },
-  { id:15, img:'assets/products/doc-image16.webp', name:'Montura 9',       cat:'monturas', price:'Consultar precio', material:'Acetato grueso', desc:'Montura ovalada con grosor uniforme y acabado brillante. Diseño balanceado que favorece rostros angulares.', style:'Ideal para looks formales y semi-casuales. Va muy bien con ropa estructurada.' },
-  { id:16, img:'assets/products/doc-image11.webp', name:'Montura 10',      cat:'monturas', price:'Consultar precio', material:'Metal y acetato', desc:'Diseño browline con parte superior en acetato y parte inferior en metal. Un clásico elegante y refinado.', style:'Estilo intelectual y sofisticado. Ideal para el look académico y urbano refinado.' },
-  { id:17, img:'assets/products/doc-image6.webp',  name:'Montura 11',      cat:'monturas', price:'Consultar precio', material:'Acetato fino', desc:'Montura cat-eye femenina de acetato fino. Diseño que alarga visualmente los ojos y afina el rostro.', style:'Para el estilo glamour y retro-chic. Combina con vestidos, blusas y accesorios dorados.' },
-  { id:18, img:'assets/products/doc-image8.webp',  name:'Montura 12',      cat:'monturas', price:'Consultar precio', material:'TR-90 y metal', desc:'Montura deportiva de medio aro con varillas de metal. Ligera y resistente para el día a día exigente.', style:'Perfecta para el look activo y casual. Va bien con ropa deportiva, jeans y camisetas.' },
-  { id:19, img:'assets/products/doc-image5.webp',  name:'Montura 13',      cat:'monturas', price:'Consultar precio', material:'Acetato italiano', desc:'Forma rectangular alargada con temples decorativos. Diseño actual que sigue las últimas tendencias ópticas.', style:'Para el estilo trendy y urbano. Combina con looks modernos y ropa de temporada.' },
-  { id:20, img:'assets/products/doc-image15.webp', name:'Montura 14',      cat:'monturas', price:'Consultar precio', material:'Metal titanio', desc:'Montura circular de titanio ultraligero con puente ajustable. Cómoda para uso continuo todo el día.', style:'Estilo artístico y libre. Combina con el look bohemio y minimalista.' },
-  { id:21, img:'assets/products/doc-image17.webp', name:'Montura 15',      cat:'monturas', price:'Consultar precio', material:'Acetato premium', desc:'Montura rectangular con acabado mate y textura sutil. Discreta pero de gran presencia en el rostro.', style:'Ideal para el profesional moderno. Funciona perfectamente en entornos formales y de negocios.' },
-  /* — LENTES DE CONTACTO — */
-  { id:22, img:'assets/products/doc-image9.webp',  name:'Lentes de Contacto', cat:'contacto', price:'Consultar precio', material:'Hidrogel de silicona', desc:'Lentes de contacto blandos de alta transpirabilidad. Permiten el paso de oxígeno al ojo para mayor comodidad durante todo el día.', style:'Ideales para actividades físicas, eventos especiales o quienes prefieren prescindir de armazón.' },
+/* ─── STRINGS ─── */
+const T={
+  es:{
+    'nav.v':'Visión','nav.d':'El Doctor','nav.s':'Tienda','nav.r':'Reseñas','nav.c':'Contacto','nav.cta':'Agendar Cita',
+    'h.ey':'Santa Rosa de Cabal · Risaralda',
+    'h.sub':'Exámenes visuales con tecnología de diagnóstico avanzada y el respaldo de un especialista de reconocimiento internacional.',
+    'h.c1':'Agendar Examen Visual','h.c2':'Ver Catálogo',
+    's.y':'Años de Experiencia','s.p':'Pacientes Satisfechos','s.d':'Diagnóstico Especializado',
+    'sv.ey':'Lo que ofrecemos','sv.t':'Todo lo que su visión necesita',
+    'sv.e.n':'Examen Visual','sv.e.d':'Diagnóstico completo con tecnología LUCID KR. Fórmula precisa para su corrección visual.',
+    'sv.m.n':'Monturas','sv.m.d':'Amplio catálogo de monturas para todos los estilos. Acetato, metal, titanio y más.',
+    'sv.g.n':'Gafas de Sol','sv.g.d':'Protección UV certificada con diseños contemporáneos para cada ocasión.',
+    'sv.l.n':'Lentes de Contacto','sv.l.d':'Adaptación personalizada con seguimiento profesional por el Dr. Prada.',
+    'pr.ey':'Catálogo','pr.t':'Nuestras Monturas','pr.cta':'Agendar Cita para Ver Monturas',
+    'f.a':'Todos','f.m':'Monturas','f.g':'Gafas de Sol',
+    'dr.ey':'El Especialista',
+    'dr.b':'Optómetra con más de 5 años de experiencia clínica y certificaciones de reconocimiento internacional. Tecnología LUCID KR para diagnósticos de máxima precisión.',
+    'dr.c1':'Especialista en Optometría Clínica','dr.c2':'Certificación Internacional en Contactología',
+    'dr.c3':'Tecnología LUCID KR de diagnóstico avanzado','dr.c4':'Miembro de la Sociedad Colombiana de Optometría','dr.ph':'Dr. Prada · Optómetra',
+    'rv.ey':'Reseñas','rv.t':'Lo que dicen nuestros pacientes',
+    'rv.f.ey':'Cuéntenos su experiencia','rv.f.sub':'Su opinión ayuda a otros pacientes.','rv.f.sb':'Publicar reseña',
+    'ct.ey':'Encuéntrenos','ct.t':'Agende su cita','ct.ad':'Dirección','ct.hr':'Horario','ct.hv':'Lun – Sáb · 9:30 am – 6:00 pm',
+    'ct.wa':'Agendar por WhatsApp','ct.ft':'Solicitar Cita','ct.f.sb':'Enviar por WhatsApp →',
+    'ft.c':'© 2025 Ópticas Prada · Santa Rosa de Cabal','pr.q':'Consultar',
+  },
+  en:{
+    'nav.v':'Vision','nav.d':'The Doctor','nav.s':'Store','nav.r':'Reviews','nav.c':'Contact','nav.cta':'Book Appointment',
+    'h.ey':'Santa Rosa de Cabal · Risaralda, Colombia',
+    'h.sub':'Advanced visual examinations with cutting-edge diagnostic technology, backed by an internationally recognized specialist.',
+    'h.c1':'Schedule Eye Exam','h.c2':'View Catalog',
+    's.y':'Years of Experience','s.p':'Satisfied Patients','s.d':'Specialized Diagnosis',
+    'sv.ey':'What we offer','sv.t':'Everything your vision needs',
+    'sv.e.n':'Eye Exam','sv.e.d':'Complete diagnosis with LUCID KR technology. Precise prescription for your vision.',
+    'sv.m.n':'Frames','sv.m.d':'Wide catalog of frames for all styles. Acetate, metal, titanium and more.',
+    'sv.g.n':'Sunglasses','sv.g.d':'Certified UV protection with contemporary designs for every occasion.',
+    'sv.l.n':'Contact Lenses','sv.l.d':'Personalized fitting with professional follow-up by Dr. Prada.',
+    'pr.ey':'Catalog','pr.t':'Our Frames','pr.cta':'Book Appointment to See Frames',
+    'f.a':'All','f.m':'Frames','f.g':'Sunglasses',
+    'dr.ey':'The Specialist',
+    'dr.b':'Optometrist with over 5 years of clinical experience and internationally recognized certifications. LUCID KR technology for maximum precision diagnostics.',
+    'dr.c1':'Clinical Optometry Specialist','dr.c2':'International Certification in Contactology',
+    'dr.c3':'LUCID KR Advanced Diagnostic Technology','dr.c4':'Member of the Colombian Society of Optometry','dr.ph':'Dr. Prada · Optometrist',
+    'rv.ey':'Reviews','rv.t':'What our patients say',
+    'rv.f.ey':'Share your experience','rv.f.sub':'Your review helps other patients.','rv.f.sb':'Post review',
+    'ct.ey':'Find us','ct.t':'Schedule your appointment','ct.ad':'Address','ct.hr':'Hours','ct.hv':'Mon – Sat · 9:30 am – 6:00 pm',
+    'ct.wa':'Book via WhatsApp','ct.ft':'Request Appointment','ct.f.sb':'Send via WhatsApp →',
+    'ft.c':'© 2025 Ópticas Prada · Santa Rosa de Cabal','pr.q':'Inquire',
+  }
+};
+
+/* ─── THEME ─── */
+const root=document.documentElement;
+let dark=window.matchMedia('(prefers-color-scheme:dark)').matches;
+function setTheme(d){
+  dark=d;
+  root.dataset.theme=d?'dark':'light';
+  document.getElementById('iSun').style.display=d?'none':'block';
+  document.getElementById('iMoon').style.display=d?'block':'none';
+}
+setTheme(dark);
+document.getElementById('themeBtn').addEventListener('click',()=>setTheme(!dark));
+
+/* ─── NAV SCROLL ─── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>50);
+},{passive:true});
+
+/* ─── LANGUAGE ─── */
+let lang='es';
+function setLang(l){
+  lang=l;
+  document.getElementById('bES').classList.toggle('on',l==='es');
+  document.getElementById('bEN').classList.toggle('on',l==='en');
+  const s=T[l];
+  document.querySelectorAll('[data-k]').forEach(el=>{const v=s[el.dataset.k];if(v!==undefined)el.textContent=v;});
+  const ht=document.getElementById('hTitle');
+  if(ht)ht.innerHTML=l==='es'?'Su Visión,<br><em class="gold-text">Nuestra Precisión</em>':'Your Vision,<br><em class="gold-text">Our Precision</em>';
+  document.querySelectorAll('.ftab').forEach(b=>{const v=s[b.dataset.k];if(v)b.textContent=v;});
+  renderProducts(activeCat);
+}
+document.getElementById('bES').addEventListener('click',()=>setLang('es'));
+document.getElementById('bEN').addEventListener('click',()=>setLang('en'));
+
+/* ─── SCROLL REVEAL ─── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+},{threshold:.1});
+function observeAll(){
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+}
+
+/* ─── PRODUCTS ─── */
+const prods=[
+  {n:'Montura 1',m:'Acetato',c:'monturas',img:'assets/products/doc-image1-22.webp'},
+  {n:'Montura 2',m:'Metal',c:'monturas',img:''},
+  {n:'Montura 3',m:'Titanio',c:'monturas',img:''},
+  {n:'Montura 4',m:'Acetato',c:'monturas',img:''},
+  {n:'Sol 1',m:'Policarbonato',c:'sol',img:''},
+  {n:'Sol 2',m:'Metal dorado',c:'sol',img:''},
+  {n:'Montura 5',m:'Acetato grueso',c:'monturas',img:''},
+  {n:'Sol 3',m:'Acetato',c:'sol',img:''},
 ];
-
-const catLabels = { todos:'Todos', monturas:'Monturas', sol:'Gafas de Sol', contacto:'Lentes de Contacto' };
-
-const categories = [
-  { id:'todos',    name:'Todos',           img:'assets/products/doc-image1.webp' },
-  { id:'monturas', name:'Monturas',        img:'assets/products/doc-image4.webp' },
-  { id:'sol',      name:'Gafas de Sol',    img:'assets/products/doc-image1.webp' },
-  { id:'contacto', name:'Lentes Contacto', img:'assets/products/doc-image9.webp' },
-];
-
-let activeCat = 'todos';
-
-// ── Category Cards ───────────────────────────────────────
-function renderCategories() {
-  const el = document.getElementById('store-cats');
-  if (!el) return;
-  el.innerHTML = categories.map(c => `
-    <div class="cat-card${c.id === activeCat ? ' active' : ''}"
-         onclick="selectCat('${c.id}')" role="button" tabindex="0"
-         onkeydown="if(event.key==='Enter')selectCat('${c.id}')">
-      <div class="cat-active-bar"></div>
-      <img src="${c.img}" alt="${c.name}" onerror="this.style.background='#132644';this.removeAttribute('src')">
-      <div class="cat-card-overlay">
-        <div class="cat-card-name">${c.name}</div>
+let activeCat='todos';
+function renderProducts(cat){
+  activeCat=cat;
+  const s=T[lang];
+  const list=cat==='todos'?prods:prods.filter(p=>p.c===cat);
+  document.getElementById('pgrid').innerHTML=list.map((p,i)=>`
+    <div class="pcard reveal" style="transition-delay:${i*60}ms">
+      <div class="pimg">${p.img?`<img src="${p.img}" alt="${p.n}" loading="lazy">`:'<div class="pimg-ph"></div>'}</div>
+      <div class="pinfo">
+        <div class="pnm">${p.n}</div>
+        <div class="pmt">${p.m}</div>
+        <div class="ppr">${s['pr.q']||'Consultar'}</div>
       </div>
-    </div>
-  `).join('');
-}
-
-function selectCat(id) {
-  activeCat = id;
-  renderCategories();
-  renderProducts(id);
-}
-
-// ── Editorial Store ──────────────────────────────────────
-let storeFiltered = [];
-let storeFeaturedIdx = 0;
-let cart = [];
-let currentProductId = null;
-
-const COTIZAR_WA = '573215951512';
-
-function buildWaMsg(name) {
-  return encodeURIComponent(`Hola! Vi en la página de Óptica Prada las "${name}" y me gustaría obtener más información sobre precio y disponibilidad.`);
-}
-
-function updateCartCount() {
-  const el = document.getElementById('cart-count');
-  if (!el) return;
-  el.textContent = cart.length;
-  el.classList.toggle('has-items', cart.length > 0);
-}
-
-function addToCart(productId) {
-  if (!cart.find(p => p.id === productId)) {
-    const p = products.find(p => p.id === productId);
-    if (p) cart.push(p);
-  }
-  updateCartCount();
-  renderCartItems();
-  renderStoreAll(null); // refresh thumb buttons
-}
-
-function removeFromCart(productId) {
-  cart = cart.filter(p => p.id !== productId);
-  updateCartCount();
-  renderCartItems();
-  renderStoreAll(null);
-}
-
-function openCart() {
-  renderCartItems();
-  document.getElementById('cart-panel').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeCart() {
-  document.getElementById('cart-panel').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function renderCartItems() {
-  const el = document.getElementById('cart-items');
-  const btn = document.getElementById('cart-cotizar-btn');
-  if (!el) return;
-  if (cart.length === 0) {
-    el.innerHTML = '<div class="cart-empty"><svg viewBox="0 0 48 34" fill="none" width="52" height="38" style="opacity:0.35;margin-bottom:0.75rem"><path d="M36 32H12a8 8 0 0 1-1.2-15.9A12 12 0 0 1 33.4 13 8 8 0 0 1 36 32z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M24 13v10M20 19l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><br>Tu nube está vacía.<br>Agrega productos a Mi Deseo.</div>';
-    if (btn) btn.href = '#';
-    return;
-  }
-  el.innerHTML = cart.map(p => `
-    <div class="cart-item">
-      <img class="cart-item-img" src="${p.img}" alt="${p.name}"
-           onerror="this.style.background='#001d3d';this.removeAttribute('src')">
-      <div class="cart-item-info">
-        <div class="cart-item-name">${p.name}</div>
-        <div class="cart-item-cat">${catLabels[p.cat] || p.cat}</div>
-      </div>
-      <button class="cart-item-remove" onclick="removeFromCart(${p.id})" aria-label="Quitar">×</button>
-    </div>
-  `).join('');
-  if (btn) {
-    const items = cart.map(p => `• ${p.name}`).join('%0A');
-    const msg = encodeURIComponent('Hola! Me gustaría cotizar los siguientes productos de Óptica Prada:\n') + items;
-    btn.href = `https://wa.me/${COTIZAR_WA}?text=${msg}`;
-  }
-}
-
-// Product detail modal
-function openProductModal(productId) {
-  const p = products.find(x => x.id === productId);
-  if (!p) return;
-  currentProductId = productId;
-  document.getElementById('prod-modal-img').src = p.img;
-  document.getElementById('prod-modal-img').alt = p.name;
-  document.getElementById('prod-modal-cat').textContent = catLabels[p.cat] || p.cat;
-  document.getElementById('prod-modal-name').textContent = p.name;
-  document.getElementById('prod-modal-price').textContent = p.price;
-  document.getElementById('prod-modal-material').textContent = p.material || '—';
-  document.getElementById('prod-modal-desc').textContent = p.desc || '—';
-  document.getElementById('prod-modal-style').textContent = p.style || '—';
-  document.getElementById('prod-modal-wa').href = `https://wa.me/${COTIZAR_WA}?text=${buildWaMsg(p.name)}`;
-  const cartBtn = document.getElementById('prod-modal-cart-btn');
-  const inCart = cart.find(x => x.id === productId);
-  if (cartBtn) {
-    cartBtn.innerHTML = inCart ? '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M18.5 9.5a6.5 6.5 0 0 0-12.7-1.9A5 5 0 1 0 5 17.5h13a4 4 0 0 0 .5-7.95z"/></svg> ✓ En Mi Deseo' : '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M18.5 9.5a6.5 6.5 0 0 0-12.7-1.9A5 5 0 1 0 5 17.5h13a4 4 0 0 0 .5-7.95zM13 13v3h-2v-3H8l4-4 4 4h-3z"/></svg> Agregar a Mi Deseo';
-    cartBtn.classList.toggle('added', !!inCart);
-  }
-  document.getElementById('product-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeProductModal() {
-  document.getElementById('product-modal').classList.remove('open');
-  document.body.style.overflow = '';
-  currentProductId = null;
-}
-
-function addToCartFromModal() {
-  if (currentProductId) {
-    addToCart(currentProductId);
-    const cartBtn = document.getElementById('prod-modal-cart-btn');
-    if (cartBtn) { cartBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M18.5 9.5a6.5 6.5 0 0 0-12.7-1.9A5 5 0 1 0 5 17.5h13a4 4 0 0 0 .5-7.95z"/></svg> ✓ En Mi Deseo'; cartBtn.classList.add('added'); }
-  }
-}
-
-function setFeatured(idx, animate) {
-  const p = storeFiltered[idx];
-  if (!p) return;
-  storeFeaturedIdx = idx;
-
-  const featEl = document.getElementById('store-featured');
-  const imgEl  = document.getElementById('store-featured-img');
-  const catEl  = document.getElementById('store-featured-cat');
-  const nameEl = document.getElementById('store-featured-name');
-  const priceEl = document.getElementById('store-featured-price');
-  const waEl   = document.getElementById('store-featured-wa');
-
-  const update = () => {
-    imgEl.src = p.img; imgEl.alt = p.name;
-    catEl.textContent = catLabels[p.cat] || p.cat;
-    nameEl.textContent = p.name;
-    priceEl.textContent = p.price;
-    waEl.href = `https://wa.me/${COTIZAR_WA}?text=${buildWaMsg(p.name)}`;
-  };
-
-  if (animate && featEl) {
-    featEl.classList.add('switching');
-    setTimeout(() => { update(); featEl.classList.remove('switching'); }, 320);
-  } else {
-    update();
-  }
-
-  // Refresh thumb grid active state
-  document.querySelectorAll('.store-thumb').forEach(el => {
-    el.classList.toggle('active-thumb', parseInt(el.dataset.idx) === idx);
-  });
-}
-
-function renderStoreAll(cat) {
-  const grid = document.getElementById('store-all-grid');
-  if (!grid) return;
-  const list = cat !== null ? storeFiltered : storeFiltered;
-  grid.innerHTML = list.map((p, i) => {
-    const inCart = cart.find(x => x.id === p.id);
-    const isActive = i === storeFeaturedIdx;
-    return `
-    <div class="store-thumb${isActive ? ' active-thumb' : ''}" data-idx="${i}"
-         onclick="setFeatured(${i},true);openProductModal(${p.id})" title="${p.name}">
-      <img src="${p.img}" alt="${p.name}" loading="lazy"
-           onerror="this.style.background='linear-gradient(135deg,#001d3d,#003566)';this.removeAttribute('src')">
-      <div class="store-thumb-name">${p.name}</div>
-      <button class="store-thumb-add${inCart ? ' in-cart' : ''}"
-              onclick="event.stopPropagation();${inCart ? `removeFromCart(${p.id})` : `addToCart(${p.id})`}"
-              aria-label="${inCart ? 'Quitar de Mi Deseo' : 'Agregar a Mi Deseo'}"
-              title="${inCart ? 'Quitar' : 'Agregar a Mi Deseo'}">
-        ${inCart ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>' : '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M18.5 9.5a6.5 6.5 0 0 0-12.7-1.9A5 5 0 1 0 5 17.5h13a4 4 0 0 0 .5-7.95zM13 13v3h-2v-3H8l4-4 4 4h-3z"/></svg>'}
-      </button>
-    </div>`;
-  }).join('');
-}
-
-function renderProducts(cat) {
-  storeFiltered = cat === 'todos' ? products : products.filter(p => p.cat === cat);
-  storeFeaturedIdx = 0;
-  setFeatured(0, false);
-  renderStoreAll(cat);
-}
-
-// ─── REVIEWS DATA ────────────────────────────────────────
-const reviews = [
-  { name:'Boris Animal',          text:'excelente servicio buena atencion y me encantaron las gafas de sol y muy buen optometra',      date:'Hace 3 meses' },
-  { name:'Celeste Giraldo',       text:'excelente servicio',                                                                            date:'Hace 3 meses' },
-  { name:'Esteban Muñoz',         text:'excelente servicio',                                                                            date:'Hace 4 meses' },
-  { name:'Claudia M.',            text:'me hizo el examen mas completo que he tenido ahora veo perfecto super recomendado',             date:'Hace 2 semanas' },
-  { name:'Andrés R.',             text:'vine buscando unas gafas de sol y me fui con la montura mas bonita que he tenido muy buen servicio',  date:'Hace 1 mes' },
-  { name:'Jorge T.',              text:'tenia dolores de cabeza y resulta que necesitaba lentes desde que los tengo los dolores desaparecieron',  date:'Hace 2 meses' },
-  { name:'Patricia V.',           text:'muy buena atencion y el doctor muy profesional encontre exactamente lo que buscaba',            date:'Hace 1 semana' },
-  { name:'Camilo E.',             text:'me adapte lentes de contacto aqui despues de varios intentos fallidos en otras opticas el doctor sabe lo que hace', date:'Hace 3 meses' },
-  { name:'Valentina Rios',        text:'super amables y rapidos el doctor explica todo muy bien',                                       date:'Hace 5 meses' },
-];
-
-function renderReviews() {
-  const grid = document.getElementById('reviews-grid');
-  grid.innerHTML = reviews.map((r,i) => `
-    <div class="review-card reveal" style="transition-delay:${i*80}ms">
-      <div class="review-stars" aria-label="5 estrellas">
-        ${Array(5).fill('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>').join('')}
-      </div>
-      <p class="review-text">${r.text}</p>
-      <div class="review-author">
-        <div class="review-avatar" aria-hidden="true">${r.name[0]}</div>
-        <div>
-          <div class="review-author-name">${r.name}</div>
-          <div class="review-author-date">${r.date} · Google Maps</div>
-        </div>
-      </div>
-    </div>
-  `).join('');
-  // re-observe after render
+    </div>`).join('');
   observeAll();
 }
-
-// ─── WATER DROPLETS ──────────────────────────────────────
-function createDroplets() {
-  const container = document.getElementById('droplets');
-  for (let i = 0; i < 18; i++) {
-    const d = document.createElement('div');
-    d.className = 'droplet';
-    const size = Math.random() * 6 + 3;
-    d.style.cssText = `
-      width:${size}px; height:${size}px;
-      left:${Math.random()*100}%;
-      animation-duration:${Math.random()*8+6}s;
-      animation-delay:${Math.random()*8}s;
-    `;
-    container.appendChild(d);
-  }
-}
-
-// ─── NAVBAR SCROLL ───────────────────────────────────────
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
-
-// ─── HAMBURGER ───────────────────────────────────────────
-const hamburger = document.getElementById('hamburger');
-const navLinks  = document.getElementById('nav-links');
-hamburger.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', open);
+document.getElementById('ftabs').addEventListener('click',e=>{
+  const b=e.target.closest('.ftab');
+  if(!b)return;
+  document.querySelectorAll('.ftab').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  renderProducts(b.dataset.cat);
 });
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-// ─── CATEGORY CARDS INIT ─────────────────────────────────
-// (category selection handled via renderCategories / selectCat)
-
-// ─── MODAL ───────────────────────────────────────────────
-function openApptModal() {
-  const m = document.getElementById('appt-modal');
-  m.classList.add('open');
-  m.querySelector('input[type=text]').focus();
-  document.body.style.overflow = 'hidden';
-  // default date to tomorrow
-  const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate()+1);
-  document.getElementById('appt-date').value = tomorrow.toISOString().split('T')[0];
-  document.getElementById('appt-time').value = '10:00';
-}
-function closeApptModal() {
-  document.getElementById('appt-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('appt-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeApptModal(); });
-document.getElementById('product-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeProductModal(); });
-document.getElementById('cart-panel').addEventListener('click', e => { if (e.target === e.currentTarget) closeCart(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeApptModal(); closeProductModal(); closeCart(); } });
-
-function sendApptWhatsApp() {
-  const name    = document.getElementById('appt-name').value.trim();
-  const date    = document.getElementById('appt-date').value;
-  const time    = document.getElementById('appt-time').value;
-  const service = document.getElementById('appt-service').value;
-  if (!name) { document.getElementById('appt-name').focus(); return; }
-  if (!date) { document.getElementById('appt-date').focus(); return; }
-  const dateStr = date ? new Date(date+'T12:00:00').toLocaleDateString('es-CO',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) : 'Por confirmar';
-  const msg = `Hola! Soy ${name} y deseo agendar una cita en Óptica Prada.\n\n📋 Servicio: ${service}\n📅 Fecha preferida: ${dateStr}\n⏰ Hora preferida: ${time}\n\n¿Está disponible ese horario?`;
-  window.open(`https://wa.me/573215951512?text=${encodeURIComponent(msg)}`, '_blank');
-  closeApptModal();
-}
-
-// ─── SCROLL REVEAL ───────────────────────────────────────
-function observeAll() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-}
-
-// ─── SET MIN DATE ─────────────────────────────────────────
-function setMinDate() {
-  const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate()+1);
-  document.getElementById('appt-date').min = tomorrow.toISOString().split('T')[0];
-}
-
-// ─── DOCTOR SLIDER ────────────────────────────────────────
-let docSlideIdx = 0;
-function goDocSlide(idx) {
-  document.querySelectorAll('.doctor-slide').forEach((s,i) => s.classList.toggle('active', i===idx));
-  document.querySelectorAll('.doc-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
-  docSlideIdx = idx;
-}
-setInterval(() => { goDocSlide((docSlideIdx+1) % 3); }, 4500);
-
-// ─── INIT ─────────────────────────────────────────────────
-createDroplets();
-renderCategories();
 renderProducts('todos');
-renderReviews();
+
+/* ─── REVIEWS ─── */
+const revs=[
+  {n:'Boris Animal',   t:'excelente servicio y muy buen optometra',s:5,d:'hace 3 meses'},
+  {n:'Claudia M.',     t:'el examen fue muy completo ahora veo perfecto',s:5,d:'hace 2 semanas'},
+  {n:'Andres R.',      t:'buena atencion me fue muy bien',s:5,d:'hace 1 mes'},
+  {n:'Jorge T.',       t:'tenia dolores de cabeza y con los lentes se me quito',s:5,d:'hace 2 meses'},
+  {n:'Patricia V.',    t:'muy buena atencion y el doctor muy bueno',s:5,d:'hace 1 semana'},
+  {n:'Camilo E.',      t:'me adapte los lentes de contacto aqui despues de varios intentos en otras opticas',s:5,d:'hace 3 meses'},
+];
+let allRevs=[...revs];
+function renderRevs(){
+  document.getElementById('rgrid').innerHTML=allRevs.map((r,i)=>`
+    <div class="rcard reveal" style="transition-delay:${i*70}ms">
+      <div class="rstars">${'★'.repeat(r.s)}</div>
+      <div class="rtxt">"${r.t}"</div>
+      <div class="rnm">${r.n}</div>
+      <div class="rdt">${r.d}</div>
+      <div class="rsrc">Google Maps</div>
+    </div>`).join('');
+  observeAll();
+}
+renderRevs();
+
+/* ─── STARS ─── */
+let stars=5;
+const starSpans=document.querySelectorAll('#starPick span');
+function litStars(n){starSpans.forEach((s,i)=>s.classList.toggle('lit',i<n));}
+litStars(5);
+starSpans.forEach((s,i)=>{
+  s.addEventListener('mouseover',()=>litStars(i+1));
+  s.addEventListener('click',()=>{stars=i+1;litStars(stars);});
+});
+document.getElementById('starPick').addEventListener('mouseleave',()=>litStars(stars));
+
+document.getElementById('rvSub').addEventListener('click',()=>{
+  const nm=document.getElementById('rvNombre').value.trim();
+  const tx=document.getElementById('rvText').value.trim();
+  if(!nm||!tx){alert('Por favor complete nombre y comentario.');return;}
+  allRevs.unshift({n:nm,t:tx,s:stars,d:'ahora mismo'});
+  renderRevs();
+  document.getElementById('rvNombre').value='';
+  document.getElementById('rvText').value='';
+  stars=5;litStars(5);
+});
+
+/* ─── APPOINTMENT → WHATSAPP ─── */
+document.getElementById('fSub').addEventListener('click',()=>{
+  const nm=document.getElementById('fNombre').value.trim();
+  const ph=document.getElementById('fTel').value.trim();
+  const tp=document.getElementById('fTipo');
+  const tpTxt=tp.options[tp.selectedIndex].text;
+  const dt=document.getElementById('fFecha').value.trim();
+  if(!nm||!ph){alert('Por favor complete su nombre y teléfono.');return;}
+  const msg='Hola, soy '+nm+'. Quiero agendar: '+(tpTxt||'una cita')+(dt?' para '+dt:'')+'. Mi contacto: '+ph;
+  window.open('https://wa.me/573215951512?text='+encodeURIComponent(msg),'_blank','noopener');
+});
+
+/* ─── INIT ─── */
 observeAll();
-// Fallback: force-reveal all elements that didn't trigger via IntersectionObserver
-setTimeout(() => document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible')), 600);
-setMinDate();
-
-// Reduced motion support
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.querySelectorAll('.droplet').forEach(d => d.style.animation = 'none');
-}
-
-
-// ══════════════════════════════════════════════════════════
-// REACT-BITS PORTS — vanilla JS/CSS implementations
-// ══════════════════════════════════════════════════════════
-
-// ── Vision Before/After Slider ───────────────────────────
-(function() {
-  const wrap   = document.getElementById('visionSlider');
-  const before = document.getElementById('visionBefore');
-  const after  = document.getElementById('visionAfter');
-  const handle = document.getElementById('visionHandle');
-  if (!wrap || !before || !after || !handle) return;
-
-  let dragging = false;
-
-  function setPos(clientX) {
-    const rect = wrap.getBoundingClientRect();
-    let pct = (clientX - rect.left) / rect.width;
-    pct = Math.max(0.01, Math.min(0.99, pct));
-    before.style.clipPath = `inset(0 ${(1 - pct) * 100}% 0 0)`;
-    after.style.clipPath  = `inset(0 0 0 ${pct * 100}%)`;
-    handle.style.left = (pct * 100) + '%';
-  }
-
-  wrap.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); e.preventDefault(); });
-  window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
-  window.addEventListener('mouseup', () => { dragging = false; });
-  wrap.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
-  window.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
-  window.addEventListener('touchend', () => { dragging = false; });
-})();
-
-// ── Aurora (WebGL2 port of react-bits Aurora) ─────────────
-(function initAurora() {
-  const canvas = document.getElementById('aurora-canvas');
-  if (!canvas) return;
-  const gl = canvas.getContext('webgl2');
-  if (!gl) { canvas.style.display = 'none'; return; }
-
-  gl.enable(gl.BLEND);
-  gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-
-  const vert = `#version 300 es
-in vec2 position;
-void main(){ gl_Position = vec4(position,0.0,1.0); }`;
-
-  const frag = `#version 300 es
-precision highp float;
-uniform float uTime;
-uniform float uAmplitude;
-uniform vec3  uColorStops[3];
-uniform vec2  uResolution;
-uniform float uBlend;
-out vec4 fragColor;
-
-vec3 permute(vec3 x){ return mod(((x*34.0)+1.0)*x,289.0); }
-
-float snoise(vec2 v){
-  const vec4 C=vec4(.211324865,.366025403,-.577350269,.024390243);
-  vec2 i=floor(v+dot(v,C.yy));
-  vec2 x0=v-i+dot(i,C.xx);
-  vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);
-  vec4 x12=x0.xyxy+C.xxzz; x12.xy-=i1;
-  i=mod(i,289.);
-  vec3 p=permute(permute(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));
-  vec3 m=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);
-  m*=m; m*=m;
-  vec3 x=2.*fract(p*C.www)-1.;
-  vec3 h=abs(x)-.5;
-  vec3 ox=floor(x+.5);
-  vec3 a0=x-ox;
-  m*=1.79284291-.85373472*(a0*a0+h*h);
-  vec3 g;
-  g.x=a0.x*x0.x+h.x*x0.y;
-  g.yz=a0.yz*x12.xz+h.yz*x12.yw;
-  return 130.*dot(m,g);
-}
-
-void main(){
-  vec2 uv=gl_FragCoord.xy/uResolution;
-
-  // color ramp
-  vec3 c0=uColorStops[0], c1=uColorStops[1], c2=uColorStops[2];
-  vec3 ramp;
-  if(uv.x<0.5){ ramp=mix(c0,c1,uv.x*2.0); }
-  else         { ramp=mix(c1,c2,(uv.x-0.5)*2.0); }
-
-  float h=snoise(vec2(uv.x*2.0+uTime*0.1,uTime*0.25))*0.5*uAmplitude;
-  h=exp(h);
-  h=(uv.y*2.0-h+0.2);
-  float intensity=0.6*h;
-  float mid=0.20;
-  float alpha=smoothstep(mid-uBlend*0.5,mid+uBlend*0.5,intensity);
-  vec3 col=intensity*ramp;
-  fragColor=vec4(col*alpha,alpha);
-}`;
-
-  function compileShader(type, src) {
-    const s = gl.createShader(type);
-    gl.shaderSource(s, src); gl.compileShader(s);
-    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(s)); return null; }
-    return s;
-  }
-  const vs = compileShader(gl.VERTEX_SHADER, vert);
-  const fs = compileShader(gl.FRAGMENT_SHADER, frag);
-  if (!vs || !fs) { canvas.style.display = 'none'; return; }
-  const prog = gl.createProgram();
-  gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
-
-  // Full-screen triangle
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
-  const posLoc = gl.getAttribLocation(prog, 'position');
-
-  // Uniform locations
-  const uTime      = gl.getUniformLocation(prog, 'uTime');
-  const uAmp       = gl.getUniformLocation(prog, 'uAmplitude');
-  const uStops     = gl.getUniformLocation(prog, 'uColorStops');
-  const uRes       = gl.getUniformLocation(prog, 'uResolution');
-  const uBlend     = gl.getUniformLocation(prog, 'uBlend');
-
-  // Óptica Prada colors: deep-blue → gold → navy
-  const stops = [
-    [0.0, 0.47, 0.71],  // #0077B6
-    [0.78, 0.66, 0.32], // #C8A951 gold
-    [0.0, 0.03, 0.08],  // #000814 navy
-  ];
-
-  function resize() {
-    const w = canvas.offsetWidth, h = canvas.offsetHeight;
-    canvas.width = w; canvas.height = h;
-    gl.viewport(0, 0, w, h);
-  }
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
-
-  let t = 0;
-  function frame(ts) {
-    t = ts * 0.001;
-    gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.useProgram(prog);
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.enableVertexAttribArray(posLoc);
-    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
-    gl.uniform1f(uTime, t);
-    gl.uniform1f(uAmp, 1.2);
-    gl.uniform3fv(uStops, new Float32Array(stops.flat()));
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.uniform1f(uBlend, 0.6);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-})();
-
-// ── BlurText (react-bits port) ────────────────────────────
-(function initBlurText() {
-  function applyBlurText(el, direction) {
-    if (!el) return;
-    const text = el.textContent;
-    const words = text.trim().split(/\s+/);
-    el.innerHTML = words.map((w, i) =>
-      `<span class="rb-blur-word" style="animation-delay:${i * 120}ms">${w}</span>`
-    ).join(' ');
-
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          el.querySelectorAll('.rb-blur-word').forEach(s => s.classList.add('rb-animated'));
-          obs.unobserve(el);
-        }
-      });
-    }, { threshold: 0.1 });
-    obs.observe(el);
-  }
-
-  applyBlurText(document.getElementById('hero-subtitle-el'), 'bottom');
-})();
-
-// ── CountUp (react-bits port with spring-like easing) ─────
-(function initCountUp() {
-  function easeOutExpo(t) {
-    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-  }
-
-  function animateCount(el) {
-    const to       = parseFloat(el.dataset.to)   || 0;
-    const from     = parseFloat(el.dataset.from)  || 0;
-    const dur      = (parseFloat(el.dataset.duration) || 2) * 1000;
-    const suffix   = el.dataset.suffix || '';
-    const divide   = parseFloat(el.dataset.divide) || 1;
-    let start = null;
-
-    function step(ts) {
-      if (!start) start = ts;
-      const elapsed = ts - start;
-      const progress = Math.min(elapsed / dur, 1);
-      const eased = easeOutExpo(progress);
-      const current = from + (to - from) * eased;
-      const display = divide !== 1
-        ? (current / divide).toFixed(current / divide < 10 ? 1 : 0)
-        : Math.round(current);
-      el.textContent = display + suffix;
-      if (progress < 1) requestAnimationFrame(step);
-    }
-
-    requestAnimationFrame(step);
-  }
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCount(entry.target);
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.rb-countup').forEach(el => obs.observe(el));
-})();
+setTimeout(()=>document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>el.classList.add('in')),800);
 </script>
 </body>
 </html>
