@@ -89,8 +89,8 @@ def parse_filename(stem: str):
     if m:
         return m.group(1).strip().lower(), None   # key sin sufijo, sin meta
 
-    # Lentes de contacto
-    m = re.match(r"^Lentes de contacto-(.+)$", stem, re.IGNORECASE)
+    # Lentes de contacto (con o sin guion: "Lentes de contacto-Soflens 59" o "Lentes de contacto Purevision 2")
+    m = re.match(r"^Lentes de contacto[-\s]+(.+)$", stem, re.IGNORECASE)
     if m:
         display = m.group(1).strip()
         key = stem.lower()
