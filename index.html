@@ -372,6 +372,7 @@ footer{background:var(--sf);border-top:1px solid var(--bd);padding:2.25rem 2rem}
       <button class="ftab on" data-cat="todos" data-k="f.a">Todos</button>
       <button class="ftab" data-cat="monturas" data-k="f.m">Monturas</button>
       <button class="ftab" data-cat="sol" data-k="f.g">Gafas de Sol</button>
+      <button class="ftab" data-cat="lentes" data-k="f.l">Lentes de Contacto</button>
     </div>
     <div class="pgrid" id="pgrid"></div>
     <div class="store-cta reveal">
@@ -474,7 +475,7 @@ const T={
     'sv.g.n':'Gafas de Sol','sv.g.d':'Protección UV certificada con diseños contemporáneos para cada ocasión.',
     'sv.l.n':'Lentes de Contacto','sv.l.d':'Adaptación personalizada con seguimiento profesional por el Dr. Prada.',
     'pr.ey':'Catálogo','pr.t':'Nuestras Monturas','pr.cta':'Agendar Cita para Ver Monturas',
-    'f.a':'Todos','f.m':'Monturas','f.g':'Gafas de Sol',
+    'f.a':'Todos','f.m':'Monturas','f.g':'Gafas de Sol','f.l':'Lentes de Contacto',
     'dr.ey':'El Especialista',
     'dr.b':'Optómetra con más de 5 años de experiencia clínica y certificaciones de reconocimiento internacional. Tecnología LUCID KR para diagnósticos de máxima precisión.',
     'dr.c1':'Especialista en Optometría Clínica','dr.c2':'Certificación Internacional en Contactología',
@@ -497,7 +498,7 @@ const T={
     'sv.g.n':'Sunglasses','sv.g.d':'Certified UV protection with contemporary designs for every occasion.',
     'sv.l.n':'Contact Lenses','sv.l.d':'Personalized fitting with professional follow-up by Dr. Prada.',
     'pr.ey':'Catalog','pr.t':'Our Frames','pr.cta':'Book Appointment to See Frames',
-    'f.a':'All','f.m':'Frames','f.g':'Sunglasses',
+    'f.a':'All','f.m':'Frames','f.g':'Sunglasses','f.l':'Contact Lenses',
     'dr.ey':'The Specialist',
     'dr.b':'Optometrist with over 5 years of clinical experience and internationally recognized certifications. LUCID KR technology for maximum precision diagnostics.',
     'dr.c1':'Clinical Optometry Specialist','dr.c2':'International Certification in Contactology',
@@ -552,16 +553,13 @@ function observeAll(){
 }
 
 /* ─── PRODUCTS ─── */
+/* PRODUCTS_START */
 const prods=[
-  {n:'Montura 1',m:'Acetato',c:'monturas',img:'assets/products/doc-image1-22.webp'},
-  {n:'Montura 2',m:'Metal',c:'monturas',img:''},
-  {n:'Montura 3',m:'Titanio',c:'monturas',img:''},
-  {n:'Montura 4',m:'Acetato',c:'monturas',img:''},
-  {n:'Sol 1',m:'Policarbonato',c:'sol',img:''},
-  {n:'Sol 2',m:'Metal dorado',c:'sol',img:''},
-  {n:'Montura 5',m:'Acetato grueso',c:'monturas',img:''},
-  {n:'Sol 3',m:'Acetato',c:'sol',img:''},
+  {n:'Montura 1',m:'Monturas',c:'monturas',img:''},
+  {n:'Montura 2',m:'Monturas',c:'monturas',img:''},
+  {n:'Sol 1',m:'Gafas de Sol',c:'sol',img:''},
 ];
+/* PRODUCTS_END */
 let activeCat='todos';
 function renderProducts(cat){
   activeCat=cat;
