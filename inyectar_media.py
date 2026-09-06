@@ -95,25 +95,35 @@ def parse_filename(stem: str):
     if m:
         return m.group(1).strip().lower(), None   # key sin sufijo, sin meta
 
-    # Nueva convención: "Categoría - Nombre producto" (con espacios alrededor del guion)
-    # Ej: "Soluciones - Multisolution Oxi", "Gotas - Refresh Plus"
-    CAT_MAP = {
-        "lentes cosmetico":   ("cosmeticos",   "Lentes Cosméticos"),
-        "lentes cosméticos":  ("cosmeticos",   "Lentes Cosméticos"),
-        "gotas":              ("gotas",         "Gotas"),
-        "lentes esfericos":   ("esfericos",     "Lentes Esféricos"),
-        "lentes esféricos":   ("esfericos",     "Lentes Esféricos"),
-        "lentes multifocales":("multifocales",  "Lentes Multifocales"),
-        "lentes toricos":     ("toricos",       "Lentes Tóricos"),
-        "lentes tóricos":     ("toricos",       "Lentes Tóricos"),
-        "soluciones":         ("soluciones",    "Soluciones"),
-    }
+    # Tabla de prefijos de categoría (orden importa: más largo primero)
+    CAT_PREFIXES = [
+        ("lentes cosmeticos",   "cosmeticos",   "Lentes Cosméticos"),
+        ("lentes cosméticos",   "cosmeticos",   "Lentes Cosméticos"),
+        ("lentes cosmetico",    "cosmeticos",   "Lentes Cosméticos"),
+        ("lentes multifocales", "multifocales", "Lentes Multifocales"),
+        ("lentes esfericos",    "esfericos",    "Lentes Esféricos"),
+        ("lentes esféricos",    "esfericos",    "Lentes Esféricos"),
+        ("lentes toricos",      "toricos",      "Lentes Tóricos"),
+        ("lentes tóricos",      "toricos",      "Lentes Tóricos"),
+        ("soluciones",          "soluciones",   "Soluciones"),
+        ("gotas",               "gotas",        "Gotas"),
+    ]
+    stem_l = stem.lower()
+
+    # Formato "Categoría - Nombre" (con guion y espacios)
     m = re.match(r"^(.+?)\s+-\s+(.+)$", stem)
     if m:
         cat_raw = m.group(1).strip().lower()
         display  = m.group(2).strip()
-        if cat_raw in CAT_MAP:
-            cat_code, mat = CAT_MAP[cat_raw]
+        for prefix, cat_code, mat in CAT_PREFIXES:
+            if cat_raw == prefix:
+                key = f"{cat_code}-{display.lower()}"
+                return key, {"n": display, "m": mat, "c": cat_code}
+
+    # Formato "Categoria NombreProducto" (sin guion — prefijo al inicio)
+    for prefix, cat_code, mat in CAT_PREFIXES:
+        if stem_l.startswith(prefix + " "):
+            display = stem[len(prefix):].strip()
             key = f"{cat_code}-{display.lower()}"
             return key, {"n": display, "m": mat, "c": cat_code}
 
