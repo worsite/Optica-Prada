@@ -100,11 +100,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .hlens::before{content:'';position:absolute;inset:14%;border-radius:50%;border:1px solid rgba(196,154,42,.12)}
 .hlens::after{content:'';position:absolute;inset:28%;border-radius:50%;border:1px solid rgba(196,154,42,.08);background:radial-gradient(ellipse at 35% 35%,rgba(196,154,42,.06) 0%,transparent 65%)}
 .hcontent{position:relative;max-width:var(--mw);width:100%;margin:0 auto;padding:0 2rem}
-.h-ey{color:var(--ac);font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.25rem}
-.h-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3.4rem,7.5vw,6rem);line-height:1.06;color:#EDE0C4;max-width:700px;margin-bottom:1.5rem;text-wrap:balance}
+.h-ey{color:var(--ac);font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.25rem;animation:fadeUp .8s .2s both}
+.h-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3.4rem,7.5vw,6rem);line-height:1.06;color:#EDE0C4;max-width:700px;margin-bottom:1.5rem;text-wrap:balance;animation:fadeUp .9s .4s both}
 .h-title em{font-style:italic}
-.h-sub{font-size:.98rem;font-weight:300;color:rgba(237,224,196,.55);max-width:420px;margin-bottom:2.5rem;line-height:1.8}
-.h-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.h-sub{font-size:.98rem;font-weight:300;color:rgba(237,224,196,.55);max-width:420px;margin-bottom:2.5rem;line-height:1.8;animation:fadeUp .9s .6s both}
+.h-ctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .9s .75s both}
 .btn-gold{background:linear-gradient(135deg,#C49A2A,#E8C84A);color:#0C0A06;border-radius:999px;padding:14px 32px;font-size:.88rem;font-weight:700;letter-spacing:.03em;transition:all .25s;cursor:pointer;border:none}
 .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,154,42,.4)}
 .btn-ghost{border:1px solid rgba(237,224,196,.25);color:rgba(237,224,196,.75);border-radius:999px;padding:14px 32px;font-size:.88rem;font-weight:400;transition:all .2s;cursor:pointer;background:transparent}
@@ -219,28 +219,6 @@ textarea.finput{resize:vertical}
 .fselect{width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-family:inherit;font-size:.87rem;outline:none;cursor:pointer;margin-bottom:.75rem}
 .map-wrap{border-radius:var(--r);overflow:hidden;border:1px solid var(--bd);height:360px;margin-top:3rem}
 .map-wrap iframe{width:100%;height:100%;border:0;display:block}
-
-
-/* ─── MODAL ─── */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s}
-.modal-overlay.open{opacity:1;pointer-events:all}
-.modal-box{background:var(--sf);border-radius:var(--r);border:1px solid var(--bd);max-width:680px;width:100%;max-height:90svh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;transform:translateY(20px);transition:transform .3s;position:relative}
-.modal-overlay.open .modal-box{transform:translateY(0)}
-@media(max-width:560px){.modal-box{grid-template-columns:1fr}}
-.modal-img-wrap{aspect-ratio:1;background:var(--bg);overflow:hidden}
-.modal-img-wrap img{width:100%;height:100%;object-fit:cover}
-.modal-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-.modal-body{padding:2rem 1.75rem 2rem;display:flex;flex-direction:column;gap:.75rem}
-.modal-close{position:absolute;top:.75rem;right:.75rem;width:30px;height:30px;border-radius:50%;background:var(--sf2);border:1px solid var(--bd);color:var(--t2);font-size:1.1rem;display:grid;place-items:center;cursor:pointer;z-index:1;transition:all .2s}
-.modal-close:hover{background:rgba(196,154,42,.15);color:var(--ac)}
-.modal-cat-badge{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);border:1px solid rgba(196,154,42,.35);border-radius:999px;padding:3px 10px}
-.modal-name{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;line-height:1.2}
-.modal-desc{font-size:.84rem;color:var(--t2);line-height:1.75}
-.modal-blist{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
-.modal-blist li{display:flex;gap:.6rem;font-size:.82rem;color:var(--t2);align-items:flex-start}
-.modal-blist li::before{content:'✦';color:var(--ac);flex-shrink:0;font-size:.7rem;margin-top:.18rem}
-.modal-wa{display:flex;align-items:center;gap:.6rem;background:#25D366;color:#fff;border-radius:999px;padding:11px 20px;font-size:.82rem;font-weight:700;width:fit-content;margin-top:.5rem;transition:all .2s}
-.modal-wa:hover{opacity:.88;transform:translateY(-1px)}
 
 /* ─── FOOTER ─── */
 footer{background:var(--sf);border-top:1px solid var(--bd);padding:2.25rem 2rem}
@@ -588,61 +566,13 @@ const prods=[
   {n:'Sol 1',m:'Gafas de Sol',c:'sol',img:''},
 ];
 /* PRODUCTS_END */
-/* ─── PRODUCT INFO DB ─── */
-const PINFO={
-  'soflens 59':{desc:'Lentes de contacto blandos mensuales Bausch+Lomb diseñados para máxima comodidad durante todo el día.',ben:['Hidratación continua hasta 16 horas de uso','Material hydrogel de alta calidad','Corrección de miopía e hipermetropía','Reemplazo mensual']},
-  'purevision 2':{desc:'Lentes de silicona-hidrogel de Bausch+Lomb con tecnología HD para nitidez superior día y noche.',ben:['Silicona-hidrogel de última generación','Alta permeabilidad al oxígeno','Reducción de halos y destellos nocturnos','Uso diario o extendido hasta 30 días']},
-  'air optix aqua':{desc:'Lentes mensuales de silicona-hidrogel con tecnología SmartShield que repelen depósitos y mantienen la comodidad.',ben:['Tecnología SmartShield anti-depósitos','Alta transmisión de oxígeno','Hidratación continua todo el día','Reemplazo mensual']},
-  'air optix for astigmatism':{desc:'Lentes tóricos mensuales para corrección precisa del astigmatismo con estabilidad todo el día.',ben:['Sistema de estabilización Precision Balance 8|4','Corrección estable del astigmatismo','Silicona-hidrogel transpirable','Comodidad durante 30 días']},
-  'air optix aqua multifocal':{desc:'Lentes multifocales para presbicia que permiten ver de cerca, lejos e intermedio con una sola lente.',ben:['Tecnología 3-Zone Progressive','Visión clara a todas las distancias','Material silicona-hidrogel','Reemplazo mensual']},
-  'acuvue oasys':{desc:'Lentes de silicona-hidrogel quincenales con tecnología HYDRACLEAR para ojos secos o ambientes difíciles.',ben:['Tecnología HYDRACLEAR PLUS','UV-blocking clase 1 (máxima protección)','Para ambientes secos o frente a pantallas','Reemplazo cada 2 semanas']},
-  'acuvue oasys for astigmatism':{desc:'Lentes tóricos quincenales con sistema de estabilización para astigmatismo en cualquier condición.',ben:['Sistema Accelerated Stabilization Design','Estabilidad en movimiento y parpadeo','HYDRACLEAR PLUS para máxima humectación','Protección UV clase 1']},
-  'biotrue oneday':{desc:'Lentes diarios que imitan la biología del ojo con 98% de contenido de agua para comodidad natural.',ben:['98% de contenido de agua como el ojo','Tecnología de humectación dual','Desechable diario — sin mantenimiento','Visión nítida y confort todo el día']},
-  'freshlook colorblends':{desc:'Lentes cosméticos mensuales que mezclan tres colores para un cambio de look natural y llamativo.',ben:['Tecnología 3-en-1 de mezcla de colores','Apariencia natural en ojos claros u oscuros','Con o sin corrección visual','Reemplazo mensual']},
-  'refresh plus':{desc:'Gotas lubricantes monodosis sin conservantes para alivio inmediato de la sequedad ocular.',ben:['Sin conservantes — aptas para lentes de contacto','Unidosis estériles de un solo uso','Alivio inmediato de picor y sequedad','Formulación hipotónica suave']},
-  'refresh tears':{desc:'Lubricante ocular de larga duración para alivio del ojo seco moderado a severo.',ben:['Fórmula de carboximetilcelulosa sódica','Alivio prolongado de ojo seco','Compatible con lentes de contacto blandos','Sin necesidad de retirar las lentes']},
-  'systane ultra':{desc:'Gotas lubricantes de alta performance para síntomas severos de ojo seco con efecto prolongado.',ben:['Tecnología de polímero prolongado','Alivio duradero desde la primera gota','Reducción de ardor e irritación','Disponible con y sin conservantes']},
-  'systane balance':{desc:'Gotas especialmente formuladas para ojo seco evaporativo causado por disfunción de glándulas de Meibomio.',ben:['Restaura la capa lipídica de la película lagrimal','Tecnología LipiTech emulsión aceite-agua','Reduce la evaporación de las lágrimas','Ideal para usuarios de pantallas']},
-  'visine':{desc:'Gotas oftálmicas para el alivio rápido del enrojecimiento e irritación ocular leve.',ben:['Acción vasoconstrictora rápida','Alivio del enrojecimiento en minutos','Fórmula refrescante','Para uso ocasional']},
-  'multisolution oxi':{desc:'Solución multiuso para el cuidado completo de lentes de contacto blandos — limpia, aclara y desinfecta.',ben:['Limpieza, aclarado, desinfección en un paso','Fórmula suave con peróxido de hidrógeno estabilizado','Compatible con la mayoría de lentes blandos','Sin enjuague adicional requerido']},
-  'renu multiplus':{desc:'Solución multiuso Bausch+Lomb con tecnología de limpieza HYDRANATE para lentes de contacto blandos.',ben:['Tecnología HYDRANATE para humectación','Elimina proteínas y depósitos','Un solo frasco para toda la rutina','Suave con los ojos más sensibles']},
-  'opti-free express':{desc:'Solución multiuso de alta desinfección con ALDOX para una limpieza profunda y comodidad prolongada.',ben:['Desinfección con ALDOX de amplio espectro','HydraGlyde para comodidad de desgaste','Compatible con silicona-hidrogel','Limpieza profunda en pocos minutos']},
-  'biotrue solution':{desc:'Solución multiuso que imita la biología del ojo para una desinfección efectiva y comodidad natural.',ben:['Formulada con ácido hialurónico','pH similar al de las lágrimas naturales','Mantiene las proteínas beneficiosas','Compatible con todos los lentes blandos']},
-};
-function getPInfo(name){
-  const k=name.toLowerCase().trim();
-  for(const [key,val] of Object.entries(PINFO)){if(k.includes(key)||key.includes(k))return val;}
-  return {desc:'Consulte con nuestro especialista Dr. Prada para conocer todos los detalles de este producto.',ben:['Atención personalizada','Garantía de calidad','Asesoría profesional']};
-}
-
-/* ─── MODAL ─── */
-const overlay=document.getElementById('modalOverlay');
-const modalClose=document.getElementById('modalClose');
-function openModal(p){
-  const info=getPInfo(p.n);
-  document.getElementById('modalCat').textContent=p.m;
-  document.getElementById('modalName').textContent=p.n;
-  document.getElementById('modalDesc').textContent=info.desc;
-  document.getElementById('modalBenefits').innerHTML=info.ben.map(b=>`<li>${b}</li>`).join('');
-  const wrap=document.getElementById('modalImgWrap');
-  wrap.innerHTML=p.img?`<img src="${p.img}" alt="${p.n}">`:'<div class="modal-img-ph"><div style="width:60%;height:40%;background:var(--bd);border-radius:8px;opacity:.5"></div></div>';
-  const msg=encodeURIComponent(`Hola, me interesa el producto: ${p.n}. ¿Podrían darme más información?`);
-  document.getElementById('modalWa').href=`https://wa.me/573215951512?text=${msg}`;
-  overlay.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(){overlay.classList.remove('open');document.body.style.overflow='';}
-modalClose.addEventListener('click',closeModal);
-overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-
 let activeCat='todos';
 function renderProducts(cat){
   activeCat=cat;
   const s=T[lang];
   const list=cat==='todos'?prods:prods.filter(p=>p.c===cat);
   document.getElementById('pgrid').innerHTML=list.map((p,i)=>`
-    <div class="pcard reveal" style="transition-delay:${i*60}ms" data-idx="${i}">
+    <div class="pcard reveal" style="transition-delay:${i*60}ms">
       <div class="pimg">${p.img?`<img src="${p.img}" alt="${p.n}" loading="lazy">`:'<div class="pimg-ph"></div>'}</div>
       <div class="pinfo">
         <div class="pnm">${p.n}</div>
@@ -650,9 +580,6 @@ function renderProducts(cat){
         <div class="ppr">${s['pr.q']||'Consultar'}</div>
       </div>
     </div>`).join('');
-  document.querySelectorAll('.pcard').forEach((card,i)=>{
-    card.addEventListener('click',()=>openModal(list[i]));
-  });
   observeAll();
 }
 document.getElementById('ftabs').addEventListener('click',e=>{
@@ -751,26 +678,7 @@ document.getElementById('fSub').addEventListener('click',()=>{
 
 /* ─── INIT ─── */
 observeAll();
-// Forzar visibilidad en caso de archivos grandes
-setTimeout(()=>document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>el.classList.add('in')),400);
+setTimeout(()=>document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>el.classList.add('in')),800);
 </script>
-
-<!-- MODAL PRODUCTO -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-box" id="modalBox">
-    <button class="modal-close" id="modalClose" aria-label="Cerrar">✕</button>
-    <div class="modal-img-wrap" id="modalImgWrap"></div>
-    <div class="modal-body">
-      <span class="modal-cat-badge" id="modalCat"></span>
-      <div class="modal-name" id="modalName"></div>
-      <p class="modal-desc" id="modalDesc"></p>
-      <ul class="modal-blist" id="modalBenefits"></ul>
-      <a class="modal-wa" id="modalWa" href="#" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-        Consultar por WhatsApp
-      </a>
-    </div>
-  </div>
-</div>
 </body>
 </html>
