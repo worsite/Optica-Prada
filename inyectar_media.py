@@ -3,13 +3,19 @@ inyectar_media.py — Ópticas Prada
 Inyecta imágenes de la carpeta media/ en index.html.
 
 Reglas de nombres de archivo:
-  Montura4.png            → monturas, "Montura 4"
-  Montura19-97823.png     → monturas, "Ref. 97823"
-  Sol3.png                → sol,      "Sol 3"
-  Sol5-RayBan.png         → sol,      "Ref. RayBan"
-  Lentes de contacto-Soflens 59.png → lentes, "Soflens 59"
-  Montura4-foto2.png      → segunda foto del modal de Montura 4
-  (cualquier otro)        → monturas, nombre = nombre del archivo
+  Montura4.png                        → monturas,    "Montura 4"
+  Montura19-97823.png                 → monturas,    "Ref. 97823"
+  Sol3.png                            → sol,         "Sol 3"
+  Sol5-RayBan.png                     → sol,         "Ref. RayBan"
+  Lentes de contacto-Soflens 59.png   → lentes,      "Soflens 59"
+  Lentes de contacto Purevision 2.png → lentes,      "Purevision 2"
+  Soluciones - Multisolution Oxi.png  → soluciones,  "Multisolution Oxi"
+  Gotas - Refresh Plus.png            → gotas,       "Refresh Plus"
+  Lentes cosmetico - FreshLook.png    → cosmeticos,  "FreshLook"
+  Lentes esfericos - Air Optix.png    → esfericos,   "Air Optix"
+  Lentes multifocales - Bifocal.png   → multifocales,"Bifocal"
+  Lentes toricos - Toric XR.png       → toricos,     "Toric XR"
+  Montura4-foto2.png                  → segunda foto del modal de Montura 4
 
 Uso:
   pip install Pillow
@@ -88,6 +94,28 @@ def parse_filename(stem: str):
     m = re.match(r"^(.+?)-(foto\d+)$", stem, re.IGNORECASE)
     if m:
         return m.group(1).strip().lower(), None   # key sin sufijo, sin meta
+
+    # Nueva convención: "Categoría - Nombre producto" (con espacios alrededor del guion)
+    # Ej: "Soluciones - Multisolution Oxi", "Gotas - Refresh Plus"
+    CAT_MAP = {
+        "lentes cosmetico":   ("cosmeticos",   "Lentes Cosméticos"),
+        "lentes cosméticos":  ("cosmeticos",   "Lentes Cosméticos"),
+        "gotas":              ("gotas",         "Gotas"),
+        "lentes esfericos":   ("esfericos",     "Lentes Esféricos"),
+        "lentes esféricos":   ("esfericos",     "Lentes Esféricos"),
+        "lentes multifocales":("multifocales",  "Lentes Multifocales"),
+        "lentes toricos":     ("toricos",       "Lentes Tóricos"),
+        "lentes tóricos":     ("toricos",       "Lentes Tóricos"),
+        "soluciones":         ("soluciones",    "Soluciones"),
+    }
+    m = re.match(r"^(.+?)\s+-\s+(.+)$", stem)
+    if m:
+        cat_raw = m.group(1).strip().lower()
+        display  = m.group(2).strip()
+        if cat_raw in CAT_MAP:
+            cat_code, mat = CAT_MAP[cat_raw]
+            key = f"{cat_code}-{display.lower()}"
+            return key, {"n": display, "m": mat, "c": cat_code}
 
     # Lentes de contacto (con o sin guion: "Lentes de contacto-Soflens 59" o "Lentes de contacto Purevision 2")
     m = re.match(r"^Lentes de contacto[-\s]+(.+)$", stem, re.IGNORECASE)
@@ -209,14 +237,20 @@ def main():
     print(f"Leyendo imágenes de '{MEDIA_DIR}'…")
     products = load_products(MEDIA_DIR)
 
-    cats = {"monturas": 0, "sol": 0, "lentes": 0}
+    cats = {}
     for p in products:
         cats[p["c"]] = cats.get(p["c"], 0) + 1
 
-    print(f"  Monturas:           {cats['monturas']}")
-    print(f"  Gafas de Sol:       {cats['sol']}")
-    print(f"  Lentes de Contacto: {cats['lentes']}")
-    print(f"  Total:              {len(products)}")
+    labels = {
+        "monturas":"Monturas","sol":"Gafas de Sol","lentes":"Lentes de Contacto",
+        "cosmeticos":"Lentes Cosméticos","esfericos":"Lentes Esféricos",
+        "multifocales":"Lentes Multifocales","toricos":"Lentes Tóricos",
+        "gotas":"Gotas","soluciones":"Soluciones",
+    }
+    for code, label in labels.items():
+        if cats.get(code, 0):
+            print(f"  {label+':':<26}{cats[code]}")
+    print(f"  {'Total:':<26}{len(products)}")
 
     js_block = build_js_block(products)
     inject(INPUT_HTML, OUTPUT_HTML, js_block)
