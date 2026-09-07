@@ -648,40 +648,86 @@ footer {
 .product-modal-box {
   background: linear-gradient(135deg, #000d1a 0%, #001428 100%);
   border: 1px solid var(--glass-border);
-  border-radius: 20px; max-width: 680px; width: 100%;
+  border-radius: 20px; max-width: 740px; width: 100%;
   max-height: 90vh; overflow-y: auto;
   animation: modalIn 0.3s ease;
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media(max-width: 700px) {
+  .product-modal-box { grid-template-columns: 1fr; }
 }
 .product-modal-img {
-  width: 100%; height: 280px; object-fit: cover;
-  border-radius: 16px 16px 0 0; display: block;
+  width: 100%; height: 100%; min-height: 400px; object-fit: cover;
+  border-radius: 20px 0 0 20px; display: block;
 }
-.product-modal-body { padding: 1.75rem; }
+@media(max-width: 700px) {
+  .product-modal-img { border-radius: 20px 20px 0 0; }
+}
+.product-modal-body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .product-modal-cat {
   font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 0.5rem;
+  color: var(--gold); margin-bottom: 0.75rem;
+  display: inline-block;
+  background: rgba(200,169,81,0.12);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  width: fit-content;
 }
 .product-modal-name {
   font-family: 'Playfair Display', serif;
-  font-size: 1.8rem; font-weight: 700; margin-bottom: 0.25rem; color: #fff;
+  font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; color: #fff;
+  line-height: 1.2;
 }
-.product-modal-price { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
-.product-modal-section { margin-bottom: 1.2rem; }
+.product-modal-price {
+  font-size: 1.1rem; color: var(--gold); margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+.product-modal-sections {
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+.product-modal-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(200,169,81,0.15);
+}
+.product-modal-section:last-child {
+  border-bottom: none;
+}
 .product-modal-label {
   font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gold-dark); margin-bottom: 0.4rem;
+  color: var(--gold-dark); margin-bottom: 0.6rem;
+  display: block;
 }
-.product-modal-value { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
-.product-modal-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.product-modal-value {
+  font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.7;
+}
+.product-modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-direction: column;
+  margin-top: auto;
+}
 .product-modal-close {
-  position: absolute; top: 1rem; right: 1rem;
+  position: absolute; top: 1.5rem; right: 1.5rem;
   background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7); width: 36px; height: 36px; border-radius: 50%;
-  cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s;
+  color: rgba(255,255,255,0.7); width: 40px; height: 40px; border-radius: 50%;
+  cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10;
 }
-.product-modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.product-modal-close:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  transform: scale(1.1);
+}
 .btn-add-cart {
   flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
   padding: 0.85rem 1.5rem; border-radius: 8px;
@@ -738,38 +784,104 @@ footer {
   transition: background 0.2s;
 }
 .cart-panel-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
-.cart-items { padding: 1rem 1.5rem; min-height: 100px; }
+.cart-items {
+  padding: 1.5rem;
+  min-height: 120px;
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;
+}
 .cart-empty {
-  text-align: center; color: rgba(255,255,255,0.35);
-  font-size: 0.9rem; padding: 2rem 0;
+  text-align: center;
+  color: rgba(255,255,255,0.35);
+  font-size: 0.95rem;
+  padding: 2.5rem 0;
+  line-height: 1.6;
 }
 .cart-item {
-  display: flex; gap: 0.75rem; align-items: center;
-  padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1rem; border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(200,169,81,0.1);
+  margin-bottom: 0.75rem;
+  transition: background 0.2s;
 }
-.cart-item:last-child { border-bottom: none; }
+.cart-item:hover { background: rgba(255,255,255,0.06); }
+.cart-item:last-child { margin-bottom: 0; }
 .cart-item-img {
-  width: 54px; height: 54px; border-radius: 8px; object-fit: cover; flex-shrink: 0;
+  width: 64px; height: 64px; border-radius: 8px; object-fit: cover; flex-shrink: 0;
+  border: 1px solid rgba(200,169,81,0.2);
 }
-.cart-item-info { flex: 1; min-width: 0; }
-.cart-item-name { font-size: 0.85rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cart-item-cat { font-size: 0.7rem; color: var(--gold); margin-top: 0.1rem; }
+.cart-item-info {
+  flex: 1; min-width: 0;
+}
+.cart-item-name {
+  font-size: 0.9rem; font-weight: 600; color: #fff;
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
+}
+.cart-item-cat {
+  font-size: 0.7rem; color: var(--gold);
+  display: inline-block;
+  background: rgba(200,169,81,0.12);
+  padding: 0.25rem 0.6rem;
+  border-radius: 10px;
+}
 .cart-item-remove {
-  background: none; border: none; color: rgba(255,255,255,0.3);
-  font-size: 1.2rem; cursor: pointer; padding: 0.25rem; transition: color 0.2s;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.6);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
 }
-.cart-item-remove:hover { color: #ff6b6b; }
-.cart-panel-footer { padding: 1rem 1.5rem 1.5rem; }
+.cart-item-remove:hover {
+  background: rgba(255,100,100,0.15);
+  border-color: rgba(255,100,100,0.5);
+  color: #ff6b6b;
+}
+.cart-panel-footer {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.3);
+}
 .cart-cotizar-btn {
-  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
-  width: 100%; padding: 1rem; border-radius: 10px;
-  background: #25D366; color: #fff;
-  font-size: 1rem; font-weight: 700; text-decoration: none;
-  box-shadow: 0 4px 24px rgba(37,211,102,0.3);
-  transition: background 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1.1rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #25D366 0%, #1fad55 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 30px rgba(37,211,102,0.35);
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(255,255,255,0.1);
 }
-.cart-cotizar-btn:hover { background: #1fad55; transform: translateY(-2px); }
-.cart-cotizar-btn svg { width: 20px; height: 20px; fill: #fff; }
+.cart-cotizar-btn:hover {
+  background: linear-gradient(135deg, #1fad55 0%, #189d4a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px rgba(37,211,102,0.45);
+}
+.cart-cotizar-btn:active {
+  transform: translateY(0);
+}
+.cart-cotizar-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+}
 
 /* ─── STORE ALL GRID ─────────────────────────────────── */
 .store-all-grid {
@@ -1335,30 +1447,34 @@ input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 <!-- PRODUCT DETAIL MODAL -->
 <div id="product-modal" role="dialog" aria-modal="true" aria-labelledby="prod-modal-name">
   <div class="product-modal-box">
-    <button class="product-modal-close" onclick="closeProductModal()" aria-label="Cerrar">×</button>
     <img class="product-modal-img" id="prod-modal-img" src="" alt="">
     <div class="product-modal-body">
-      <div class="product-modal-cat" id="prod-modal-cat"></div>
-      <div class="product-modal-name" id="prod-modal-name"></div>
-      <div class="product-modal-price" id="prod-modal-price"></div>
-      <div class="product-modal-section">
-        <div class="product-modal-label">Material</div>
-        <div class="product-modal-value" id="prod-modal-material"></div>
+      <button class="product-modal-close" onclick="closeProductModal()" aria-label="Cerrar">×</button>
+      <div>
+        <div class="product-modal-cat" id="prod-modal-cat"></div>
+        <div class="product-modal-name" id="prod-modal-name"></div>
+        <div class="product-modal-price" id="prod-modal-price"></div>
       </div>
-      <div class="product-modal-section">
-        <div class="product-modal-label">Descripción</div>
-        <div class="product-modal-value" id="prod-modal-desc"></div>
-      </div>
-      <div class="product-modal-section">
-        <div class="product-modal-label">¿Con qué estilo combina?</div>
-        <div class="product-modal-value" id="prod-modal-style"></div>
+      <div class="product-modal-sections">
+        <div class="product-modal-section">
+          <label class="product-modal-label">Material</label>
+          <div class="product-modal-value" id="prod-modal-material"></div>
+        </div>
+        <div class="product-modal-section">
+          <label class="product-modal-label">Descripción</label>
+          <div class="product-modal-value" id="prod-modal-desc"></div>
+        </div>
+        <div class="product-modal-section">
+          <label class="product-modal-label">¿Con qué estilo combina?</label>
+          <div class="product-modal-value" id="prod-modal-style"></div>
+        </div>
       </div>
       <div class="product-modal-actions">
         <button class="btn-add-cart" id="prod-modal-cart-btn" onclick="addToCartFromModal()">
           ☁️ Agregar a Mi Deseo
         </button>
-        <a class="store-featured-wa" id="prod-modal-wa" href="#" target="_blank" rel="noopener" style="flex:1;justify-content:center;text-decoration:none">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        <a class="store-featured-wa" id="prod-modal-wa" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;border-radius:8px;background:var(--gold);color:var(--navy);font-weight:600;font-size:0.9rem;cursor:pointer;text-decoration:none;transition:opacity 0.2s;width:100%">
+          <svg viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.528 5.837L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.215-1.443l-.374-.22-3.882 1.013 1.036-3.784-.243-.388A9.953 9.953 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
           Cotizar
         </a>
       </div>
@@ -1601,9 +1717,10 @@ function renderStoreAll(cat) {
     const isActive = i === storeFeaturedIdx;
     return `
     <div class="store-thumb${isActive ? ' active-thumb' : ''}" data-idx="${i}"
-         onclick="setFeatured(${i},true)" title="${p.name}">
+         onclick="setFeatured(${i},true);openProductModal(${p.id})" title="${p.name}" style="cursor:pointer">
       <img src="${p.img}" alt="${p.name}" loading="lazy"
-           onerror="this.style.background='linear-gradient(135deg,#001d3d,#003566)';this.removeAttribute('src')">
+           onerror="this.style.background='linear-gradient(135deg,#001d3d,#003566)';this.removeAttribute('src')"
+           style="cursor:pointer;transition:transform 0.3s ease">
       <div class="store-thumb-name">${p.name}</div>
       <button class="store-thumb-add${inCart ? ' in-cart' : ''}"
               onclick="event.stopPropagation();${inCart ? `removeFromCart(${p.id})` : `addToCart(${p.id})`}"
