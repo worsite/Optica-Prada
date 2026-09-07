@@ -815,10 +815,15 @@ function closeCart(){
   panel.classList.remove('active');
   overlay.classList.remove('active');
 }
-document.getElementById('cartBtn').addEventListener('click',toggleCart);
-document.getElementById('cartOverlay').addEventListener('click',closeCart);
-document.getElementById('cartCloseBtn').addEventListener('click',closeCart);
-document.getElementById('cartCheckoutBtn').addEventListener('click',()=>{
+const cartBtn=document.getElementById('cartBtn');
+const cartOverlay=document.getElementById('cartOverlay');
+const cartCloseBtn=document.getElementById('cartCloseBtn');
+const cartCheckoutBtn=document.getElementById('cartCheckoutBtn');
+
+if(cartBtn)cartBtn.addEventListener('click',toggleCart);
+if(cartOverlay)cartOverlay.addEventListener('click',closeCart);
+if(cartCloseBtn)cartCloseBtn.addEventListener('click',closeCart);
+if(cartCheckoutBtn)cartCheckoutBtn.addEventListener('click',()=>{
   if(cart.length>0){
     const cartSummary=cart.map(item=>`${item.n} (cantidad: ${item.qty})`).join(', ');
     const message=encodeURIComponent(`Hola, me interesa consultar el precio de estos productos: ${cartSummary}`);
@@ -847,8 +852,11 @@ function closeProductModal(){
   modal.classList.remove('active');
   overlay.classList.remove('active');
 }
-document.getElementById('prodModalOverlay').addEventListener('click',closeProductModal);
-document.getElementById('prodModalCloseBtn').addEventListener('click',closeProductModal);
+const prodModalOverlay=document.getElementById('prodModalOverlay');
+const prodModalCloseBtn=document.getElementById('prodModalCloseBtn');
+
+if(prodModalOverlay)prodModalOverlay.addEventListener('click',closeProductModal);
+if(prodModalCloseBtn)prodModalCloseBtn.addEventListener('click',closeProductModal);
 
 updateCartBadge();
 renderCart();
