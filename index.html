@@ -229,6 +229,27 @@ footer{background:var(--sf);border-top:1px solid var(--bd);padding:2.25rem 2rem}
 .kafel-credit a{color:var(--ac);font-weight:700;border-bottom:1px solid currentColor;padding-bottom:1px;transition:opacity .2s}
 .kafel-credit a:hover{opacity:.7}
 
+/* ─── MODAL PRODUCTO ─── */
+.prod-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:998;animation:fadeIn .2s}
+.prod-modal-overlay.active{display:block}
+.prod-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.95);background:var(--sf);border-radius:var(--r);z-index:999;max-width:500px;width:90%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:slideUp .3s}
+.prod-modal.active{transform:translate(-50%,-50%) scale(1)}
+.prod-modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--tx);width:32px;height:32px;display:grid;place-items:center;transition:opacity .2s;z-index:10}
+.prod-modal-close:hover{opacity:.6}
+.prod-modal-img{width:100%;max-height:300px;object-fit:cover;border-radius:var(--r) var(--r) 0 0}
+.prod-modal-content{padding:2rem}
+.prod-modal-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:.5rem}
+.prod-modal-material{font-size:.9rem;color:var(--t2);margin-bottom:1.5rem}
+.prod-modal-desc{font-size:.9rem;line-height:1.6;color:var(--tx);margin-bottom:1.5rem}
+.prod-modal-action{display:flex;gap:1rem}
+.prod-modal-action button{flex:1;padding:12px;border-radius:6px;border:none;font-weight:700;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.03em;font-size:.85rem}
+.prod-modal-add{background:linear-gradient(135deg,var(--ac),var(--acl));color:#0C0A06}
+.prod-modal-add:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(196,154,42,.3)}
+.prod-modal-close-btn{background:var(--sf2);color:var(--tx);border:1px solid var(--bd)}
+.prod-modal-close-btn:hover{background:var(--bd)}
+@keyframes slideUp{from{transform:translate(-50%,-40%) scale(.95);opacity:0}to{transform:translate(-50%,-50%) scale(1);opacity:1}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
 /* ─── CART ─── */
 .cart-add-btn{background:linear-gradient(135deg,var(--ac),var(--acl));color:#0C0A06;border:none;border-radius:6px;padding:8px 12px;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .2s;margin-top:.5rem;width:100%;text-transform:uppercase;letter-spacing:.03em}
 .cart-add-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(196,154,42,.3)}
@@ -602,11 +623,12 @@ function renderProducts(cat){
   const list=cat==='todos'?prods:prods.filter(p=>p.c===cat);
   document.getElementById('pgrid').innerHTML=list.map((p,i)=>`
     <div class="pcard reveal" style="transition-delay:${i*60}ms">
-      <div class="pimg">${p.img?`<img src="${p.img}" alt="${p.n}" loading="lazy">`:'<div class="pimg-ph"></div>'}</div>
+      <div class="pimg" style="cursor:pointer" onclick="openProductModal({n:'${p.n.replace(/'/g,"\\'").replace(/"/g,'&quot;')}',m:'${p.m}',c:'${p.c}',img:'${p.img.replace(/'/g,"\\'").replace(/"/g,'&quot;')}',d:'${(p.d||'Producto de alta calidad').replace(/'/g,"\\'").replace(/"/g,'&quot;')}'})">
+        ${p.img?`<img src="${p.img}" alt="${p.n}" loading="lazy" style="cursor:pointer">`:'<div class="pimg-ph"></div>'}
+      </div>
       <div class="pinfo">
         <div class="pnm">${p.n}</div>
         <div class="pmt">${p.m}</div>
-        <div class="ppr">${p.p?'$'+p.p.toLocaleString():s['pr.q']||'Consultar'}</div>
         <button class="cart-add-btn" onclick="addToCart({n:'${p.n.replace(/'/g,"\\'").replace(/"/g,'&quot;')}',m:'${p.m}',c:'${p.c}',img:'${p.img.replace(/'/g,"\\'").replace(/"/g,'&quot;')}',p:${p.p||0}})">Agregar</button>
       </div>
     </div>`).join('');
@@ -798,14 +820,55 @@ document.getElementById('cartOverlay').addEventListener('click',closeCart);
 document.getElementById('cartCloseBtn').addEventListener('click',closeCart);
 document.getElementById('cartCheckoutBtn').addEventListener('click',()=>{
   if(cart.length>0){
-    const cartSummary=cart.map(item=>`${item.n} x${item.qty}`).join(', ');
-    const message=encodeURIComponent(`Hola, me interesa comprar: ${cartSummary}`);
-    window.open(`https://wa.me/573121234567?text=${message}`,'_blank');
+    const cartSummary=cart.map(item=>`${item.n} (cantidad: ${item.qty})`).join(', ');
+    const message=encodeURIComponent(`Hola, me interesa consultar el precio de estos productos: ${cartSummary}`);
+    window.open(`https://wa.me/573215951512?text=${message}`,'_blank');
   }
 });
+
+/* ─── PRODUCT MODAL ─── */
+function openProductModal(product){
+  const modal=document.getElementById('prodModal');
+  const overlay=document.getElementById('prodModalOverlay');
+  document.getElementById('prodModalImg').src=product.img;
+  document.getElementById('prodModalName').textContent=product.n;
+  document.getElementById('prodModalMaterial').textContent=product.m;
+  document.getElementById('prodModalDesc').textContent=product.d||'Producto de alta calidad de Ópticas Prada';
+  document.getElementById('prodModalAddBtn').onclick=()=>{
+    addToCart({n:product.n,m:product.m,c:product.c,img:product.img,p:0});
+    closeProductModal();
+  };
+  modal.classList.add('active');
+  overlay.classList.add('active');
+}
+function closeProductModal(){
+  const modal=document.getElementById('prodModal');
+  const overlay=document.getElementById('prodModalOverlay');
+  modal.classList.remove('active');
+  overlay.classList.remove('active');
+}
+document.getElementById('prodModalOverlay').addEventListener('click',closeProductModal);
+document.getElementById('prodModalCloseBtn').addEventListener('click',closeProductModal);
+
 updateCartBadge();
 renderCart();
 </script>
+
+<!-- PRODUCT MODAL -->
+<div class="prod-modal-overlay" id="prodModalOverlay"></div>
+<div class="prod-modal" id="prodModal">
+  <button class="prod-modal-close" id="prodModalCloseBtn">✕</button>
+  <img id="prodModalImg" class="prod-modal-img" alt="producto">
+  <div class="prod-modal-content">
+    <div class="prod-modal-name" id="prodModalName"></div>
+    <div class="prod-modal-material" id="prodModalMaterial"></div>
+    <div class="prod-modal-desc" id="prodModalDesc"></div>
+    <div class="prod-modal-action">
+      <button class="prod-modal-action button prod-modal-add" id="prodModalAddBtn">Agregar al Carrito</button>
+      <button class="prod-modal-action button prod-modal-close-btn" onclick="closeProductModal()">Cerrar</button>
+    </div>
+  </div>
+</div>
 
 <!-- CART -->
 <div class="cart-overlay" id="cartOverlay"></div>
