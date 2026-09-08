@@ -852,12 +852,6 @@ function closeProductModal(){
   modal.classList.remove('active');
   overlay.classList.remove('active');
 }
-const prodModalOverlay=document.getElementById('prodModalOverlay');
-const prodModalCloseBtn=document.getElementById('prodModalCloseBtn');
-
-if(prodModalOverlay)prodModalOverlay.addEventListener('click',closeProductModal);
-if(prodModalCloseBtn)prodModalCloseBtn.addEventListener('click',closeProductModal);
-
 updateCartBadge();
 renderCart();
 </script>
@@ -900,6 +894,15 @@ renderCart();
     <button class="cart-checkout" id="cartCheckoutBtn" data-k="cart.checkout">Comprar por WhatsApp</button>
   </div>
 </div>
+
+<script>
+/* ─── EVENT LISTENERS AFTER DOM LOAD ─── */
+const prodModalOverlay=document.getElementById('prodModalOverlay');
+const prodModalCloseBtn=document.getElementById('prodModalCloseBtn');
+
+if(prodModalOverlay)prodModalOverlay.addEventListener('click',closeProductModal);
+if(prodModalCloseBtn)prodModalCloseBtn.addEventListener('click',closeProductModal);
+</script>
 
 </body>
 </html>
