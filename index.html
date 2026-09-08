@@ -816,20 +816,7 @@ function closeCart(){
   overlay.classList.remove('active');
 }
 const cartBtn=document.getElementById('cartBtn');
-const cartOverlay=document.getElementById('cartOverlay');
-const cartCloseBtn=document.getElementById('cartCloseBtn');
-const cartCheckoutBtn=document.getElementById('cartCheckoutBtn');
-
 if(cartBtn)cartBtn.addEventListener('click',toggleCart);
-if(cartOverlay)cartOverlay.addEventListener('click',closeCart);
-if(cartCloseBtn)cartCloseBtn.addEventListener('click',closeCart);
-if(cartCheckoutBtn)cartCheckoutBtn.addEventListener('click',()=>{
-  if(cart.length>0){
-    const cartSummary=cart.map(item=>`${item.n} (cantidad: ${item.qty})`).join(', ');
-    const message=encodeURIComponent(`Hola, me interesa consultar el precio de estos productos: ${cartSummary}`);
-    window.open(`https://wa.me/573215951512?text=${message}`,'_blank');
-  }
-});
 
 /* ─── PRODUCT MODAL ─── */
 function openProductModal(product){
@@ -897,6 +884,20 @@ renderCart();
 
 <script>
 /* ─── EVENT LISTENERS AFTER DOM LOAD ─── */
+const cartOverlay=document.getElementById('cartOverlay');
+const cartCloseBtn=document.getElementById('cartCloseBtn');
+const cartCheckoutBtn=document.getElementById('cartCheckoutBtn');
+
+if(cartOverlay)cartOverlay.addEventListener('click',closeCart);
+if(cartCloseBtn)cartCloseBtn.addEventListener('click',closeCart);
+if(cartCheckoutBtn)cartCheckoutBtn.addEventListener('click',()=>{
+  if(cart.length>0){
+    const cartSummary=cart.map(item=>`${item.n} (cantidad: ${item.qty})`).join(', ');
+    const message=encodeURIComponent(`Hola, me interesa consultar el precio de estos productos: ${cartSummary}`);
+    window.open(`https://wa.me/573215951512?text=${message}`,'_blank');
+  }
+});
+
 const prodModalOverlay=document.getElementById('prodModalOverlay');
 const prodModalCloseBtn=document.getElementById('prodModalCloseBtn');
 
